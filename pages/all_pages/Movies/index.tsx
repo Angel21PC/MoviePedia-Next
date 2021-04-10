@@ -19,7 +19,7 @@ const Movie: NextPage<MovieProps> = ({data}) => {
     return ( 
         <>
             <NavBar />
-            <Banner />
+            <Banner data={data}/>
         </>
      );
 }
