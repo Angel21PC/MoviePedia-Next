@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 
 //components
-import Image from 'react-bootstrap/Image';
 import Porter from '../../components/Poster/index';
 
 export interface BannerProps {
@@ -9,9 +8,6 @@ export interface BannerProps {
 }
  
 const Banner: React.SFC<BannerProps> = ({data}) => {
-
-
-    const base_Url: string = 'https://image.tmdb.org/t/p/original/';
 
     const [movie, setMovie] = useState<any>([]); //recoge todos los datos de la consulta
     
@@ -25,8 +21,8 @@ const Banner: React.SFC<BannerProps> = ({data}) => {
             ]);
             console.log(movie)
         }
+        
         fetchData();
-
 
     }, []);
 
@@ -64,18 +60,6 @@ const Banner: React.SFC<BannerProps> = ({data}) => {
                     height: 450px;
                 }
                 
-                .banner::before {
-                    content: "";
-                    position: absolute;
-                    top: 0px;
-                    right: 0px;
-                    bottom: 0px;
-                    left: 0px;
-                    background-color: rgba(0,0,0,0.25);
-                    margin-top: 66px;
-                    height: 450px;
-                }
-                
                 .banner_content {
                     display: flex;
                     position: relative;
@@ -96,12 +80,8 @@ const Banner: React.SFC<BannerProps> = ({data}) => {
                 }
                 
                 .poster_container{
-                scale: 1.1;
-                }
-                
-                .banner_poster:hover{
-                    transform: scale(1.08);
-                }
+                    scale: 1.1;
+                } 
                 
                 .banner_text {
                     margin-top: 250px;

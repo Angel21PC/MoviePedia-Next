@@ -25,7 +25,7 @@ const Movie: NextPage<MovieProps> = ({data}) => {
 }
 
 Movie.getInitialProps = async () => {
-    return fetch(URL+`/api/hello`)
+    return fetch(URL+`/api/PopularM`)
     .then(res => res.json())
     .then(response => {
         return response
