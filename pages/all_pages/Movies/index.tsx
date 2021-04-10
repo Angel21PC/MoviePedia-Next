@@ -1,17 +1,35 @@
+import { NextPage } from 'next';
+
+//initialprops
+import {URL} from '../config/rute_api'
+
+
 
 //components 
-import NavBar from '../../../components/NavBar/index'
+import NavBar from '../../../components/NavBar/index';
+import Banner from '../../../components/Banner/index';
 
 export interface MovieProps {
-    
+    data:any
 }
  
-const Movie: React.SFC<MovieProps> = () => {
+const Movie: NextPage<MovieProps> = ({data}) => {
+
+    console.log(data)
     return ( 
         <>
             <NavBar />
+            <Banner />
         </>
      );
 }
- 
+
+Movie.getInitialProps = async () => {
+    return fetch(URL+`/api/hello`)
+    .then(res => res.json())
+    .then(response => {
+        return response
+      })
+  }
+
 export default Movie;

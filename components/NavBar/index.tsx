@@ -17,7 +17,7 @@ const NavBar: React.SFC<NavBarProps> = () => {
     return ( 
         <>
             <Navbar collapseOnSelect expand="lg" bg="" variant="light">
-            <Navbar.Brand href="#"><img src={logo} alt="" height="40px"/></Navbar.Brand>
+            <Navbar.Brand ><img src={logo} alt="" height="40px"/></Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
