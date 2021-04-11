@@ -42,7 +42,7 @@ const Banner: React.SFC<BannerProps> = ({data}) => {
           
             <div className='banner_content'>
                 <div className='poster_container'>
-                    <Porter movie={movie}/>
+                    <Porter c='banner_poster' movie={movie}/>
                 </div>
                <div className='banner_text'>
                     <h1>{movie?.title || movie?.name || movie?.original_name}</h1>
@@ -65,15 +65,7 @@ const Banner: React.SFC<BannerProps> = ({data}) => {
                     position: relative;
                 }
                 
-                .banner_poster{
-                    object-fit: contain;
-                    max-height: 300px;
-                
-                    transition: transform 450ms;
-                    border-radius: 10px;
-                    -webkit-box-shadow: 0 10px 10px 0 rgba(0,0,0,0.3);
-                    box-shadow: 0 10px 10px 0 rgba(0,0,0,0.3);
-                
+                .poster{
                     /*position*/
                     margin-left: 60%;
                     margin-top: 50%;

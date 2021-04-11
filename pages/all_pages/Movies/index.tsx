@@ -1,13 +1,13 @@
 import { NextPage } from 'next';
 
 //initialprops
-import {URL} from '../config/rute_api'
-
+import {URL, api_rutes} from '../config/rute_api'
 
 
 //components 
 import NavBar from '../../../components/NavBar/index';
 import Banner from '../../../components/Banner/index';
+import Explorer from '../../../components/Explorer/index';
 
 export interface MovieProps {
     data:any
@@ -20,12 +20,13 @@ const Movie: NextPage<MovieProps> = ({data}) => {
         <>
             <NavBar />
             <Banner data={data}/>
+            <Explorer URL={URL} api_rutes={api_rutes} />
         </>
      );
 }
 
 Movie.getInitialProps = async () => {
-    return fetch(URL+`/api/PopularM`)
+    return fetch(URL+api_rutes.PopularM)
     .then(res => res.json())
     .then(response => {
         return response
