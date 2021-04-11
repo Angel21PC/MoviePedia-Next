@@ -5,9 +5,9 @@ export default async (
   res
 ) => {
   
-  const page = req.query.p
-  const g = req.query.g
-  // console.log(e)
+  const page:number = req.query.p
+  const g:string = req.query.g
+  
   try {
     const request = await axios.get(r.fetchDiscover_Movie+`&page=${page}&with_genres=`+g);
     res.status(200).json({data: request.data})

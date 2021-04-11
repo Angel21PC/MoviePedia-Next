@@ -6,8 +6,8 @@ import {Container, Row, Form, Button} from 'react-bootstrap';
 import Poster from "../../components/Poster/index";
 
 export interface ExplorerProps {
-    URL:any
-    api_rutes:any
+    URL: string
+    api_rutes: any
 }
  
 const Explorer: React.SFC<ExplorerProps> = ({URL, api_rutes}) => {

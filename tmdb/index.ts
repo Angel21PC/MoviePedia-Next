@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { API_KEY } from "./key";
 
-export const request = {
+export const request: IRequest = {
 
     //Movies
     fetchPopular_Movie : `/movie/popular?api_key=${API_KEY}`,

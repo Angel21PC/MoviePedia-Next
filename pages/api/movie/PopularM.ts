@@ -6,7 +6,7 @@ export default async (
   res
 ) => {
   
-  const page = req.query.p
+  const page:number = req.query.p
   // console.log(page)
   try {
     const request = await axios.get(r.fetchPopular_Movie+`&page=${page}`);

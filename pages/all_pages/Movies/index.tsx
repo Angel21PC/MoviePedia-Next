@@ -10,12 +10,12 @@ import Banner from '../../../components/Banner/index';
 import Explorer from '../../../components/Explorer/index';
 
 export interface MovieProps {
-    data:any
+    data: any
 }
  
 const Movie: NextPage<MovieProps> = ({data}) => {
 
-    console.log(data)
+    //console.log(data)
     return ( 
         <>
             <NavBar />
