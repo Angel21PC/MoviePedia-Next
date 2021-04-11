@@ -3,7 +3,7 @@
 import Image from 'react-bootstrap/Image';
 
 export interface PosterProps {
-    c:string
+    c: string
     movie: any
 }
  
