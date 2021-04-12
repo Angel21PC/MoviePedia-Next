@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 //components
-import Porter from '../../components/Poster/index';
+import Porter from '../../Min-Components/Poster/index';
 
 export interface BannerProps {
     data:any

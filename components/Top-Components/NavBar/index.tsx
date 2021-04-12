@@ -4,7 +4,7 @@ import Link from "next/link"
 //Icons
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faSignInAlt, faUser } from '@fortawesome/free-solid-svg-icons'
-import logo from '../../public/image.png';
+import logo from '../../../public/image.png';
 
 //COMPONENTS 
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';

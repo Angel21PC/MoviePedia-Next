@@ -15,6 +15,7 @@ const Poster: React.SFC<PosterProps> = ({movie, c}) => {
             className={c}
             src={`${base_Url}${movie?.poster_path}`} 
             alt={movie?.name} 
+            key={movie?.name} 
         />    
      );
 }

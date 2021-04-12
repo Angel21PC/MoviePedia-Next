@@ -5,9 +5,9 @@ import {URL, api_rutes} from '../config/rute_api'
 
 
 //components 
-import NavBar from '../../../components/NavBar/index';
-import Banner from '../../../components/Banner/index';
-import Explorer from '../../../components/Explorer/index';
+import NavBar from '../../../components/Top-Components/NavBar/index';
+import Banner from '../../../components/Top-Components/Banner/index';
+import Explorer from '../../../components/Top-Components/Explorer/index';
 
 export interface MovieProps {
     data: any

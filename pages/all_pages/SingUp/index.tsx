@@ -1,8 +1,8 @@
 import { NextPage } from 'next';
 
 //components 
-import NavBar from '../../../components/NavBar/index';
-import FormS from '../../../components/Form/Form_singup';
+import NavBar from '../../../components/Top-Components/NavBar/index';
+import FormS from '../../../components/Min-Components/Form/Form_singup';
 
 export interface SingUpProps {
     

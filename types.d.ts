@@ -33,6 +33,7 @@ type IApi_rutes = {
     UpcomingM: string,
     DiscoverM: string,
     GenreM: string 
+    OneMovie: string
 }
 
 type INewUser = {

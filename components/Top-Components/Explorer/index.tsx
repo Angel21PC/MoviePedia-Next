@@ -6,7 +6,7 @@ import Link from "next/link"
 
 //componentes
 import {Container, Row, Form, Button} from 'react-bootstrap';
-import Poster from "../../components/Poster/index";
+import Poster from "../../Min-Components/Poster/index";
 
 export interface ExplorerProps {
     URL: string
@@ -90,9 +90,9 @@ const Explorer: React.SFC<ExplorerProps> = ({URL, api_rutes}) => {
                         <Form.Group controlId="SelectFilter">
                             <Form.Label>Filtrar por:</Form.Label>
                             <Form.Control as="select" size="sm" custom onChange={handleSelect} className='seach'>
-                                <option value='Popular'>Popular</option>
-                                <option value='Top'>Top</option>
-                                <option value='Upcoming'>Upcoming</option>
+                                <option value='Popular' key='Popular'>Popular</option>
+                                <option value='Top' key='Top'>Top</option>
+                                <option value='Upcoming' key='Upcoming'>Upcoming</option>
                                 {genre.map( //generos de busqueda
                                     (o) => <option value={o.id} key= {o.name}>{o.name}</option>
                                 )}
@@ -107,12 +107,13 @@ const Explorer: React.SFC<ExplorerProps> = ({URL, api_rutes}) => {
 
 
                         <Link
-                        href={{
-                        pathname: "/all_pages/Movie_select",
-                        query: { id: movie.id },
-                        }}
+                            href={{
+                            pathname: "/all_pages/Movie_select",
+                            query: { id: movie.id },
+                            }}
+                            key={movie?.name} 
                         >
-                            <a>
+                            <a key={movie?.name} >
                                 <Poster 
                                     c='poster' 
                                     movie={movie}
@@ -178,6 +179,7 @@ const Explorer: React.SFC<ExplorerProps> = ({URL, api_rutes}) => {
                     margin-top: 2%;
                     margin-bottom: 1%;
                 }
+                
             `}</style>
         </>
      );
