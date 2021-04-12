@@ -34,3 +34,12 @@ type IApi_rutes = {
     DiscoverM: string,
     GenreM: string 
 }
+
+type INewUser = {
+    birth_date: string,
+    email: string,
+    password: string,
+    password2: string,
+    phone_number: string,
+    username: string
+}

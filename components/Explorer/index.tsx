@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 
+//Next
+import Link from "next/link"
+
 //componentes
 import {Container, Row, Form, Button} from 'react-bootstrap';
 import Poster from "../../components/Poster/index";
@@ -98,10 +101,26 @@ const Explorer: React.SFC<ExplorerProps> = ({URL, api_rutes}) => {
                         </Form> 
                     </div>
 
-                <Row className="justify-content-md-center" md={6} xs={4}>
+                <Row className="justify-content-md-center" lg={6} md={4} sm={3} xs={1}>
                 {isPending && <div><img src="https://rubico.com.mx/cultivandoelentendimiento_no_PHP/assets/img/demo/loader.gif" alt=""/></div>}
                     {movies.map(movie =>( //saca las peliculas
-                        <Poster c='poster' movie={movie}/>
+
+
+                        <Link
+                        href={{
+                        pathname: "/all_pages/Movie_select",
+                        query: { id: movie.id },
+                        }}
+                        >
+                            <a>
+                                <Poster 
+                                    c='poster' 
+                                    movie={movie}
+                                />
+                            </a>
+                         
+                        </Link>     
+                        
                     ))}
                 </Row>
 
@@ -150,7 +169,7 @@ const Explorer: React.SFC<ExplorerProps> = ({URL, api_rutes}) => {
                 }
                 
                 .explorer_Seach{
-                    margin-left: 40px;
+                    margin-left: 4px;
                 }
                 
                 .explorer_button{
