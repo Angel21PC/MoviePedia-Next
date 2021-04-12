@@ -34,6 +34,7 @@ type IApi_rutes = {
     DiscoverM: string,
     GenreM: string 
     OneMovie: string
+    Cast:string
 }
 
 type INewUser = {
