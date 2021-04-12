@@ -7,7 +7,7 @@ import {URL, api_rutes} from '../../../pages/all_pages/config/rute_api';
 //components-p
 import Poster from '../../Min-Components/Poster/index'
 import Overview from '../../Min-Components/Overview/index';
-
+import Cast from '../../Min-Components/Cast/index';
 
 //components
 import {Container, Row, Col} from 'react-bootstrap';
@@ -58,7 +58,7 @@ const Movie: React.SFC<MovieProps> = ({data}) => {
                 <Col className="movie" xs lg="4">
                     <div className="movie_back">
                             <Poster 
-                                c='poster' 
+                                c='movie_poster' 
                                 movie={movie}
                             />
                     </div>
@@ -68,20 +68,82 @@ const Movie: React.SFC<MovieProps> = ({data}) => {
                 </Col>
                 <Col className="text" xs lg="6">
                     <div className="text_title">
-                        <Overview movie={movie} cast={cast}/>
+                        <h1>{movie.title}</h1>
                         {/* Nuevo componente que Tiene el titulo y los botones de like, bookmark, eye */}
                     </div>
 
                     <hr/>
-                    {/* Nuevo componente que muestre la descripcion y el director */}
-
+                    <Overview movie={movie} cast={cast}/>
                     <div className="actors_container">
+                        <Cast cast={cast}/>
                     {/* componente que mueste los actores */}
                     </div>
                 </Col>
                 </>
                   } 
             </Row>
+            <style jsx>{`
+
+                .load {
+                    position: absolute;
+                  }
+                  
+                  .text {
+                    margin-top: 7vh;
+                    padding-left: 30px;
+                  }
+                  
+                  .actors_container {
+                    display: flex;
+                    overflow-y: hidden;
+                    overflow-x: scroll;
+                  }
+                  
+                  .actor p {
+                    padding-top: 5px;
+                    padding-left: 15px;
+                  }
+                  
+                  .providers_container {
+                    width: 80%;
+                    display: flex;
+                    justify-content: center;
+                  }
+                  .movie h5 {
+                    margin-top: 2vh;
+                    width: 80%;
+                    text-align: center;
+                  }
+                  .providers_logo {
+                    border-radius: 10px;
+                    object-fit: cover;
+                    max-height: 60px;
+                  }
+                  
+                  .text_title {
+                    display: flex;
+                  }
+                  .text_title > .icon {
+                    margin-left: 30px;
+                    color: grey;
+                  }
+                  
+                  #heart:hover {
+                    color: red;
+                  }
+                  #heartcheck {
+                    color: red;
+                  }
+                  #bookmark:hover {
+                    color: blue;
+                  }
+                  #bookmarkcheck {
+                    color: blue;
+                  }
+                  #eye:hover {
+                    color: orange;
+                  }
+            `}</style>
         </Container>
      );
 }

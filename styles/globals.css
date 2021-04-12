@@ -25,7 +25,17 @@
   margin-top: 15px;
   margin-left: 30px;
 }
+.movie_poster {
+  object-fit: cover;
+  max-height: 500px;
 
+  transition: transform 450ms;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 5px 5px 0 rgba(80, 79, 79, 0.3);
+  box-shadow: 0 5px 5px 0 rgba(19, 18, 18, 0.3);
+  margin-top: 5vh;
+  margin-left: 1vw;
+}
 /*animation*/
 .banner_poster:hover {
   transform: scale(1.08);

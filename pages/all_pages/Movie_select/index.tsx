@@ -26,7 +26,6 @@ const MovieS: NextPage<MovieSProps> = ({data}) => {
 
     return ( 
         <>
-        <h1>Movie_select:{id}</h1>
         <Movie data={data} />
         </>
      );
