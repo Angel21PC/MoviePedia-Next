@@ -41,7 +41,16 @@ const NavBar: React.SFC<NavBarProps> = () => {
             </Nav>
             <Nav>
             
-            
+                <Link href="/all_pages/SingUp">
+                    <a>
+                        Sing in
+                    </a>
+                </Link> 
+                <Link href="/all_pages/LogIn">
+                    <a>
+                        Login
+                    </a>
+                </Link>
                 
             </Nav>
             </Navbar.Collapse>
