@@ -8,6 +8,7 @@ import {URL, api_rutes} from '../../../pages/all_pages/config/rute_api';
 import Poster from '../../Min-Components/Poster/index'
 import Overview from '../../Min-Components/Overview/index';
 import Cast from '../../Min-Components/Cast/index';
+import Avaliable from '../../Min-Components/Avaliable/index';
 
 //components
 import {Container, Row, Col} from 'react-bootstrap';
@@ -22,6 +23,7 @@ const Movie: React.SFC<MovieProps> = ({data}) => {
     const [isPending, setIsPending] = useState(true); // variable para la pantalla de carga
     const movie= data; //recoge todos los datos de la consulta
     const [cast, setCast] = useState();
+    const [provider, setProvider] = useState();
 
     useEffect(() =>{
 
@@ -36,11 +38,24 @@ const Movie: React.SFC<MovieProps> = ({data}) => {
             return request;
         }
 
+        //request para extraer los providers 
+        async function fetchDataProvider(){
+            const request = await axios.get(URL+api_rutes.Provider, {
+                params: {
+                    id: movie.id
+                }
+            });
+            setProvider(request.data)
+            // console.log(request)
+            return request;
+        }
+        
         //request para extraer las peliculas
         async function go(){
             setIsPending(true); //cargamos la animacion
             setTimeout(()=>{ //ejecutamos
                 fetchDataCast();
+                fetchDataProvider()
                 setIsPending(false);
                 console.log(cast)
             },1500)
@@ -63,7 +78,7 @@ const Movie: React.SFC<MovieProps> = ({data}) => {
                             />
                     </div>
                     <div className="providers_container">
-                        {/* Nuevo componente de Avaliable */}
+                        <Avaliable provider={provider}/>
                     </div>
                 </Col>
                 <Col className="text" xs lg="6">
@@ -76,7 +91,6 @@ const Movie: React.SFC<MovieProps> = ({data}) => {
                     <Overview movie={movie} cast={cast}/>
                     <div className="actors_container">
                         <Cast cast={cast}/>
-                    {/* componente que mueste los actores */}
                     </div>
                 </Col>
                 </>
@@ -84,6 +98,10 @@ const Movie: React.SFC<MovieProps> = ({data}) => {
             </Row>
             <style jsx>{`
 
+                *{
+                    margin-top: 2vh;
+                }
+                
                 .load {
                     position: absolute;
                   }
@@ -114,12 +132,6 @@ const Movie: React.SFC<MovieProps> = ({data}) => {
                     width: 80%;
                     text-align: center;
                   }
-                  .providers_logo {
-                    border-radius: 10px;
-                    object-fit: cover;
-                    max-height: 60px;
-                  }
-                  
                   .text_title {
                     display: flex;
                   }
