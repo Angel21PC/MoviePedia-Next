@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .banner_poster {
   object-fit: contain;
   max-height: 300px;
@@ -42,4 +47,33 @@
 }
 .poster:hover {
   transform: scale(1.08);
+}
+
+#heart:hover {
+  color: red;
+}
+#heartcheck {
+  color: red;
+}
+#bookmark:hover {
+  color: blue;
+}
+#bookmarkcheck {
+  color: blue;
+}
+#eye:hover {
+  color: orange;
+}
+#heart {
+  margin-left: 30px;
+  color: grey;
+}
+#bookmark {
+  margin-left: 30px;
+  color: grey;
+}
+
+#eye {
+  margin-left: 30px;
+  color: grey;
 }

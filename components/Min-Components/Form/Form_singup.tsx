@@ -58,6 +58,19 @@ const FormS: React.SFC<FormSProps> = () => {
             //             touch: true,
             //         }
             //     }); 
+            store.addNotification({
+                title: "Fail!",
+                message: "Fail to create account",
+                type: "danger",
+                insert: "top",
+                container: "top-center",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOutUp"],
+                dismiss: {
+                    duration: 2000,
+                    touch: true,
+                }
+            }); 
         }
         //setLoading(false)
 

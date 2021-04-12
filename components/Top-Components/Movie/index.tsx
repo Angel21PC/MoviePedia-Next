@@ -9,6 +9,7 @@ import Poster from '../../Min-Components/Poster/index'
 import Overview from '../../Min-Components/Overview/index';
 import Cast from '../../Min-Components/Cast/index';
 import Avaliable from '../../Min-Components/Avaliable/index';
+import M_B_F from '../../Min-Components/M_button_F/index';
 
 //components
 import {Container, Row, Col} from 'react-bootstrap';
@@ -65,7 +66,7 @@ const Movie: React.SFC<MovieProps> = ({data}) => {
     }, []);
 
     return ( 
-        <Container fluid>
+        <Container className='containerr' fluid>
             <Row className="justify-content-md-center"  xs={1} md={2}>
             {isPending ? <div className="load"> <img src="https://rubico.com.mx/cultivandoelentendimiento_no_PHP/assets/img/demo/loader.gif" alt=""/></div>
                 :
@@ -83,12 +84,11 @@ const Movie: React.SFC<MovieProps> = ({data}) => {
                 </Col>
                 <Col className="text" xs lg="6">
                     <div className="text_title">
-                        <h1>{movie.title}</h1>
-                        {/* Nuevo componente que Tiene el titulo y los botones de like, bookmark, eye */}
+                        <M_B_F movie={movie} />
                     </div>
-
-                    <hr/>
+                      <hr />                
                     <Overview movie={movie} cast={cast}/>
+                    
                     <div className="actors_container">
                         <Cast cast={cast}/>
                     </div>
@@ -97,11 +97,6 @@ const Movie: React.SFC<MovieProps> = ({data}) => {
                   } 
             </Row>
             <style jsx>{`
-
-                *{
-                    margin-top: 2vh;
-                }
-                
                 .load {
                     position: absolute;
                   }
@@ -134,26 +129,6 @@ const Movie: React.SFC<MovieProps> = ({data}) => {
                   }
                   .text_title {
                     display: flex;
-                  }
-                  .text_title > .icon {
-                    margin-left: 30px;
-                    color: grey;
-                  }
-                  
-                  #heart:hover {
-                    color: red;
-                  }
-                  #heartcheck {
-                    color: red;
-                  }
-                  #bookmark:hover {
-                    color: blue;
-                  }
-                  #bookmarkcheck {
-                    color: blue;
-                  }
-                  #eye:hover {
-                    color: orange;
                   }
             `}</style>
         </Container>

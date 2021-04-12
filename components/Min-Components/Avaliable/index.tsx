@@ -9,7 +9,7 @@ const Avaliable: React.SFC<AvaliableProps> = ({provider}) => {
     console.log(provider);
     return ( 
         <>
-            {provider?.data?.results?.US?.flatrate?.map( e => e.logo_path ? 
+            {provider?.data.results?.US?.flatrate?.map( e => e.logo_path ? 
                     <>
                         <img 
                             key= {e}
@@ -25,6 +25,7 @@ const Avaliable: React.SFC<AvaliableProps> = ({provider}) => {
                     border-radius: 10px;
                     object-fit: cover;
                     max-height: 60px;
+                    margin-left: 20px;
                   }
             `}</style>
         </>

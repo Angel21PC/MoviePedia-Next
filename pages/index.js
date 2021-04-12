@@ -7,7 +7,7 @@ import NavBar from '../components/Top-Components/NavBar/index'
 
 export default function Home() {
   return (
-    <AppLayout>
+    <AppLayout> 
       <NavBar />
     </AppLayout>
   )
