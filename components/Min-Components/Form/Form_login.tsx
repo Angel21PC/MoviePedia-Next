@@ -20,7 +20,9 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 //firebase
 import { useAuth } from '../../../firebase/AuthContext';
+import { Google, Facebook, Twitter } from 'react-bootstrap-icons';
 
+import {INewUser} from '../../../types';
 export interface FormLProps {
     
 }
@@ -65,7 +67,7 @@ const FormL: React.SFC<FormLProps> = () => {
     }
     
     //firebase
-    const { login } = useAuth();
+    const { login, signInWithGoogle, signInWithFacebook, signInWithTwitter} = useAuth();
 
     return ( 
         <div className="registration-form">
@@ -88,9 +90,9 @@ const FormL: React.SFC<FormLProps> = () => {
                 <div className="social-media">
                     <h5>Sign up with social media</h5>
                     <div className="social-icons">
-                        {/* <a href="#"><i className="icon-social-facebook" title="Facebook"></i></a>
-                        <a href="#"><i className="icon-social-google" title="Google"></i></a>
-                        <a href="#"><i className="icon-social-twitter" title="Twitter"></i></a> */}
+                        <Google onClick={()=>{signInWithGoogle();router.push('/')}}></Google>
+                        <Facebook></Facebook>
+                        <Twitter></Twitter>
                     </div>
                 </div>
                 <style jsx>{`

@@ -107,6 +107,20 @@ export function AuthProvider({children}) {
     const signInWithGoogle = () => {
       auth.signInWithPopup(googleProvider).then((res) => {
         console.log(res.user)
+
+        const docRef = db.collection("profile").doc(res.user.email);
+
+        docRef.get().then((doc) => {
+            if (doc.exists) {
+               
+            } else {
+                saveData(res.user.displayName, '', '', res.user.email);
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+      
+
       }).catch((error) => {
         console.log(error.message)
       })
@@ -117,6 +131,8 @@ export function AuthProvider({children}) {
     const signInWithFacebook = () => {
       auth.signInWithPopup(facebookProvider).then((res) => {
         console.log(res.user)
+
+        //falta el save
       }).catch((error) => {
         console.log(error.message)
       })
@@ -127,6 +143,8 @@ export function AuthProvider({children}) {
     const signInWithTwitter = () => {
       auth.signInWithPopup(twitterProvider).then((res) => {
         console.log(res.user)
+        //falta el save
+        
       }).catch((error) => {
         console.log(error.message)
       })

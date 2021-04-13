@@ -1,10 +1,11 @@
-
-import Link from "next/link"
+//Next
+import { useRouter } from 'next/router';
+import Link from "next/link";
 
 //Icons
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faSignInAlt, faUser } from '@fortawesome/free-solid-svg-icons'
-import logo from '../../../public/image.png';
+import logo from "../../../public/image";
 
 //COMPONENTS 
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
@@ -19,6 +20,8 @@ const NavBar: React.SFC<NavBarProps> = () => {
 
     const currentUser = useAuth();
     const { logout} = useAuth();
+
+    const router = useRouter();
 
     return ( 
         <>
@@ -54,9 +57,11 @@ const NavBar: React.SFC<NavBarProps> = () => {
                         <NavDropdown.Item href="/all_pages/MyCollections">My collections</NavDropdown.Item>
                         <NavDropdown.Item href="/all_pages/Stads">Stads</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item onClick={async ()=>{
-                                    await logout() 
-                                    }}>Log out <FontAwesomeIcon icon={faSignInAlt} /></NavDropdown.Item>
+                        <NavDropdown.Item onClick={()=>{
+                                    logout();
+                                    router.push('/') 
+                                    }}>Log out <FontAwesomeIcon icon={faSignInAlt} />
+                        </NavDropdown.Item>
                     </NavDropdown>
                     : 
                     <>

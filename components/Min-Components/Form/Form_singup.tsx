@@ -13,7 +13,8 @@ import { store } from 'react-notifications-component';
 
 //Icons
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { Google, Facebook, Twitter } from 'react-bootstrap-icons';
 
 //firebase
 import { useAuth } from '../../../firebase/AuthContext';
@@ -111,10 +112,12 @@ const FormS: React.SFC<FormSProps> = () => {
                 <div className="social-media">
                     <h5>Sign up with social media</h5>
                     <div className="social-icons">
-                        <button onClick={()=>{signInWithGoogle()}}>Google</button>
-                        {/* <a href="#"><i className="icon-social-facebook" title="Facebook"></i></a>
-                        <a href="#"><i className="icon-social-google" title="Google"></i></a>
-                        <a href="#"><i className="icon-social-twitter" title="Twitter"></i></a> */}
+                        <Google onClick={()=>{
+                            signInWithGoogle();
+                            router.push('/')}
+                            }></Google>
+                        <Facebook></Facebook>
+                        <Twitter></Twitter>
                     </div>
                 </div>
                 <style jsx>{`
