@@ -9,11 +9,17 @@ import logo from '../../../public/image.png';
 //COMPONENTS 
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
+//firebase
+import { useAuth } from '../../../firebase/AuthContext';
 export interface NavBarProps {
     
 }
  
 const NavBar: React.SFC<NavBarProps> = () => {
+
+    const currentUser = useAuth();
+    const { logout} = useAuth();
+
     return ( 
         <>
             <Navbar collapseOnSelect expand="lg" bg="" variant="light">
@@ -40,18 +46,30 @@ const NavBar: React.SFC<NavBarProps> = () => {
                 </Link>
             </Nav>
             <Nav>
-            
-                <Link href="/all_pages/SingUp">
-                    <a>
-                        Sing in
-                    </a>
-                </Link> 
-                <Link href="/all_pages/LogIn">
-                    <a>
-                        Login
-                    </a>
-                </Link>
-                
+                {
+                    currentUser.currentUser ?
+                    <NavDropdown title={currentUser.currentUser.email} id="collasible-nav-dropdown">
+                        <NavDropdown.Item href="#action/3.1"><FontAwesomeIcon icon={faUser}/> Profile </NavDropdown.Item>
+                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item onClick={async ()=>{
+                                    await logout() 
+                                    }}>Log out <FontAwesomeIcon icon={faSignInAlt} /></NavDropdown.Item>
+                    </NavDropdown>
+                    : 
+                    <>
+                    <Link href="/all_pages/SingUp">
+                        <a>
+                            Sing in
+                        </a>
+                    </Link> 
+                    <Link href="/all_pages/LogIn">
+                        <a>
+                            Login
+                        </a>
+                    </Link>
+                </>
+                }  
             </Nav>
             </Navbar.Collapse>
         </Navbar>

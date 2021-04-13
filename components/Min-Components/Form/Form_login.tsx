@@ -1,4 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
+//next 
+import { useRouter } from 'next/router'
 
 //Form
 import {useForm} from 'react-hook-form';
@@ -15,6 +18,9 @@ import { store } from 'react-notifications-component';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 
+//firebase
+import { useAuth } from '../../../firebase/AuthContext';
+
 export interface FormLProps {
     
 }
@@ -26,49 +32,40 @@ const schema = yup.object().shape({
 });
 
 const FormL: React.SFC<FormLProps> = () => {
+
     const [loading, setLoading] = useState(false);
+    const router = useRouter()
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
      });
      
     const onSubmit = async (data: INewUser) => {
-        console.log(data)
-        // try {
-        //     console.log(data)
-        //     setLoading(true)
-        //     await signup(data.email, data.password).then(saveData(data.username, data.birth_date, data.phone_number, data.email))
-        //     history.push("/in")
-        // } catch {
-        //     store.addNotification({
-        //         title: "Fail!",
-        //         message: "Fail to create account",
-        //         type: "danger",
-        //         insert: "top",
-        //         container: "top-center",
-        //         animationIn: ["animate__animated", "animate__fadeIn"],
-        //         animationOut: ["animate__animated", "animate__fadeOutUp"],
-        //         dismiss: {
-        //             duration: 2000,
-        //             touch: true,
-        //         }
-        //     }); 
-        store.addNotification({
-            title: "Fail!",
-            message: "Fail to create account",
-            type: "danger",
-            insert: "top",
-            container: "top-center",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOutUp"],
-            dismiss: {
-                duration: 2000,
-                touch: true,
-            }
-        }); 
+        try {
+            console.log(data)
+            setLoading(true)
+            await login(data.email, data.password).then(router.push('/'))
+        } catch {
+            store.addNotification({
+                title: "Fail!",
+                message: "Fail to log in",
+                type: "danger",
+                insert: "top",
+                container: "top-center",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOutUp"],
+                dismiss: {
+                    duration: 2000,
+                    touch: true,
+                }
+            }); 
+        }
+        setLoading(false)
     }
-    //setLoading(false)
     
+    //firebase
+    const { login } = useAuth();
+
     return ( 
         <div className="registration-form">
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -84,7 +81,7 @@ const FormL: React.SFC<FormLProps> = () => {
                         {errors.password?.message && <p>{errors.password?.message}</p>}
                     </div>
                     <div className="form-group">
-                        <button  disabled={loading}  type="submit" className="btn btn-block create-account">Create Account</button>
+                        <button  disabled={loading}  type="submit" className="btn btn-block create-account">Enter</button>
                     </div>
                 </form>
                 <div className="social-media">
