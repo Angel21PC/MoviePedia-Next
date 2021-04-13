@@ -24,12 +24,6 @@ export function AuthProvider({children}) {
             id_movie:{}
         })
 
-
-
-
-
-
-
         //datos de perfil
         return db.collection("profile").doc(email).set({
             email: {email},
@@ -40,7 +34,7 @@ export function AuthProvider({children}) {
     }
 
     async function checkLikes_M(email, id){
-        let result = '';
+        let result = undefined;
         const docRef = db.collection("likes_M").doc(email);
 
         await docRef.get().then((doc) => {
@@ -72,7 +66,7 @@ export function AuthProvider({children}) {
     }
 
     async function checkBookMark_M(email, id){
-        let result = '';
+        let result = undefined;
         const docRef = db.collection("bookmark_M").doc(email);
 
         await docRef.get().then((doc) => {

@@ -15,6 +15,11 @@ import { store } from 'react-notifications-component';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 
+//firebase
+import { useAuth } from '../../../firebase/AuthContext';
+
+//next 
+import { useRouter } from 'next/router'
 export interface FormSProps {
 
 }
@@ -32,50 +37,40 @@ const schema = yup.object().shape({
 const FormS: React.SFC<FormSProps> = () => {
 
         const [loading, setLoading] = useState(false);
+        const router = useRouter();
 
-         const { register, handleSubmit, formState: { errors } } = useForm({
+        const { register, handleSubmit, formState: { errors } } = useForm({
             resolver: yupResolver(schema),
-         });
+        });
 
         const onSubmit = async (data: INewUser) => {
-            console.log(data)
-            // try {
-            //     console.log(data)
-            //     setLoading(true)
-            //     await signup(data.email, data.password).then(saveData(data.username, data.birth_date, data.phone_number, data.email))
-            //     history.push("/in")
-            // } catch {
-            //     store.addNotification({
-            //         title: "Fail!",
-            //         message: "Fail to create account",
-            //         type: "danger",
-            //         insert: "top",
-            //         container: "top-center",
-            //         animationIn: ["animate__animated", "animate__fadeIn"],
-            //         animationOut: ["animate__animated", "animate__fadeOutUp"],
-            //         dismiss: {
-            //             duration: 2000,
-            //             touch: true,
-            //         }
-            //     }); 
-            store.addNotification({
-                title: "Fail!",
-                message: "Fail to create account",
-                type: "danger",
-                insert: "top",
-                container: "top-center",
-                animationIn: ["animate__animated", "animate__fadeIn"],
-                animationOut: ["animate__animated", "animate__fadeOutUp"],
-                dismiss: {
-                    duration: 2000,
-                    touch: true,
-                }
-            }); 
+            try {
+                console.log(data)
+                setLoading(true)
+                await signup(data.email, data.password).then(saveData(data.username, data.birth_date, data.phone_number, data.email))
+                router.push('/')
+            
+            } catch {
+                store.addNotification({
+                    title: "Fail!",
+                    message: "Fail to create account",
+                    type: "danger",
+                    insert: "top",
+                    container: "top-center",
+                    animationIn: ["animate__animated", "animate__fadeIn"],
+                    animationOut: ["animate__animated", "animate__fadeOutUp"],
+                    dismiss: {
+                        duration: 2000,
+                        touch: true,
+                    }
+                }); 
+            }
+            setLoading(false)
         }
-        //setLoading(false)
 
        
-
+        //firebase
+        const { signup, saveData } = useAuth();
         
         return ( 
             <div className="registration-form">

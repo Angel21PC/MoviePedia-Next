@@ -34,7 +34,7 @@ const schema = yup.object().shape({
 const FormL: React.SFC<FormLProps> = () => {
 
     const [loading, setLoading] = useState(false);
-    const router = useRouter()
+    const router = useRouter();
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
@@ -44,7 +44,8 @@ const FormL: React.SFC<FormLProps> = () => {
         try {
             console.log(data)
             setLoading(true)
-            await login(data.email, data.password).then(router.push('/'))
+            await login(data.email, data.password)
+            router.push('/')
         } catch {
             store.addNotification({
                 title: "Fail!",
