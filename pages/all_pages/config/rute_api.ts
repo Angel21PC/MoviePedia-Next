@@ -1,3 +1,5 @@
+import { IApi_rutes } from "../../../types";
+
 export const URL:string = 'http://localhost:3000';
 
 export const api_rutes: IApi_rutes = {

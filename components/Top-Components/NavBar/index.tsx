@@ -49,8 +49,10 @@ const NavBar: React.SFC<NavBarProps> = () => {
                 {
                     currentUser.currentUser ?
                     <NavDropdown title={currentUser.currentUser.email} id="collasible-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1"><FontAwesomeIcon icon={faUser}/> Profile </NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                        <NavDropdown.Item href="/all_pages/Profile"><FontAwesomeIcon icon={faUser}/> Profile </NavDropdown.Item>
+                        <NavDropdown.Item href="/all_pages/List">List</NavDropdown.Item>
+                        <NavDropdown.Item href="/all_pages/MyCollections">My collections</NavDropdown.Item>
+                        <NavDropdown.Item href="/all_pages/Stads">Stads</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={async ()=>{
                                     await logout() 

@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react"
+import { IListM } from "../types";
 import { auth, db, a } from "./index";
 
 const AuthContext = React.createContext(null);
@@ -118,6 +119,42 @@ export function AuthProvider({children}) {
         return unsubscribe
     }, [])
 
+    async function getListMovies(email){
+
+        let result: IListM = {
+            Bookmark: [],
+            Like:[]
+        };
+
+        const bookmark = db.collection("bookmark_M").doc(email);
+        const likes = db.collection("likes_M").doc(email);
+
+        await bookmark.get().then((doc) => {
+            if (doc.exists) {
+                const data = doc.data();
+                result.Bookmark.push(data);
+                console.log(result)
+            } else {
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+
+        await likes.get().then((doc) => {
+            if (doc.exists) {
+                const data = doc.data();
+                result.Like.push(data);
+                console.log(result)
+            } else {
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+
+        return result
+    }
 
     const value = {
         currentUser,
@@ -130,7 +167,8 @@ export function AuthProvider({children}) {
         deleteLike_M,
         saveBookMark_M,
         deleteBookMark_M,
-        checkBookMark_M
+        checkBookMark_M,
+        getListMovies
     }
 
     return ( 

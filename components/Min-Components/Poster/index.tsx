@@ -9,7 +9,7 @@ export interface PosterProps {
 const Poster: React.SFC<PosterProps> = ({movie, c}) => {
 
     const base_Url: string = 'https://image.tmdb.org/t/p/original/';
-
+ 
     return ( 
         <Image 
             className={c}

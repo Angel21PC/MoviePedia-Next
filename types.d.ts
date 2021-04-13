@@ -1,3 +1,5 @@
+import { type } from "node:os";
+
 declare module "*.png" {
     const value: any;
     export = value;
@@ -45,4 +47,9 @@ type INewUser = {
     password2: string,
     phone_number: string,
     username: string
+}
+
+type IListM = {
+    Like: any
+    Bookmark: any
 }
