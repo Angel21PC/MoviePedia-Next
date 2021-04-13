@@ -13,7 +13,7 @@ export interface ListMProps {
     
 }
  
-const ListM: React.SFC<ListMProps> = (data:any) => {
+const ListM: React.SFC<ListMProps> = (data:IListM) => {
 
     console.log(data)
 
@@ -28,7 +28,11 @@ const ListM: React.SFC<ListMProps> = (data:any) => {
                     ))}
                 </Tab>
                 <Tab eventKey="Pending" title="Pending">
-                    <p>bihsbbfbsubfsobfobsbfuobsuf</p>
+                    {data?.Bookmark?.map(movie=>(
+                        movie?.id_movie.map(id=>(
+                            <LstM {...id}/>
+                        ))
+                    ))}
                 </Tab>
                 <Tab eventKey="Watched" title="Watched" disabled>
                     <p>bihsbbfbsubfsobfobsbfuobsuf</p>
