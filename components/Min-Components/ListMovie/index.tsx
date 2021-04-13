@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { IListM } from "../../../types";
 import axios from 'axios';
 
+//Next
+import Link from "next/link"
+
 //component-p
 import Poster from '../Poster/index';
 
@@ -36,11 +39,20 @@ const LstM: React.SFC<LstMProps> = (props: any) => {
    
     return ( 
     
-        <Poster 
-            c='movie_poster' 
-            movie={movie?.data}
-        />
-        
+        <Link
+            href={{
+                pathname: "/all_pages/Movie_select",
+                query: { id: movie?.data.id },
+            }}
+            key={movie?.name} 
+        >
+          <a key={movie?.name} >
+                <Poster 
+                    c='movie_poster' 
+                    movie={movie?.data}
+                />
+          </a>
+        </Link>   
      );
 }
  

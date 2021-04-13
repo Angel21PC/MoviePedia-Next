@@ -39,7 +39,6 @@ const List: NextPage<ListProps> = () => {
         <>
         <NavBar />
         <ListM {...data}/>
-        {/* Listas de likes, bookmark, eye */}
         </>
      );
 }

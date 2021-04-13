@@ -19,9 +19,11 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { useAuth } from '../../../firebase/AuthContext';
 
 //next 
-import { useRouter } from 'next/router'
-export interface FormSProps {
+import { useRouter } from 'next/router';
 
+import {INewUser} from '../../../types';
+export interface FormSProps {
+    
 }
 
 const today = new Date();
@@ -70,7 +72,7 @@ const FormS: React.SFC<FormSProps> = () => {
 
        
         //firebase
-        const { signup, saveData } = useAuth();
+        const { signup, saveData, signInWithGoogle, signInWithFacebook, signInWithTwitter} = useAuth();
         
         return ( 
             <div className="registration-form">
@@ -109,6 +111,7 @@ const FormS: React.SFC<FormSProps> = () => {
                 <div className="social-media">
                     <h5>Sign up with social media</h5>
                     <div className="social-icons">
+                        <button onClick={()=>{signInWithGoogle()}}>Google</button>
                         {/* <a href="#"><i className="icon-social-facebook" title="Facebook"></i></a>
                         <a href="#"><i className="icon-social-google" title="Google"></i></a>
                         <a href="#"><i className="icon-social-twitter" title="Twitter"></i></a> */}

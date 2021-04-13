@@ -102,6 +102,36 @@ export function AuthProvider({children}) {
         return auth.createUserWithEmailAndPassword(email, password)
     }
 
+    //GOOGLE
+    const googleProvider = new a.auth.GoogleAuthProvider()
+    const signInWithGoogle = () => {
+      auth.signInWithPopup(googleProvider).then((res) => {
+        console.log(res.user)
+      }).catch((error) => {
+        console.log(error.message)
+      })
+    }
+
+    //Facebook
+    const facebookProvider = new a.auth.FacebookAuthProvider()
+    const signInWithFacebook = () => {
+      auth.signInWithPopup(facebookProvider).then((res) => {
+        console.log(res.user)
+      }).catch((error) => {
+        console.log(error.message)
+      })
+    }
+
+    //Twitter
+    const twitterProvider = new a.auth.TwitterAuthProvider()
+    const signInWithTwitter = () => {
+      auth.signInWithPopup(twitterProvider).then((res) => {
+        console.log(res.user)
+      }).catch((error) => {
+        console.log(error.message)
+      })
+    }
+
     function logout() {
         return auth.signOut()
     }
@@ -168,7 +198,10 @@ export function AuthProvider({children}) {
         saveBookMark_M,
         deleteBookMark_M,
         checkBookMark_M,
-        getListMovies
+        getListMovies,
+        signInWithGoogle,
+        signInWithFacebook,
+        signInWithTwitter
     }
 
     return ( 

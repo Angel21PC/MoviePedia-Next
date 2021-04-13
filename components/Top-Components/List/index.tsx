@@ -15,10 +15,21 @@ export interface ListMProps {
  
 const ListM: React.SFC<ListMProps> = (data:IListM) => {
 
+    const [isPending, setIsPending] = useState(true); // variable para la pantalla de carga
     console.log(data)
 
+    useEffect(() =>{
+
+        setIsPending(true);
+        if(data.Bookmark != undefined){
+            setIsPending(false);
+        }
+        
+    }, [data]);
     return ( 
         <Container>
+            {isPending ? <div className="load"> <img src="https://rubico.com.mx/cultivandoelentendimiento_no_PHP/assets/img/demo/loader.gif" alt=""/></div>
+            :
             <Tabs className="justify-content-md-center" defaultActiveKey="Liked" id="uncontrolled-tab-example">
                 <Tab eventKey="Liked" title="Liked">
                     {data?.Like?.map(movie=>(
@@ -38,6 +49,7 @@ const ListM: React.SFC<ListMProps> = (data:IListM) => {
                     <p>bihsbbfbsubfsobfobsbfuobsuf</p>
                 </Tab>
             </Tabs>
+            }
         </Container>
      );
 }
