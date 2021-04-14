@@ -24,6 +24,10 @@ const Banner: React.SFC<BannerProps> = ({data}) => {
         
         fetchData();
 
+        if (movie === undefined){
+            fetchData();
+        }
+
     }, []);
 
    
@@ -83,6 +87,12 @@ const Banner: React.SFC<BannerProps> = ({data}) => {
                 
                 .banner_text p{
                     font-size: 20px;
+                }
+
+                @media (max-width: 634px) {
+                    .banner_text{
+                        display: none;
+                    }
                 }
             `}</style>
         </>

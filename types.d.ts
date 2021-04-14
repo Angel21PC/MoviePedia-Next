@@ -15,6 +15,7 @@ type IRequest = {
     fetchOne_Movie: string,
     fetchProvider_Movie: string,
     fetchCast_Movie: string,
+    fetchVideo_Movie:string,
 
     //TVShows
     fetchPopular_Tv : string,
@@ -37,7 +38,8 @@ type IApi_rutes = {
     GenreM: string ,
     OneMovie: string,
     Cast:string,
-    Provider:string
+    Provider:string,
+    Video:string
 }
 
 type INewUser = {

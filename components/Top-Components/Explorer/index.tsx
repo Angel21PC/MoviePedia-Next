@@ -83,7 +83,7 @@ const Explorer: React.SFC<ExplorerProps> = ({URL, api_rutes}) => {
         <div className='explorer'>           
             <div className='explorer_content'>
 
-                <Container fluid>
+                <Container fluid='md'>
                             
                     <div className='explorer_Seach'>
                         <Form>
@@ -101,28 +101,32 @@ const Explorer: React.SFC<ExplorerProps> = ({URL, api_rutes}) => {
                         </Form> 
                     </div>
 
-                <Row className="justify-content-md-center" lg={6} md={4} sm={3} xs={1}>
+                <Row id='laya' className="col-xs-1 center-block" lg={4} sm={3} >
                 {isPending && <div><img src="https://rubico.com.mx/cultivandoelentendimiento_no_PHP/assets/img/demo/loader.gif" alt=""/></div>}
+              
                     {movies.map(movie =>( //saca las peliculas
 
-
-                        <Link
-                            href={{
-                            pathname: "/all_pages/Movie_select",
-                            query: { id: movie.id },
-                            }}
-                            key={movie?.name} 
-                        >
-                            <a key={movie?.name} >
-                                <Poster 
-                                    c='poster' 
-                                    movie={movie}
-                                />
-                            </a>
-                         
-                        </Link>     
+                        <div key={movie?.id}>
+                            <Link
+                                href={{
+                                pathname: "/all_pages/Movie_select",
+                                query: { id: movie.id },
+                                }}
+                                key={movie?.id} 
+                            >
+                                <a>
+                                    <Poster 
+                                        c='poster' 
+                                        movie={movie}
+                                    />
+                                </a>
+                            
+                            </Link>     
+                        </div>
+                        
                         
                     ))}
+            
                 </Row>
 
                 <div className= 'explorer_button'>
@@ -178,6 +182,16 @@ const Explorer: React.SFC<ExplorerProps> = ({URL, api_rutes}) => {
                     justify-content: space-between;
                     margin-top: 2%;
                     margin-bottom: 1%;
+                }
+        
+                li {
+                    list-style: none;
+                }
+
+                @media (max-width: 634px) {
+                    .poster{
+                        margin-left: 10px;
+                    }
                 }
                 
             `}</style>

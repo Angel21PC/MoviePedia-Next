@@ -10,6 +10,7 @@ import Overview from '../../Min-Components/Overview/index';
 import Cast from '../../Min-Components/Cast/index';
 import Avaliable from '../../Min-Components/Avaliable/index';
 import M_B_F from '../../Min-Components/M_button_F/index';
+import Video from '../../Min-Components/Video/index';
 
 //components
 import {Container, Row, Col} from 'react-bootstrap';
@@ -92,6 +93,9 @@ const Movie: React.SFC<MovieProps> = ({data}) => {
                     <div className="actors_container">
                         <Cast cast={cast}/>
                     </div>
+                    <div className="video_container">
+                        <Video {...movie}></Video>
+                    </div>
                 </Col>
                 </>
                   } 
@@ -130,6 +134,12 @@ const Movie: React.SFC<MovieProps> = ({data}) => {
                   .text_title {
                     display: flex;
                   }
+                  .video_container{
+                    margin-top: 10%;
+                    width: 100%;
+                  }
+
+                   
             `}</style>
         </Container>
      );

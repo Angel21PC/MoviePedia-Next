@@ -23,8 +23,27 @@
 
   /*position*/
   margin-top: 15px;
-  margin-left: 30px;
+  margin-left: 12%;
 }
+
+@media (max-width: 1200px) {
+  .poster {
+    margin-left: 8%;
+  }
+}
+
+@media (max-width: 634px) {
+  .poster {
+    margin-left: 9%;
+  }
+}
+
+@media (max-width: 634px) {
+  .movie {
+    margin-bottom: 7%;
+  }
+}
+
 .movie_poster {
   object-fit: cover;
   max-height: 500px;

@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { API_KEY } from "./key";
+import {IRequest} from '../types'
 
 export const request: IRequest = {
 
@@ -14,6 +15,7 @@ export const request: IRequest = {
     fetchOne_Movie: `/movie/{movie_id}?api_key=${API_KEY}`,
     fetchProvider_Movie: `/movie/{movie_id}/watch/providers?api_key=${API_KEY}`,
     fetchCast_Movie: `/movie/{movie_id}/credits?api_key=${API_KEY}`,
+    fetchVideo_Movie: `/movie/{movie_id}/videos?api_key=${API_KEY}`,
 
     //TVShows
     fetchPopular_Tv : `/tv/popular?api_key=${API_KEY}`,

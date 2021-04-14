@@ -10,7 +10,7 @@ const Cast: React.SFC<CastProps> = ({cast}) => {
     return ( 
         <>
             {cast?.data.cast.map( actor=>( 
-                        <div className="actor">
+                        <div className="actor" key={actor.id}>
                             <img 
                             key= {actor.id}
                             className= 'actor_poster'

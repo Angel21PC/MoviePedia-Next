@@ -30,7 +30,7 @@ const ListM: React.SFC<ListMProps> = (data:IListM) => {
         <Container>
             {isPending ? <div className="load"> <img src="https://rubico.com.mx/cultivandoelentendimiento_no_PHP/assets/img/demo/loader.gif" alt=""/></div>
             :
-            <Tabs className="justify-content-md-center" defaultActiveKey="Liked" id="uncontrolled-tab-example">
+            <Tabs className="justify-content-md-center" defaultActiveKey="Pending" id="uncontrolled-tab-example">
                 <Tab eventKey="Liked" title="Liked">
                     {data?.Like?.map(movie=>(
                         movie?.id_movie.map(id=>(

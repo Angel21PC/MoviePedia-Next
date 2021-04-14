@@ -11,5 +11,6 @@ export const api_rutes: IApi_rutes = {
 
     OneMovie: '/api/movie/GetMovie',
     Cast: '/api/movie/GetCast',
-    Provider: '/api/movie/GetProvider'
+    Provider: '/api/movie/GetProvider',
+    Video: '/api/movie/GetVideo'
 }
