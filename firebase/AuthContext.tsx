@@ -25,6 +25,14 @@ export function AuthProvider({children}) {
             id_movie:{}
         })
 
+        
+        //Bookmark
+        db.collection("eye_M").doc(email).set({
+            list:[
+                
+            ]
+        })
+
         //datos de perfil
         return db.collection("profile").doc(email).set({
             email: {email},
@@ -34,6 +42,7 @@ export function AuthProvider({children}) {
         })
     }
 
+    //LIKES
     async function checkLikes_M(email, id){
         let result = undefined;
         const docRef = db.collection("likes_M").doc(email);
@@ -66,6 +75,7 @@ export function AuthProvider({children}) {
         })
     }
 
+    //BOOKMARK
     async function checkBookMark_M(email, id){
         let result = undefined;
         const docRef = db.collection("bookmark_M").doc(email);
@@ -74,7 +84,7 @@ export function AuthProvider({children}) {
             if (doc.exists) {
                 const data = doc.data();
                 result = data.id_movie.find(e=> e.id === id)
-                console.log(result)
+           
             } else {
                 console.log("No such document!");
             }
@@ -97,6 +107,133 @@ export function AuthProvider({children}) {
         })
     }
     
+    //EYE
+    async function checkEye_M(email, id){
+        console.log('check')
+        let listConvert = {
+            toFirestore: function() {
+                return {
+                    id: id
+                    };
+            },
+            fromFirestore: function(snapshot, options){
+                const data = snapshot.data(options);
+                return data
+            }
+        };
+
+        
+        let check = undefined;
+        await db.collection("eye_M").doc(email)
+                        .withConverter(listConvert)
+                        .get().then((doc)=>{
+                            if(doc.exists){
+                                let result = doc.data();
+                               
+                                console.log(id)
+                                result.list?.map(m=>{
+                                    console.log(m) 
+                                    if (m.id === id){
+                                        console.log('mmmmmmmmmmmmm')
+                                        check = m;
+                                    }
+                                })
+                            }
+                        })
+
+        return check
+                       
+    }
+
+    function deleteEye_M(email, id){
+
+        console.log('delete')
+        let listConvert = {
+            toFirestore: function() {
+                return {
+                    id: id
+                    };
+            },
+            fromFirestore: function(snapshot, options){
+                const data = snapshot.data(options);
+                return data
+            }
+        };
+
+        
+      
+        return db.collection("eye_M").doc(email)
+                        .withConverter(listConvert)
+                        .get().then((doc)=>{
+                            if(doc.exists){
+                                let result = doc.data();
+                                let check = undefined;
+
+                                result.list?.map(m=>{
+                                    
+                                
+                                    if (m.id === id){
+                                        check = m;
+                                    }
+                                })
+                                
+                                console.log(check)
+                                if (check !== undefined){
+                                    db.collection("eye_M").doc(email).update({
+                                        list: a.firestore.FieldValue.arrayRemove(check)
+                                    })
+                                }
+                               
+                            }
+                        })
+    }
+
+    function saveEye_M(email, id, date){
+        console.log('save')
+        let listConvert = {
+            toFirestore: function() {
+                return {
+                    id: id,
+                    date: date
+                    };
+            },
+            fromFirestore: function(snapshot, options){
+                const data = snapshot.data(options);
+                return data
+            }
+        };
+
+        
+      
+        return db.collection("eye_M").doc(email)
+                        .withConverter(listConvert)
+                        .get().then((doc)=>{
+                            if(doc.exists){
+                                let result = doc.data();
+                                let check = false;
+
+                                result.list?.map(m=>{
+                                    
+                                    
+                                    if (m.id === id){
+                                        check = true;
+                                    }
+                                })
+                                
+
+                                if (check == false){
+                                    console.log('entro ')
+                                    db.collection("eye_M").doc(email).update({
+                                        list: a.firestore.FieldValue.arrayUnion({id, date})
+                                    })
+                                }
+                               
+                            }
+                        })
+       
+       
+    }
+
     //USER
     function signup(email, password) {
         return auth.createUserWithEmailAndPassword(email, password)
@@ -106,7 +243,7 @@ export function AuthProvider({children}) {
     const googleProvider = new a.auth.GoogleAuthProvider()
     const signInWithGoogle = () => {
       auth.signInWithPopup(googleProvider).then((res) => {
-        console.log(res.user)
+        //console.log(res.user)
 
         const docRef = db.collection("profile").doc(res.user.email);
 
@@ -181,7 +318,7 @@ export function AuthProvider({children}) {
             if (doc.exists) {
                 const data = doc.data();
                 result.Bookmark.push(data);
-                console.log(result)
+                //console.log(result)
             } else {
                 console.log("No such document!");
             }
@@ -193,7 +330,7 @@ export function AuthProvider({children}) {
             if (doc.exists) {
                 const data = doc.data();
                 result.Like.push(data);
-                console.log(result)
+                //console.log(result)
             } else {
                 console.log("No such document!");
             }
@@ -219,7 +356,10 @@ export function AuthProvider({children}) {
         getListMovies,
         signInWithGoogle,
         signInWithFacebook,
-        signInWithTwitter
+        signInWithTwitter,
+        checkEye_M,
+        deleteEye_M,
+        saveEye_M
     }
 
     return ( 

@@ -90,9 +90,9 @@ const FormL: React.SFC<FormLProps> = () => {
                 <div className="social-media">
                     <h5>Sign up with social media</h5>
                     <div className="social-icons">
-                        <Google onClick={()=>{signInWithGoogle();router.push('/')}}></Google>
-                        <Facebook></Facebook>
-                        <Twitter></Twitter>
+                        <a><Google onClick={()=>{signInWithGoogle();router.push('/')}}></Google></a>
+                        <a><Facebook></Facebook></a>
+                        <a><Twitter></Twitter></a>
                     </div>
                 </div>
                 <style jsx>{`
@@ -160,7 +160,7 @@ const FormL: React.SFC<FormLProps> = () => {
 
                 .registration-form .social-icons a{
                     font-size: 23px;
-                    margin: 0 3px;
+                    margin: 0 15px;
                     color: #5691ff;
                     border: 1px solid;
                     border-radius: 50%;
