@@ -45,8 +45,12 @@ const ListM: React.SFC<ListMProps> = (data:IListM) => {
                         ))
                     ))}
                 </Tab>
-                <Tab eventKey="Watched" title="Watched" disabled>
-                    <p>bihsbbfbsubfsobfobsbfuobsuf</p>
+                <Tab eventKey="Watched" title="Watched">
+                {data?.Watch?.map(movie=>(
+                        movie?.list.map(id=>(
+                            <LstM {...id}/>
+                        ))
+                    ))}
                 </Tab>
             </Tabs>
             }

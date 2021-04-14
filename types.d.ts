@@ -52,4 +52,5 @@ type INewUser = {
 type IListM = {
     Like: any
     Bookmark: any
+    Watch:any
 }

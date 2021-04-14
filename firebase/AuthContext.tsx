@@ -308,11 +308,13 @@ export function AuthProvider({children}) {
 
         let result: IListM = {
             Bookmark: [],
-            Like:[]
+            Like:[],
+            Watch:[]
         };
 
         const bookmark = db.collection("bookmark_M").doc(email);
         const likes = db.collection("likes_M").doc(email);
+        const watch = db.collection("eye_M").doc(email);
 
         await bookmark.get().then((doc) => {
             if (doc.exists) {
@@ -337,6 +339,28 @@ export function AuthProvider({children}) {
         }).catch((error) => {
             console.log("Error getting document:", error);
         });
+
+        let listConvert = {
+            toFirestore: function() {
+                return {
+                    id: id,
+                    date: date
+                    };
+            },
+            fromFirestore: function(snapshot, options){
+                const data = snapshot.data(options);
+                return data
+            }
+        };
+
+        await watch.withConverter(listConvert)
+                        .get().then((doc)=>{
+                            if(doc.exists){
+                                const data = doc.data();
+                                result.Watch.push(data);  
+                            }
+                        })
+       
 
         return result
     }
