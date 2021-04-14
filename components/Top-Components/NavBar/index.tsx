@@ -25,7 +25,7 @@ const NavBar: React.SFC<NavBarProps> = () => {
 
     return ( 
         <>
-            <Navbar collapseOnSelect expand="lg" bg="white" variant="light" fixed="top">
+            <Navbar collapseOnSelect expand="lg" bg="white" variant="light" sticky="top">
                 <Navbar.Brand >
                     <img src={logo} alt="" height="40px"/>
                 </Navbar.Brand>

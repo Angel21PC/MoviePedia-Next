@@ -5,7 +5,7 @@ import AppLayout from '../components/Top-Components/AppLayout/index'
 import ReactNotification from 'react-notifications-component';
 
 //firebase
-import { AuthProvider } from "../firebase/AuthContext";
+import { AuthProvider, ProtectRoute } from "../firebase/AuthContext";
 
 function MyApp({ Component, pageProps }) {
   return (

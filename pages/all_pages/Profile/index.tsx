@@ -7,9 +7,11 @@ export interface ProfileProps {
 }
 
 const Profile: NextPage<ProfileProps> = () => {
+
     return ( 
         <>
         <NavBar />
+        <h1>hola    </h1>
             {/* imagen de perfil ? */}
             {/* Formulario para cambiar datos */}
         </>

@@ -392,3 +392,18 @@ export function AuthProvider({children}) {
         </AuthContext.Provider>
      )
 }
+
+export const ProtectRoute = ({ children }) => {
+
+    const user:any = useAuth();
+    console.log(user)
+
+    if (user?.isAuthenticated === false){
+      return (
+          <div>
+           <h3>Casi..</h3>
+          </div>
+      ); 
+    }
+    return children;
+};
