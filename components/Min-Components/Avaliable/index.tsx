@@ -8,7 +8,7 @@ const Avaliable: React.SFC<AvaliableProps> = ({provider}) => {
     const base_Url = 'https://image.tmdb.org/t/p/original/';
     console.log(provider);
     return ( 
-        <div>
+        <div className='available_logo'>
             {provider?.data.results?.US?.flatrate?.map( e => e.logo_path ? 
                     <li key='f'>
                         <img 
@@ -29,6 +29,9 @@ const Avaliable: React.SFC<AvaliableProps> = ({provider}) => {
                   }
                 li {
                     list-style: none;
+                }
+                .available_logo{
+                    display: flex;
                 }
             `}</style>
         </div>
