@@ -343,8 +343,8 @@ export function AuthProvider({children}) {
         let listConvert = {
             toFirestore: function() {
                 return {
-                    id: id,
-                    date: date
+                    id: '',
+                    date: ''
                     };
             },
             fromFirestore: function(snapshot, options){
