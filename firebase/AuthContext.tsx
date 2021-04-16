@@ -2,6 +2,8 @@ import React, { useContext, useState, useEffect } from "react"
 import { IListM } from "../types";
 import { auth, db, a } from "./index";
 
+import { v5 as uuidv5 } from 'uuid';
+
 const AuthContext = React.createContext(null);
 
 export function useAuth() {
@@ -14,20 +16,23 @@ export function AuthProvider({children}) {
     const [loading, setLoading] = useState(true);
 
     function saveData(username, birth_date, phone, email){
+
+
+        const id = uuidv5(email, uuidv5.URL);
      
         //Likes
-        db.collection("likes_M").doc(email).set({
+        db.collection("likes_M").doc(id).set({
             id_movie:{}
         })
 
         //Bookmark
-        db.collection("bookmark_M").doc(email).set({
+        db.collection("bookmark_M").doc(id).set({
             id_movie:{}
         })
 
         
         //Bookmark
-        db.collection("eye_M").doc(email).set({
+        db.collection("eye_M").doc(id).set({
             list:[
                 
             ]
@@ -38,7 +43,8 @@ export function AuthProvider({children}) {
             email: {email},
             username: {username},
             birth_date: {birth_date},
-            phone: {phone}
+            phone: {phone},
+            collections_id: {id},
         })
     }
 

@@ -22,7 +22,7 @@ const List: NextPage<ListProps> = () => {
     //firebase     
     const currentUser = useAuth();
     const {getListMovies} = useAuth();
-
+   
     const [data, setData] = useState()
 
     useEffect(() =>{

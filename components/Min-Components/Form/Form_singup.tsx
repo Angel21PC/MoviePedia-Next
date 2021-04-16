@@ -47,13 +47,16 @@ const FormS: React.SFC<FormSProps> = () => {
         });
 
         const onSubmit = async (data: INewUser) => {
+
             try {
+                
                 console.log(data)
                 setLoading(true)
                 await signup(data.email, data.password).then(saveData(data.username, data.birth_date, data.phone_number, data.email))
+               
                 router.push('/')
             
-            } catch {
+            } catch (e){
                 store.addNotification({
                     title: "Fail!",
                     message: "Fail to create account",
@@ -74,7 +77,8 @@ const FormS: React.SFC<FormSProps> = () => {
        
         //firebase
         const { signup, saveData, signInWithGoogle, signInWithFacebook, signInWithTwitter} = useAuth();
-        
+        const currentUser = useAuth();
+
         return ( 
             <div className="registration-form">
                 <form onSubmit={handleSubmit(onSubmit)}>
