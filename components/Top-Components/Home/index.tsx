@@ -26,7 +26,7 @@ const Casa: React.SFC<CasaProps> = () => {
     <>
       <div className="text mt-5 ml-5">
         <h1 id="title">Welcome to MoviePedia</h1>
-        <form className="from">
+        <div className="from">
           <InputGroup className="mb-3">
             <FormControl
               placeholder="Seach"
@@ -40,7 +40,7 @@ const Casa: React.SFC<CasaProps> = () => {
               </Button>
             </InputGroup.Append>
           </InputGroup>
-        </form>
+        </div>
       </div>
 
       <video className="videoTag" autoPlay loop muted id="myVideo">

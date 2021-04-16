@@ -8,9 +8,11 @@ export const api_rutes: IApi_rutes = {
     UpcomingM: '/api/movie/UpcomingM',
     DiscoverM: '/api/movie/DiscoverM',
     GenreM: '/api/movie/GenreM',
+    FindM: '/api/movie/FindM',
 
     OneMovie: '/api/movie/GetMovie',
     Cast: '/api/movie/GetCast',
     Provider: '/api/movie/GetProvider',
-    Video: '/api/movie/GetVideo'
+    Video: '/api/movie/GetVideo',
+
 }
