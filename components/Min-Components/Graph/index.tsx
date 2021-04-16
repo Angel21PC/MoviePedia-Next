@@ -1,11 +1,7 @@
-export interface GraphProps {
-    
-}
- 
+export interface GraphProps {}
+
 const Graph: React.SFC<GraphProps> = () => {
-
-
-    /*
+  /*
     Graficos que necesito:
         Visualizaciones por tiempo (Ej: peliculas vistas en un mes)
             -https://nivo.rocks/calendar/
@@ -20,7 +16,7 @@ const Graph: React.SFC<GraphProps> = () => {
         ¿¿¿¿¿¿Lista de paises de origen???????
             -https://nivo.rocks/geomap/canvas/
     */
-    /*
+  /*
     Datos que necesito:
         Dia de visualizacion
         Generos por peliculas
@@ -28,11 +24,11 @@ const Graph: React.SFC<GraphProps> = () => {
         ¿¿¿¿¿¿Paises de origen???????
     
     */
-    return ( 
-        <>
-        <h1>Works</h1>
-        </>
-     );
-}
- 
+  return (
+    <>
+      <h1>Works</h1>
+    </>
+  );
+};
+
 export default Graph;
