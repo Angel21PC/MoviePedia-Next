@@ -3,6 +3,9 @@ import { useRouter } from "next/router";
 //components
 import NavBar from "../../../components/Top-Components/NavBar/index";
 import FindMovie from "../../../components/Min-Components/FindMovie/index";
+
+//COMPONENTS
+import { Tabs, Tab, Container } from "react-bootstrap";
 export interface FindProps {
   id: string;
 }
@@ -16,9 +19,19 @@ const Find: NextPage<FindProps> = () => {
   return (
     <>
       <NavBar />
-      <FindMovie id={id} />
-      {/* Componente que muestre las peliculas */}
-      {/* Componente que muestre las series */}
+
+      <Container>
+        <Tabs
+          className="justify-content-md-center"
+          defaultActiveKey="Movies"
+          id="uncontrolled-tab-example"
+        >
+          <Tab eventKey="Movies" title="Movies">
+            <FindMovie id={id} />
+          </Tab>
+          <Tab eventKey="Shows" title="TV Shows"></Tab>
+        </Tabs>
+      </Container>
     </>
   );
 };

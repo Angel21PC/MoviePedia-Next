@@ -13,7 +13,6 @@ const FindMovie: React.SFC<FindMovieProps> = ({ id }) => {
   const [movies, setMovies] = useState([]);
   const [isPending, setIsPending] = useState(true);
 
-  console.log(id);
   useEffect(() => {
     //request para extraer las peliculas
     async function fetchData() {
@@ -31,18 +30,18 @@ const FindMovie: React.SFC<FindMovieProps> = ({ id }) => {
         setIsPending(false);
         setMovies(request.data.data.results);
       }, 1500);
-      console.log(request);
+
       return request;
     }
     fetchData();
   }, []);
 
   return (
-    <>
+    <div className="justify-content-center">
       {movies.map((movie) => (
         <LstM {...movie} />
       ))}
-    </>
+    </div>
   );
 };
 
