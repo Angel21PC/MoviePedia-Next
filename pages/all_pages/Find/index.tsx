@@ -1,5 +1,6 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
+
 //components
 import NavBar from "../../../components/Top-Components/NavBar/index";
 import FindMovie from "../../../components/Min-Components/FindMovie/index";

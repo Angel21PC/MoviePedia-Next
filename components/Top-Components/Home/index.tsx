@@ -24,8 +24,10 @@ const Casa: React.SFC<CasaProps> = () => {
 
   return (
     <>
-      <div className="text mt-5 ml-5">
-        <h1 id="title">Welcome to MoviePedia</h1>
+      <div className="text ml-3">
+        <h1 id="title" className="mt-5 p-5">
+          Welcome to MoviePedia
+        </h1>
         <div className="from">
           <InputGroup className="mb-3">
             <FormControl
@@ -35,7 +37,7 @@ const Casa: React.SFC<CasaProps> = () => {
               onChange={change}
             />
             <InputGroup.Append>
-              <Button variant="outline-secondary" onClick={send}>
+              <Button variant="dark" onClick={send}>
                 Button
               </Button>
             </InputGroup.Append>
@@ -61,12 +63,16 @@ const Casa: React.SFC<CasaProps> = () => {
           right: 0;
         }
         .text {
+          martgin-top: 100px;
           color: white;
           z-index: 1;
           position: relative;
         }
         #title {
           font-size: 50px;
+        }
+        .from {
+          width: 300px;
         }
       `}</style>
     </>
