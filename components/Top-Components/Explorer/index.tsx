@@ -170,7 +170,7 @@ const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes }) => {
       </div>
       <style jsx>{`
         .explorer {
-          margin-top: 6%;
+          margin-top: 1%;
           position: relative;
           height: 100%;
           width: 100%;

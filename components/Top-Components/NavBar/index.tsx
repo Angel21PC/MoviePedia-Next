@@ -29,7 +29,7 @@ const NavBar: React.SFC<NavBarProps> = () => {
         variant="light"
         sticky="top"
       >
-        <Navbar.Brand>
+        <Navbar.Brand href="/">
           <img src={logo} alt="" height="40px" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
