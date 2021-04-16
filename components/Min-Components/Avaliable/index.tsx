@@ -7,7 +7,7 @@ const Avaliable: React.SFC<AvaliableProps> = ({ provider }) => {
   const base_Url = "https://image.tmdb.org/t/p/original/";
   console.log(provider);
   return (
-    <div className="available_logo">
+    <div className="available_logo mt-2 d-flex justify-content-center">
       {provider?.data.results?.US?.flatrate?.map((e) =>
         e.logo_path ? (
           <li key="f">
@@ -24,17 +24,12 @@ const Avaliable: React.SFC<AvaliableProps> = ({ provider }) => {
       )}
       <style jsx>{`
         .providers_logo {
-          margin-top: 1vh;
           border-radius: 10px;
           object-fit: cover;
           max-height: 60px;
-          margin-left: 20px;
         }
         li {
           list-style: none;
-        }
-        .available_logo {
-          display: flex;
         }
       `}</style>
     </div>

@@ -6,10 +6,6 @@
   border-radius: 10px;
   -webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.3);
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.3);
-
-  /*position*/
-  margin-left: 60%;
-  margin-top: 50%;
 }
 
 .poster {
@@ -22,19 +18,12 @@
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.3);
 
   /*position*/
-  margin-top: 15px;
   margin-left: 12%;
 }
 
 @media (max-width: 1200px) {
   .poster {
     margin-left: 8%;
-  }
-}
-
-@media (max-width: 634px) {
-  .poster {
-    margin-left: 9%;
   }
 }
 

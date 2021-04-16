@@ -77,10 +77,8 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
         ) : (
           <>
             <Col className="movie" xs lg="4">
-              <div className="movie_back">
+              <div className="justify-content-center">
                 <Poster c="movie_poster" movie={movie} />
-              </div>
-              <div className="providers_container">
                 <Avaliable provider={provider} />
               </div>
             </Col>
@@ -123,9 +121,7 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
         }
 
         .providers_container {
-          width: 80%;
-          display: flex;
-          justify-content: center;
+          width: 90%;
         }
         .movie h5 {
           margin-top: 2vh;

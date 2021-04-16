@@ -111,7 +111,12 @@ const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes }) => {
               </Form>
             </div>
 
-            <Row id="laya" className="col-xs-1 center-block" lg={4} sm={3}>
+            <Row
+              id="laya"
+              className="col-xs-1 justify-content-between"
+              lg={4}
+              sm={3}
+            >
               {isPending && (
                 <div>
                   <img
@@ -124,7 +129,7 @@ const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes }) => {
               {movies.map((
                 movie //saca las peliculas
               ) => (
-                <div key={movie?.id}>
+                <div key={movie?.id} className="mt-2">
                   <Link
                     href={{
                       pathname: "/all_pages/Movie_select",
@@ -202,12 +207,6 @@ const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes }) => {
 
         li {
           list-style: none;
-        }
-
-        @media (max-width: 634px) {
-          .poster {
-            margin-left: 10px;
-          }
         }
       `}</style>
     </>

@@ -29,7 +29,7 @@ const Banner: React.SFC<BannerProps> = ({ data }) => {
 
   return (
     <>
-      <header
+      <div
         className="banner"
         style={{
           backgroundSize: "cover",
@@ -37,18 +37,20 @@ const Banner: React.SFC<BannerProps> = ({ data }) => {
                     "https://image.tmdb.org/t/p/original/${movie?.backdrop_path}"
                 )`,
           backgroundPosition: "center center",
+          backgroundColor: "rgb(0 0 0 / 22%)",
+          backgroundBlendMode: "darken",
         }}
       >
         <div className="banner_content">
-          <div className="poster_container">
-            <Porter c="banner_poster" movie={movie} />
-          </div>
-          <div className="banner_text">
-            <h1>{movie?.title || movie?.name || movie?.original_name}</h1>
-            <p>{movie?.overview}</p>
+          <div className="poster_container d-flex">
+            <Porter c="banner_poster ml-5 mt-5" movie={movie} />
+            <div className="banner_text mt-5 ml-5 pt-5">
+              <h1>{movie?.title || movie?.name || movie?.original_name}</h1>
+              <p>{movie?.overview}</p>
+            </div>
           </div>
         </div>
-      </header>
+      </div>
 
       <style jsx>{`
         .banner {
@@ -58,29 +60,12 @@ const Banner: React.SFC<BannerProps> = ({ data }) => {
           height: 450px;
         }
 
-        .banner_content {
-          display: flex;
-          position: relative;
-        }
-
-        .poster {
-          /*position*/
-          margin-left: 60%;
-          margin-top: 50%;
-        }
-
-        .poster_container {
-          scale: 1.1;
-        }
-
-        .banner_text {
-          margin-top: 250px;
-          margin-left: 250px;
-          padding-right: 20px;
-        }
-
         .banner_text p {
           font-size: 20px;
+        }
+
+        .banner_content {
+          height: 100%;
         }
 
         @media (max-width: 634px) {
