@@ -43,7 +43,7 @@ const MovieS: NextPage<MovieSProps> = ({ data }) => {
 //       return response.data;
 //     });
 // };
-export async function getServerSideProps({ query }) {
+export async function getStaticProps({ query }) {
   const { id } = query;
 
   return await axios

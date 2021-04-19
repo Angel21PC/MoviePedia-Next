@@ -31,7 +31,7 @@ const Movie: NextPage<MovieProps> = ({ data }) => {
 //     });
 // };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   return fetch(URL + api_rutes.PopularM)
     .then((res) => res.json())
     .then((response) => {
