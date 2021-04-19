@@ -23,12 +23,12 @@ const Movie: NextPage<MovieProps> = ({ data }) => {
   );
 };
 
-Movie.getInitialProps = async () => {
-  return fetch(URL + api_rutes.PopularM)
-    .then((res) => res.json())
-    .then((response) => {
-      return response;
-    });
-};
+// Movie.getInitialProps = async () => {
+//   return fetch(URL + api_rutes.PopularM)
+//     .then((res) => res.json())
+//     .then((response) => {
+//       return response;
+//     });
+// };
 
 export default Movie;
