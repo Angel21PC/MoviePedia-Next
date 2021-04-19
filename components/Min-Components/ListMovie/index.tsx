@@ -9,7 +9,7 @@ import Link from "next/link";
 import Poster from "../Poster/index";
 
 //api
-import { URL, api_rutes } from "../../../pages/all_pages/config/rute_api";
+import { URL, api_rutes } from "../../../firebase/config/rute_api";
 
 export interface LstMProps {}
 

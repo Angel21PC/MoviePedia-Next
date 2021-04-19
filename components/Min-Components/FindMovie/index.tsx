@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { URL, api_rutes } from "../../../pages/all_pages/config/rute_api";
+import { URL, api_rutes } from "../../../firebase/config/rute_api";
 //components-p
 import LstM from "../../Min-Components/ListMovie/index";
 

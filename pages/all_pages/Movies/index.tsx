@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 
 //initialprops
-import { URL, api_rutes } from "../config/rute_api";
+import { URL, api_rutes } from "../../../firebase/config/rute_api";
 
 //components
 import NavBar from "../../../components/Top-Components/NavBar/index";

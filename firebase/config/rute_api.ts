@@ -1,4 +1,4 @@
-import { IApi_rutes } from "../../../types";
+import { IApi_rutes } from "../../types";
 
 export const URL:string = 'http://localhost:3000';
 
