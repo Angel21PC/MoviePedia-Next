@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 //request
 import axios from "axios";
-import { URL, api_rutes } from "../../../firebase/config/rute_api";
+import { URL, api_rutesM } from "../../../firebase/config/rute_api";
 
 export interface VideoProps {}
 
@@ -14,7 +14,7 @@ const Video: React.SFC<VideoProps> = (props: any) => {
   useEffect(() => {
     //request para extraer el cast
     async function fetchDataViedo() {
-      const request = await axios.get(URL + api_rutes.Video, {
+      const request = await axios.get(URL + api_rutesM.Video, {
         params: {
           id: props.id,
         },

@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import Movie from "../../../components/Top-Components/Movie";
 import NavBar from "../../../components/Top-Components/NavBar/index";
 //initialprops
-import { URL, api_rutes } from "../../../firebase/config/rute_api";
+import { URL, api_rutesM } from "../../../firebase/config/rute_api";
 
 export interface MovieSProps {
   data: any;
@@ -33,7 +33,7 @@ MovieS.getInitialProps = async ({ query }) => {
   const { id } = query;
 
   return await axios
-    .get(URL + api_rutes.OneMovie, {
+    .get(URL + api_rutesM.OneMovie, {
       params: {
         id: { id },
       },

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 //request
 import axios from "axios";
-import { URL, api_rutes } from "../../../firebase/config/rute_api";
+import { URL, api_rutesM } from "../../../firebase/config/rute_api";
 
 //components-p
 import Poster from "../../Min-Components/Poster/index";
@@ -29,7 +29,7 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
   useEffect(() => {
     //request para extraer el cast
     async function fetchDataCast() {
-      const request = await axios.get(URL + api_rutes.Cast, {
+      const request = await axios.get(URL + api_rutesM.Cast, {
         params: {
           id: movie.id,
         },
@@ -40,7 +40,7 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
 
     //request para extraer los providers
     async function fetchDataProvider() {
-      const request = await axios.get(URL + api_rutes.Provider, {
+      const request = await axios.get(URL + api_rutesM.Provider, {
         params: {
           id: movie.id,
         },
