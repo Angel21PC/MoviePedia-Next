@@ -6,8 +6,10 @@ import Link from "next/link";
 
 //componentes
 import { Container, Row, Form, Button } from "react-bootstrap";
-import Poster from "../../Min-Components/Poster/index";
 
+//component-p
+import Poster from "../../Min-Components/Poster/index";
+import Loading from "../../Top-Components/Loading/index";
 export interface ExplorerProps {
   URL: string;
   api_rutes: any;
@@ -40,8 +42,8 @@ const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes }) => {
         //ejecutamos
         setIsPending(false);
         setMovies(request.data.data.results);
-      }, 1500);
-      console.log(request);
+      }, 2500);
+      // console.log(request);
       return request;
     }
     fetchData();
@@ -113,16 +115,17 @@ const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes }) => {
 
             <Row
               id="laya"
-              className="col-xs-1 justify-content-between"
+              className={
+                isPending
+                  ? "justify-content-center"
+                  : "col-xs-1 justify-content-between"
+              }
               lg={4}
               sm={3}
             >
               {isPending && (
-                <div>
-                  <img
-                    src="https://rubico.com.mx/cultivandoelentendimiento_no_PHP/assets/img/demo/loader.gif"
-                    alt=""
-                  />
+                <div className="justify-content-center">
+                  <Loading />{" "}
                 </div>
               )}
 

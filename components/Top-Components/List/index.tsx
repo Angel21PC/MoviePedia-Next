@@ -25,7 +25,6 @@ const ListM: React.SFC<ListMProps> = (data: IListM) => {
     <Container>
       {isPending ? (
         <div className="load">
-          {" "}
           <img
             src="https://rubico.com.mx/cultivandoelentendimiento_no_PHP/assets/img/demo/loader.gif"
             alt=""
@@ -33,7 +32,7 @@ const ListM: React.SFC<ListMProps> = (data: IListM) => {
         </div>
       ) : (
         <Tabs
-          className="justify-content-md-center"
+          className="justify-content-center"
           defaultActiveKey="Pending"
           id="uncontrolled-tab-example"
         >

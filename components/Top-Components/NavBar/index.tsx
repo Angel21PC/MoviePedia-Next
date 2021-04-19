@@ -30,7 +30,7 @@ const NavBar: React.SFC<NavBarProps> = () => {
         sticky="top"
       >
         <Navbar.Brand href="/">
-          {/* <img src={logo} alt="" height="40px" /> */}
+          <img src="../../../public/image.png" alt="" height="40px" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">

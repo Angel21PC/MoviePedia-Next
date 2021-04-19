@@ -11,6 +11,7 @@ import Cast from "../../Min-Components/Cast/index";
 import Avaliable from "../../Min-Components/Avaliable/index";
 import M_B_F from "../../Min-Components/M_button_F/index";
 import Video from "../../Min-Components/Video/index";
+import Loading from "../../Top-Components/Loading/index";
 
 //components
 import { Container, Row, Col } from "react-bootstrap";
@@ -58,7 +59,7 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
         fetchDataProvider();
         setIsPending(false);
         console.log(cast);
-      }, 1500);
+      }, 2500);
     }
     go();
   }, []);
@@ -67,12 +68,8 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
     <Container className="containerr" fluid>
       <Row className="justify-content-md-center" xs={1} md={2}>
         {isPending ? (
-          <div className="load">
-            {" "}
-            <img
-              src="https://rubico.com.mx/cultivandoelentendimiento_no_PHP/assets/img/demo/loader.gif"
-              alt=""
-            />
+          <div className="vertical-center justify-content-md-center">
+            <Loading />
           </div>
         ) : (
           <>
@@ -100,10 +97,6 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
         )}
       </Row>
       <style jsx>{`
-        .load {
-          position: absolute;
-        }
-
         .text {
           margin-top: 7vh;
           padding-left: 30px;
