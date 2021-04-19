@@ -1,6 +1,6 @@
 import { IApi_rutes } from "../../types";
 
-export const URL:string = 'https://main.d5mn8smn5c33y.amplifyapp.com';
+export const URL:string = 'https://my-bassist-chris.mybassistchris.now.sh';
 
 export const api_rutes: IApi_rutes = {
     PopularM: '/api/movie/PopularM',
