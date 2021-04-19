@@ -13,7 +13,7 @@ export interface MovieProps {
 }
 
 const Movie: NextPage<MovieProps> = ({ data }) => {
-  //console.log(data)
+  //console.log(data);
   return (
     <>
       <NavBar />
@@ -31,7 +31,7 @@ const Movie: NextPage<MovieProps> = ({ data }) => {
 //     });
 // };
 
-export async function getStaticProps() {
+async function getStaticProps() {
   return fetch(URL + api_rutes.PopularM)
     .then((res) => res.json())
     .then((response) => {
