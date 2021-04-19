@@ -77,7 +77,20 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
             <Col className="movie" xs lg="4">
               <div className="justify-content-center">
                 <Poster c="movie_poster" movie={movie} />
-                <Avaliable provider={provider} />
+                <div className="mt-4">
+                  <h4>Avaliable on:</h4>
+                  <Avaliable provider={provider} />
+                </div>
+              </div>
+              <div className="comentarios_container mt-4  ">
+                <h5>Seccion de comentarios/criticas</h5>
+                <p>nsnnsnfnsnnf</p>
+                <p>nsnnsnfnsnnf</p>
+                <p>nsnnsnfnsnnf</p>
+                <p>nsnnsnfnsnnf</p>
+                <p>nsnnsnfnsnnf</p>
+                <p>nsnnsnfnsnnf</p>
+                <p>nsnnsnfnsnnf</p>
               </div>
             </Col>
             <Col className="text" xs lg="6">
