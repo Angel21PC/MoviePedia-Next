@@ -17,7 +17,8 @@ type IRequest = {
     fetchCast_Movie: string,
     fetchVideo_Movie:string,
     fetchFindMovie: string, 
-
+    fetchSimilar_Movie: string,
+    
     //TVShows
     fetchPopular_Tv : string,
     fetchTop_Tv : string,
@@ -42,7 +43,7 @@ type IApi_rutesM = {
     Provider:string,
     Video:string,
     Find:string,
-
+    Similar: string,
 }
 
 type IApi_rutesTV = {

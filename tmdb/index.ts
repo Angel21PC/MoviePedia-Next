@@ -17,6 +17,8 @@ export const request: IRequest = {
     fetchCast_Movie: `/movie/{movie_id}/credits?api_key=${API_KEY}`,
     fetchVideo_Movie: `/movie/{movie_id}/videos?api_key=${API_KEY}`,
 
+    fetchSimilar_Movie:`/movie/{movie_id}/similar?api_key=${API_KEY}`,
+
     //Find
     fetchFindMovie: `/search/movie?api_key=${API_KEY}`,
 

@@ -12,6 +12,7 @@ import Avaliable from "../../Min-Components/Avaliable/index";
 import M_B_F from "../../Min-Components/M_button_F/index";
 import Video from "../../Min-Components/Video/index";
 import Loading from "../../Top-Components/Loading/index";
+import Similar from "../../Min-Components/SimilarM/index";
 
 //components
 import { Container, Row, Col } from "react-bootstrap";
@@ -91,6 +92,9 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
               </div>
               <div className="video_container">
                 <Video {...movie}></Video>
+              </div>
+              <div className="similar_container mt-3">
+                <Similar id={movie.id} />
               </div>
             </Col>
           </>

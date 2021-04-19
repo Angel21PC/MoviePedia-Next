@@ -14,6 +14,7 @@ export const api_rutesM: IApi_rutesM = {
     Cast: '/api/movie/GetCast',
     Provider: '/api/movie/GetProvider',
     Video: '/api/movie/GetVideo',
+    Similar: '/api/movie/SimilarM',
 }
 
 export const api_rutesTv: IApi_rutesTV = {
