@@ -43,5 +43,18 @@ const MovieS: NextPage<MovieSProps> = ({ data }) => {
 //       return response.data;
 //     });
 // };
+export async function getServerSideProps({ query }) {
+  const { id } = query;
 
+  return await axios
+    .get(URL + api_rutes.OneMovie, {
+      params: {
+        id: { id },
+      },
+    })
+    .then((res) => res)
+    .then((response) => {
+      return response.data;
+    });
+}
 export default MovieS;
