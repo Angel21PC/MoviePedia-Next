@@ -1,6 +1,6 @@
 import { IApi_rutesM, IApi_rutesTV } from "../../types";
 
-export const URL:string = 'https://movie-pedia-next-hkzl3fqlc-angel21pc.vercel.app';
+export const URL:string = 'http://localhost:3000';
 
 export const api_rutesM: IApi_rutesM = {
     Popular: '/api/movie/PopularM',
