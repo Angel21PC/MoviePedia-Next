@@ -4,3 +4,14 @@ module.exports = withImages({
     return config
   }
 })
+
+module.exports = {
+  async rewrites() {
+    return [
+      {
+        source: 'f/:path*',
+        destination: 'https://movie-pedia-next-e0dkngyfb-angel21pc.vercel.app/:path*' // Proxy to Backend
+      }
+    ]
+  }
+}
