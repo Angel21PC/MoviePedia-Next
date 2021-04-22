@@ -43,7 +43,21 @@ const MovieS: NextPage<MovieSProps> = ({ data }) => {
 //       return response.data;
 //     });
 // };
-async function getStaticProps({ query }) {
+// async function getStaticProps({ query }) {
+//   const { id } = query;
+
+//   return await axios
+//     .get(URL + api_rutesM.OneMovie, {
+//       params: {
+//         id: { id },
+//       },
+//     })
+//     .then((res) => res)
+//     .then((response) => {
+//       return response.data;
+//     });
+// }
+export const getServerSideProps = async ({ query }) => {
   const { id } = query;
 
   return await axios
@@ -56,5 +70,5 @@ async function getStaticProps({ query }) {
     .then((response) => {
       return response.data;
     });
-}
+};
 export default MovieS;

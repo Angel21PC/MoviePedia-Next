@@ -27,13 +27,13 @@ const TV: NextPage<TVProps> = ({ data }) => {
   );
 };
 
-TV.getInitialProps = async () => {
-  return fetch(URL + api_rutesTv.Popular)
-    .then((res) => res.json())
-    .then((response) => {
-      return response;
-    });
-};
+// TV.getInitialProps = async () => {
+//   return fetch(URL + api_rutesTv.Popular)
+//     .then((res) => res.json())
+//     .then((response) => {
+//       return response;
+//     });
+// };
 
 // async function getStaticProps() {
 //   return await fetch(URL + api_rutesTv.Popular)
@@ -42,5 +42,13 @@ TV.getInitialProps = async () => {
 //       return response;
 //     });
 // }
+
+export const getServerSideProps = async ({ req }) => {
+  return await fetch(URL + api_rutesTv.Popular)
+    .then((res) => res.json())
+    .then((response) => {
+      return response;
+    });
+};
 
 export default TV;
