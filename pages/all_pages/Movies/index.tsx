@@ -27,20 +27,20 @@ const Movie: NextPage<MovieProps> = ({ data }) => {
   );
 };
 
-// Movie.getInitialProps = async () => {
-//   return fetch(URL + api_rutesM.Popular)
-//     .then((res) => res.json())
-//     .then((response) => {
-//       return response;
-//     });
-// };
-
-async function getStaticProps() {
-  return await fetch(URL + api_rutesM.Popular)
+Movie.getInitialProps = async () => {
+  return fetch(URL + api_rutesM.Popular)
     .then((res) => res.json())
     .then((response) => {
       return response;
     });
-}
+};
+
+// async function getStaticProps() {
+//   return await fetch(URL + api_rutesM.Popular)
+//     .then((res) => res.json())
+//     .then((response) => {
+//       return response;
+//     });
+// }
 
 export default Movie;
