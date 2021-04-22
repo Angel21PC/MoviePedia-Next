@@ -12,7 +12,8 @@ export interface TVProps {
   data: any;
 }
 
-const TV: NextPage<TVProps> = ({ data }) => {
+const TV: NextPage<TVProps> = (props) => {
+  const { data } = props;
   console.log(data);
   return (
     <>
@@ -44,11 +45,13 @@ const TV: NextPage<TVProps> = ({ data }) => {
 // }
 
 export const getServerSideProps = async ({ req }) => {
-  return await fetch(URL + api_rutesTv.Popular)
+  const data = await fetch(URL + api_rutesTv.Popular)
     .then((res) => res.json())
     .then((response) => {
       return response;
     });
+
+  return { props: data };
 };
 
 export default TV;

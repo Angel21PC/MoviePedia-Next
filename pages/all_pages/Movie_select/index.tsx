@@ -15,7 +15,8 @@ export interface MovieSProps {
   data: any;
 }
 
-const MovieS: NextPage<MovieSProps> = ({ data }) => {
+const MovieS: NextPage<MovieSProps> = (props) => {
+  const { data } = props;
   const router = useRouter();
   const {
     query: { id },
@@ -60,7 +61,7 @@ const MovieS: NextPage<MovieSProps> = ({ data }) => {
 export const getServerSideProps = async ({ query }) => {
   const { id } = query;
 
-  return await axios
+  const data = await axios
     .get(URL + api_rutesM.OneMovie, {
       params: {
         id: { id },
@@ -70,5 +71,7 @@ export const getServerSideProps = async ({ query }) => {
     .then((response) => {
       return response.data;
     });
+
+  return { props: data };
 };
 export default MovieS;

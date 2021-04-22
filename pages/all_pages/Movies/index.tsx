@@ -12,7 +12,8 @@ export interface MovieProps {
   data: any;
 }
 
-const Movie: NextPage<MovieProps> = ({ data }) => {
+const Movie: NextPage<MovieProps> = (props) => {
+  const { data } = props;
   console.log(data);
   return (
     <>
@@ -44,10 +45,12 @@ const Movie: NextPage<MovieProps> = ({ data }) => {
 // }
 
 export const getServerSideProps = async () => {
-  return await fetch(URL + api_rutesM.Popular)
+  const data = await fetch(URL + api_rutesM.Popular)
     .then((res) => res.json())
     .then((response) => {
       return response;
     });
+
+  return { props: data };
 };
 export default Movie;
