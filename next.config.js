@@ -9,7 +9,7 @@ module.exports = {
     return [
       {
         // matching all API routes
-        source: "/api/:path*",
+        source: "https://movie-pedia-next-e0dkngyfb-angel21pc.vercel.app/api/:path*",
         headers: [
           { key: "Access-Control-Allow-Credentials", value: "true" },
           { key: "Access-Control-Allow-Origin", value: "*" },
