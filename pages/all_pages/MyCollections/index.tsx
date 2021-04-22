@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 //initialprops
-import { URL, api_rutes } from "../../../firebase/config/rute_api";
+import { URL, api_rutesM } from "../../../firebase/config/rute_api";
 
 //components
 import NavBar from "../../../components/Top-Components/NavBar/index";
