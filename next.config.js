@@ -9,8 +9,8 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: 'f/api/:path*',
-        destination: 'https://movie-pedia-next-e0dkngyfb-angel21pc.vercel.app/api/:path*' // Proxy to Backend
+        source: 'f',
+        destination: 'https://movie-pedia-next-e0dkngyfb-angel21pc.vercel.app' // Proxy to Backend
       }
     ]
   }
