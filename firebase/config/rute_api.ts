@@ -1,6 +1,6 @@
 import { IApi_rutesM, IApi_rutesTV } from "../../types";
 
-export const URL:string = '';
+export const URL:string = 'f';
 
 export const api_rutesM: IApi_rutesM = {
     Popular: '/api/movie/PopularM',
