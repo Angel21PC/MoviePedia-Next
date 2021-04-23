@@ -1,3 +1,16 @@
+module.exports = {
+  async rewrites() {
+    return [
+      {
+        source: '/api/movie/PopularM',
+        destination: '/' // Proxy to Backend
+      }
+    ]
+  }
+}
+
+
+
 const withImages = require('next-images')
 module.exports = withImages({
   webpack(config, options) {
@@ -5,13 +18,3 @@ module.exports = withImages({
   }
 })
 
-module.exports = {
-  async rewrites() {
-    return [
-      {
-        source: 'f',
-        destination: 'https://movie-pedia-next-e0dkngyfb-angel21pc.vercel.app' // Proxy to Backend
-      }
-    ]
-  }
-}
