@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import { useEffect, useState } from "react";
 
 import axios from "axios";
-
+import { useRouter } from "next/router";
 //initialprops
 import { URL, api_rutesM } from "../../../firebase/config/rute_api";
 
@@ -34,12 +34,19 @@ const List: NextPage<ListProps> = () => {
     getDataList();
   }, []);
 
-  return (
-    <>
-      <NavBar />
-      <ListM {...data} />
-    </>
-  );
+  const router = useRouter();
+
+  if (currentUser.currentUser !== null) {
+    return (
+      <>
+        <NavBar />
+        <ListM {...data} />
+      </>
+    );
+  } else {
+    router.push("/");
+    return <></>;
+  }
 };
 
 export default List;
