@@ -5,3 +5,13 @@ module.exports = withImages({
   }
 })
 
+module.exports = {
+  async rewrites() {
+    return [
+      {
+        source: '/api/:slug',
+        destination: `https://movie-pedia-next-e0dkngyfb-angel21pc.vercel.app/api/:slug`
+      },
+    ]
+  },
+}
