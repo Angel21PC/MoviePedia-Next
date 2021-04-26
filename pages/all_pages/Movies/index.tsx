@@ -45,7 +45,13 @@ const Movie: NextPage<MovieProps> = (props) => {
 // }
 
 export const getServerSideProps = async () => {
-  const data = await fetch(URL + api_rutesM.Popular)
+  const data = await fetch(URL + api_rutesM.Popular, {
+    method: "GET",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+    }),
+  })
     .then((res) => res.json())
     .then((response) => {
       return response;
