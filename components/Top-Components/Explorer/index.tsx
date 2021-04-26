@@ -33,10 +33,6 @@ const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes, m_s }) => {
       setIsPending(true); //cargamos la animacion
 
       const request = await axios.get(fetchUrl, {
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        },
         params: {
           p: page,
           g: target_genre,
