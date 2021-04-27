@@ -1,8 +1,6 @@
-import css from "styled-jsx/css"
+import css from "styled-jsx/css";
 
-export const globalStyles = css.global`   
-
-`
+export const globalStyles = css.global``;
 
 export default css`
   
@@ -13,4 +11,4 @@ export default css`
   font-family: 'Montserrat';
 }
   }
-`
+`;
