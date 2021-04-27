@@ -17,7 +17,8 @@ type IRequest = {
     fetchCast_Movie: string,
     fetchVideo_Movie:string,
     fetchFindMovie: string, 
-
+    fetchSimilar_Movie: string,
+    
     //TVShows
     fetchPopular_Tv : string,
     fetchTop_Tv : string,
@@ -30,18 +31,29 @@ type IRequest = {
     fetchUpcoming : string,
 }
 
-type IApi_rutes = {
+type IApi_rutesM = {
 
-    PopularM: string,
-    TopM: string,
-    UpcomingM: string,
-    DiscoverM: string,
-    GenreM: string ,
+    Popular: string,
+    Top: string,
+    Upcoming: string,
+    Discover: string,
+    Genre: string ,
     OneMovie: string,
     Cast:string,
     Provider:string,
     Video:string,
-    FindM:string
+    Find:string,
+    Similar: string,
+}
+
+type IApi_rutesTV = {
+
+    Popular: string,
+    Top: string,
+    Upcoming: string,
+    Discover: string,
+    Genre: string ,
+    OneMovie: string,
 }
 
 type INewUser = {

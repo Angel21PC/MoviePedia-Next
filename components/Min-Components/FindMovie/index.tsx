@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { URL, api_rutes } from "../../../pages/all_pages/config/rute_api";
+import { URL, api_rutesM } from "../../../firebase/config/rute_api";
 //components-p
 import LstM from "../../Min-Components/ListMovie/index";
 
@@ -9,7 +9,7 @@ export interface FindMovieProps {
 }
 
 const FindMovie: React.SFC<FindMovieProps> = ({ id }) => {
-  const [fetchUrl, setFetchUrl] = useState(URL + api_rutes.FindM);
+  const [fetchUrl, setFetchUrl] = useState(URL + api_rutesM.Find);
   const [movies, setMovies] = useState([]);
   const [isPending, setIsPending] = useState(true);
 

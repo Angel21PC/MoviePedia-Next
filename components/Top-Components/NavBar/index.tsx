@@ -5,7 +5,7 @@ import Link from "next/link";
 //Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt, faUser } from "@fortawesome/free-solid-svg-icons";
-import logo from "../../../public/image.png";
+// import logo from "../../../public/image.png";
 
 //COMPONENTS
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
@@ -30,7 +30,7 @@ const NavBar: React.SFC<NavBarProps> = () => {
         sticky="top"
       >
         <Navbar.Brand href="/">
-          <img src={logo} alt="" height="40px" />
+          <img src="../../../public/image.png" alt="" height="40px" />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -38,7 +38,7 @@ const NavBar: React.SFC<NavBarProps> = () => {
             <Link href="/all_pages/Movies">
               <a>Movies</a>
             </Link>
-            <Link href="/home">
+            <Link href="/all_pages/TvShows">
               <a>Tv Shows</a>
             </Link>
             <Link href="/home">

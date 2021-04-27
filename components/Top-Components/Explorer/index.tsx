@@ -6,15 +6,18 @@ import Link from "next/link";
 
 //componentes
 import { Container, Row, Form, Button } from "react-bootstrap";
-import Poster from "../../Min-Components/Poster/index";
 
+//component-p
+import Poster from "../../Min-Components/Poster/index";
+import Loading from "../../Top-Components/Loading/index";
 export interface ExplorerProps {
   URL: string;
   api_rutes: any;
+  m_s: string;
 }
 
-const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes }) => {
-  const [fetchUrl, setFetchUrl] = useState(URL + api_rutes.PopularM); // consulta inicial
+const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes, m_s }) => {
+  const [fetchUrl, setFetchUrl] = useState(URL + api_rutes.Popular); // consulta inicial
   const [movies, setMovies] = useState([]); //recoge todos los datos de la consulta
   const [genre, setGenre] = useState([]); //todos los qeneros disponibles para filtrar
 
@@ -40,15 +43,15 @@ const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes }) => {
         //ejecutamos
         setIsPending(false);
         setMovies(request.data.data.results);
-      }, 1500);
-      console.log(request);
+      }, 2500);
+      // console.log(request);
       return request;
     }
     fetchData();
 
     //request para extraer los generos
     async function fetchData2() {
-      const request = await axios.get(api_rutes.GenreM);
+      const request = await axios.get(api_rutes.Genre);
       setGenre(request.data.data.genres);
       return request;
     }
@@ -58,17 +61,17 @@ const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes }) => {
   const handleSelect = (e) => {
     switch (e.currentTarget.value) {
       case "Popular":
-        setFetchUrl(URL + api_rutes.PopularM);
+        setFetchUrl(URL + api_rutes.Popular);
         break;
       case "Top":
-        setFetchUrl(URL + api_rutes.TopM);
+        setFetchUrl(URL + api_rutes.Top);
         break;
       case "Upcoming":
-        setFetchUrl(URL + api_rutes.UpcomingM);
+        setFetchUrl(URL + api_rutes.Upcoming);
         break;
       default:
         setTargetGenre(e.currentTarget.value);
-        setFetchUrl(URL + api_rutes.DiscoverM);
+        setFetchUrl(URL + api_rutes.Discover);
         break;
     }
   };
@@ -113,16 +116,17 @@ const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes }) => {
 
             <Row
               id="laya"
-              className="col-xs-1 justify-content-between"
+              className={
+                isPending
+                  ? "justify-content-center"
+                  : "col-xs-1 justify-content-between"
+              }
               lg={4}
               sm={3}
             >
               {isPending && (
-                <div>
-                  <img
-                    src="https://rubico.com.mx/cultivandoelentendimiento_no_PHP/assets/img/demo/loader.gif"
-                    alt=""
-                  />
+                <div className="justify-content-center">
+                  <Loading />{" "}
                 </div>
               )}
 
@@ -132,7 +136,7 @@ const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes }) => {
                 <div key={movie?.id} className="mt-2">
                   <Link
                     href={{
-                      pathname: "/all_pages/Movie_select",
+                      pathname: m_s,
                       query: { id: movie.id },
                     }}
                     key={movie?.id}

@@ -9,7 +9,7 @@ import Link from "next/link";
 import Poster from "../Poster/index";
 
 //api
-import { URL, api_rutes } from "../../../pages/all_pages/config/rute_api";
+import { URL, api_rutesM } from "../../../firebase/config/rute_api";
 
 export interface LstMProps {}
 
@@ -20,7 +20,7 @@ const LstM: React.SFC<LstMProps> = (props: any) => {
     //data
     async function getDataMovie() {
       let id = props.id;
-      const result = await axios.get(URL + api_rutes.OneMovie, {
+      const result = await axios.get(URL + api_rutesM.OneMovie, {
         params: {
           id: { id },
         },

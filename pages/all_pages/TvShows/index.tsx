@@ -1,18 +1,18 @@
 import { NextPage } from "next";
 
 //initialprops
-import { URL, api_rutesM } from "../../../firebase/config/rute_api";
+import { URL, api_rutesTv } from "../../../firebase/config/rute_api";
 
 //components
 import NavBar from "../../../components/Top-Components/NavBar/index";
 import Banner from "../../../components/Top-Components/Banner/index";
 import Explorer from "../../../components/Top-Components/Explorer/index";
 
-export interface MovieProps {
+export interface TVProps {
   data: any;
 }
 
-const Movie: NextPage<MovieProps> = ({ data }) => {
+const TV: NextPage<TVProps> = ({ data }) => {
   console.log(data);
   return (
     <>
@@ -20,15 +20,15 @@ const Movie: NextPage<MovieProps> = ({ data }) => {
       <Banner data={data} />
       <Explorer
         URL={URL}
-        api_rutes={api_rutesM}
-        m_s={"/all_pages/Movie_select"}
+        api_rutes={api_rutesTv}
+        m_s={"/all_pages/Show_select"}
       />
     </>
   );
 };
 
-Movie.getInitialProps = async () => {
-  return fetch(URL + api_rutesM.Popular)
+TV.getInitialProps = async () => {
+  return fetch(URL + api_rutesTv.Popular)
     .then((res) => res.json())
     .then((response) => {
       return response;
@@ -36,11 +36,11 @@ Movie.getInitialProps = async () => {
 };
 
 // async function getStaticProps() {
-//   return await fetch(URL + api_rutesM.Popular)
+//   return await fetch(URL + api_rutesTv.Popular)
 //     .then((res) => res.json())
 //     .then((response) => {
 //       return response;
 //     });
 // }
 
-export default Movie;
+export default TV;

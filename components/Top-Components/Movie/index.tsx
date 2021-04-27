@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 //request
 import axios from "axios";
-import { URL, api_rutes } from "../../../pages/all_pages/config/rute_api";
+import { URL, api_rutesM } from "../../../firebase/config/rute_api";
 
 //components-p
 import Poster from "../../Min-Components/Poster/index";
@@ -11,6 +11,8 @@ import Cast from "../../Min-Components/Cast/index";
 import Avaliable from "../../Min-Components/Avaliable/index";
 import M_B_F from "../../Min-Components/M_button_F/index";
 import Video from "../../Min-Components/Video/index";
+import Loading from "../../Top-Components/Loading/index";
+import Similar from "../../Min-Components/SimilarM/index";
 
 //components
 import { Container, Row, Col } from "react-bootstrap";
@@ -28,7 +30,7 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
   useEffect(() => {
     //request para extraer el cast
     async function fetchDataCast() {
-      const request = await axios.get(URL + api_rutes.Cast, {
+      const request = await axios.get(URL + api_rutesM.Cast, {
         params: {
           id: movie.id,
         },
@@ -39,7 +41,7 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
 
     //request para extraer los providers
     async function fetchDataProvider() {
-      const request = await axios.get(URL + api_rutes.Provider, {
+      const request = await axios.get(URL + api_rutesM.Provider, {
         params: {
           id: movie.id,
         },
@@ -58,7 +60,7 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
         fetchDataProvider();
         setIsPending(false);
         console.log(cast);
-      }, 1500);
+      }, 2500);
     }
     go();
   }, []);
@@ -67,19 +69,28 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
     <Container className="containerr" fluid>
       <Row className="justify-content-md-center" xs={1} md={2}>
         {isPending ? (
-          <div className="load">
-            {" "}
-            <img
-              src="https://rubico.com.mx/cultivandoelentendimiento_no_PHP/assets/img/demo/loader.gif"
-              alt=""
-            />
+          <div className="vertical-center justify-content-md-center">
+            <Loading />
           </div>
         ) : (
           <>
             <Col className="movie" xs lg="4">
               <div className="justify-content-center">
                 <Poster c="movie_poster" movie={movie} />
-                <Avaliable provider={provider} />
+                <div className="mt-4">
+                  <h4>Avaliable on:</h4>
+                  <Avaliable provider={provider} />
+                </div>
+              </div>
+              <div className="comentarios_container mt-4  ">
+                <h5>Seccion de comentarios/criticas</h5>
+                <p>nsnnsnfnsnnf</p>
+                <p>nsnnsnfnsnnf</p>
+                <p>nsnnsnfnsnnf</p>
+                <p>nsnnsnfnsnnf</p>
+                <p>nsnnsnfnsnnf</p>
+                <p>nsnnsnfnsnnf</p>
+                <p>nsnnsnfnsnnf</p>
               </div>
             </Col>
             <Col className="text" xs lg="6">
@@ -95,15 +106,14 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
               <div className="video_container">
                 <Video {...movie}></Video>
               </div>
+              <div className="similar_container mt-3">
+                <Similar id={movie.id} />
+              </div>
             </Col>
           </>
         )}
       </Row>
       <style jsx>{`
-        .load {
-          position: absolute;
-        }
-
         .text {
           margin-top: 7vh;
           padding-left: 30px;
