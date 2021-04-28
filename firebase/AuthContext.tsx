@@ -36,7 +36,7 @@ export function AuthProvider({ children }) {
     });
 
     //datos de perfil
-    return db.collection("profile").doc(email).set({
+    return db.collection("profile").doc(auth.currentUser.uid).set({
       email: { email },
       username: { username },
       birth_date: { birth_date },
@@ -45,9 +45,9 @@ export function AuthProvider({ children }) {
     });
   }
 
-  async function ConsultaID(email) {
+  async function ConsultaID() {
     let result = undefined;
-    const docRef = db.collection("profile").doc(email);
+    const docRef = db.collection("profile").doc(auth.currentUser.uid);
     await docRef
       .get()
       .then((doc) => {
@@ -145,7 +145,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   async function getListMovies(email) {
-    const id_user_collection = await ConsultaID(email);
+    const id_user_collection = await ConsultaID();
     let result: IListM = {
       Bookmark: [],
       Like: [],

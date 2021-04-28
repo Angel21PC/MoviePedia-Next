@@ -1,8 +1,8 @@
-import { db, a } from "./index";
+import { auth, db, a } from "./index";
 
-async function ConsultaID(email) {
+async function ConsultaID() {
   let result = undefined;
-  const docRef = db.collection("profile").doc(email);
+  const docRef = db.collection("profile").doc(auth.currentUser.uid);
   await docRef
     .get()
     .then((doc) => {
@@ -21,8 +21,9 @@ async function ConsultaID(email) {
   return result;
 }
 
-export async function checkEye_M(email, id) {
-  const id_user_collection = await ConsultaID(email);
+
+export async function checkEye_M(id) {
+  const id_user_collection = await ConsultaID();
   let listConvert = {
     toFirestore: function () {
       return {
@@ -59,8 +60,8 @@ export async function checkEye_M(email, id) {
   return check;
 }
 
-export async function deleteEye_M(email, id) {
-  const id_user_collection = await ConsultaID(email);
+export async function deleteEye_M(id) {
+  const id_user_collection = await ConsultaID();
   let listConvert = {
     toFirestore: function () {
       return {
@@ -101,8 +102,8 @@ export async function deleteEye_M(email, id) {
     });
 }
 
-export async function saveEye_M(email, id, date) {
-  const id_user_collection = await ConsultaID(email);
+export async function saveEye_M(id, date) {
+  const id_user_collection = await ConsultaID();
   let listConvert = {
     toFirestore: function () {
       return {

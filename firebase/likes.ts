@@ -1,8 +1,8 @@
-import { db, a } from "./index";
+import { auth, db, a } from "./index";
 
-async function ConsultaID(email) {
+async function ConsultaID() {
   let result = undefined;
-  const docRef = db.collection("profile").doc(email);
+  const docRef = db.collection("profile").doc(auth.currentUser.uid);
   await docRef
     .get()
     .then((doc) => {
@@ -20,9 +20,10 @@ async function ConsultaID(email) {
   console.log(result);
   return result;
 }
+
 //LIKES
-export async function checkLikes_M(email, id) {
-  const id_user_collection = await ConsultaID(email);
+export async function checkLikes_M(id) {
+  const id_user_collection = await ConsultaID();
   let result = undefined;
   const docRef = db.collection("likes_M").doc(id_user_collection);
 
@@ -32,7 +33,7 @@ export async function checkLikes_M(email, id) {
       if (doc.exists) {
         const data = doc.data();
         result = data.id_movie.find((e) => e.id === id);
-        // console.log(result)
+        console.log(id)
       } else {
         console.log("No such document!");
       }
@@ -43,8 +44,8 @@ export async function checkLikes_M(email, id) {
   return result;
 }
 
-export async function saveLike_M(email, id) {
-  const id_user_collection = await ConsultaID(email);
+export async function saveLike_M(id) {
+  const id_user_collection = await ConsultaID();
   console.log("mira aqui");
   return db
     .collection("likes_M")
@@ -54,8 +55,8 @@ export async function saveLike_M(email, id) {
     });
 }
 
-export async function deleteLike_M(email, id) {
-  const id_user_collection = await ConsultaID(email);
+export async function deleteLike_M(id) {
+  const id_user_collection = await ConsultaID();
   return db
     .collection("likes_M")
     .doc(id_user_collection)

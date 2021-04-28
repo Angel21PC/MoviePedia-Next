@@ -37,7 +37,7 @@ const M_B_F: React.SFC<M_B_FProps> = ({ movie }) => {
     //checks
     async function c_heart() {
       if (currentUser.currentUser !== null) {
-        let r = await checkLikes_M(currentUser.currentUser.email, movie.id);
+        let r = await checkLikes_M(movie.id);
         let bool = r === undefined ? (r = false) : (r = true);
         if (bool === true) {
           setH("heartcheck");
@@ -46,7 +46,7 @@ const M_B_F: React.SFC<M_B_FProps> = ({ movie }) => {
     }
     async function c_bookmark() {
       if (currentUser.currentUser !== null) {
-        let r = await checkBookMark_M(currentUser.currentUser.email, movie.id);
+        let r = await checkBookMark_M(movie.id);
         let bool = r === undefined ? (r = false) : (r = true);
         if (bool === true) {
           setB("bookmarkcheck");
@@ -56,7 +56,7 @@ const M_B_F: React.SFC<M_B_FProps> = ({ movie }) => {
 
     async function c_eye() {
       if (currentUser.currentUser !== null) {
-        let r = await checkEye_M(currentUser.currentUser.email, movie.id);
+        let r = await checkEye_M(movie.id);
         let bool = r === undefined ? (r = false) : (r = true);
         if (bool === true) {
           setE("eyecheck");
@@ -91,12 +91,11 @@ const M_B_F: React.SFC<M_B_FProps> = ({ movie }) => {
 
   async function a_heart() {
     if (currentUser.currentUser !== null) {
-      let r = await checkLikes_M(currentUser.currentUser.email, movie.id);
+      let r = await checkLikes_M(movie.id);
       let bool = r === undefined ? (r = false) : (r = true);
-      console.log(bool);
       if (bool === true) {
         setH("heart");
-        deleteLike_M(currentUser.currentUser.email, movie.id);
+        deleteLike_M(movie.id);
         store.addNotification({
           title: "Wonderful!",
           message: "Removed from the like list",
@@ -112,7 +111,7 @@ const M_B_F: React.SFC<M_B_FProps> = ({ movie }) => {
         });
       } else {
         setH("heartcheck");
-        saveLike_M(currentUser.currentUser.email, movie.id);
+        saveLike_M(movie.id);
         store.addNotification({
           title: "Wonderful!",
           message: "Added to like list",
@@ -132,12 +131,11 @@ const M_B_F: React.SFC<M_B_FProps> = ({ movie }) => {
 
   async function a_bookmark() {
     if (currentUser.currentUser !== null) {
-      let r = await checkBookMark_M(currentUser.currentUser.email);
+      let r = await checkBookMark_M(movie.id);
       let bool = r === undefined ? (r = false) : (r = true);
-      console.log(bool);
       if (bool === true) {
         setB("bookmark");
-        deleteBookMark_M(currentUser.currentUser.email, movie.id);
+        deleteBookMark_M(movie.id);
         store.addNotification({
           title: "Wonderful!",
           message: "Removed from the likes list",
@@ -153,7 +151,7 @@ const M_B_F: React.SFC<M_B_FProps> = ({ movie }) => {
         });
       } else {
         setB("bookmarkcheck");
-        saveBookMark_M(currentUser.currentUser.email, movie.id);
+        saveBookMark_M(movie.id);
         store.addNotification({
           title: "Wonderful!",
           message: "Added to like list",
@@ -173,13 +171,11 @@ const M_B_F: React.SFC<M_B_FProps> = ({ movie }) => {
 
   async function a_eye() {
     if (currentUser.currentUser !== null) {
-      let r = await checkEye_M(currentUser.currentUser.email, movie.id);
-      console.log(r);
+      let r = await checkEye_M(movie.id);
       let bool = r === undefined ? (r = false) : (r = true);
-      console.log(bool);
       if (bool === true) {
         setE("eye");
-        deleteEye_M(currentUser.currentUser.email, movie.id);
+        deleteEye_M(movie.id);
         store.addNotification({
           title: "Wonderful!",
           message: "Removed from the to watch list",
@@ -196,7 +192,7 @@ const M_B_F: React.SFC<M_B_FProps> = ({ movie }) => {
       } else {
         setE("eyecheck");
         const today = new Date();
-        saveEye_M(currentUser.currentUser.email, movie.id, today);
+        saveEye_M(movie.id, today);
         store.addNotification({
           title: "Wonderful!",
           message: "Added to watch list",
