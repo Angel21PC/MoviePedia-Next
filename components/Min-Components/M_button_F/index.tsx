@@ -126,6 +126,20 @@ const M_B_F: React.SFC<M_B_FProps> = ({ movie }) => {
           },
         });
       }
+    } else {
+      store.addNotification({
+        title: "Sorry",
+        message: "You need to be login",
+        type: "info",
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOutUp"],
+        dismiss: {
+          duration: 2000,
+          touch: true,
+        },
+      });
     }
   }
 
@@ -166,6 +180,20 @@ const M_B_F: React.SFC<M_B_FProps> = ({ movie }) => {
           },
         });
       }
+    } else {
+      store.addNotification({
+        title: "Sorry",
+        message: "You need to be login",
+        type: "info",
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOutUp"],
+        dismiss: {
+          duration: 2000,
+          touch: true,
+        },
+      });
     }
   }
 
@@ -207,6 +235,20 @@ const M_B_F: React.SFC<M_B_FProps> = ({ movie }) => {
           },
         });
       }
+    } else {
+      store.addNotification({
+        title: "Sorry",
+        message: "You need to be login",
+        type: "info",
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOutUp"],
+        dismiss: {
+          duration: 2000,
+          touch: true,
+        },
+      });
     }
   }
 

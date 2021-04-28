@@ -22,15 +22,17 @@ import { useAuth } from "../../../firebase/AuthContext";
 import { useRouter } from "next/router";
 
 import { INewUser } from "../../../types";
-{
-  /* Editar los datos del fromulario basico */
-}
-{
-  /* poner biografia  */
-}
-{
-  /*foto */
-}
+
+//component-p
+// import dynamic from "next/dynamic";
+// const Editor = dynamic(() => import("../TextEditor"), { ssr: false });
+
+/* Editar los datos del fromulario basico */
+
+/* poner biografia  */
+
+/*foto */
+
 export interface FormEditProps {}
 
 const today = new Date();
@@ -44,11 +46,11 @@ const schema = yup.object().shape({
   email: yup.string().email().required(),
   phone_number: yup.string(),
   birth_date: yup.date().max(today),
+  // bio: yup.string().length(150),
 });
 const FormEdit: React.SFC<FormEditProps> = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const currentUser = useAuth();
 
   const {
     register,
@@ -62,8 +64,12 @@ const FormEdit: React.SFC<FormEditProps> = () => {
     try {
       console.log(data);
       setLoading(true);
-      await signup(data.email, data.password).then(
-        saveData(data.username, data.birth_date, data.phone_number, data.email)
+      await changeData(
+        data.username,
+        data.birth_date,
+        data.phone_number,
+        data.email
+        // data.bio
       );
 
       router.push("/");
@@ -86,7 +92,7 @@ const FormEdit: React.SFC<FormEditProps> = () => {
   };
 
   //firebase
-  const { signup, saveData } = useAuth();
+  const { changeData } = useAuth();
 
   return (
     <div className="registration-form">
@@ -177,17 +183,19 @@ const FormEdit: React.SFC<FormEditProps> = () => {
         </div>
 
         {/* Biografia */}
-        <div className="form-group">
+        {/* <div className="form-group">
+          <h4>Bio</h4>
           <input
             type="textarea"
             className="form-control item"
             key="bio"
             id="bio"
             name="bio"
-            {...register("birth_date")}
+            {...register("bio")}
             placeholder="bio"
-          />
-        </div>
+          /> 
+          <Editor key="bio" name="bio" {...register("bio")}></Editor>
+        </div> */}
 
         <div className="form-group">
           <button

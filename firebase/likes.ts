@@ -33,7 +33,6 @@ export async function checkLikes_M(id) {
       if (doc.exists) {
         const data = doc.data();
         result = data.id_movie.find((e) => e.id === id);
-        console.log(id)
       } else {
         console.log("No such document!");
       }

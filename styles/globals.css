@@ -52,21 +52,14 @@
   transform: scale(1.08);
 }
 
-#heart:hover {
-  color: red;
-}
 #heartcheck {
   color: red;
 }
-#bookmark:hover {
-  color: blue;
-}
+
 #bookmarkcheck {
   color: blue;
 }
-#eye:hover {
-  color: orange;
-}
+
 #eyecheck {
   color: orange;
 }

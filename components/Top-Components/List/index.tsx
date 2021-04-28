@@ -5,6 +5,7 @@ import { IListM } from "../../../types";
 
 //components-p
 import LstM from "../../Min-Components/ListMovie/index";
+import Loading from "../../Top-Components/Loading/index";
 
 //COMPONENTS
 import { Tabs, Tab, Container } from "react-bootstrap";
@@ -24,11 +25,8 @@ const ListM: React.SFC<ListMProps> = (data: IListM) => {
   return (
     <Container>
       {isPending ? (
-        <div className="load">
-          <img
-            src="https://rubico.com.mx/cultivandoelentendimiento_no_PHP/assets/img/demo/loader.gif"
-            alt=""
-          />
+        <div className="vertical-center justify-content-md-center">
+          <Loading />
         </div>
       ) : (
         <Tabs
@@ -38,17 +36,29 @@ const ListM: React.SFC<ListMProps> = (data: IListM) => {
         >
           <Tab eventKey="Liked" title="Liked">
             {data?.Like?.map((movie) =>
-              movie?.id_movie.map((id) => <LstM {...id} />)
+              movie?.id_movie.lenght > 0 ? (
+                movie?.id_movie?.map((id) => <LstM {...id} />)
+              ) : (
+                <></>
+              )
             )}
           </Tab>
           <Tab eventKey="Pending" title="Pending">
             {data?.Bookmark?.map((movie) =>
-              movie?.id_movie.map((id) => <LstM {...id} />)
+              movie?.id_movie.lenght > 0 ? (
+                movie?.id_movie?.map((id) => <LstM {...id} />)
+              ) : (
+                <></>
+              )
             )}
           </Tab>
           <Tab eventKey="Watched" title="Watched">
             {data?.Watch?.map((movie) =>
-              movie?.list.map((id) => <LstM {...id} />)
+              movie?.list.lenght > 0 ? (
+                movie?.list?.map((id) => <LstM {...id} />)
+              ) : (
+                <></>
+              )
             )}
           </Tab>
         </Tabs>

@@ -35,6 +35,7 @@ export function AuthProvider({ children }) {
       list: [],
     });
 
+    console.log(auth);
     //datos de perfil
     return db.collection("profile").doc(auth.currentUser.uid).set({
       email: { email },
@@ -42,6 +43,15 @@ export function AuthProvider({ children }) {
       birth_date: { birth_date },
       phone: { phone },
       collections_id: { id },
+    });
+  }
+
+  function changeData(username, birth_date, phone, email) {
+    return db.collection("profile").doc(auth.currentUser.uid).update({
+      email: { email },
+      username: { username },
+      birth_date: { birth_date },
+      phone: { phone },
     });
   }
 
@@ -231,6 +241,7 @@ export function AuthProvider({ children }) {
     checkEye_M,
     deleteEye_M,
     saveEye_M,
+    changeData,
   };
 
   return (

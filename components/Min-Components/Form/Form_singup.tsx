@@ -59,6 +59,7 @@ const FormS: React.SFC<FormSProps> = () => {
 
       router.push("/");
     } catch (e) {
+      console.log(e);
       store.addNotification({
         title: "Fail!",
         message: "Fail to create account",
