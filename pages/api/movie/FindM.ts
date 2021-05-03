@@ -26,7 +26,7 @@ export default async (
  
   try {
     const request = await fetch(r.fetchFindMovie.concat(`&query=`+text));
-    res.status(200).json({data: request?.data})
+    res.status(200).json({data: request})
   } catch (error) {
     res.status(200).json(error)
   }
