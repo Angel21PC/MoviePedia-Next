@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import axios, {request as r} from '../../../tmdb/index';
+import axios, {request as r} from '../../../../tmdb/index';
 
 export default async (
   req, 
