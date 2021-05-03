@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import axios, {request as r} from '../../../../tmdb/index';
+import axios, {request as r} from '../../../tmdb/index';
 
 export default async (
   req, 
@@ -8,7 +8,7 @@ export default async (
   
   const page:number = req.query.p
   // console.log(page)
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  req.setHeader("Access-Control-Allow-Origin", "*");
   try {
     const request = await axios.get(r.fetchPopular_Movie+`&page=${page}`);
     res.status(200).json({data: request.data})
