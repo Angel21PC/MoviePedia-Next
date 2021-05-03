@@ -37,7 +37,12 @@ export const request: IRequest = {
 
 //base url para requests
 const instance = axios.create({
-    baseURL: 'https://api.themoviedb.org/3',       
+    baseURL: 'https://api.themoviedb.org/3', 
+    headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin' : '*',
+        'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      }      
 });
 
 export default instance;
