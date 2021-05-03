@@ -19,11 +19,14 @@ const FindMovie: React.SFC<FindMovieProps> = ({ id }) => {
       setMovies([]); //vaciamos el array
       setIsPending(true); //cargamos la animacion
 
-      const request = await axios.get(fetchUrl, {
-        params: {
-          text: id,
-        },
-      });
+      const request = await axios.get(
+        "https://movie-pedia-next-e0dkngyfb-angel21pc.vercel.app" + fetchUrl,
+        {
+          params: {
+            text: id,
+          },
+        }
+      );
 
       setTimeout(() => {
         //ejecutamos
