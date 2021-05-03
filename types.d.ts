@@ -63,7 +63,8 @@ type INewUser = {
     password2: string,
     phone_number: string,
     username: string,
-    bio?:string
+    bio?:string,
+    currentPassword?:string
 }
 
 type IListM = {

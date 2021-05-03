@@ -46,13 +46,26 @@ export function AuthProvider({ children }) {
     });
   }
 
-  function changeData(username, birth_date, phone, email) {
-    return db.collection("profile").doc(auth.currentUser.uid).update({
+  async function changeData(
+    username,
+    birth_date,
+    phone,
+    email,
+    password,
+    currentPassword
+  ) {
+    await db.collection("profile").doc(auth.currentUser.uid).update({
       email: { email },
       username: { username },
       birth_date: { birth_date },
       phone: { phone },
     });
+    return await auth
+      .signInWithEmailAndPassword(auth.currentUser.email, currentPassword)
+      .then((userCredential) => {
+        userCredential.user.updateEmail(email);
+        userCredential.user.updatePassword(password);
+      });
   }
 
   async function ConsultaID() {

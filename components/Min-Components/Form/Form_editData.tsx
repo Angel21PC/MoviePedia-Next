@@ -46,7 +46,7 @@ const schema = yup.object().shape({
   email: yup.string().email().required(),
   phone_number: yup.string(),
   birth_date: yup.date().max(today),
-  // bio: yup.string().length(150),
+  currentPassword: yup.string().required(),
 });
 const FormEdit: React.SFC<FormEditProps> = () => {
   const [loading, setLoading] = useState(false);
@@ -68,8 +68,9 @@ const FormEdit: React.SFC<FormEditProps> = () => {
         data.username,
         data.birth_date,
         data.phone_number,
-        data.email
-        // data.bio
+        data.email,
+        data.password,
+        data.currentPassword
       );
 
       router.push("/");
@@ -115,6 +116,18 @@ const FormEdit: React.SFC<FormEditProps> = () => {
             {...register("username")}
           />
           {errors?.username?.message && <p>{errors?.username?.message}</p>}
+        </div>
+        <div className="form-group">
+          <input
+            type="currentPassword"
+            className="form-control item"
+            key="currentPassword"
+            id="currentPassword"
+            placeholder="Current Password"
+            name="currentPassword"
+            {...register("currentPassword")}
+            pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
+          />
         </div>
         <div className="form-group">
           <input
