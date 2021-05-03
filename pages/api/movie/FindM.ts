@@ -17,11 +17,17 @@ export default async (
   await cors(req, res)
   const text:string = req.query.text
 
+  // try {
+  //   const request = await axios.get(r.fetchFindMovie.concat(`&query=`+text));
+  //   res.status(200).json({data: request.data})
+  // } catch (error) {
+  //   res.status(200).json(error)
+  // }
+ 
   try {
-    const request = await axios.get(r.fetchFindMovie.concat(`&query=`+text));
-    res.status(200).json({data: request.data})
+    const request = await fetch(r.fetchFindMovie.concat(`&query=`+text));
+    res.status(200).json({data: request?.data})
   } catch (error) {
     res.status(200).json(error)
   }
- 
 }
