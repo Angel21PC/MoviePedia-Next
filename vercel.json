@@ -1,15 +1,4 @@
 {
-    "rewrites": [
-        {
-          "source": "https://movie-pedia-next-e0dkngyfb-angel21pc.vercel.app",
-          "destination": "/api/frameworks"
-        },
-        {
-          "source": "/api/v1/frameworks",
-          "destination": "/api/frameworks"
-        }
-      ],
-
     "headers": [
       {
         "source": "/api/(.*)",
