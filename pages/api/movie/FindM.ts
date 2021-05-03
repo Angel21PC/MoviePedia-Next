@@ -1,20 +1,10 @@
 import axios, {request as r} from '../../../tmdb/index';
-  
-import Cors from 'cors';
-import initMiddleware from '../../../lib/init-middleware';
-
-const cors = initMiddleware(
-  // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
-  Cors({
-    // Only allow requests with GET, POST and OPTIONS
-    methods: ['GET', 'POST', 'OPTIONS'],
-  })
-)
+const BASE_URL = "https://api.themoviedb.org/3/";
+const API_KEY: string  = "500227baa19f807d55e74a0220354602";
 export default async (
   req, 
   res
 ) => {
-  await cors(req, res)
   const text:string = req.query.text
 
   // try {
@@ -24,10 +14,7 @@ export default async (
   //   res.status(200).json(error)
   // }
  
-  try {
-    const request = await axios.get(r.fetchFindMovie.concat(`&query=`+text));
-    res.status(200).json({data: request.data})
-  } catch (error) {
-    res.status(200).json(error)
-  }
+  return fetch(
+    `${BASE_URL}search/multi?api_key=${API_KEY}&include_adult=true&query=${term}`
+  ).then((res) => res.json());
 }
