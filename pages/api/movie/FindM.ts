@@ -15,6 +15,6 @@ export default async (
   // }
  
   return fetch(
-    `${BASE_URL}search/multi?api_key=${API_KEY}&include_adult=true&query=${term}`
+    `${BASE_URL}search/multi?api_key=${API_KEY}&include_adult=true&query=${text}`
   ).then((res) => res.json());
 }
