@@ -23,31 +23,7 @@ const Editor: React.SFC<EditorProps> = (...props) => {
     }
   };
 
-  return (
-    <div>
-      <EditorJs
-        {...props}
-        data={{
-          blocks: [
-            {
-              type: "paragraph",
-              data: {
-                text: "",
-                level: 1,
-              },
-            },
-          ],
-        }}
-        holder="custom-editor-container"
-        onChange={onChange}
-        editorInstance={(editorInstance) => {
-          editor = editorInstance;
-        }}
-      >
-        <div id="custom-editor-container" />
-      </EditorJs>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Editor;
