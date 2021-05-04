@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 
+import { IMovie } from "../../../types/index";
 //Next
 import Link from "next/link";
 
@@ -14,10 +14,7 @@ import Loading from "../../Top-Components/Loading/index";
 export interface ExplorerProps {
   popular: any;
   genres: any;
-  movie: {
-    id: any;
-  };
-  id: any;
+  movie:
 }
 
 const Explorer: React.SFC<ExplorerProps> = (popular, genres) => {
@@ -101,7 +98,7 @@ const Explorer: React.SFC<ExplorerProps> = (popular, genres) => {
               )}
 
               {movies.map((
-                movie //saca las peliculas
+                movie: IMovie //saca las peliculas
               ) => (
                 <div key={movie?.id} className="mt-2">
                   <Link
