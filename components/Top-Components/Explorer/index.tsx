@@ -93,7 +93,7 @@ const Explorer: React.SFC<ExplorerProps> = (...props) => {
                 </div>
               )}
 
-              {movies.map((
+              {/* {movies.map((
                 movie //saca las peliculas
               ) => (
                 <div key={movie?.id} className="mt-2">
@@ -109,7 +109,7 @@ const Explorer: React.SFC<ExplorerProps> = (...props) => {
                     </a>
                   </Link>
                 </div>
-              ))}
+              ))} */}
             </Row>
 
             <div className="explorer_button">
