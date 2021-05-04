@@ -27,14 +27,6 @@ const TV: NextPage<TVProps> = ({ data }) => {
   );
 };
 
-// TV.getInitialProps = async () => {
-//   return fetch(URL + api_rutesTv.Popular)
-//     .then((res) => res.json())
-//     .then((response) => {
-//       return response;
-//     });
-// };
-
 async function getStaticProps() {
   return await fetch(URL + api_rutesTv.Popular)
     .then((res) => res.json())
