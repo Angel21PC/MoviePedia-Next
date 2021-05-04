@@ -17,7 +17,7 @@ const Explorer: React.SFC<ExplorerProps> = (...props) => {
   console.log(props);
 
   const [fetchUrl, setFetchUrl] = useState(); // consulta inicial
-  const [movies, setMovies] = useState([props]); //recoge todos los datos de la consulta
+  const [movies, setMovies] = useState(props); //recoge todos los datos de la consulta
   const [genre, setGenre] = useState([]); //todos los qeneros disponibles para filtrar
 
   const [isPending, setIsPending] = useState(true); // variable para la pantalla de carga

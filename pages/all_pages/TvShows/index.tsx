@@ -14,17 +14,7 @@ export interface TVProps {
 
 const TV: NextPage<TVProps> = ({ data }) => {
   console.log(data);
-  return (
-    <>
-      <NavBar />
-      <Banner data={data} />
-      <Explorer
-        URL={URL}
-        api_rutes={api_rutesTv}
-        m_s={"/all_pages/Show_select"}
-      />
-    </>
-  );
+  return <></>;
 };
 
 async function getStaticProps() {
