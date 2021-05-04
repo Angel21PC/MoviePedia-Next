@@ -1,5 +1,3 @@
-import EditorJs from "@appigram/react-editor-js";
-
 export interface EditorProps {}
 
 const Editor: React.SFC<EditorProps> = (...props) => {
