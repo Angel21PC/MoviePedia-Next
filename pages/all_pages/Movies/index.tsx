@@ -42,6 +42,7 @@ export interface MovieProps {
 }
 
 const Movie: NextPage<MovieProps> = ({ popularMovies, nowPlayingMovies }) => {
+  console.log(popularMovies);
   return (
     <>
       <NavBar />
