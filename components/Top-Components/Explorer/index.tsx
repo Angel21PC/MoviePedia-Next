@@ -11,14 +11,17 @@ import { Container, Row, Form, Button } from "react-bootstrap";
 import Poster from "../../Min-Components/Poster/index";
 import Loading from "../../Top-Components/Loading/index";
 
-export interface ExplorerProps {}
+export interface ExplorerProps {
+  popular: any;
+  genres: any;
+}
 
-const Explorer: React.SFC<ExplorerProps> = (...props) => {
-  console.log(props);
+const Explorer: React.SFC<ExplorerProps> = (popular, genres) => {
+  console.log(popular);
+  console.log(genres);
 
-  const [fetchUrl, setFetchUrl] = useState(); // consulta inicial
-  const [movies, setMovies] = useState(props); //recoge todos los datos de la consulta
-  const [genre, setGenre] = useState([]); //todos los qeneros disponibles para filtrar
+  const [movies, setMovies] = useState(popular); //recoge todos los datos de la consulta
+  const [genre, setGenre] = useState(genres); //todos los qeneros disponibles para filtrar
 
   const [isPending, setIsPending] = useState(true); // variable para la pantalla de carga
 
@@ -93,7 +96,7 @@ const Explorer: React.SFC<ExplorerProps> = (...props) => {
                 </div>
               )}
 
-              {/* {movies.map((
+              {movies.map((
                 movie //saca las peliculas
               ) => (
                 <div key={movie?.id} className="mt-2">
@@ -109,7 +112,7 @@ const Explorer: React.SFC<ExplorerProps> = (...props) => {
                     </a>
                   </Link>
                 </div>
-              ))} */}
+              ))}
             </Row>
 
             <div className="explorer_button">

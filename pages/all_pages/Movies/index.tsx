@@ -32,7 +32,10 @@ export const getStaticProps: GetStaticProps = async () => {
   const nowPlayingMovies = nowPlayingMoviesResponse.results.map(
     transformMovie(genres)
   );
-  return { props: { popularMovies, nowPlayingMovies }, revalidate: 3600 };
+  return {
+    props: { popularMovies, nowPlayingMovies, genres },
+    revalidate: 3600,
+  };
 };
 
 export interface MovieProps {
@@ -41,13 +44,17 @@ export interface MovieProps {
   nowPlayingMovies: any;
 }
 
-const Movie: NextPage<MovieProps> = ({ popularMovies, nowPlayingMovies }) => {
+const Movie: NextPage<MovieProps> = ({
+  popularMovies,
+  nowPlayingMovies,
+  genres,
+}) => {
   console.log(popularMovies);
   return (
     <>
       <NavBar />
       <Banner data={popularMovies} />
-      <Explorer {...popularMovies} />
+      <Explorer {...(popularMovies, genres)} />
     </>
   );
 };
