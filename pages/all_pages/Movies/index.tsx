@@ -42,6 +42,7 @@ export interface MovieProps {
   data: any;
   popularMovies: any;
   nowPlayingMovies: any;
+  genres: any;
 }
 
 const Movie: NextPage<MovieProps> = ({
