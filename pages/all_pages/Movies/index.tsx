@@ -54,7 +54,7 @@ const Movie: NextPage<MovieProps> = ({
     <>
       <NavBar />
       <Banner data={popularMovies} />
-      <Explorer {...(popularMovies, genres)} />
+      <Explorer popular={...popularMovies} genres={genres} />
     </>
   );
 };
