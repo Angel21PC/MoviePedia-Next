@@ -14,7 +14,7 @@ const Banner: React.SFC<BannerProps> = ({ data }) => {
     //request
     async function fetchData() {
       //console.log(request);
-      setMovie(data[Math.floor(Math.random() * data.results.length - 1)]);
+      setMovie(data[Math.floor(Math.random() * data.length - 1)]);
       console.log(movie);
     }
 
