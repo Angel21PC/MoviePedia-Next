@@ -14,13 +14,17 @@ import Loading from "../../Top-Components/Loading/index";
 export interface ExplorerProps {
   popular: any;
   genres: any;
+  movie: {
+    id: any;
+  };
+  id: any;
 }
 
 const Explorer: React.SFC<ExplorerProps> = (popular, genres) => {
   console.log(popular);
   console.log(genres);
 
-  const [movies, setMovies] = useState(popular); //recoge todos los datos de la consulta
+  const [movies, setMovies] = useState([popular]); //recoge todos los datos de la consulta
   const [genre, setGenre] = useState(genres); //todos los qeneros disponibles para filtrar
 
   const [isPending, setIsPending] = useState(true); // variable para la pantalla de carga
