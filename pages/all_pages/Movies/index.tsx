@@ -2,9 +2,7 @@ import { NextPage } from "next";
 import { GetStaticProps } from "next";
 import api from "../../api/index";
 import DataCache from "../../../util/DataCache";
-
-//initialprops
-import { URL, api_rutesM } from "../../../firebase/config/rute_api";
+import { transformMovie } from "../../../util/transform";
 
 //components
 import NavBar from "../../../components/Top-Components/NavBar/index";
@@ -39,37 +37,18 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export interface MovieProps {
   data: any;
+  popularMovies: any;
+  nowPlayingMovies: any;
 }
 
-const Movie: NextPage<MovieProps> = ({ data }) => {
-  console.log(data);
+const Movie: NextPage<MovieProps> = ({ popularMovies, nowPlayingMovies }) => {
   return (
     <>
       <NavBar />
-      <Banner data={data} />
-      <Explorer
-        URL={URL}
-        api_rutes={api_rutesM}
-        m_s={"/all_pages/Movie_select"}
-      />
+      <Banner data={popularMovies} />
+      <Explorer {...popularMovies} />
     </>
   );
 };
-
-Movie.getInitialProps = async () => {
-  return fetch(URL + api_rutesM.Popular)
-    .then((res) => res.json())
-    .then((response) => {
-      return response;
-    });
-};
-
-// async function getStaticProps() {
-//   return await fetch(URL + api_rutesM.Popular)
-//     .then((res) => res.json())
-//     .then((response) => {
-//       return response;
-//     });
-// }
 
 export default Movie;

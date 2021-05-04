@@ -1,8 +1,8 @@
 import format from "date-fns/format";
-import { IMovie, ITV, IActor, ICast } from "types";
+import { IMovie, ITV, IActor, ICast } from "../types/index";
 import differenceInYears from "date-fns/differenceInYears";
 
-import { uniqBy } from "@util/index";
+import { uniqBy } from "./index";
 
 export const transformMovie = (genres: any) => (movie: IMovie) => {
   return {
