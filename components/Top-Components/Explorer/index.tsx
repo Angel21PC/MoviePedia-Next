@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 import { IMovie } from "../../../types/index";
 //Next
@@ -14,27 +15,64 @@ import Loading from "../../Top-Components/Loading/index";
 export interface ExplorerProps {
   popular: any;
   genres: any;
-  movie:
+  URL: string;
+  api_rutes: any;
 }
 
-const Explorer: React.SFC<ExplorerProps> = (popular, genres) => {
+const Explorer: React.SFC<ExplorerProps> = ({
+  popular,
+  genres,
+  URL,
+  api_rutes,
+}) => {
   console.log(popular);
-  console.log(genres);
-
-  const [movies, setMovies] = useState([popular]); //recoge todos los datos de la consulta
+  const [fetchUrl, setFetchUrl] = useState(URL + api_rutes.Popular); // consulta inicial
+  const [movies, setMovies] = useState(popular); //recoge todos los datos de la consulta
   const [genre, setGenre] = useState(genres); //todos los qeneros disponibles para filtrar
 
-  const [isPending, setIsPending] = useState(true); // variable para la pantalla de carga
+  const [isPending, setIsPending] = useState(false); // variable para la pantalla de carga
 
   const [page, setPage] = useState<number>(1);
 
   const [target_genre, setTargetGenre] = useState([]); //todos los qeneros disponibles para filtrar
 
+  useEffect(() => {
+    //request para extraer las peliculas
+    async function fetchData() {
+      setMovies([]); //vaciamos el array
+      setIsPending(true); //cargamos la animacion
+
+      const request = await axios.get(fetchUrl, {
+        params: {
+          p: page,
+          g: target_genre,
+        },
+      });
+
+      setTimeout(() => {
+        //ejecutamos
+        setIsPending(false);
+        setMovies(request.data.data.results);
+      }, 2500);
+      // console.log(request);
+      return request;
+    }
+    fetchData();
+
+    //request para extraer los generos
+    async function fetchData2() {
+      const request = await axios.get(api_rutes.Genre);
+      setGenre(request.data.data.genres);
+      return request;
+    }
+    fetchData2();
+  }, [fetchUrl, page]);
   const handleSelect = (e) => {
     switch (e.currentTarget.value) {
       case "Popular":
         break;
       case "Top":
+        setFetchUrl(URL + api_rutes.Top);
         break;
       case "Upcoming":
         break;
@@ -68,7 +106,7 @@ const Explorer: React.SFC<ExplorerProps> = (popular, genres) => {
                     <option value="Upcoming" key="Upcoming">
                       Upcoming
                     </option>
-                    {genre.map(
+                    {genre?.map(
                       //generos de busqueda
                       (o) => (
                         <option value={o.id} key={o.name}>
@@ -122,6 +160,7 @@ const Explorer: React.SFC<ExplorerProps> = (popular, genres) => {
                   if (page > 0) {
                     // setPage(page - 1);
                     console.log(page);
+                    console.log(genres);
                   }
                 }}
               >

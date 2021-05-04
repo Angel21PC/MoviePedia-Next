@@ -3,7 +3,8 @@ import { GetStaticProps } from "next";
 import api from "../../api/index";
 import DataCache from "../../../util/DataCache";
 import { transformMovie } from "../../../util/transform";
-
+//initialprops
+import { URL, api_rutesM } from "../../../firebase/config/rute_api";
 //components
 import NavBar from "../../../components/Top-Components/NavBar/index";
 import Banner from "../../../components/Top-Components/Banner/index";
@@ -55,7 +56,12 @@ const Movie: NextPage<MovieProps> = ({
     <>
       <NavBar />
       <Banner data={popularMovies} />
-      <Explorer popular={...popularMovies} genres={genres} />
+      <Explorer
+        popular={popularMovies}
+        genres={genres}
+        URL={URL}
+        api_rutes={api_rutesM}
+      />
     </>
   );
 };
