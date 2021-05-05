@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import useSWR from "swr";
 //Next
 import Link from "next/link";
 
@@ -11,71 +12,50 @@ import { Container, Row, Form, Button } from "react-bootstrap";
 import Poster from "../../Min-Components/Poster/index";
 import Loading from "../../Top-Components/Loading/index";
 export interface ExplorerProps {
-  URL: string;
   api_rutes: any;
   m_s: string;
+  initialData: any;
 }
 
-const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes, m_s }) => {
-  const [fetchUrl, setFetchUrl] = useState(URL + api_rutes.Popular); // consulta inicial
-  const [movies, setMovies] = useState([]); //recoge todos los datos de la consulta
+const Explorer: React.SFC<ExplorerProps> = ({
+  initialData,
+  api_rutes,
+  m_s,
+}) => {
+  const [fetchUrl, setFetchUrl] = useState(api_rutes.Popular); // consulta inicial
+  const [movies, setMovies] = useState(initialData.results); //recoge todos los datos de la consulta
   const [genre, setGenre] = useState([]); //todos los qeneros disponibles para filtrar
-
-  const [isPending, setIsPending] = useState(true); // variable para la pantalla de carga
+  const [isPending, setIsPending] = useState(false); // variable para la pantalla de carga
 
   const [page, setPage] = useState<number>(1);
 
   const [target_genre, setTargetGenre] = useState([]); //todos los qeneros disponibles para filtrar
-  useEffect(() => {
-    //request para extraer las peliculas
-    async function fetchData() {
-      setMovies([]); //vaciamos el array
-      setIsPending(true); //cargamos la animacion
 
-      const request = await axios.get(fetchUrl, {
-        params: {
-          p: page,
-          g: target_genre,
-        },
-      });
+  const fetcher = (url) => axios.get(url).then((res) => res.data);
 
-      setTimeout(() => {
-        //ejecutamos
-        setIsPending(false);
-        setMovies(request.data.data.results);
-      }, 2500);
-      // console.log(request);
-      return request;
-    }
-    fetchData();
+  const { data, error } = useSWR(fetchUrl, fetcher);
 
-    //request para extraer los generos
-    async function fetchData2() {
-      const request = await axios.get(api_rutes.Genre);
-      setGenre(request.data.data.genres);
-      return request;
-    }
-    fetchData2();
-  }, [fetchUrl, page]);
+  useEffect(() => {}, [fetchUrl, page]);
 
   const handleSelect = (e) => {
     switch (e.currentTarget.value) {
       case "Popular":
-        setFetchUrl(URL + api_rutes.Popular);
+        setFetchUrl(api_rutes.Popular);
         break;
       case "Top":
-        setFetchUrl(URL + api_rutes.Top);
+        setFetchUrl(api_rutes.Top);
+        setMovies(data.data.results);
+        console.log(data);
         break;
       case "Upcoming":
-        setFetchUrl(URL + api_rutes.Upcoming);
+        setFetchUrl(api_rutes.Upcoming);
         break;
       default:
         setTargetGenre(e.currentTarget.value);
-        setFetchUrl(URL + api_rutes.Discover);
+
         break;
     }
   };
-
   return (
     <>
       <div className="explorer">
