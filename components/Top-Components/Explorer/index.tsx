@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import useSWR from "swr";
 
 import { IMovie } from "../../../types/index";
 //Next
@@ -35,6 +36,12 @@ const Explorer: React.SFC<ExplorerProps> = ({
   const [page, setPage] = useState<number>(1);
 
   const [target_genre, setTargetGenre] = useState([]); //todos los qeneros disponibles para filtrar
+
+  const fetcher = (url) => axios.get(url).then((res) => res.data);
+
+  const { data, error } = useSWR("/api/movie/TopM", fetcher);
+  console.log("aqui");
+  console.log(data?.data);
 
   const handleSelect = (e) => {
     switch (e.currentTarget.value) {
@@ -74,14 +81,14 @@ const Explorer: React.SFC<ExplorerProps> = ({
                     <option value="Upcoming" key="Upcoming">
                       Upcoming
                     </option>
-                    {genre?.map(
+                    {/* {genre?.map(
                       //generos de busqueda
                       (o) => (
                         <option value={o.id} key={o.name}>
                           {o.name}
                         </option>
                       )
-                    )}
+                    )} */}
                   </Form.Control>
                 </Form.Group>
               </Form>
