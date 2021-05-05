@@ -37,12 +37,6 @@ const Explorer: React.SFC<ExplorerProps> = ({
 
   const [target_genre, setTargetGenre] = useState([]); //todos los qeneros disponibles para filtrar
 
-  const fetcher = (url) => axios.get(url).then((res) => res.data);
-
-  const { data, error } = useSWR("/api/movie/TopM", fetcher);
-  console.log("aqui");
-  console.log(data?.data);
-
   const handleSelect = (e) => {
     switch (e.currentTarget.value) {
       case "Popular":
