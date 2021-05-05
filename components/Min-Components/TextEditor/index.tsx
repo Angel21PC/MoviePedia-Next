@@ -25,7 +25,7 @@ const Editor: React.SFC<EditorProps> = (...props) => {
 
   return (
     <div>
-      <EditorJs
+      {/* <EditorJs
         {...props}
         data={{
           blocks: [
@@ -45,7 +45,7 @@ const Editor: React.SFC<EditorProps> = (...props) => {
         }}
       >
         <div id="custom-editor-container" />
-      </EditorJs>
+      </EditorJs> */}
     </div>
   );
 };
