@@ -34,7 +34,7 @@ const Explorer: React.SFC<ExplorerProps> = ({
 
   const [target_genre, setTargetGenre] = useState([]); //todos los qeneros disponibles para filtrar
 
-  const { data, error } = useSWR(fetchUrl, fetcher, {
+  const { data, error } = useSWR("/api/movie/TopM", fetcher, {
     initialData: { data: initialData.results },
   });
 
