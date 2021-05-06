@@ -8,11 +8,11 @@ import NavBar from "../../../components/Top-Components/NavBar/index";
 import Banner from "../../../components/Top-Components/Banner/index";
 import Explorer from "../../../components/Top-Components/Explorer/index";
 
-export interface MovieProps {
+export interface HomeMoviesProps {
   data: any;
 }
 
-const Movie: NextPage<MovieProps> = (props) => {
+const HomeMovies: NextPage<HomeMoviesProps> = (props) => {
   const { data } = props;
   console.log(data);
   return (
@@ -37,4 +37,4 @@ export const getServerSideProps = async () => {
 
   return { props: data };
 };
-export default Movie;
+export default HomeMovies;
