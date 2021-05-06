@@ -11,11 +11,14 @@ import { Container, Row, Form, Button } from "react-bootstrap";
 //component-p
 import Poster from "../../Min-Components/Poster/index";
 import Loading from "../../Top-Components/Loading/index";
+import MovieS from "../../../pages/all_pages/Movie_select";
 export interface ExplorerProps {
   api_rutes: any;
   m_s: string;
   initialData: any;
 }
+
+const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 const Explorer: React.SFC<ExplorerProps> = ({
   initialData,
@@ -23,7 +26,7 @@ const Explorer: React.SFC<ExplorerProps> = ({
   m_s,
 }) => {
   const [fetchUrl, setFetchUrl] = useState(api_rutes.Popular); // consulta inicial
-  const [movies, setMovies] = useState(initialData.results); //recoge todos los datos de la consulta
+  const [movies, setMovies] = useState([]); //recoge todos los datos de la consulta
   const [genre, setGenre] = useState([]); //todos los qeneros disponibles para filtrar
   const [isPending, setIsPending] = useState(false); // variable para la pantalla de carga
 
@@ -31,11 +34,31 @@ const Explorer: React.SFC<ExplorerProps> = ({
 
   const [target_genre, setTargetGenre] = useState([]); //todos los qeneros disponibles para filtrar
 
-  const fetcher = (url) => axios.get(url).then((res) => res.data);
+  const { data, error } = useSWR(fetchUrl, fetcher, {
+    initialData: { data: initialData.results },
+  });
 
-  const { data, error } = useSWR(fetchUrl, fetcher);
+  useEffect(() => {
+    async function fetchData() {
+      setMovies([]); //vaciamos el array
+      setIsPending(true); //cargamos la animacion
 
-  useEffect(() => {}, [fetchUrl, page]);
+      const request = await data;
+      console.log(request);
+      setTimeout(() => {
+        //ejecutamos
+        setIsPending(false);
+        if (request.data.results) {
+          setMovies(request.data.results);
+        } else {
+          setMovies(initialData.results);
+        }
+      }, 2500);
+      // console.log(request);
+      return request;
+    }
+    fetchData();
+  }, [data, page]);
 
   const handleSelect = (e) => {
     switch (e.currentTarget.value) {
@@ -44,18 +67,18 @@ const Explorer: React.SFC<ExplorerProps> = ({
         break;
       case "Top":
         setFetchUrl(api_rutes.Top);
-        setMovies(data.data.results);
-        console.log(data);
         break;
       case "Upcoming":
         setFetchUrl(api_rutes.Upcoming);
         break;
       default:
         setTargetGenre(e.currentTarget.value);
-
         break;
     }
   };
+  console.log("ei");
+  console.log(movies);
+
   return (
     <>
       <div className="explorer">
@@ -110,7 +133,7 @@ const Explorer: React.SFC<ExplorerProps> = ({
                 </div>
               )}
 
-              {movies.map((
+              {movies?.map((
                 movie //saca las peliculas
               ) => (
                 <div key={movie?.id} className="mt-2">
