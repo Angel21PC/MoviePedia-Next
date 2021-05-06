@@ -1,6 +1,6 @@
 import { IApi_rutesM, IApi_rutesTV } from "../../types";
 
-export const URL:string = 'https://moviepedia-refact.vercel.app';
+export const URL:string = 'https://movie-pedia-next.vercel.app';
 
 export const api_rutesM: IApi_rutesM = {
     Popular: '/api/movie/PopularM',
