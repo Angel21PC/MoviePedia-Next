@@ -1,4 +1,4 @@
-import { IApi_rutesM, IApi_rutesTV } from "../../types";
+import { IApi_rutesM, IApi_rutesTV } from "../types";
 
 export const URL:string = 'https://movie-pedia-next.vercel.app';
 

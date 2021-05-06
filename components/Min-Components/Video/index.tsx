@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 //request
 import axios from "axios";
-import { URL, api_rutesM } from "../../../firebase/config/rute_api";
+import { URL, api_rutesM } from "../../../config/rute_api";
 
 export interface VideoProps {}
 

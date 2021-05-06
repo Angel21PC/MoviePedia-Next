@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 
 //initialprops
-import { URL, api_rutesM } from "../../../firebase/config/rute_api";
+import { URL, api_rutesM } from "../../../config/rute_api";
 
 //components
 import NavBar from "../../../components/Top-Components/NavBar/index";
@@ -27,22 +27,6 @@ const Movie: NextPage<MovieProps> = (props) => {
     </>
   );
 };
-
-// Movie.getInitialProps = async () => {
-//   return fetch(URL + api_rutesM.Popular)
-//     .then((res) => res.json())
-//     .then((response) => {
-//       return response;
-//     });
-// };
-
-// async function getStaticProps() {
-//   return await fetch(URL + api_rutesM.Popular)
-//     .then((res) => res.json())
-//     .then((response) => {
-//       return response;
-//     });
-// }
 
 export const getServerSideProps = async () => {
   const data = await fetch(URL + api_rutesM.Popular)

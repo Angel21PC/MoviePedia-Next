@@ -4,11 +4,7 @@ import axios from "axios";
 //Next
 import Link from "next/link";
 
-import {
-  URL,
-  api_rutesM,
-  api_rutesTv,
-} from "../../../firebase/config/rute_api";
+import { URL, api_rutesM, api_rutesTv } from "../../../config/rute_api";
 
 import Poster from "../../Min-Components/Poster/index";
 

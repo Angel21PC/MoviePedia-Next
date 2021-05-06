@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import Movie from "../../../components/Top-Components/Movie";
 import NavBar from "../../../components/Top-Components/NavBar/index";
 //initialprops
-import { URL, api_rutesM } from "../../../firebase/config/rute_api";
+import { URL, api_rutesM } from "../../../config/rute_api";
 
 export interface MovieSProps {
   data: any;

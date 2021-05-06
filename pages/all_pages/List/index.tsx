@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 //initialprops
-import { URL, api_rutesM } from "../../../firebase/config/rute_api";
+import { URL, api_rutesM } from "../../../config/rute_api";
 
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";
