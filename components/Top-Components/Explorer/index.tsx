@@ -28,11 +28,6 @@ const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes, m_s }) => {
 
   const [target_genre, setTargetGenre] = useState([]); //todos los qeneros disponibles para filtrar
 
-  const fetcher = (url) => axios.get(url).then((res) => res.data);
-
-  const { data, error } = useSWR("/api/movie/TopM", fetcher);
-  console.log("aqui");
-  console.log(data?.data);
   useEffect(() => {
     //request para extraer las peliculas
     async function fetchData() {
