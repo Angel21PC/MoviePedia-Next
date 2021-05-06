@@ -56,6 +56,7 @@ const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes, m_s }) => {
     }
     fetchData();
 
+    //d
     //request para extraer los generos
     async function fetchData2() {
       const request = await axios.get(api_rutes.Genre);
