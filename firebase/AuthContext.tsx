@@ -3,6 +3,9 @@ import { IListM } from "../types";
 import { auth, db, a } from "./index";
 
 import { v5 as uuidv5 } from "uuid";
+import { checkLikes_M, saveLike_M, deleteLike_M } from "./likes";
+import { checkBookMark_M, saveBookMark_M, deleteBookMark_M } from "./bookmark";
+import { checkEye_M, saveEye_M, deleteEye_M } from "./eye";
 
 const AuthContext = React.createContext(null);
 
@@ -32,8 +35,9 @@ export function AuthProvider({ children }) {
       list: [],
     });
 
+    console.log(auth);
     //datos de perfil
-    return db.collection("profile").doc(email).set({
+    return db.collection("profile").doc(auth.currentUser.uid).set({
       email: { email },
       username: { username },
       birth_date: { birth_date },
@@ -42,9 +46,31 @@ export function AuthProvider({ children }) {
     });
   }
 
-  async function ConsultaID(email) {
+  async function changeData(
+    username,
+    birth_date,
+    phone,
+    email,
+    password,
+    currentPassword
+  ) {
+    await db.collection("profile").doc(auth.currentUser.uid).update({
+      email: { email },
+      username: { username },
+      birth_date: { birth_date },
+      phone: { phone },
+    });
+    return await auth
+      .signInWithEmailAndPassword(auth.currentUser.email, currentPassword)
+      .then((userCredential) => {
+        userCredential.user.updateEmail(email);
+        userCredential.user.updatePassword(password);
+      });
+  }
+
+  async function ConsultaID() {
     let result = undefined;
-    const docRef = db.collection("profile").doc(email);
+    const docRef = db.collection("profile").doc(auth.currentUser.uid);
     await docRef
       .get()
       .then((doc) => {
@@ -61,214 +87,6 @@ export function AuthProvider({ children }) {
       });
     console.log(result);
     return result;
-  }
-  //LIKES
-  async function checkLikes_M(email, id) {
-    const id_user_collection = await ConsultaID(email);
-    let result = undefined;
-    const docRef = db.collection("likes_M").doc(id_user_collection);
-
-    await docRef
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          const data = doc.data();
-          result = data.id_movie.find((e) => e.id === id);
-          // console.log(result)
-        } else {
-          console.log("No such document!");
-        }
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-    return result;
-  }
-
-  async function saveLike_M(email, id) {
-    const id_user_collection = await ConsultaID(email);
-    return db
-      .collection("likes_M")
-      .doc(id_user_collection)
-      .update({
-        id_movie: a.firestore.FieldValue.arrayUnion({ id }),
-      });
-  }
-
-  async function deleteLike_M(email, id) {
-    const id_user_collection = await ConsultaID(email);
-    return db
-      .collection("likes_M")
-      .doc(id_user_collection)
-      .update({
-        id_movie: a.firestore.FieldValue.arrayRemove({ id }),
-      });
-  }
-
-  //BOOKMARK
-  async function checkBookMark_M(email, id) {
-    const id_user_collection = await ConsultaID(email);
-    let result = undefined;
-    const docRef = db.collection("bookmark_M").doc(id_user_collection);
-
-    await docRef
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          const data = doc.data();
-          result = data.id_movie.find((e) => e.id === id);
-        } else {
-          console.log("No such document!");
-        }
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-    return result;
-  }
-
-  async function deleteBookMark_M(email, id) {
-    const id_user_collection = await ConsultaID(email);
-    return db
-      .collection("bookmark_M")
-      .doc(id_user_collection)
-      .update({
-        id_movie: a.firestore.FieldValue.arrayRemove({ id }),
-      });
-  }
-
-  async function saveBookMark_M(email, id) {
-    const id_user_collection = await ConsultaID(email);
-    return db
-      .collection("bookmark_M")
-      .doc(id_user_collection)
-      .update({
-        id_movie: a.firestore.FieldValue.arrayUnion({ id }),
-      });
-  }
-
-  //EYE
-  async function checkEye_M(email, id) {
-    const id_user_collection = await ConsultaID(email);
-    let listConvert = {
-      toFirestore: function () {
-        return {
-          id: id,
-        };
-      },
-      fromFirestore: function (snapshot, options) {
-        const data = snapshot.data(options);
-        return data;
-      },
-    };
-
-    let check = undefined;
-    await db
-      .collection("eye_M")
-      .doc(id_user_collection)
-      .withConverter(listConvert)
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          let result = doc.data();
-
-          console.log(id);
-          result.list?.map((m) => {
-            console.log(m);
-            if (m.id === id) {
-              console.log("mmmmmmmmmmmmm");
-              check = m;
-            }
-          });
-        }
-      });
-
-    return check;
-  }
-
-  async function deleteEye_M(email, id) {
-    const id_user_collection = await ConsultaID(email);
-    let listConvert = {
-      toFirestore: function () {
-        return {
-          id: id,
-        };
-      },
-      fromFirestore: function (snapshot, options) {
-        const data = snapshot.data(options);
-        return data;
-      },
-    };
-
-    return db
-      .collection("eye_M")
-      .doc(id_user_collection)
-      .withConverter(listConvert)
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          let result = doc.data();
-          let check = undefined;
-
-          result.list?.map((m) => {
-            if (m.id === id) {
-              check = m;
-            }
-          });
-
-          console.log(check);
-          if (check !== undefined) {
-            db.collection("eye_M")
-              .doc(id_user_collection)
-              .update({
-                list: a.firestore.FieldValue.arrayRemove(check),
-              });
-          }
-        }
-      });
-  }
-
-  async function saveEye_M(email, id, date) {
-    const id_user_collection = await ConsultaID(email);
-    let listConvert = {
-      toFirestore: function () {
-        return {
-          id: id,
-          date: date,
-        };
-      },
-      fromFirestore: function (snapshot, options) {
-        const data = snapshot.data(options);
-        return data;
-      },
-    };
-
-    return db
-      .collection("eye_M")
-      .doc(id_user_collection)
-      .withConverter(listConvert)
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          let result = doc.data();
-          let check = false;
-
-          result.list?.map((m) => {
-            if (m.id === id) {
-              check = true;
-            }
-          });
-
-          if (check == false) {
-            console.log("entro ");
-            db.collection("eye_M")
-              .doc(id_user_collection)
-              .update({
-                list: a.firestore.FieldValue.arrayUnion({ id, date }),
-              });
-          }
-        }
-      });
   }
 
   //USER
@@ -350,7 +168,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   async function getListMovies(email) {
-    const id_user_collection = await ConsultaID(email);
+    const id_user_collection = await ConsultaID();
     let result: IListM = {
       Bookmark: [],
       Like: [],
@@ -436,6 +254,7 @@ export function AuthProvider({ children }) {
     checkEye_M,
     deleteEye_M,
     saveEye_M,
+    changeData,
   };
 
   return (
@@ -444,17 +263,3 @@ export function AuthProvider({ children }) {
     </AuthContext.Provider>
   );
 }
-
-export const ProtectRoute = ({ children }) => {
-  const user: any = useAuth();
-  console.log(user);
-
-  if (user?.isAuthenticated === false) {
-    return (
-      <div>
-        <h3>Casi..</h3>
-      </div>
-    );
-  }
-  return children;
-};

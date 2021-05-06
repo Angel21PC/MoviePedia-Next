@@ -62,7 +62,8 @@ type INewUser = {
     password: string,
     password2: string,
     phone_number: string,
-    username: string
+    username: string,
+    currentPassword?: string
 }
 
 type IListM = {

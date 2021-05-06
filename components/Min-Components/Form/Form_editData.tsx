@@ -22,7 +22,18 @@ import { useAuth } from "../../../firebase/AuthContext";
 import { useRouter } from "next/router";
 
 import { INewUser } from "../../../types";
-export interface FormSProps {}
+
+//component-p
+// import dynamic from "next/dynamic";
+// const Editor = dynamic(() => import("../TextEditor"), { ssr: false });
+
+/* Editar los datos del fromulario basico */
+
+/* poner biografia  */
+
+/*foto */
+
+export interface FormEditProps {}
 
 const today = new Date();
 const schema = yup.object().shape({
@@ -35,9 +46,9 @@ const schema = yup.object().shape({
   email: yup.string().email().required(),
   phone_number: yup.string(),
   birth_date: yup.date().max(today),
+  currentPassword: yup.string().required(),
 });
-
-const FormS: React.SFC<FormSProps> = () => {
+const FormEdit: React.SFC<FormEditProps> = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -53,16 +64,20 @@ const FormS: React.SFC<FormSProps> = () => {
     try {
       console.log(data);
       setLoading(true);
-      await signup(data.email, data.password).then(
-        saveData(data.username, data.birth_date, data.phone_number, data.email)
+      await changeData(
+        data.username,
+        data.birth_date,
+        data.phone_number,
+        data.email,
+        data.password,
+        data.currentPassword
       );
 
       router.push("/");
     } catch (e) {
-      console.log(e);
       store.addNotification({
         title: "Fail!",
-        message: "Fail to create account",
+        message: "Fail to change data account",
         type: "danger",
         insert: "top",
         container: "top-center",
@@ -78,14 +93,7 @@ const FormS: React.SFC<FormSProps> = () => {
   };
 
   //firebase
-  const {
-    signup,
-    saveData,
-    signInWithGoogle,
-    signInWithFacebook,
-    signInWithTwitter,
-  } = useAuth();
-  const currentUser = useAuth();
+  const { changeData } = useAuth();
 
   return (
     <div className="registration-form">
@@ -108,6 +116,18 @@ const FormS: React.SFC<FormSProps> = () => {
             {...register("username")}
           />
           {errors?.username?.message && <p>{errors?.username?.message}</p>}
+        </div>
+        <div className="form-group">
+          <input
+            type="currentPassword"
+            className="form-control item"
+            key="currentPassword"
+            id="currentPassword"
+            placeholder="Current Password"
+            name="currentPassword"
+            {...register("currentPassword")}
+            pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
+          />
         </div>
         <div className="form-group">
           <input
@@ -174,35 +194,32 @@ const FormS: React.SFC<FormSProps> = () => {
           />
           {errors.birth_date?.message && <p>{errors.birth_date?.message}</p>}
         </div>
+
+        {/* Biografia */}
+        {/* <div className="form-group">
+          <h4>Bio</h4>
+          <input
+            type="textarea"
+            className="form-control item"
+            key="bio"
+            id="bio"
+            name="bio"
+            {...register("bio")}
+            placeholder="bio"
+          /> 
+          <Editor key="bio" name="bio" {...register("bio")}></Editor>
+        </div> */}
+
         <div className="form-group">
           <button
             disabled={loading}
             type="submit"
             className="btn btn-block create-account"
           >
-            Create Account
+            Edit Account
           </button>
         </div>
       </form>
-      <div className="social-media">
-        <h5>Sign up with social media</h5>
-        <div className="social-icons">
-          <a>
-            <Google
-              onClick={() => {
-                signInWithGoogle();
-                router.push("/");
-              }}
-            ></Google>
-          </a>
-          <a>
-            <Facebook></Facebook>
-          </a>
-          <a>
-            <Twitter></Twitter>
-          </a>
-        </div>
-      </div>
       <style jsx>{`
         .registration-form {
           padding: 50px 0;
@@ -213,8 +230,7 @@ const FormS: React.SFC<FormSProps> = () => {
           max-width: 600px;
           margin: auto;
           padding: 50px 70px;
-          border-top-left-radius: 30px;
-          border-top-right-radius: 30px;
+          border-radius: 30px;
           box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
         }
 
@@ -302,4 +318,4 @@ const FormS: React.SFC<FormSProps> = () => {
   );
 };
 
-export default FormS;
+export default FormEdit;
