@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { IListM } from "../../../types";
 
 //components-p
-import LstM from "../../Min-Components/ListMovie/index";
+import LstM from "../../ListMovie/index";
 
 //COMPONENTS
 import { Tabs, Tab, Container } from "react-bootstrap";
