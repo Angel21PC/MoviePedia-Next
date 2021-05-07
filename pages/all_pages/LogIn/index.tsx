@@ -1,8 +1,8 @@
 import { NextPage } from "next";
 
 //components
-import NavBar from "../../../components/Top-Components/NavBar/index";
-import FormL from "../../../components/Min-Components/Form/Form_login";
+import NavBar from "../../../components/NavBar/index";
+import FormL from "../../../components/util/Form/Form_login";
 
 export interface LogInProps {}
 

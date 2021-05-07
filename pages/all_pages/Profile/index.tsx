@@ -2,10 +2,10 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 
 //components
-import NavBar from "../../../components/Top-Components/NavBar/index";
+import NavBar from "../../../components/NavBar/index";
 
 //componentes-p
-import ProfileComp from "../../../components/Top-Components/ProfileComp";
+import ProfileComp from "../../../components/User/ProfileComp";
 
 export interface ProfileProps {}
 //firebase

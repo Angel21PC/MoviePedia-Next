@@ -1,13 +1,17 @@
+import React, { FC } from "react";
 import { useEffect, useState } from "react";
 
 //components
-import Porter from "../../Min-Components/Poster/index";
+import Porter from "../../MovieComponents/Poster/index";
+
+//style
+import style from "./Banner.module.scss";
 
 export interface BannerProps {
   data: any;
 }
 
-const Banner: React.SFC<BannerProps> = ({ data }) => {
+const Banner: FC<BannerProps> = ({ data }) => {
   const [movie, setMovie] = useState<any>([]); //recoge todos los datos de la consulta
 
   useEffect(() => {
@@ -30,7 +34,7 @@ const Banner: React.SFC<BannerProps> = ({ data }) => {
   return (
     <>
       <div
-        className="banner"
+        className={style.banner}
         style={{
           backgroundSize: "cover",
           backgroundImage: `url(
@@ -41,7 +45,7 @@ const Banner: React.SFC<BannerProps> = ({ data }) => {
           backgroundBlendMode: "darken",
         }}
       >
-        <div className="banner_content">
+        <div className={style.banner_content}>
           <div className="poster_container d-flex">
             <Porter c="banner_poster ml-5 mt-5" movie={movie} />
             <div className="banner_text mt-5 ml-5 pt-5">
@@ -53,25 +57,8 @@ const Banner: React.SFC<BannerProps> = ({ data }) => {
       </div>
 
       <style jsx>{`
-        .banner {
-          top: 0px;
-          color: white;
-          object-fit: containt;
-          height: 450px;
-        }
-
         .banner_text p {
           font-size: 20px;
-        }
-
-        .banner_content {
-          height: 100%;
-        }
-
-        @media (max-width: 634px) {
-          .banner_text {
-            display: none;
-          }
         }
       `}</style>
     </>

@@ -7,7 +7,7 @@ import axios from "axios";
 import { URL, api_rutesM } from "../../../config/rute_api";
 
 //components
-import NavBar from "../../../components/Top-Components/NavBar/index";
+import NavBar from "../../../components/NavBar/index";
 
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";

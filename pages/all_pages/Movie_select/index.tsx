@@ -1,13 +1,13 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 
 //next
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 
-//Top-component
-import Movie from "../../../components/Top-Components/Movie";
-import NavBar from "../../../components/Top-Components/NavBar/index";
+//component
+import Movie from "../../../components/MovieComponents";
+import NavBar from "../../../components/NavBar/index";
+
 //initialprops
 import { URL, api_rutesM } from "../../../config/rute_api";
 
@@ -30,34 +30,6 @@ const MovieS: NextPage<MovieSProps> = (props) => {
   );
 };
 
-// MovieS.getInitialProps = async ({ query }) => {
-//   const { id } = query;
-
-//   return await axios
-//     .get(URL + api_rutesM.OneMovie, {
-//       params: {
-//         id: { id },
-//       },
-//     })
-//     .then((res) => res)
-//     .then((response) => {
-//       return response.data;
-//     });
-// };
-// async function getStaticProps({ query }) {
-//   const { id } = query;
-
-//   return await axios
-//     .get(URL + api_rutesM.OneMovie, {
-//       params: {
-//         id: { id },
-//       },
-//     })
-//     .then((res) => res)
-//     .then((response) => {
-//       return response.data;
-//     });
-// }
 export const getServerSideProps = async ({ query }) => {
   const { id } = query;
 
@@ -74,4 +46,5 @@ export const getServerSideProps = async ({ query }) => {
 
   return { props: data };
 };
+
 export default MovieS;

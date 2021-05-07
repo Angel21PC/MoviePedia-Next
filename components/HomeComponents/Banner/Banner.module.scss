@@ -1,0 +1,16 @@
+.banner {
+  top: 0px;
+  color: white;
+  object-fit: containt;
+  height: 450px;
+}
+
+.banner_content {
+  height: 100%;
+}
+
+@media (max-width: 634px) {
+  .banner_text {
+    display: none;
+  }
+}

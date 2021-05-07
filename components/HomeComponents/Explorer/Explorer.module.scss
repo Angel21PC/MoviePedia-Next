@@ -1,0 +1,39 @@
+.explorer {
+  margin-top: 1%;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.explorer h1 {
+  color: black;
+  text-align: center;
+}
+
+.explorer_content {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+.seach {
+  background-color: rgba(128, 128, 128, 0.438);
+  width: 125px;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.explorer_Seach {
+  margin-left: 4px;
+}
+
+.explorer_button {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2%;
+  margin-bottom: 1%;
+}
+
+.li {
+  list-style: none;
+}

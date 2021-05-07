@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 //components
-import NavBar from "../../../components/Top-Components/NavBar/index";
-import Graph from "../../../components/Min-Components/Graph/index";
+import NavBar from "../../../components/NavBar/index";
+import Graph from "../../../components/util/Graph/index";
 
 export interface StadsProps {}
 

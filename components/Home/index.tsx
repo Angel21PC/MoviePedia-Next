@@ -1,10 +1,15 @@
+import React, { FC } from "react";
+
 import { useRouter } from "next/router";
 import { InputGroup, FormControl, Button } from "react-bootstrap";
 import { useState } from "react";
 
+//style
+import style from "./Home.module.scss";
+
 export interface CasaProps {}
 
-const Casa: React.SFC<CasaProps> = () => {
+const Casa: FC<CasaProps> = () => {
   const router = useRouter();
   const [find, setFind] = useState(null);
 
@@ -24,11 +29,9 @@ const Casa: React.SFC<CasaProps> = () => {
 
   return (
     <>
-      <div className="text ml-3">
-        <h1 id="title" className="mt-5 p-5">
-          Welcome to MoviePedia
-        </h1>
-        <div className="from">
+      <div className={style.text}>
+        <h1 className="mt-5 p-5">Welcome to MoviePedia</h1>
+        <div className={style.from}>
           <InputGroup className="mb-3">
             <FormControl
               placeholder="Seach"
@@ -45,36 +48,12 @@ const Casa: React.SFC<CasaProps> = () => {
         </div>
       </div>
 
-      <video className="videoTag" autoPlay loop muted id="myVideo">
+      <video className={style.myVideo} autoPlay loop muted id="myVideo">
         <source
           src="https://agoodmovietowatch.com/wp-content/uploads/firstreformed-1.mp4"
           type="video/mp4"
         />
       </video>
-      <style jsx>{`
-        #myVideo {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          top: 0;
-          z-index: 0;
-          left: 0;
-          right: 0;
-        }
-        .text {
-          martgin-top: 100px;
-          color: white;
-          z-index: 1;
-          position: relative;
-        }
-        #title {
-          font-size: 50px;
-        }
-        .from {
-          width: 300px;
-        }
-      `}</style>
     </>
   );
 };

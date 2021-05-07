@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 
 //request
 import axios from "axios";
-import { URL, api_rutesM } from "../../../config/rute_api";
+import { URL, api_rutesM } from "../../config/rute_api";
 
 //components-p
-import Poster from "../../Min-Components/Poster/index";
-import Overview from "../../Min-Components/Overview/index";
-import Cast from "../../Min-Components/Cast/index";
-import Avaliable from "../../Min-Components/Avaliable/index";
-import M_B_F from "../../Min-Components/M_button_F/index";
-import Video from "../../Min-Components/Video/index";
-import Loading from "../../Top-Components/Loading/index";
-import Similar from "../../Min-Components/SimilarM/index";
+import Poster from "./Poster/index";
+import Overview from "./Overview/index";
+import Cast from "./Cast/index";
+import Avaliable from "./Avaliable/index";
+import M_B_F from "./M_button_F/index";
+import Video from "./Video/index";
+import Loading from "../util/Loading/index";
+import Similar from "./SimilarM/index";
 
 //components
 import { Container, Row, Col } from "react-bootstrap";

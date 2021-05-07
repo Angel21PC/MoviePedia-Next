@@ -1,14 +1,16 @@
+import React, { FC } from "react";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { URL, api_rutesM } from "../../../config/rute_api";
+import { URL, api_rutesM } from "../../config/rute_api";
 //components-p
-import LstM from "../../Min-Components/ListMovie/index";
+import LstM from "../../components/ListMovie/index";
 
 export interface FindMovieProps {
   id: any;
 }
 
-const FindMovie: React.SFC<FindMovieProps> = ({ id }) => {
+const FindMovie: FC<FindMovieProps> = ({ id }) => {
   const [fetchUrl, setFetchUrl] = useState(URL + api_rutesM.Find);
   const [movies, setMovies] = useState([]);
   const [isPending, setIsPending] = useState(true);

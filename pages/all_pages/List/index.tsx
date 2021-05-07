@@ -10,8 +10,8 @@ import { URL, api_rutesM } from "../../../config/rute_api";
 import { useAuth } from "../../../firebase/AuthContext";
 
 //components
-import NavBar from "../../../components/Top-Components/NavBar/index";
-import ListM from "../../../components/Top-Components/List/index";
+import NavBar from "../../../components/NavBar/index";
+import ListM from "../../../components/User/List/index";
 
 export interface ListProps {
   data: any;

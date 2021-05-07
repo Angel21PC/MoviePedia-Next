@@ -1,20 +1,18 @@
-import styles, { globalStyles } from "./styles";
+import React, { FC } from "react";
+
+import styles from "./Style.module.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "animate.css/animate.min.css";
 import "react-notifications-component/dist/theme.css";
 
 export interface AppLayoutProps {}
 
-const AppLayout: React.SFC<AppLayoutProps> = ({ children }) => {
+const AppLayout: FC<AppLayoutProps> = ({ children }) => {
   return (
     <>
-      <div>
+      <div className={styles.style}>
         <main>{children}</main>
       </div>
-      <style jsx>{styles}</style>
-      <style jsx global>
-        {globalStyles}
-      </style>
     </>
   );
 };

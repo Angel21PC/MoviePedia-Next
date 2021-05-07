@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import { URL, api_rutesM, api_rutesTv } from "../../../config/rute_api";
 
-import Poster from "../../Min-Components/Poster/index";
+import Poster from "../Poster/index";
 
 export interface SimilarProps {
   id: string;

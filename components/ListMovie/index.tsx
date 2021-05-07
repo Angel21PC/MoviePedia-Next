@@ -1,19 +1,20 @@
+import React, { FC } from "react";
+
 import { useEffect, useState } from "react";
-import { IListM } from "../../../types";
 import axios from "axios";
 
 //Next
 import Link from "next/link";
 
 //component-p
-import Poster from "../Poster/index";
+import Poster from "../MovieComponents/Poster/index";
 
 //api
-import { URL, api_rutesM } from "../../../config/rute_api";
+import { URL, api_rutesM } from "../../config/rute_api";
 
 export interface LstMProps {}
 
-const LstM: React.SFC<LstMProps> = (props: any) => {
+const LstM: FC<LstMProps> = (props: any) => {
   console.log(props);
   const [movie, setMovie] = useState(undefined);
   useEffect(() => {

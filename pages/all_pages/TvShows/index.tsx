@@ -1,26 +1,30 @@
 import { NextPage } from "next";
 
-//initialprops
+//fetch
 import { URL, api_rutesTv } from "../../../config/rute_api";
 
+//initialprops
+import { GetStaticProps } from "next";
+
 //components
-import NavBar from "../../../components/Top-Components/NavBar/index";
-import Banner from "../../../components/Top-Components/Banner/index";
-import Explorer from "../../../components/Top-Components/Explorer/index";
+import NavBar from "../../../components/NavBar/index";
+import Banner from "../../../components/HomeComponents/Banner/index";
+import Explorer from "../../../components/HomeComponents/Explorer/index";
 
 export interface TVProps {
-  data: any;
+  popularTv: any;
 }
 
 const TV: NextPage<TVProps> = (props) => {
-  const { data } = props;
-  console.log(data);
+  const { popularTv } = props;
+  console.log(popularTv);
   return (
     <>
       <NavBar />
-      <Banner data={data} />
+      <Banner data={popularTv?.data} />
       <Explorer
         URL={URL}
+        initialData={popularTv?.data.results}
         api_rutes={api_rutesTv}
         m_s={"/all_pages/Show_select"}
       />
@@ -28,14 +32,16 @@ const TV: NextPage<TVProps> = (props) => {
   );
 };
 
-export const getServerSideProps = async ({ req }) => {
-  const data = await fetch(URL + api_rutesTv.Popular)
+export const getStaticProps: GetStaticProps = async () => {
+  const popularTv = await fetch(URL + api_rutesTv.Popular)
     .then((res) => res.json())
     .then((response) => {
       return response;
     });
-
-  return { props: data };
+  return {
+    props: { popularTv },
+    revalidate: 3600,
+  };
 };
 
 export default TV;

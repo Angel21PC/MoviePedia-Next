@@ -1,3 +1,5 @@
+import React, { FC } from "react";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -8,49 +10,32 @@ import Link from "next/link";
 import { Container, Row, Form, Button } from "react-bootstrap";
 
 //component-p
-import Poster from "../../Min-Components/Poster/index";
-import Loading from "../../Top-Components/Loading/index";
+import Poster from "../../MovieComponents/Poster/index";
+import Loading from "../../util/Loading/index";
+
+//style
+import style from "./Explorer.module.scss";
+
 export interface ExplorerProps {
   URL: string;
   api_rutes: any;
   m_s: string;
+  initialData: any;
 }
 
-const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes, m_s }) => {
+const Explorer: FC<ExplorerProps> = ({ URL, api_rutes, m_s, initialData }) => {
+  console.log(initialData);
   const [fetchUrl, setFetchUrl] = useState(URL + api_rutes.Popular); // consulta inicial
-  const [movies, setMovies] = useState([]); //recoge todos los datos de la consulta
+  const [movies, setMovies] = useState(initialData); //recoge todos los datos de la consulta
   const [genre, setGenre] = useState([]); //todos los qeneros disponibles para filtrar
 
-  const [isPending, setIsPending] = useState(true); // variable para la pantalla de carga
+  const [isPending, setIsPending] = useState(false); // variable para la pantalla de carga
 
   const [page, setPage] = useState<number>(1);
 
   const [target_genre, setTargetGenre] = useState([]); //todos los qeneros disponibles para filtrar
 
   useEffect(() => {
-    //request para extraer las peliculas
-    async function fetchData() {
-      setMovies([]); //vaciamos el array
-      setIsPending(true); //cargamos la animacion
-
-      const request = await axios.get(fetchUrl, {
-        params: {
-          p: page,
-          g: target_genre,
-        },
-      });
-
-      setTimeout(() => {
-        //ejecutamos
-        setIsPending(false);
-        setMovies(request.data.data.results);
-      }, 2500);
-      // console.log(request);
-      return request;
-    }
-    fetchData();
-
-    //d
     //request para extraer los generos
     async function fetchData2() {
       const request = await axios.get(api_rutes.Genre);
@@ -58,32 +43,57 @@ const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes, m_s }) => {
       return request;
     }
     fetchData2();
-  }, [fetchUrl, page]);
+  }, [fetchUrl, page, movies]);
+
+  //request para extraer las peliculas
+  async function fetchData() {
+    setMovies([]); //vaciamos el array
+    setIsPending(true); //cargamos la animacion
+
+    const request = await axios.get(fetchUrl, {
+      params: {
+        p: page,
+        g: target_genre,
+      },
+    });
+
+    setTimeout(() => {
+      //ejecutamos
+      setIsPending(false);
+      setMovies(request.data.data.results);
+    }, 2500);
+    console.log(movies);
+    return request;
+  }
 
   const handleSelect = (e) => {
     switch (e.currentTarget.value) {
       case "Popular":
         setFetchUrl(URL + api_rutes.Popular);
+        fetchData();
         break;
       case "Top":
         setFetchUrl(URL + api_rutes.Top);
+        fetchData();
         break;
       case "Upcoming":
         setFetchUrl(URL + api_rutes.Upcoming);
+        fetchData();
         break;
       default:
         setTargetGenre(e.currentTarget.value);
         setFetchUrl(URL + api_rutes.Discover);
+        fetchData();
         break;
     }
   };
 
   return (
     <>
-      <div className="explorer">
-        <div className="explorer_content">
+      <div className={style.explorer}>
+        <div className={style.explorer_content}>
           <Container fluid="md">
-            <div className="explorer_Seach">
+            <div className={style.explorer_Seach}>
               <Form>
                 <Form.Group controlId="SelectFilter">
                   <Form.Label>Filtrar por:</Form.Label>
@@ -92,7 +102,7 @@ const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes, m_s }) => {
                     size="sm"
                     custom
                     onChange={handleSelect}
-                    className="seach"
+                    className={style.seach}
                   >
                     <option value="Popular" key="Popular">
                       Popular
@@ -151,7 +161,7 @@ const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes, m_s }) => {
               ))}
             </Row>
 
-            <div className="explorer_button">
+            <div className={style.explorer_button}>
               <Button
                 onClick={() => {
                   if (page > 0) {
@@ -174,47 +184,6 @@ const Explorer: React.SFC<ExplorerProps> = ({ URL, api_rutes, m_s }) => {
           </Container>
         </div>
       </div>
-      <style jsx>{`
-        .explorer {
-          margin-top: 1%;
-          position: relative;
-          height: 100%;
-          width: 100%;
-        }
-
-        .explorer h1 {
-          color: black;
-          text-align: center;
-        }
-
-        .explorer_content {
-          display: flex;
-          justify-content: center;
-          padding: 10px;
-        }
-
-        .seach {
-          background-color: rgba(128, 128, 128, 0.438);
-          width: 125px;
-          text-align: center;
-          margin-left: 10px;
-        }
-
-        .explorer_Seach {
-          margin-left: 4px;
-        }
-
-        .explorer_button {
-          display: flex;
-          justify-content: space-between;
-          margin-top: 2%;
-          margin-bottom: 1%;
-        }
-
-        li {
-          list-style: none;
-        }
-      `}</style>
     </>
   );
 };
