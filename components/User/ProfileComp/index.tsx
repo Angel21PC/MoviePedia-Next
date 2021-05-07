@@ -7,7 +7,7 @@ import { USER_TABS } from "./const";
 import { Row, Container, Col } from "react-bootstrap";
 
 //componentes-p
-import FormEdit from "../../Min-Components/Form/Form_editData";
+import FormEdit from "../../util/Form/Form_editData";
 import ProfileNav from "./ProfileNav";
 
 export interface ProfileCompProps {}
