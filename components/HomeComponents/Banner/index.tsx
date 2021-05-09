@@ -21,7 +21,7 @@ const Banner: FC<BannerProps> = ({ data }) => {
       setMovie(
         data.results[Math.floor(Math.random() * data.results.length - 1)]
       );
-      console.log(movie);
+      // console.log(movie);
     }
 
     fetchData();
