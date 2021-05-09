@@ -13,16 +13,18 @@ import Explorer from "../../../components/HomeComponents/Explorer/index";
 
 export interface TVProps {
   popularTv: any;
+  genreTv: any;
 }
 
 const TV: NextPage<TVProps> = (props) => {
-  const { popularTv } = props;
+  const { popularTv, genreTv } = props;
   console.log(popularTv);
   return (
     <>
       <NavBar />
       <Banner data={popularTv?.data} />
       <Explorer
+        genreMovies={genreTv?.data.genres}
         URL={URL}
         initialData={popularTv?.data.results}
         api_rutes={api_rutesTv}
@@ -38,8 +40,13 @@ export const getStaticProps: GetStaticProps = async () => {
     .then((response) => {
       return response;
     });
+  const genreTv = await fetch(URL + api_rutesTv.Genre)
+    .then((res) => res.json())
+    .then((response) => {
+      return response;
+    });
   return {
-    props: { popularTv },
+    props: { popularTv, genreTv },
     revalidate: 3600,
   };
 };
