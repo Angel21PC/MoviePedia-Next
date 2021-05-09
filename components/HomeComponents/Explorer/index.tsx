@@ -130,14 +130,14 @@ const Explorer: FC<ExplorerProps> = ({
             className={
               isPending
                 ? "justify-content-center"
-                : "col-xs-1 justify-content-between"
+                : "col-xs-1 justify-content-center"
             }
             lg={4}
             sm={3}
           >
             {isPending && (
               <div className="justify-content-center">
-                <Loading />{" "}
+                <Loading />
               </div>
             )}
 
@@ -153,7 +153,7 @@ const Explorer: FC<ExplorerProps> = ({
                   key={movie?.id}
                 >
                   <a>
-                    <Poster c="poster" movie={movie} />
+                    <Poster c="poster mt-2" movie={movie} />
                   </a>
                 </Link>
               </div>

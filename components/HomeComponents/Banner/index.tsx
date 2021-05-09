@@ -57,6 +57,11 @@ const Banner: FC<BannerProps> = ({ data }) => {
       </div>
 
       <style jsx>{`
+        @media (max-width: 634px) {
+          .banner_text {
+            display: none;
+          }
+        }
         .banner_text p {
           font-size: 20px;
         }

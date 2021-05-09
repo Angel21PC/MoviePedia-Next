@@ -42,7 +42,7 @@ const NavBar: React.SFC<NavBarProps> = () => {
           <Link href="/all_pages/HomeMovies">
             <a>Movies</a>
           </Link>
-          <Link href="/all_pages/TvShows">
+          <Link href="/all_pages/HomeTvShows">
             <a>Tv Shows</a>
           </Link>
           <Link href="/home">
