@@ -1,3 +1,4 @@
+import React, { FC } from "react";
 import { useEffect, useState } from "react";
 
 //Icons
@@ -9,12 +10,11 @@ import { useAuth } from "../../../firebase/AuthContext";
 
 //Notification
 import { store } from "react-notifications-component";
-import { ChevronCompactLeft } from "react-bootstrap-icons";
 export interface M_B_FProps {
   movie: any;
 }
 
-const M_B_F: React.SFC<M_B_FProps> = ({ movie }) => {
+const M_B_F: FC<M_B_FProps> = ({ movie }) => {
   //firebase
   const currentUser = useAuth();
   const {

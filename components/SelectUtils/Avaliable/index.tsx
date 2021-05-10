@@ -18,7 +18,7 @@ const Avaliable: FC<AvaliableProps> = ({ provider }) => {
           <li key="f" className="providers_logo">
             <img
               key={e}
-              className={style.provider_logo}
+              className="providers_logo"
               src={`${base_Url}${e?.logo_path}`}
               alt={e}
             ></img>
