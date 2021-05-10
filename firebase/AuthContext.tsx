@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState<any>();
   const [loading, setLoading] = useState(true);
 
-  function saveData(username, birth_date, phone, email) {
+  async function saveData(username, birth_date, phone, email) {
     const id = uuidv5(email, uuidv5.URL);
 
     //Likes
@@ -35,15 +35,17 @@ export function AuthProvider({ children }) {
       list: [],
     });
 
-    console.log(auth);
-    //datos de perfil
-    return db.collection("profile").doc(auth.currentUser.uid).set({
-      email: { email },
-      username: { username },
-      birth_date: { birth_date },
-      phone: { phone },
-      collections_id: { id },
-    });
+    setTimeout(() => {
+      //ejecutamos
+      //datos de perfil
+      return db.collection("profile").doc(auth.currentUser.uid).set({
+        email: { email },
+        username: { username },
+        birth_date: { birth_date },
+        phone: { phone },
+        collections_id: { id },
+      });
+    }, 1500);
   }
 
   async function changeData(

@@ -24,7 +24,7 @@ type IRequest = {
     fetchTop_Tv : string,
     fetchGenre_Tv : string,
     fetchDiscover_Tv: string,
-
+    fetchOne_Tv:string,
 
     //de todo
     fetchTrending : string,
@@ -53,7 +53,7 @@ type IApi_rutesTV = {
     Upcoming: string,
     Discover: string,
     Genre: string ,
-    OneMovie: string,
+    OneShow: string,
 }
 
 type INewUser = {

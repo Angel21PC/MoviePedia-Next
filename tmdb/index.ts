@@ -27,6 +27,7 @@ export const request: IRequest = {
     fetchTop_Tv :`/tv/top_rated?api_key=${API_KEY}`,
     fetchGenre_Tv : `/genre/tv/list?api_key=${API_KEY}`,
     fetchDiscover_Tv: `/discover/tv?api_key=${API_KEY}`,
+    fetchOne_Tv: `/tv/{tv_id}?api_key=${API_KEY}`,
 
 
     //de todo

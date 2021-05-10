@@ -24,5 +24,5 @@ export const api_rutesTv: IApi_rutesTV = {
     Discover: '/api/tv/DiscoverTV',
     Genre: '/api/tv/GenreTV',
 
-    OneMovie: '/api/tv/GetMovie',
+    OneShow: '/api/tv/GetShow',
 }
