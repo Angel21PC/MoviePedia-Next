@@ -21,7 +21,7 @@ const TvS: NextPage<TvSProps> = (props) => {
   const {
     query: { id },
   } = router;
-
+  console.log(data);
   return (
     <>
       <NavBar />

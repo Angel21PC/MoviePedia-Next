@@ -25,4 +25,8 @@ export const api_rutesTv: IApi_rutesTV = {
     Genre: '/api/tv/GenreTV',
 
     OneShow: '/api/tv/GetShow',
+    Cast: '/api/tv/GetCast',
+    Provider: '/api/tv/GetProvider',
+    Video: '/api/tv/GetVideo',
+    Similar: '/api/tv/SimilarTV',
 }

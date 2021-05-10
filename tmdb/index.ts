@@ -27,9 +27,16 @@ export const request: IRequest = {
     fetchTop_Tv :`/tv/top_rated?api_key=${API_KEY}`,
     fetchGenre_Tv : `/genre/tv/list?api_key=${API_KEY}`,
     fetchDiscover_Tv: `/discover/tv?api_key=${API_KEY}`,
+
+    //One Tvshow
     fetchOne_Tv: `/tv/{tv_id}?api_key=${API_KEY}`,
-
-
+    fetchProvider_TV: `/tv/{tv_id}/watch/providers?api_key=${API_KEY}`,
+    fetchVideo_TV: `/tv/{tv_id}/videos?api_key=${API_KEY}`,
+    fetchCast_TV: `/tv/{tv_id}/credits?api_key=${API_KEY}`,
+    fetchSimilar_TV:`/tv/{tv_id}/similar?api_key=${API_KEY}`,
+   
+   
+   
     //de todo
     fetchTrending :`/trending/all/day?api_key=${API_KEY}`,
     fetchUpcoming : `/movie/upcoming?api_key=${API_KEY}`,
