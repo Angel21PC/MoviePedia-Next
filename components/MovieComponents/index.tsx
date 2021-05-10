@@ -110,7 +110,7 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
                 </div>
               </div>
               <div className="comentarios_container mt-4  ">
-                <h4>Coments</h4>
+                <h4>Comments</h4>
                 <Comments id={movie.id} />
               </div>
             </Col>
