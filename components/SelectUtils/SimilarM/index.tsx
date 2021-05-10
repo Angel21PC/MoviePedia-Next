@@ -10,15 +10,18 @@ import Poster from "../Poster/index";
 
 export interface SimilarProps {
   id: string;
+  m_s: string;
 }
 
-const Similar: React.SFC<SimilarProps> = ({ id }) => {
+const Similar: React.SFC<SimilarProps> = ({ id, m_s }) => {
   console.log(id);
+  const fetch: string =
+    m_s == "/all_pages/Movie_select" ? api_rutesM.Similar : api_rutesTv.Similar;
   const [movies, setMovies] = useState([]); //recoge todos los datos de la consulta
   useEffect(() => {
     //request para extraer las peliculas
     async function fetchData() {
-      const request = await axios.get(api_rutesM.Similar, {
+      const request = await axios.get(fetch, {
         params: {
           id: id,
         },
@@ -37,7 +40,7 @@ const Similar: React.SFC<SimilarProps> = ({ id }) => {
         <div key={movie?.id} className="mt-2 mr-3">
           <Link
             href={{
-              pathname: "/all_pages/Movie_select",
+              pathname: m_s,
               query: { id: movie.id },
             }}
             key={movie?.id}

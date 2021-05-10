@@ -5,14 +5,14 @@ import axios from "axios";
 import { URL, api_rutesM } from "../../config/rute_api";
 
 //components-p
-import Poster from "./Poster/index";
+import Poster from "../SelectUtils/Poster/index";
 import Overview from "./Overview/index";
-import Cast from "./Cast/index";
-import Avaliable from "./Avaliable/index";
+import Cast from "../SelectUtils/Cast/index";
+import Avaliable from "../SelectUtils/Avaliable/index";
 import M_B_F from "./M_button_F/index";
 import Video from "./Video/index";
 import Loading from "../util/Loading/index";
-import Similar from "./SimilarM/index";
+import Similar from "../SelectUtils/SimilarM/index";
 
 //components
 import { Container, Row, Col } from "react-bootstrap";
@@ -26,6 +26,8 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
   const movie = data; //recoge todos los datos de la consulta
   const [cast, setCast] = useState();
   const [provider, setProvider] = useState();
+  const [video, setVideo] = useState(null);
+  const [similar, setSimilar] = useState(null);
 
   useEffect(() => {
     //request para extraer el cast
@@ -51,19 +53,43 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
       return request;
     }
 
+    async function fetchDataViedo() {
+      const request = await axios.get(URL + api_rutesM.Video, {
+        params: {
+          id: movie.id,
+        },
+      });
+      setVideo(request.data.data);
+      return request;
+    }
+
+    async function fetchDataSimilar() {
+      const request = await axios.get(api_rutesM.Similar, {
+        params: {
+          id: movie.id,
+        },
+      });
+
+      setSimilar(request.data.data.results);
+      console.log(similar);
+      return request;
+    }
     //request para extraer las peliculas
     async function go() {
       setIsPending(true); //cargamos la animacion
       setTimeout(() => {
         //ejecutamos
+        fetchDataSimilar();
         fetchDataCast();
         fetchDataProvider();
+        fetchDataViedo();
+
         setIsPending(false);
         console.log(cast);
       }, 2500);
     }
     go();
-  }, []);
+  }, [data]);
 
   return (
     <Container className="containerr" fluid>
@@ -104,10 +130,10 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
                 <Cast cast={cast} />
               </div>
               <div className="video_container">
-                <Video {...movie}></Video>
+                <Video data={video}></Video>
               </div>
               <div className="similar_container mt-3">
-                <Similar id={movie.id} />
+                <Similar m_s={"/all_pages/Movie_select"} id={movie.id} />
               </div>
             </Col>
           </>

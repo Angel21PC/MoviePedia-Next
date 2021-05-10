@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { useEffect, useState } from "react";
 
 //components
-import Porter from "../../MovieComponents/Poster/index";
+import Porter from "../../SelectUtils/Poster/index";
 
 //style
 import style from "./Banner.module.scss";

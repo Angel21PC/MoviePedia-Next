@@ -10,7 +10,7 @@ import Link from "next/link";
 import { Container, Row, Form, Button } from "react-bootstrap";
 
 //component-p
-import Poster from "../../MovieComponents/Poster/index";
+import Poster from "../../SelectUtils/Poster/index";
 import Loading from "../../util/Loading/index";
 
 //style

@@ -7,7 +7,7 @@ import axios from "axios";
 import Link from "next/link";
 
 //component-p
-import Poster from "../MovieComponents/Poster/index";
+import Poster from "../SelectUtils/Poster/index";
 
 //api
 import { URL, api_rutesM } from "../../config/rute_api";

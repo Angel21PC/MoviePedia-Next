@@ -6,14 +6,14 @@ import axios from "axios";
 import { URL, api_rutesM, api_rutesTv } from "../../config/rute_api";
 
 //components-p
-import Poster from "../MovieComponents/Poster/index";
-import Overview from "../MovieComponents/Overview/index";
-import Cast from "../MovieComponents/Cast/index";
-import Avaliable from "../MovieComponents/Avaliable/index";
-import M_B_F from "../MovieComponents/M_button_F/index";
+import Poster from "../SelectUtils/Poster/index";
+import Overview from "./Overview/index";
+import Cast from "../SelectUtils/Cast/index";
+import Avaliable from "../SelectUtils/Avaliable/index";
+import M_B_F from "./M_button_F/index";
 import Video from "../MovieComponents/Video/index";
 import Loading from "../util/Loading/index";
-import Similar from "../MovieComponents/SimilarM/index";
+import Similar from "../SelectUtils/SimilarM/index";
 
 //components
 import { Container, Row, Col } from "react-bootstrap";
@@ -26,6 +26,7 @@ const Tv: FC<TvProps> = ({ data }) => {
   const movie = data; //recoge todos los datos de la consulta
   const [cast, setCast] = useState();
   const [provider, setProvider] = useState();
+  const [video, setVideo] = useState(null);
 
   useEffect(() => {
     //request para extraer el cast
@@ -51,6 +52,16 @@ const Tv: FC<TvProps> = ({ data }) => {
       return request;
     }
 
+    async function fetchDataViedo() {
+      const request = await axios.get(URL + api_rutesM.Video, {
+        params: {
+          id: movie.id,
+        },
+      });
+      setVideo(request.data.data);
+      return request;
+    }
+
     //request para extraer las peliculas
     async function go() {
       setIsPending(true); //cargamos la animacion
@@ -58,12 +69,13 @@ const Tv: FC<TvProps> = ({ data }) => {
         //ejecutamos
         fetchDataCast();
         fetchDataProvider();
+        fetchDataViedo();
         setIsPending(false);
         console.log(cast);
       }, 2500);
     }
     go();
-  }, []);
+  }, [data]);
 
   return (
     <Container className="containerr" fluid>
@@ -95,19 +107,20 @@ const Tv: FC<TvProps> = ({ data }) => {
             </Col>
             <Col className="text" xs lg="6">
               <div className="text_title">
+                <Overview movie={movie} cast={cast} />
                 <M_B_F movie={movie} />
               </div>
+
               <hr />
-              <Overview movie={movie} cast={cast} />
 
               <div className="actors_container">
                 <Cast cast={cast} />
               </div>
               <div className="video_container">
-                <Video {...movie}></Video>
+                <Video data={video}></Video>
               </div>
               <div className="similar_container mt-3">
-                <Similar id={movie.id} />
+                <Similar m_s={"/all_pages/Show_select"} id={movie.id} />
               </div>
             </Col>
           </>

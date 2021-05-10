@@ -3,9 +3,30 @@ import { IListM } from "../types";
 import { auth, db, a } from "./index";
 
 import { v5 as uuidv5 } from "uuid";
-import { checkLikes_M, saveLike_M, deleteLike_M } from "./likes";
-import { checkBookMark_M, saveBookMark_M, deleteBookMark_M } from "./bookmark";
-import { checkEye_M, saveEye_M, deleteEye_M } from "./eye";
+import {
+  checkLikes_M,
+  saveLike_M,
+  deleteLike_M,
+  checkLikes_TV,
+  saveLike_TV,
+  deleteLike_TV,
+} from "./likes";
+import {
+  checkBookMark_M,
+  saveBookMark_M,
+  deleteBookMark_M,
+  checkBookMark_TV,
+  saveBookMark_TV,
+  deleteBookMark_TV,
+} from "./bookmark";
+import {
+  checkEye_M,
+  saveEye_M,
+  deleteEye_M,
+  checkEye_TV,
+  saveEye_TV,
+  deleteEye_TV,
+} from "./eye";
 
 const AuthContext = React.createContext(null);
 
@@ -32,6 +53,21 @@ export function AuthProvider({ children }) {
 
     //Bookmark
     db.collection("eye_M").doc(id).set({
+      list: [],
+    });
+
+    //Likes
+    db.collection("likes_TV").doc(id).set({
+      id_movie: {},
+    });
+
+    //Bookmark
+    db.collection("bookmark_TV").doc(id).set({
+      id_movie: {},
+    });
+
+    //Bookmark
+    db.collection("eye_TV").doc(id).set({
       list: [],
     });
 
@@ -249,13 +285,20 @@ export function AuthProvider({ children }) {
     saveBookMark_M,
     deleteBookMark_M,
     checkBookMark_M,
+    checkEye_M,
+    saveLike_TV,
+    checkLikes_TV,
+    deleteLike_TV,
+    saveBookMark_TV,
+    deleteBookMark_TV,
+    checkBookMark_TV,
     getListMovies,
     signInWithGoogle,
     signInWithFacebook,
     signInWithTwitter,
-    checkEye_M,
-    deleteEye_M,
-    saveEye_M,
+    checkEye_TV,
+    deleteEye_TV,
+    saveEye_TV,
     changeData,
   };
 
