@@ -28,7 +28,7 @@ import {
   deleteEye_TV,
 } from "./eye";
 
-import { getCommentsM, pushNewCommentsM } from "./Comments";
+import { getCommentsM, pushNewCommentsM, commentLike } from "./Comments";
 
 const AuthContext = React.createContext(null);
 
@@ -306,6 +306,7 @@ export function AuthProvider({ children }) {
     changeData,
     getCommentsM,
     pushNewCommentsM,
+    commentLike,
   };
 
   return (

@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../../firebase/AuthContext";
+//Notification
+import { store } from "react-notifications-component";
 import {
   Toast,
   ToastBody,
@@ -13,14 +15,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faBookmark, faEye } from "@fortawesome/free-solid-svg-icons";
 
 import style from "./Comments.module.scss";
-
+import CommentItem from "./Component";
 export interface CommentsProps {
   id: string;
 }
 
 const Comments: FC<CommentsProps> = ({ id }) => {
-  const { getCommentsM, pushNewCommentsM } = useAuth();
-
+  const { getCommentsM, pushNewCommentsM, commentLike } = useAuth();
+  const currentUser = useAuth();
   const [comments, setComments] = useState([]);
 
   const [nextComent, setnextComent] = useState(null);
@@ -31,10 +33,56 @@ const Comments: FC<CommentsProps> = ({ id }) => {
   };
 
   const send = () => {
-    if (nextComent.length != 0) {
-      pushNewCommentsM(id, nextComent);
+    if (currentUser.currentUser === null) {
+      store.addNotification({
+        title: "Sorry",
+        message: "You need to be login",
+        type: "info",
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOutUp"],
+        dismiss: {
+          duration: 2000,
+          touch: true,
+        },
+      });
+    } else {
+      try {
+        if (nextComent.length != 0) {
+          pushNewCommentsM(id, nextComent, currentUser.currentUser.email);
+          store.addNotification({
+            title: "Wonderful!",
+            message: "Comment add correctly",
+            type: "info",
+            insert: "top",
+            container: "top-center",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOutUp"],
+            dismiss: {
+              duration: 2000,
+              touch: true,
+            },
+          });
+        }
+      } catch {
+        store.addNotification({
+          title: "Sorry",
+          message: "Error",
+          type: "danger",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animate__animated", "animate__fadeIn"],
+          animationOut: ["animate__animated", "animate__fadeOutUp"],
+          dismiss: {
+            duration: 2000,
+            touch: true,
+          },
+        });
+      }
     }
   };
+
   useEffect(() => {
     //get comments
     async function comments() {
@@ -47,18 +95,21 @@ const Comments: FC<CommentsProps> = ({ id }) => {
   return (
     <div className="border-1 rounded">
       <div className="p-2 border-1">
-        {comments?.map((com) => (
-          <Toast key={com.text}>
+        {/* {comments?.map((com) => (
+          <Toast key={com.text} className={style.text}>
             <ToastHeader closeButton={false}>'s </ToastHeader>
             <div className="d-flex w-100">
               <ToastBody className="w-70">{com.text}</ToastBody>
               <FontAwesomeIcon
                 className="icon fa-2x w-100"
-                name="bookmark"
+                name="heart"
                 icon={faHeart}
               />
             </div>
           </Toast>
+        ))} */}
+        {comments?.map((com) => (
+          <CommentItem id_film={id} com={com} />
         ))}
       </div>
       <div className="mt-2 d-flex">
