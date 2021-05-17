@@ -1,6 +1,7 @@
 import { auth, db, a } from "./index";
 import { v5 as uuidv5 } from "uuid";
 import { v1 as uuidv1 } from 'uuid';
+import { date } from "yup/lib/locale";
 
 export async function getCommentsM(id) {
     let response = undefined; 
@@ -47,7 +48,8 @@ export async function pushNewCommentsM(id:number|string ,text:string, user_email
     const dataComent = {
         text: text,
         id_coment: id_coment,
-        user: auth.currentUser.email
+        user: auth.currentUser.email,
+        date: today
     }
     const newComent = {
         data: dataComent,
@@ -107,14 +109,28 @@ export async function commentLike(id_film: number|string , user_giveLike:string,
                             })
                             if(nuestro_user_fue_encontrado === false){
                                 //añadir like
-                              
+                                docRef.update({
+                                    comments: a.firestore.FieldValue.arrayRemove({newComent: c.newComent}),
+                                  });
+                                c.newComent.userLikes.push(user_giveLike)
+                                
                                 docRef.update({
                                     comments: a.firestore.FieldValue.arrayUnion({newComent: c.newComent}),
                                   });
-                    
+                                  response=true;
                             }else{
                                 //eliminar like
-                            
+                                docRef.update({
+                                    comments: a.firestore.FieldValue.arrayRemove({newComent: c.newComent}),
+                                  });
+                                const index = c.newComent.userLikes.indexOf(user_giveLike);
+                                if (index > -1) {
+                                    c.newComent.userLikes.splice(index, 1);
+                                }
+                                docRef.update({
+                                    comments: a.firestore.FieldValue.arrayUnion({newComent: c.newComent}),
+                                  });
+                                  response= false;
                             } 
                   
                    

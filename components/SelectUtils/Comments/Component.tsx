@@ -5,9 +5,6 @@ import { faHeart, faBookmark, faEye } from "@fortawesome/free-solid-svg-icons";
 import {
   Toast,
   ToastBody,
-  InputGroup,
-  FormControl,
-  Button,
   ToastHeader,
 } from "react-bootstrap";
 import style from "./Comments.module.scss";
@@ -60,7 +57,7 @@ const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
 
   return (
     <Toast key={com.text} className={style.text}>
-      <ToastHeader closeButton={false}> </ToastHeader>
+      <ToastHeader closeButton={false}> {com.newComent.data.user}</ToastHeader>
       <div className="d-flex w-100">
         <ToastBody className="w-70">{com.newComent.data.text}</ToastBody>
         <FontAwesomeIcon

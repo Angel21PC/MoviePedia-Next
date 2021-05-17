@@ -11,8 +11,6 @@ import {
   Button,
   ToastHeader,
 } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faBookmark, faEye } from "@fortawesome/free-solid-svg-icons";
 
 import style from "./Comments.module.scss";
 import CommentItem from "./Component";
@@ -87,7 +85,8 @@ const Comments: FC<CommentsProps> = ({ id }) => {
     //get comments
     async function comments() {
       const response = await getCommentsM(id);
-      setComments(response?.comments);
+      let orderDate = response?.comments.sort((a,b)=>a.newComent.data.date - b.newComent.data.date);
+      setComments(orderDate);
     }
     comments();
   }, [send]);
