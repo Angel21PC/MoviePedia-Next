@@ -260,8 +260,7 @@ export async function getDateRelease() {
       },
     ],
   };
-  //sacar años
-  //contarlo
+
   function onlyYear(c) {
     let arrayYear = c.split("-");
     return arrayYear[0];
@@ -269,8 +268,6 @@ export async function getDateRelease() {
 
   let year = [];
   for (let x = 0; x < orderDate.length; x++) {
-    // newResult.labels.push(orderDate[x].film);
-
     let c = orderDate[x].release_date;
     let f = onlyYear(c);
     year.push(f);
@@ -301,20 +298,6 @@ export async function getDateRelease() {
   }
 
   let arrYear = count2();
-  //   let valYear = [];
-  //   for (let x = 0; x < orderDate.length; x++) {
-  //     let c = orderDate[x].release_date;
-  //     let f = onlyYear(c);
-  //     for (let index = 0; index < arrYear.length; index++) {
-  //       if (arrYear[index].year === f) {
-  //         valYear.push(arrYear[index].value);
-  //       }
-  //     }
-  //   }
-  //   for (let i = 0; i < valYear.length; i++) {
-  //     newResult.datasets[0].data.push(valYear[i]);
-  //     // newResult.labels.push(arrYear[i]);
-  //   }
 
   for (let x = 0; x < arrYear.length; x++) {
     newResult.datasets[0].data.push(arrYear[x].value);

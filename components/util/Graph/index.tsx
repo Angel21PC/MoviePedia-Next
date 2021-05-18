@@ -76,8 +76,6 @@ const Graph: FC<GraphProps> = () => {
     responsive: true,
   };
 
-  const options2 = {};
-
   return (
     <>
       <h1>Works</h1>
