@@ -86,11 +86,11 @@ const Graph: FC<GraphProps> = () => {
       <Pie type={PieController} data={data} options={options} />
       <PolarArea type={PolarAreaController} data={data} options={options} />
 
-      <h1>Time Stats</h1>
-      <Bar type={BarController} data={dataW} options={options2} />
+      {/* <h1>Time Stats</h1>
+      <Bar type={BarController} data={dataW} options={options2} /> */}
 
-      {/* <h1>Release Movies</h1>
-      <Pie type={PieController} data={dataMovieYear} options={options} /> */}
+      <h1>Release Movies</h1>
+      <Pie type={PieController} data={dataMovieYear} options={options} />
     </>
   );
 };
