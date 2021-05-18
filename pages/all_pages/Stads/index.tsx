@@ -1,4 +1,6 @@
 import { NextPage } from "next";
+import { useAuth } from "../../../firebase/AuthContext";
+import { useRouter } from "next/router";
 //components
 import NavBar from "../../../components/NavBar/index";
 import Graph from "../../../components/util/Graph/index";
@@ -6,12 +8,20 @@ import Graph from "../../../components/util/Graph/index";
 export interface StadsProps {}
 
 const Stads: NextPage<StadsProps> = () => {
-  return (
-    <>
-      <NavBar />
-      <Graph />
-    </>
-  );
+  const router = useRouter();
+  const currentUser = useAuth();
+
+  if (currentUser.currentUser !== null) {
+    return (
+      <>
+        <NavBar />
+        <Graph />
+      </>
+    );
+  } else {
+    router.push("/");
+    return <></>;
+  }
 };
 
 export default Stads;

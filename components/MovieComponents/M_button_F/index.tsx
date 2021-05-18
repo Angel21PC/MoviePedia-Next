@@ -9,7 +9,7 @@ import { useAuth } from "../../../firebase/AuthContext";
 
 //Notification
 import { store } from "react-notifications-component";
-import { ChevronCompactLeft } from "react-bootstrap-icons";
+
 export interface M_B_FProps {
   movie: any;
 }
@@ -220,7 +220,14 @@ const M_B_F: React.SFC<M_B_FProps> = ({ movie }) => {
       } else {
         setE("eyecheck");
         const today = new Date();
-        saveEye_M(movie.id, today);
+        console.log(movie.title);
+        saveEye_M(
+          movie.id,
+          today,
+          movie.genres,
+          movie.release_date,
+          movie.title
+        );
         store.addNotification({
           title: "Wonderful!",
           message: "Added to watch list",

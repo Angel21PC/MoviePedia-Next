@@ -21,7 +21,6 @@ async function ConsultaID() {
   return result;
 }
 
-
 export async function checkEye_M(id) {
   const id_user_collection = await ConsultaID();
   let listConvert = {
@@ -102,13 +101,16 @@ export async function deleteEye_M(id) {
     });
 }
 
-export async function saveEye_M(id, date) {
+export async function saveEye_M(id, date, genres, release_date, title) {
   const id_user_collection = await ConsultaID();
   let listConvert = {
     toFirestore: function () {
       return {
         id: id,
         date: date,
+        genre: genres,
+        release_date: release_date,
+        title: title,
       };
     },
     fromFirestore: function (snapshot, options) {
@@ -138,7 +140,13 @@ export async function saveEye_M(id, date) {
           db.collection("eye_M")
             .doc(id_user_collection)
             .update({
-              list: a.firestore.FieldValue.arrayUnion({ id, date }),
+              list: a.firestore.FieldValue.arrayUnion({
+                id,
+                date,
+                genres,
+                release_date,
+                title,
+              }),
             });
         }
       }

@@ -28,6 +28,12 @@ import {
   deleteEye_TV,
 } from "./eye";
 
+import {
+  getWatchMovies,
+  getGenreStads,
+  getTimeStatsWeek,
+  getDateRelease,
+} from "./stats";
 import { getCommentsM, pushNewCommentsM, commentLike } from "./Comments";
 
 const AuthContext = React.createContext(null);
@@ -307,6 +313,9 @@ export function AuthProvider({ children }) {
     getCommentsM,
     pushNewCommentsM,
     commentLike,
+    getGenreStads,
+    getTimeStatsWeek,
+    getDateRelease,
   };
 
   return (
