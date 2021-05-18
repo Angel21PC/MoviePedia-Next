@@ -178,7 +178,7 @@ export async function getTimeStatsWeek() {
         backgroundColor: "#6ED3FF",
         barThickness: 40,
         categoryPercentage: 1,
-        data: [],
+        data: ["1", "2", "3", "4", "5", "6", "7"],
       },
       {
         label: "Avatar",
@@ -186,21 +186,10 @@ export async function getTimeStatsWeek() {
         barThickness: 40,
         categoryPercentage: 1,
         pointStyle: "triangle",
-        data: [],
+        data: ["1"],
       },
     ],
   };
-
-  for (let x = 0; x < stats.length; x++) {
-    newResult.datasets[0] = {
-      label: stats[x].film,
-      pointStyle: "rectRounded",
-      backgroundColor: "#1497FF",
-      barThickness: 40,
-      categoryPercentage: 1,
-      data: [stats[x].date],
-    };
-  }
   return newResult;
 }
 
@@ -271,7 +260,8 @@ export async function getDateRelease() {
       },
     ],
   };
-
+  //sacar años
+  //contarlo
   function onlyYear(c) {
     let arrayYear = c.split("-");
     return arrayYear[0];
