@@ -14,6 +14,7 @@ import M_B_F from "./M_button_F/index";
 import Video from "../MovieComponents/Video/index";
 import Loading from "../util/Loading/index";
 import Similar from "../SelectUtils/SimilarM/index";
+import Comments from "./Comments/index";
 
 //components
 import { Container, Row, Col } from "react-bootstrap";
@@ -95,14 +96,8 @@ const Tv: FC<TvProps> = ({ data }) => {
                 </div>
               </div>
               <div className="comentarios_container mt-4  ">
-                <h5>Seccion de comentarios/criticas</h5>
-                <p>nsnnsnfnsnnf</p>
-                <p>nsnnsnfnsnnf</p>
-                <p>nsnnsnfnsnnf</p>
-                <p>nsnnsnfnsnnf</p>
-                <p>nsnnsnfnsnnf</p>
-                <p>nsnnsnfnsnnf</p>
-                <p>nsnnsnfnsnnf</p>
+                <h4>Comments</h4>
+                <Comments id={movie.id} />
               </div>
             </Col>
             <Col className="text" xs lg="6">

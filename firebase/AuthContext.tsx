@@ -34,7 +34,14 @@ import {
   getDateRelease,
   getTimeStatsWeek,
 } from "./stats";
-import { getCommentsM, pushNewCommentsM, commentLike } from "./Comments";
+import {
+  getCommentsM,
+  pushNewCommentsM,
+  commentLike,
+  getCommentsTV,
+  pushNewCommentsTV,
+  commentLikeTV,
+} from "./Comments";
 
 const AuthContext = React.createContext(null);
 
@@ -315,6 +322,9 @@ export function AuthProvider({ children }) {
     getTimeStatsYear,
     getDateRelease,
     getTimeStatsWeek,
+    getCommentsTV,
+    pushNewCommentsTV,
+    commentLikeTV,
   };
 
   return (

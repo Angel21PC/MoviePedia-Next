@@ -13,7 +13,7 @@ import M_B_F from "./M_button_F/index";
 import Video from "./Video/index";
 import Loading from "../util/Loading/index";
 import Similar from "../SelectUtils/SimilarM/index";
-import Comments from "../SelectUtils/Comments/index";
+import Comments from "./Comments/index";
 
 //components
 import { Container, Row, Col } from "react-bootstrap";
