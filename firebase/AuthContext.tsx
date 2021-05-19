@@ -46,7 +46,7 @@ import {
   pushNewCommentsTV,
   commentLikeTV,
 } from "./Comments";
-import { getCritics } from "./Critics";
+import { getCritics, pushNewCriticM, criticLike } from "./Critics";
 const AuthContext = React.createContext(null);
 
 export function useAuth() {
@@ -334,6 +334,8 @@ export function AuthProvider({ children }) {
     getDateReleaseTv,
     getTimeStatsYearTv,
     getTimeStatsWeekTv,
+    pushNewCriticM,
+    criticLike,
   };
 
   return (

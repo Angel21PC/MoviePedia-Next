@@ -17,18 +17,22 @@ const Banner: FC<BannerProps> = ({ data }) => {
   useEffect(() => {
     //request
     async function fetchData() {
-      //console.log(request);
+      console.log(data);
       setMovie(
         data.results[Math.floor(Math.random() * data.results.length - 1)]
       );
       // console.log(movie);
     }
+    // async function check() {
+    //   if (movie !== null) {
+    //     let response = await getDateReleaseTv();
+    //     console.log(response);
+    //     setDataMovieYear(response);
+    //   }
+    // }
 
     fetchData();
-
-    if (movie === undefined) {
-      fetchData();
-    }
+    // check();
   }, []);
 
   return (

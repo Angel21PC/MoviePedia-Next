@@ -75,7 +75,7 @@ export async function pushNewCriticM(
   }
 }
 
-export async function commentLike(
+export async function criticLike(
   id_film: number | string,
   user_giveLike: string,
   criticLike: string
