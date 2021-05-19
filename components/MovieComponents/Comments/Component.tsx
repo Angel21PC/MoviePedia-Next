@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faBookmark, faEye } from "@fortawesome/free-solid-svg-icons";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Toast, ToastBody, ToastHeader } from "react-bootstrap";
 import style from "./Comments.module.scss";
 import { useAuth } from "../../../firebase/AuthContext";
@@ -15,7 +15,7 @@ export interface CommentItemProps {
 const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
   const [h, setH] = useState("heart");
 
-  const { getCommentsM, pushNewCommentsM, commentLike } = useAuth();
+  const { commentLike } = useAuth();
   const currentUser = useAuth();
 
   let bool = false;

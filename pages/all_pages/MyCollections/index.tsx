@@ -12,12 +12,14 @@ import NavBar from "../../../components/NavBar/index";
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";
 
+import Critic from "../../../components/util/Critic";
 export interface MyColProps {}
 
 const MyCol: NextPage<MyColProps> = () => {
   return (
     <>
       <NavBar />
+      <Critic></Critic>
     </>
   );
 };

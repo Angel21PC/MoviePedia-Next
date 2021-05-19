@@ -1,7 +1,5 @@
 import { auth, db, a } from "./index";
-import { v5 as uuidv5 } from "uuid";
 import { v1 as uuidv1 } from "uuid";
-import { date } from "yup/lib/locale";
 
 export async function getCommentsM(id) {
   let response = undefined;
@@ -182,7 +180,6 @@ export async function getCommentsTV(id) {
 
   return response;
 }
-
 export async function pushNewCommentsTV(
   id: number | string,
   text: string,
