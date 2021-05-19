@@ -33,6 +33,10 @@ import {
   getTimeStatsYear,
   getDateRelease,
   getTimeStatsWeek,
+  getGenreStadsTv,
+  getDateReleaseTv,
+  getTimeStatsYearTv,
+  getTimeStatsWeekTv,
 } from "./stats";
 import {
   getCommentsM,
@@ -326,6 +330,10 @@ export function AuthProvider({ children }) {
     pushNewCommentsTV,
     commentLikeTV,
     getCritics,
+    getGenreStadsTv,
+    getDateReleaseTv,
+    getTimeStatsYearTv,
+    getTimeStatsWeekTv,
   };
 
   return (

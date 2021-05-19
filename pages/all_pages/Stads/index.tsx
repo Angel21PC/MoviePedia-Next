@@ -3,7 +3,7 @@ import { useAuth } from "../../../firebase/AuthContext";
 import { useRouter } from "next/router";
 //components
 import NavBar from "../../../components/NavBar/index";
-import Graph from "../../../components/util/Graph/index";
+import Stats from "../../../components/util/Graph/index";
 
 export interface StadsProps {}
 
@@ -15,7 +15,7 @@ const Stads: NextPage<StadsProps> = () => {
     return (
       <>
         <NavBar />
-        <Graph />
+        <Stats />
       </>
     );
   } else {

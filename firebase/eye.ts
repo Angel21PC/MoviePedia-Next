@@ -234,13 +234,16 @@ export async function deleteEye_TV(id) {
     });
 }
 
-export async function saveEye_TV(id, date) {
+export async function saveEye_TV(id, date, genres, release_date, title) {
   const id_user_collection = await ConsultaID();
   let listConvert = {
     toFirestore: function () {
       return {
         id: id,
         date: date,
+        genre: genres,
+        release_date: release_date,
+        title: title,
       };
     },
     fromFirestore: function (snapshot, options) {
@@ -270,7 +273,13 @@ export async function saveEye_TV(id, date) {
           db.collection("eye_TV")
             .doc(id_user_collection)
             .update({
-              list: a.firestore.FieldValue.arrayUnion({ id, date }),
+              list: a.firestore.FieldValue.arrayUnion({
+                id,
+                date,
+                genres,
+                release_date,
+                title,
+              }),
             });
         }
       }

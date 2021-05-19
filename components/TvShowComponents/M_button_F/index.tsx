@@ -220,7 +220,14 @@ const M_B_F: FC<M_B_FProps> = ({ movie }) => {
       } else {
         setE("eyecheck");
         const today = new Date();
-        saveEye_TV(movie.id, today);
+
+        saveEye_TV(
+          movie.id,
+          today,
+          movie.genres,
+          movie.first_air_date,
+          movie.original_name
+        );
         store.addNotification({
           title: "Wonderful!",
           message: "Added to watch list",
