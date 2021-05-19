@@ -14,9 +14,10 @@ import Video from "./Video/index";
 import Loading from "../util/Loading/index";
 import Similar from "../SelectUtils/SimilarM/index";
 import Comments from "./Comments/index";
+import CriticList from "../util/Critic/index";
 
 //components
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Tabs, Tab } from "react-bootstrap";
 
 export interface MovieProps {
   data: any;
@@ -94,7 +95,7 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
 
   return (
     <Container className="containerr" fluid>
-      <Row className="justify-content-md-center" xs={1} md={2}>
+      <Row className="justify-content-md-around" xs={1} md={2}>
         {isPending ? (
           <div className="vertical-center justify-content-md-center">
             <Loading />
@@ -102,16 +103,32 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
         ) : (
           <>
             <Col className="movie" xs lg="4">
-              <div className="justify-content-center">
+              <div className="d-flex justify-content-center">
                 <Poster c="movie_poster" movie={movie} />
-                <div className="mt-4">
-                  <h4>Avaliable on:</h4>
-                  <Avaliable provider={provider} />
-                </div>
               </div>
-              <div className="comentarios_container mt-4  ">
-                <h4>Comments</h4>
-                <Comments id={movie.id} />
+              <div className="mt-4">
+                <h4>Avaliable on:</h4>
+                <Avaliable provider={provider} />
+              </div>
+              <div>
+                <Tabs
+                  className="justify-content-center mt-4"
+                  defaultActiveKey="Comments"
+                  id="uncontrolled-tab-example"
+                >
+                  <Tab eventKey="Comments" title="Comments">
+                    <div className="comentarios_container mt-4  ">
+                      <h4>Comments</h4>
+                      <Comments id={movie.id} />
+                    </div>
+                  </Tab>
+                  <Tab eventKey="Critics" title="Critics">
+                    <div className="comentarios_container mt-4  ">
+                      <h4>Critic</h4>
+                      <CriticList id={movie.id} />
+                    </div>
+                  </Tab>
+                </Tabs>
               </div>
             </Col>
             <Col className="text" xs lg="6">
@@ -125,9 +142,11 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
                 <Cast cast={cast} />
               </div>
               <div className="video_container">
+                <h1>Trailer</h1>
                 <Video data={video}></Video>
               </div>
               <div className="similar_container mt-3">
+                <h1>Similar Movies</h1>
                 <Similar m_s={"/all_pages/Movie_select"} id={movie.id} />
               </div>
             </Col>

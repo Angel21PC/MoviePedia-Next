@@ -54,11 +54,13 @@ const Tv: FC<TvProps> = ({ data }) => {
     }
 
     async function fetchDataViedo() {
-      const request = await axios.get(URL + api_rutesM.Video, {
+      const request = await axios.get(URL + api_rutesTv.Video, {
         params: {
           id: movie.id,
         },
       });
+      console.log("mira el video ");
+      console.log(request.data.data);
       setVideo(request.data.data);
       return request;
     }
@@ -102,11 +104,10 @@ const Tv: FC<TvProps> = ({ data }) => {
             </Col>
             <Col className="text" xs lg="6">
               <div className="text_title">
-                <Overview movie={movie} cast={cast} />
                 <M_B_F movie={movie} />
               </div>
-
               <hr />
+              <Overview movie={movie} cast={cast} />
 
               <div className="actors_container">
                 <Cast cast={cast} />

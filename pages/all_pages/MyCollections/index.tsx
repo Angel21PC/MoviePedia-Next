@@ -12,7 +12,7 @@ import NavBar from "../../../components/NavBar/index";
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";
 
-import Critic from "../../../components/util/Critic";
+import Critic from "../../../components/util/Critic/Critic";
 export interface MyColProps {}
 
 const MyCol: NextPage<MyColProps> = () => {

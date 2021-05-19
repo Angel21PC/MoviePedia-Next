@@ -254,7 +254,7 @@ const M_B_F: FC<M_B_FProps> = ({ movie }) => {
 
   return (
     <>
-      <h3>{movie.title}</h3>
+      <h3>{movie.original_name}</h3>
       <FontAwesomeIcon
         className="icon fa-2x"
         id={h}

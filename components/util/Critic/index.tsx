@@ -1,30 +1,37 @@
-import React, { FC, useState } from "react";
-// import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import React, { FC, useEffect, useState } from "react";
+import { useAuth } from "../../../firebase/AuthContext";
+export interface CriticListProps {
+  id: string;
+}
 
-export interface CriticProps {}
-
-const Critic: FC<CriticProps> = () => {
-  let quill;
-  if (document) {
-    quill = require("react-quill");
-  }
-  const ReactQuill = quill;
-  const [value, setValue] = useState();
-
+const CriticList: FC<CriticListProps> = ({ id }) => {
+  const { getCritics } = useAuth();
+  const [critics, setCritics] = useState([]);
+  useEffect(() => {
+    //get comments
+    async function criticsData() {
+      const response = await getCritics(id);
+      console.log("aqui");
+      console.log(response);
+      let orderDate = response?.critics?.sort(
+        (a, b) => a.newComent.data.date - b.newComent.data.date
+      );
+      setCritics(orderDate);
+    }
+    criticsData();
+  }, []);
   return (
-    <>
-      <ReactQuill
-        theme="snow"
-        value={value}
-        onChange={(e) => {
-          console.log(e);
-          setValue(e);
-        }}
-      />
-      <div dangerouslySetInnerHTML={{ __html: value }}></div>
-    </>
+    <div className="border-1 rounded">
+      <div className="p-2 border-1">
+        {critics?.map((com) => (
+          <div dangerouslySetInnerHTML={{ __html: com.html }}></div>
+        ))}
+      </div>
+      <div className="mt-2 d-flex">
+        <div></div>
+      </div>
+    </div>
   );
 };
 
-export default Critic;
+export default CriticList;

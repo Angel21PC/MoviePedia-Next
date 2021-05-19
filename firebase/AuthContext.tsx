@@ -42,7 +42,7 @@ import {
   pushNewCommentsTV,
   commentLikeTV,
 } from "./Comments";
-
+import { getCritics } from "./Critics";
 const AuthContext = React.createContext(null);
 
 export function useAuth() {
@@ -325,6 +325,7 @@ export function AuthProvider({ children }) {
     getCommentsTV,
     pushNewCommentsTV,
     commentLikeTV,
+    getCritics,
   };
 
   return (

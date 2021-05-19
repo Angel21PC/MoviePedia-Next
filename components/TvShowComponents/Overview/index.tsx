@@ -6,7 +6,13 @@ export interface OverviewProps {
 const Overview: React.SFC<OverviewProps> = ({ movie, cast }) => {
   return (
     <>
-      <p>{movie.original_name}</p>
+      <p>{movie.overview}</p>
+      <h5>
+        Directed by:{" "}
+        {movie.created_by.map((e) => (
+          <a key={e.name}>{e.name} </a>
+        ))}
+      </h5>
     </>
   );
 };
