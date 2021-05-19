@@ -20,31 +20,31 @@ async function ConsultaID() {
   console.log(result);
   return result;
 }
-export async function getWatchMovies() {
-  //date
-  //id
-  //genero
-  let result = undefined;
-  const id_user_collection = await ConsultaID();
+// export async function getWatchMovies() {
+//   //date
+//   //id
+//   //genero
+//   let result = undefined;
+//   const id_user_collection = await ConsultaID();
 
-  const docRef = db.collection("eye_M").doc(id_user_collection);
-  await docRef
-    .get()
-    .then((doc) => {
-      if (doc.exists) {
-        const data = doc.data();
-        result = data;
-        // console.log(result)
-      } else {
-        console.log("No such document!");
-      }
-    })
-    .catch((error) => {
-      console.log("Error getting document:", error);
-    });
-  console.log(result);
-  return result;
-}
+//   const docRef = db.collection("eye_M").doc(id_user_collection);
+//   await docRef
+//     .get()
+//     .then((doc) => {
+//       if (doc.exists) {
+//         const data = doc.data();
+//         result = data;
+//         // console.log(result)
+//       } else {
+//         console.log("No such document!");
+//       }
+//     })
+//     .catch((error) => {
+//       console.log("Error getting document:", error);
+//     });
+//   console.log(result);
+//   return result;
+// }
 export async function getGenreStads() {
   //date
   //id
@@ -132,67 +132,6 @@ export async function getGenreStads() {
   }
   return newResult;
 }
-
-export async function getTimeStatsWeek() {
-  let result = undefined;
-  const id_user_collection = await ConsultaID();
-
-  const docRef = db.collection("eye_M").doc(id_user_collection);
-  await docRef
-    .get()
-    .then((doc) => {
-      if (doc.exists) {
-        const data = doc.data();
-        result = data;
-        // console.log(result)
-      } else {
-        console.log("No such document!");
-      }
-    })
-    .catch((error) => {
-      console.log("Error getting document:", error);
-    });
-
-  function count() {
-    let newArrObj = [];
-
-    for (let x = 0; x < result.list.length; x++) {
-      let element = result.list[x];
-      newArrObj[x] = {
-        film: element.title,
-        date: element.date,
-      };
-    }
-
-    return newArrObj;
-  }
-
-  let stats = count();
-
-  let newResult = {
-    labels: ["1", "2", "3", "4", "5", "6", "7"],
-    datasets: [
-      {
-        label: "Terminator",
-        pointStyle: "rectRounded",
-        backgroundColor: "#6ED3FF",
-        barThickness: 40,
-        categoryPercentage: 1,
-        data: ["1", "2", "3", "4", "5", "6", "7"],
-      },
-      {
-        label: "Avatar",
-        backgroundColor: "#1497FF",
-        barThickness: 40,
-        categoryPercentage: 1,
-        pointStyle: "triangle",
-        data: ["1"],
-      },
-    ],
-  };
-  return newResult;
-}
-
 export async function getDateRelease() {
   let result = undefined;
   const id_user_collection = await ConsultaID();
@@ -303,5 +242,170 @@ export async function getDateRelease() {
     newResult.datasets[0].data.push(arrYear[x].value);
     newResult.labels.push(arrYear[x].year);
   }
+  return newResult;
+}
+
+export async function getTimeStatsYear() {
+  let result = undefined;
+  const id_user_collection = await ConsultaID();
+
+  const docRef = db.collection("eye_M").doc(id_user_collection);
+  await docRef
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        const data = doc.data();
+        result = data;
+        // console.log(result)
+      } else {
+        console.log("No such document!");
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+
+  function count() {
+    let newArrObj = [];
+
+    for (let x = 0; x < result.list.length; x++) {
+      let element = result.list[x];
+      newArrObj[x] = {
+        film: element.title,
+        date: element.date,
+      };
+    }
+
+    return newArrObj;
+  }
+
+  let stats = count();
+
+  let newResult = {
+    labels: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ],
+    datasets: [
+      {
+        label: "Movies Year",
+        data: [],
+        fill: true,
+        backgroundColor: "rgba(75,192,192,0.2)",
+        borderColor: "rgba(75,192,192,1)",
+      },
+    ],
+  };
+
+  function countMonth(obj) {
+    let monthCountArr = new Array(12).fill(0);
+    obj.forEach(({ date }) => (monthCountArr[date.toDate().getMonth()] += 1));
+    return monthCountArr;
+  }
+  let p = countMonth(stats);
+  newResult.datasets[0].data = p;
+  return newResult;
+}
+export async function getTimeStatsWeek() {
+  let result = undefined;
+  const id_user_collection = await ConsultaID();
+
+  const docRef = db.collection("eye_M").doc(id_user_collection);
+  await docRef
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        const data = doc.data();
+        result = data;
+        // console.log(result)
+      } else {
+        console.log("No such document!");
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+
+  function count() {
+    let newArrObj = [];
+
+    for (let x = 0; x < result.list.length; x++) {
+      let element = result.list[x];
+      newArrObj[x] = {
+        film: element.title,
+        date: element.date,
+      };
+    }
+
+    return newArrObj;
+  }
+
+  let stats = count();
+
+  let newResult = {
+    labels: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
+    datasets: [
+      {
+        label: "Movies Week",
+        data: [],
+        fill: true,
+        backgroundColor: "rgba(75,192,192,0.2)",
+        borderColor: "rgba(75,192,192,1)",
+      },
+    ],
+  };
+
+  function getWeekNumber(d) {
+    // Copy date so don't modify original
+    d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    // Set to nearest Thursday: current date + 4 - current day number
+    // Make Sunday's day number 7
+    d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+    // Get first day of year
+    var yearStart: any = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    // Calculate full weeks to nearest Thursday
+    var weekNo = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+    // Return array of year and week number
+    return [d.getUTCFullYear(), weekNo];
+  }
+
+  function getMovieWeek() {
+    let movieWeek = [];
+    for (let i = 0; i < stats.length; i++) {
+      let data = stats[i].date;
+      let result = getWeekNumber(data.toDate());
+      let result2 = getWeekNumber(new Date());
+      if (result[0] === result2[0] && result[1] === result2[1]) {
+        movieWeek.push(stats[i]);
+      }
+    }
+    return movieWeek;
+  }
+  let p = getMovieWeek();
+  function countMonth(obj) {
+    let monthCountArr = new Array(7).fill(0);
+    obj.forEach(({ date }) => (monthCountArr[date.toDate().getDay() - 1] += 1));
+    return monthCountArr;
+  }
+  let pa = countMonth(p);
+  newResult.datasets[0].data = pa;
   return newResult;
 }

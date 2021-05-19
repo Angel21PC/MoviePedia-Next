@@ -29,10 +29,10 @@ import {
 } from "./eye";
 
 import {
-  getWatchMovies,
   getGenreStads,
-  getTimeStatsWeek,
+  getTimeStatsYear,
   getDateRelease,
+  getTimeStatsWeek,
 } from "./stats";
 import { getCommentsM, pushNewCommentsM, commentLike } from "./Comments";
 
@@ -146,9 +146,7 @@ export function AuthProvider({ children }) {
     auth
       .signInWithPopup(googleProvider)
       .then((res) => {
-        //console.log(res.user)
-
-        const docRef = db.collection("profile").doc(res.user.email);
+        const docRef = db.collection("profile").doc(auth.currentUser.uid);
 
         docRef
           .get()
@@ -314,8 +312,9 @@ export function AuthProvider({ children }) {
     pushNewCommentsM,
     commentLike,
     getGenreStads,
-    getTimeStatsWeek,
+    getTimeStatsYear,
     getDateRelease,
+    getTimeStatsWeek,
   };
 
   return (
