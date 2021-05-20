@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 
 //components
 import NavBar from "../../../components/NavBar/index";
-import FindMovie from "../../../components/FindMovie/index";
-
+import FindMovie from "../../../components/Find/FindMovie/index";
+import FindShow from "../../../components/Find/FindShow/index";
 //COMPONENTS
 import { Tabs, Tab, Container } from "react-bootstrap";
 export interface FindProps {
@@ -30,7 +30,9 @@ const Find: NextPage<FindProps> = () => {
           <Tab eventKey="Movies" title="Movies">
             <FindMovie id={id} />
           </Tab>
-          <Tab eventKey="Shows" title="TV Shows"></Tab>
+          <Tab eventKey="Shows" title="TV Shows">
+            <FindShow id={id} />
+          </Tab>
         </Tabs>
       </Container>
     </>

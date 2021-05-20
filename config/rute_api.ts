@@ -1,6 +1,6 @@
 import { IApi_rutesM, IApi_rutesTV } from "../types";
 
-export const URL: string = "https://movie-pedia-next.vercel.app";
+export const URL: string = "http://localhost:3000";
 // 'https://movie-pedia-next.vercel.app'
 export const api_rutesM: IApi_rutesM = {
   Popular: "/api/movie/PopularM",
@@ -23,6 +23,7 @@ export const api_rutesTv: IApi_rutesTV = {
   Upcoming: "/api/tv/UpcomingTV",
   Discover: "/api/tv/DiscoverTV",
   Genre: "/api/tv/GenreTV",
+  Find: "/api/tv/FindTV",
 
   OneShow: "/api/tv/GetShow",
   Cast: "/api/tv/GetCast",

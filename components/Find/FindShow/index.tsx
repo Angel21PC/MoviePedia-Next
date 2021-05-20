@@ -2,16 +2,17 @@ import React, { FC } from "react";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { URL, api_rutesM } from "../../config/rute_api";
-//components-p
-import LstM from "../../components/ListMovie/index";
+import { URL, api_rutesTv } from "../../../config/rute_api";
 
-export interface FindMovieProps {
+//components-p
+import LstTv from "../../List/ListTv/index";
+
+export interface FindShowProps {
   id: any;
 }
 
-const FindMovie: FC<FindMovieProps> = ({ id }) => {
-  const [fetchUrl, setFetchUrl] = useState(URL + api_rutesM.Find);
+const FindShow: FC<FindShowProps> = ({ id }) => {
+  const [fetchUrl, setFetchUrl] = useState(URL + api_rutesTv.Find);
   const [movies, setMovies] = useState([]);
   const [isPending, setIsPending] = useState(true);
 
@@ -26,7 +27,7 @@ const FindMovie: FC<FindMovieProps> = ({ id }) => {
           text: id,
         },
       });
-
+      console.log(request);
       setTimeout(() => {
         //ejecutamos
         setIsPending(false);
@@ -41,10 +42,10 @@ const FindMovie: FC<FindMovieProps> = ({ id }) => {
   return (
     <div className="justify-content-center">
       {movies.map((movie) => (
-        <LstM {...movie} />
+        <LstTv {...movie} />
       ))}
     </div>
   );
 };
 
-export default FindMovie;
+export default FindShow;
