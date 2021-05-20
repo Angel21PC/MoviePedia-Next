@@ -72,17 +72,21 @@ const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
     <Toast key={com.text} className={style.text}>
       <ToastHeader closeButton={false}> {com.newComent.data.user}</ToastHeader>
       <div className="d-flex w-100">
-        <ToastBody className="w-70">{com.newComent.data.text}</ToastBody>
-        <div>
-          {com.newComent?.userLikes.length}
-          <FontAwesomeIcon
-            id={h}
-            className="icon fa-2x w-100"
-            name="heart"
-            icon={faHeart}
-            onClick={() => like()}
-          />
-        </div>
+        <ToastBody className="w-100 d-flex">
+          <div className="w-50 mr-5">{com.newComent.data.text}</div>
+
+          <div className="d-flex">
+            <h4 className="ml-3">{com.newComent?.userLikes.length}</h4>
+
+            <FontAwesomeIcon
+              id={h}
+              className="icon fa-2x w-100"
+              name="heart"
+              icon={faHeart}
+              onClick={() => like()}
+            />
+          </div>
+        </ToastBody>
       </div>
     </Toast>
   );
