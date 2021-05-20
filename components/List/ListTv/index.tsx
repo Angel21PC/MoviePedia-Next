@@ -7,21 +7,20 @@ import axios from "axios";
 import Link from "next/link";
 
 //component-p
-import Poster from "../SelectUtils/Poster/index";
+import Poster from "../../SelectUtils/Poster/index";
 
 //api
-import { URL, api_rutesM } from "../../config/rute_api";
+import { URL, api_rutesTv } from "../../../config/rute_api";
 
-export interface LstMProps {}
+export interface LstTvProps {}
 
-const LstM: FC<LstMProps> = (props: any) => {
-  console.log(props);
+const LstTv: FC<LstTvProps> = (props: any) => {
   const [movie, setMovie] = useState(undefined);
   useEffect(() => {
     //data
     async function getDataMovie() {
       let id = props.id;
-      const result = await axios.get(URL + api_rutesM.OneMovie, {
+      const result = await axios.get(URL + api_rutesTv.OneShow, {
         params: {
           id: { id },
         },
@@ -35,7 +34,7 @@ const LstM: FC<LstMProps> = (props: any) => {
   return (
     <Link
       href={{
-        pathname: "/all_pages/Movie_select",
+        pathname: "/all_pages/Show_select",
         query: { id: movie?.data.id },
       }}
       key={movie?.name}
@@ -47,4 +46,4 @@ const LstM: FC<LstMProps> = (props: any) => {
   );
 };
 
-export default LstM;
+export default LstTv;

@@ -19,7 +19,7 @@ const Banner: FC<BannerProps> = ({ data }) => {
     async function fetchData() {
       console.log(data);
       setMovie(
-        data.results[Math.floor(Math.random() * data.results.length - 1)]
+        data.results[Math.floor(Math.random() * (data.results.length - 5) - 1)]
       );
       // console.log(movie);
     }

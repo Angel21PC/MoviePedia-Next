@@ -20,24 +20,34 @@ export interface ListProps {
 const List: NextPage<ListProps> = () => {
   //firebase
   const currentUser = useAuth();
-  const { getListMovies } = useAuth();
+  const { getListMovies, getListTv } = useAuth();
 
-  const [data, setData] = useState();
+  const [dataM, setDataM] = useState();
+  const [dataTV, setDataTV] = useState();
 
   useEffect(() => {
-    async function getDataList() {
+    async function getDataListM() {
       if (currentUser.currentUser !== null) {
-        let r = await getListMovies(currentUser.currentUser.email);
-        setData(r);
+        let r = await getListMovies();
+        console.log(r);
+        setDataM(r);
       }
     }
-    getDataList();
+    getDataListM();
+    async function getDataListTV() {
+      if (currentUser.currentUser !== null) {
+        let r = await getListTv();
+        console.log(r);
+        setDataTV(r);
+      }
+    }
+    getDataListTV();
   }, []);
 
   return (
     <>
       <NavBar />
-      <ListM {...data} />
+      <ListM dataM={dataM} dataTV={dataTV} />
     </>
   );
 };

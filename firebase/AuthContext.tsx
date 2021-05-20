@@ -222,7 +222,7 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
-  async function getListMovies(email) {
+  async function getListMovies() {
     const id_user_collection = await ConsultaID();
     let result: IListM = {
       Bookmark: [],
@@ -233,6 +233,74 @@ export function AuthProvider({ children }) {
     const bookmark = db.collection("bookmark_M").doc(id_user_collection);
     const likes = db.collection("likes_M").doc(id_user_collection);
     const watch = db.collection("eye_M").doc(id_user_collection);
+
+    await bookmark
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          result.Bookmark.push(data);
+          //console.log(result)
+        } else {
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+
+    await likes
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          result.Like.push(data);
+          //console.log(result)
+        } else {
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+
+    let listConvert = {
+      toFirestore: function () {
+        return {
+          id: "",
+          date: "",
+        };
+      },
+      fromFirestore: function (snapshot, options) {
+        const data = snapshot.data(options);
+        return data;
+      },
+    };
+
+    await watch
+      .withConverter(listConvert)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          result.Watch.push(data);
+        }
+      });
+
+    return result;
+  }
+
+  async function getListTv() {
+    const id_user_collection = await ConsultaID();
+    let result: IListM = {
+      Bookmark: [],
+      Like: [],
+      Watch: [],
+    };
+
+    const bookmark = db.collection("bookmark_TV").doc(id_user_collection);
+    const likes = db.collection("likes_TV").doc(id_user_collection);
+    const watch = db.collection("eye_TV").doc(id_user_collection);
 
     await bookmark
       .get()
@@ -336,6 +404,7 @@ export function AuthProvider({ children }) {
     getTimeStatsWeekTv,
     pushNewCriticM,
     criticLike,
+    getListTv,
   };
 
   return (
