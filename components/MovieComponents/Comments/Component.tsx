@@ -34,7 +34,8 @@ const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
   }, []);
 
   const like = async () => {
-    console.log(com.newComent.data.id_coment);
+    console.log('gg');
+    console.log(com.newComent.data);
     if (currentUser.currentUser !== null) {
       let response = await commentLike(
         id_film,
@@ -71,6 +72,7 @@ const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
   return (
     <Toast key={com.text} className={style.text}>
       <ToastHeader closeButton={false}> {com.newComent.data.user}</ToastHeader>
+    
       <div className="d-flex">
       <div className="w-100">
         <ToastBody >{com.newComent.data.text}</ToastBody>
