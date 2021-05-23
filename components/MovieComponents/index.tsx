@@ -118,13 +118,11 @@ const Movie: React.SFC<MovieProps> = ({ data }) => {
                 >
                   <Tab eventKey="Comments" title="Comments">
                     <div className="comentarios_container mt-4  ">
-                      <h4>Comments</h4>
                       <Comments id={movie.id} />
                     </div>
                   </Tab>
                   <Tab eventKey="Critics" title="Critics">
                     <div className="comentarios_container mt-4  ">
-                      <h4>Critic</h4>
                       <CriticList id={movie.id} />
                     </div>
                   </Tab>

@@ -13,13 +13,11 @@ const Stats: FC<StatsProps> = () => {
     >
       <Tab eventKey="TV" title="TV">
         <div className="comentarios_container mt-4  ">
-          <h4>TV</h4>
           <GraphTv />
         </div>
       </Tab>
       <Tab eventKey="Movie" title="Movie">
         <div className="comentarios_container mt-4  ">
-          <h4>Movie</h4>
           <Graph />
         </div>
       </Tab>

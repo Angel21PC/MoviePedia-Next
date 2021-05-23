@@ -5,3 +5,8 @@
   -webkit-line-clamp: 2; /* number of lines to show */
   -webkit-box-orient: vertical;
 }
+.com {
+  overflow: scroll;
+  max-height: 400px;
+  scroll-behavior: smooth;
+}

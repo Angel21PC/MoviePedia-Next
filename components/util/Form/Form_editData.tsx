@@ -23,6 +23,7 @@ import { useRouter } from "next/router";
 
 import { INewUser } from "../../../types";
 
+
 //component-p
 // import dynamic from "next/dynamic";
 // const Editor = dynamic(() => import("../TextEditor"), { ssr: false });
@@ -34,6 +35,7 @@ import { INewUser } from "../../../types";
 /*foto */
 
 export interface FormEditProps {}
+
 
 const today = new Date();
 const schema = yup.object().shape({
@@ -75,6 +77,7 @@ const FormEdit: React.SFC<FormEditProps> = () => {
 
       router.push("/");
     } catch (e) {
+      console.log(e)
       store.addNotification({
         title: "Fail!",
         message: "Fail to change data account",

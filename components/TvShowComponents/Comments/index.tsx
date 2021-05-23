@@ -92,13 +92,17 @@ const Comments: FC<CommentsProps> = ({ id }) => {
     }
     comments();
   }, [send]);
-
+  
+  const alert= <h3> You need to be login </h3>
+  
   return (
     <div className="border-1 rounded">
       <div className="p-2 border-1">
-        {comments?.map((com) => (
+        <div className={style.com}>
+          {currentUser.currentUser === null ? alert :comments?.map((com) => (
           <CommentItem id_film={id} com={com} />
         ))}
+        </div>
       </div>
       <div className="mt-2 d-flex">
         <div className={style.from}>

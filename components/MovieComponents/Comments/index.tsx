@@ -91,25 +91,18 @@ const Comments: FC<CommentsProps> = ({ id }) => {
     comments();
   }, [send]);
 
+  const alert= <h3> You need to be login </h3>
+  
   return (
     <div className="border-1 rounded">
       <div className="p-2 border-1">
-        {/* {comments?.map((com) => (
-          <Toast key={com.text} className={style.text}>
-            <ToastHeader closeButton={false}>'s </ToastHeader>
-            <div className="d-flex w-100">
-              <ToastBody className="w-70">{com.text}</ToastBody>
-              <FontAwesomeIcon
-                className="icon fa-2x w-100"
-                name="heart"
-                icon={faHeart}
-              />
-            </div>
-          </Toast>
-        ))} */}
-        {comments?.map((com) => (
+        <div className={style.com}>
+          {currentUser.currentUser === null ? alert :comments?.map((com) => (
           <CommentItem id_film={id} com={com} />
         ))}
+       
+        </div>
+      
       </div>
       <div className="mt-2 d-flex">
         <div className={style.from}>

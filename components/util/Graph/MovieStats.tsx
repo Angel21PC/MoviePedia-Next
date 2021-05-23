@@ -67,8 +67,9 @@ const Graph: FC<GraphProps> = () => {
 
   return (
     <Container>
-      <div>
+      <div className="mt-4">
         <h1>Genre Stats</h1>
+        <hr />
         <div className="d-flex justify-content-around">
           <Row className={style.stat}>
             <Pie type={PieController} data={data} options={options} />
@@ -82,8 +83,10 @@ const Graph: FC<GraphProps> = () => {
           </Row>
         </div>
       </div>
-      <div>
+      
+      <div className="mt-4">
         <h1>Time Stats</h1>
+        <hr />
         <div className="d-flex justify-content-around">
           <Row className={style.stat}>
             <Line type={LineController} data={dataY} options={options} />
@@ -93,8 +96,10 @@ const Graph: FC<GraphProps> = () => {
           </Row>
         </div>
       </div>
-      <div>
+      
+      <div className="mt-4">
         <h1>Release Movies Stat</h1>
+        <hr />
         <Col className={style.stat}>
           <Pie type={PieController} data={dataMovieYear} options={options} />
         </Col>
