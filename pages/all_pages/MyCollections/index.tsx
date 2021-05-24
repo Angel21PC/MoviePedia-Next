@@ -12,14 +12,22 @@ import NavBar from "../../../components/NavBar/index";
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";
 
+import Modal from "../../../components/util/Critic/Modal";
 import Critic from "../../../components/util/Critic/Critic";
 export interface MyColProps {}
 
 const MyCol: NextPage<MyColProps> = () => {
+  const [show, setShow] = useState<boolean>(false);
   return (
     <>
       <NavBar />
-      <Critic></Critic>
+
+      <button onClick={() => setShow(true)}>Open Modal</button>
+      <Modal show={show} onClose={() => setShow(false)}>
+        <div className="p-3 mt-3">
+          <Critic />
+        </div>
+      </Modal>
     </>
   );
 };

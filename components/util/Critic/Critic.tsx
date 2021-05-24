@@ -1,15 +1,20 @@
 import React, { FC, useState } from "react";
 import "react-quill/dist/quill.bubble.css";
+import style from "./Critic.module.scss";
+import { useAuth } from "../../../firebase/AuthContext";
+export interface CriticProps {
+  id: number | string;
+}
 
-export interface CriticProps {}
-
-const Critic: FC<CriticProps> = () => {
+const Critic: FC<CriticProps> = ({ id }) => {
+  const { pushNewCriticM } = useAuth();
+  const currentUser = useAuth();
   let quill;
   if (document) {
     quill = require("react-quill");
   }
   const ReactQuill = quill;
-  const [value, setValue] = useState();
+  const [value, setValue] = useState("");
 
   const [title, setTitle] = useState(null);
 
@@ -18,32 +23,47 @@ const Critic: FC<CriticProps> = () => {
     setTitle(data.target.value);
   };
 
-  const send = () => {
+  const send = async () => {
     let newObj = {
       title: title,
       html: value,
     };
     console.log(newObj);
+    const response = await pushNewCriticM(
+      id,
+      title,
+      value,
+      currentUser.currentUser.email
+    );
+    console.log(response);
   };
   return (
     <>
-      <input
-        type="text"
-        className="form-control item"
-        key="title"
-        id="title"
-        name="title"
-        placeholder="Critic title"
-        onChange={change}
-      />
-      <ReactQuill
-        theme="bubble"
-        value={value}
-        onChange={(e) => {
-          console.log(e);
-          setValue(e);
-        }}
-      />
+      <div>
+        <h3>Title</h3>
+        <input
+          type="text"
+          className="form-control item"
+          key="title"
+          id="title"
+          name="title"
+          placeholder="Critic title"
+          onChange={change}
+        />
+      </div>
+
+      <div className="mt-4">
+        <h3>Text</h3>
+        <ReactQuill
+          className={style.text}
+          theme="bubble"
+          value={value}
+          onChange={(e) => {
+            console.log(e);
+            setValue(e);
+          }}
+        />
+      </div>
 
       <div className="form-group">
         <button
