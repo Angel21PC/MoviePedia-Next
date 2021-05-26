@@ -3,7 +3,6 @@ import { v1 as uuidv1 } from "uuid";
 
 export async function getCritics(id) {
   let response = undefined;
-
   try {
     const docRef = db.collection("critica_M").doc(id.toString());
     await docRef
@@ -137,6 +136,38 @@ export async function criticLike(
               }
             }
           });
+        } else {
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("F:", error);
+      });
+  } catch (e) {
+    console.log(e);
+  }
+  return response;
+}
+
+export async function getListCritics(id_film: number | string) {
+  let response = undefined;
+  try {
+    const docRef = db.collection("critica_M").doc(id_film.toString());
+
+    await docRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          let result = doc.data();
+          let arrayCritics = [];
+          result.critics?.map((c) => {
+            let newMinCritic = {
+              ...c.newCritic.data.user,
+              ...c.newCritic.data.title,
+            };
+            arrayCritics.push(newMinCritic);
+          });
+          response = arrayCritics;
         } else {
           console.log("No such document!");
         }
