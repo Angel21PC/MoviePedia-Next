@@ -14,6 +14,9 @@ import { useAuth } from "../../../firebase/AuthContext";
 
 import Modal from "../../../components/util/Critic/Modal";
 import Critic from "../../../components/util/Critic/Critic";
+
+import CollectionCreator from "../../../components/Collection/Creator";
+
 export interface MyColProps {}
 
 const MyCol: NextPage<MyColProps> = () => {
@@ -21,13 +24,13 @@ const MyCol: NextPage<MyColProps> = () => {
   return (
     <>
       <NavBar />
-
-      <button onClick={() => setShow(true)}>Open Modal</button>
+      <CollectionCreator></CollectionCreator>
+      {/* <button onClick={() => setShow(true)}>Open Modal</button>
       <Modal show={show} onClose={() => setShow(false)}>
         <div className="p-3 mt-3">
           <Critic />
         </div>
-      </Modal>
+      </Modal> */}
     </>
   );
 };
