@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 //Next
 import { useRouter } from "next/router";
 import Link from "next/link";
-
+import Image from "next/image";
 //Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt, faUser } from "@fortawesome/free-solid-svg-icons";
@@ -37,7 +37,12 @@ const NavBar: React.SFC<NavBarProps> = () => {
       className={style.nav}
     >
       <Navbar.Brand href="/">
-        <img src="../../../public/image.png" alt="" height="40px" />
+        {/* <Image
+          src="MoviePedia-Next\public\image.png"
+          alt="Picture"
+          height="40px"
+          width="40px"
+        /> */}
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">

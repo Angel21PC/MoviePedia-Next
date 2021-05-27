@@ -48,7 +48,7 @@ import {
 } from "./Comments";
 import { getCritics, pushNewCriticM, criticLike } from "./Critics";
 import { pushNewCollection } from "./Collection";
-import { uploadImg, getImageUrl } from "./Images";
+import { uploadImgProfile, getImageUrlProfile } from "./Images";
 const AuthContext = React.createContext(null);
 
 export function useAuth() {
@@ -408,8 +408,8 @@ export function AuthProvider({ children }) {
     criticLike,
     getListTv,
     pushNewCollection,
-    uploadImg,
-    getImageUrl,
+    uploadImgProfile,
+    getImageUrlProfile,
   };
 
   return (

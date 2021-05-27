@@ -75,7 +75,7 @@ const FormEdit: React.SFC<FormEditProps> = () => {
         data.currentPassword
       );
       // console.log(data.file);
-      let c = await uploadImg(data.file[0]);
+      let c = await uploadImgProfile(data.file[0]);
       console.log(c);
       router.push("/");
     } catch (e) {
@@ -98,7 +98,7 @@ const FormEdit: React.SFC<FormEditProps> = () => {
   };
 
   //firebase
-  const { changeData, uploadImg, getImageUrl } = useAuth();
+  const { changeData, uploadImgProfile, getImageUrlProfile } = useAuth();
 
   return (
     <div className="registration-form">
