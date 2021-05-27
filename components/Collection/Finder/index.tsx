@@ -4,7 +4,7 @@ import { URL, api_rutesM } from "../../../config/rute_api";
 
 //components
 import FindCollectionMovie from "./FindCollectionMovie";
-
+import FindCollectionTv from "./FindCollectionTv";
 //COMPONENTS
 import {
   Tabs,
@@ -17,9 +17,13 @@ import {
 
 export interface CollectionFinderProps {
   getMovies: any;
+  getShow: any;
 }
 
-const CollectionFinder: React.SFC<CollectionFinderProps> = ({ getMovies }) => {
+const CollectionFinder: React.SFC<CollectionFinderProps> = ({
+  getMovies,
+  getShow,
+}) => {
   const [find, setFind] = useState("");
 
   const change = (data: any) => {
@@ -42,6 +46,7 @@ const CollectionFinder: React.SFC<CollectionFinderProps> = ({ getMovies }) => {
         </InputGroup>
 
         <Tabs
+          variant="pills"
           className="justify-content-md-center"
           defaultActiveKey="Movies"
           id="uncontrolled-tab-example"
@@ -50,7 +55,7 @@ const CollectionFinder: React.SFC<CollectionFinderProps> = ({ getMovies }) => {
             <FindCollectionMovie id={find} getMovies={getMovies} />
           </Tab>
           <Tab eventKey="Shows" title="TV Shows">
-            {/* findcollectionShow */}
+            <FindCollectionTv id={find} getShow={getShow} />
           </Tab>
         </Tabs>
       </Container>

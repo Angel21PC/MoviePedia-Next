@@ -16,13 +16,13 @@ import { v1 as uuidv1 } from "uuid";
 */
 
 export async function pushNewCollection(
-  id: number | string,
   title: string,
   description: string,
   user_email: string,
-  arrayMovies: any,
+  objArray: any,
   publicC: boolean
 ) {
+  let response = undefined;
   const today = new Date();
 
   const id_Collection = uuidv1();
@@ -30,10 +30,9 @@ export async function pushNewCollection(
   const dataCollection = {
     title: title,
     description: description,
-    arrayMovies: arrayMovies,
+    objArray: objArray,
     user: user_email,
     date: today,
-    ...arrayMovies,
   };
   const newCollection = {
     public: publicC,
@@ -46,10 +45,13 @@ export async function pushNewCollection(
         .collection("Collections")
         .doc(id_Collection.toString())
         .set(newCollection);
+
+      response = true;
     } catch (e) {
       console.log(e);
     }
   }
+  return response;
 }
 
 export async function deleteCollection(id_Collection: number | string) {

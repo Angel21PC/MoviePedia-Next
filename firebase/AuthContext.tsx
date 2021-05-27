@@ -47,6 +47,8 @@ import {
   commentLikeTV,
 } from "./Comments";
 import { getCritics, pushNewCriticM, criticLike } from "./Critics";
+import { pushNewCollection } from "./Collection";
+import { uploadImg } from "./Images";
 const AuthContext = React.createContext(null);
 
 export function useAuth() {
@@ -405,6 +407,8 @@ export function AuthProvider({ children }) {
     pushNewCriticM,
     criticLike,
     getListTv,
+    pushNewCollection,
+    uploadImg,
   };
 
   return (

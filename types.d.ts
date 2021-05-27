@@ -70,6 +70,7 @@ type INewUser = {
   phone_number: string;
   username: string;
   currentPassword?: string;
+  file: any;
 };
 
 type IListM = {

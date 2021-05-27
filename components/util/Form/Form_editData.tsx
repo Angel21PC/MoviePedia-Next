@@ -23,7 +23,6 @@ import { useRouter } from "next/router";
 
 import { INewUser } from "../../../types";
 
-
 //component-p
 // import dynamic from "next/dynamic";
 // const Editor = dynamic(() => import("../TextEditor"), { ssr: false });
@@ -35,7 +34,6 @@ import { INewUser } from "../../../types";
 /*foto */
 
 export interface FormEditProps {}
-
 
 const today = new Date();
 const schema = yup.object().shape({
@@ -49,6 +47,7 @@ const schema = yup.object().shape({
   phone_number: yup.string(),
   birth_date: yup.date().max(today),
   currentPassword: yup.string().required(),
+  file: yup.mixed(),
 });
 const FormEdit: React.SFC<FormEditProps> = () => {
   const [loading, setLoading] = useState(false);
@@ -74,10 +73,10 @@ const FormEdit: React.SFC<FormEditProps> = () => {
         data.password,
         data.currentPassword
       );
-
+      await uploadImg(data.file);
       router.push("/");
     } catch (e) {
-      console.log(e)
+      console.log(e);
       store.addNotification({
         title: "Fail!",
         message: "Fail to change data account",
@@ -96,7 +95,7 @@ const FormEdit: React.SFC<FormEditProps> = () => {
   };
 
   //firebase
-  const { changeData } = useAuth();
+  const { changeData, uploadImg } = useAuth();
 
   return (
     <div className="registration-form">
@@ -197,7 +196,16 @@ const FormEdit: React.SFC<FormEditProps> = () => {
           />
           {errors.birth_date?.message && <p>{errors.birth_date?.message}</p>}
         </div>
-
+        <div>
+          <input
+            type="file"
+            className="form-control item"
+            key="file"
+            id="file"
+            name="file"
+            {...register("file")}
+          ></input>
+        </div>
         {/* Biografia */}
         {/* <div className="form-group">
           <h4>Bio</h4>
