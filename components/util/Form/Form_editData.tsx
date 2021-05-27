@@ -52,6 +52,7 @@ const schema = yup.object().shape({
 const FormEdit: React.SFC<FormEditProps> = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [url, setUrl] = useState(undefined);
 
   const {
     register,
@@ -73,7 +74,9 @@ const FormEdit: React.SFC<FormEditProps> = () => {
         data.password,
         data.currentPassword
       );
-      await uploadImg(data.file);
+      // console.log(data.file);
+      let c = await uploadImg(data.file[0]);
+      console.log(c);
       router.push("/");
     } catch (e) {
       console.log(e);
@@ -95,10 +98,11 @@ const FormEdit: React.SFC<FormEditProps> = () => {
   };
 
   //firebase
-  const { changeData, uploadImg } = useAuth();
+  const { changeData, uploadImg, getImageUrl } = useAuth();
 
   return (
     <div className="registration-form">
+      {/* <img src={url} style={{ height: 200, width: 200 }} alt="s" /> */}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-icon">
           <span>

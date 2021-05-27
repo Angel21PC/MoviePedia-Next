@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 //Next
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -19,6 +21,7 @@ import style from "./NavBar.module.scss";
 export interface NavBarProps {}
 
 const NavBar: React.SFC<NavBarProps> = () => {
+  const [url, setUrl] = useState(undefined);
   const currentUser = useAuth();
   const { logout } = useAuth();
 
