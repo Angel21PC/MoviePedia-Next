@@ -17,7 +17,7 @@ import { useAuth } from "../../firebase/AuthContext";
 
 //style
 import style from "./NavBar.module.scss";
-
+// // import image from "../../public/image.png";
 export interface NavBarProps {}
 
 const NavBar: React.SFC<NavBarProps> = () => {
@@ -37,12 +37,7 @@ const NavBar: React.SFC<NavBarProps> = () => {
       className={style.nav}
     >
       <Navbar.Brand href="/">
-        {/* <Image
-          src="MoviePedia-Next\public\image.png"
-          alt="Picture"
-          height="40px"
-          width="40px"
-        /> */}
+        <Image src="/image.png" alt="Picture" height="40px" width="30px" />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
