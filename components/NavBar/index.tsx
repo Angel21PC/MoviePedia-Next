@@ -37,7 +37,7 @@ const NavBar: React.SFC<NavBarProps> = () => {
       className={style.nav}
     >
       <Navbar.Brand href="/">
-        <Image src="/image.png" alt="Picture" height="40px" width="30px" />
+        <Image src="/image.png" alt="Picture" height="40px" width="150px" />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">

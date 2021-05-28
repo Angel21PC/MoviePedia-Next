@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef } from "react";
 import styles from "./Critic.module.scss";
 import Critic from "./Critic";
-
+import { Button } from "react-bootstrap";
 export interface ModalProps {
   show: boolean;
   onClose: () => void;
@@ -20,7 +20,7 @@ const Modal: FC<ModalProps> = ({ show, onClose, children }) => {
     <React.Fragment>
       <div ref={modalRef} className={`${styles.modal__wrap}`}>
         <div className={styles.modal}>
-          <button
+          <Button
             onClick={onClose}
             style={{
               width: 60,
@@ -33,7 +33,7 @@ const Modal: FC<ModalProps> = ({ show, onClose, children }) => {
             className={styles.close__btn}
           >
             Close
-          </button>
+          </Button>
           {children}
         </div>
       </div>

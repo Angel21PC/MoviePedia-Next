@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import "react-quill/dist/quill.bubble.css";
 import style from "./Critic.module.scss";
 import { useAuth } from "../../../firebase/AuthContext";
+import { Button } from "react-bootstrap";
 export interface CriticProps {
   id: number | string;
 }
@@ -66,13 +67,13 @@ const Critic: FC<CriticProps> = ({ id }) => {
       </div>
 
       <div className="form-group">
-        <button
+        <Button
           type="submit"
           className="btn btn-block create-account"
           onClick={send}
         >
           GO
-        </button>
+        </Button>
       </div>
       <hr />
       <div dangerouslySetInnerHTML={{ __html: value }}></div>

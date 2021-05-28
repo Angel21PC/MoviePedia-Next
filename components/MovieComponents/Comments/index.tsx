@@ -3,14 +3,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../../firebase/AuthContext";
 //Notification
 import { store } from "react-notifications-component";
-import {
-  Toast,
-  ToastBody,
-  InputGroup,
-  FormControl,
-  Button,
-  ToastHeader,
-} from "react-bootstrap";
+import { InputGroup, FormControl, Button } from "react-bootstrap";
 
 import style from "./Comments.module.scss";
 import CommentItem from "./Component";

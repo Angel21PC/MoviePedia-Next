@@ -4,7 +4,7 @@ import { useAuth } from "../../../firebase/AuthContext";
 import Modal from "./Modal";
 import Critic from "./Critic";
 import MinCritic from "./MinCritic";
-
+import { Button } from "react-bootstrap";
 export interface CriticListProps {
   id: string;
 }
@@ -35,7 +35,7 @@ const CriticList: FC<CriticListProps> = ({ id }) => {
       </div>
       <div className="mt-2 d-flex">
         <div>
-          <button onClick={() => setShow(true)}>Open Editor</button>
+          <Button onClick={() => setShow(true)}>Open Editor</Button>
           <Modal show={show} onClose={() => setShow(false)}>
             <div className="p-3 mt-3">
               <Critic id={id} />
