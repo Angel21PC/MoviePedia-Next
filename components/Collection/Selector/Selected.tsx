@@ -17,12 +17,15 @@ const SelectedMovies: FC<SelectedMoviesProps> = ({
   deleteMovies,
 }) => {
   const [movies, setMovies] = useState([]);
+  const [shows, setShows] = useState([]);
   useEffect(() => {
     setMovies([]);
+    setShows([]);
     setMovies(movie);
 
-    console.log({ movie: movie, movies: movies });
-  }, [movie]);
+    setShows(show);
+    // console.log({ movie: movie, shows: shows });
+  }, [movie, show]);
 
   return (
     <>
@@ -39,7 +42,19 @@ const SelectedMovies: FC<SelectedMoviesProps> = ({
           </div>
         ))}
       </div>
-
+      <div className="actors_container">
+        {shows.map((s) => (
+          <div className="actor" key={s.id}>
+            <img
+              onClick={() => deleteMovies(s)}
+              key={s.id}
+              className="actor_poster"
+              src={`${base_Url}${s?.poster_path}`}
+              alt={s?.name}
+            ></img>
+          </div>
+        ))}
+      </div>
       <style jsx>{`
         .actors_container {
           display: flex;

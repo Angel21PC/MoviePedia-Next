@@ -1,6 +1,6 @@
 import { auth, db, a } from "./index";
 import { v1 as uuidv1 } from "uuid";
-import { uploadImgCollection } from "./Images";
+import { uploadImgCollection, getImageCollection } from "./Images";
 /* 
     id : {
         public: bool
@@ -156,6 +156,7 @@ export async function changeVisibility(
 
 export async function getCollectionByID(id_Collection: number | string) {
   let response = undefined;
+  let urlImageCollection = undefined;
   if (auth.currentUser !== null) {
     try {
       const docRef = db.collection("Collections").doc(id_Collection.toString());
@@ -168,7 +169,12 @@ export async function getCollectionByID(id_Collection: number | string) {
       });
     } catch (error) {}
   }
-  return response;
+  const t = async () => {
+    console.log({ response: response });
+    return await getImageCollection(response.data.imageName);
+  };
+  urlImageCollection = await t();
+  return { response: response, url: urlImageCollection };
 }
 export async function getCollections() {
   let response = undefined;

@@ -7,11 +7,11 @@ import CollectionFinder from "../Finder/index";
 import SelectedMovies from "../Selector/Selected";
 import CreatorForm from "./CreatorForm";
 //components
-import { Container, Row, Col, Tabs, Tab } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import Modal from "./Modal/index";
 export interface CollectionCreatorProps {}
 
-const CollectionCreator: React.SFC<CollectionCreatorProps> = () => {
+const CollectionCreator: FC<CollectionCreatorProps> = () => {
   const [movies, setMovies] = useState([]);
   const [shows, setShow] = useState([]);
 
@@ -27,25 +27,30 @@ const CollectionCreator: React.SFC<CollectionCreatorProps> = () => {
 
   return (
     <Container>
-      <button onClick={() => setIsOpen(true)}>Listo</button>
-      <Modal show={isOpen} onClose={() => setIsOpen(false)}>
-        <CreatorForm
-          movies={movies}
-          shows={shows}
-          close={() => setIsOpen(false)}
-        />
-      </Modal>
-      <Col lg="6">
-        <SelectedMovies movie={movies} show={shows} deleteMovies={deleteM} />
-      </Col>
-      <Col lg="4">
-        <CollectionFinder
-          getMovies={setMovies}
-          getShow={setShow}
-          m={movies}
-          s={shows}
-        />
-      </Col>
+      <div>
+        <Button onClick={() => setIsOpen(true)}>Listo</Button>
+        <Modal show={isOpen} onClose={() => setIsOpen(false)}>
+          <CreatorForm
+            movies={movies}
+            shows={shows}
+            close={() => setIsOpen(false)}
+          />
+        </Modal>
+      </div>
+      <Row>
+        <Col xs lg="6">
+          <SelectedMovies movie={movies} show={shows} deleteMovies={deleteM} />
+        </Col>
+
+        <Col lg="4">
+          <CollectionFinder
+            getMovies={setMovies}
+            getShow={setShow}
+            m={movies}
+            s={shows}
+          />
+        </Col>
+      </Row>
     </Container>
   );
 };

@@ -23,10 +23,10 @@ export interface NavBarProps {}
 const NavBar: React.SFC<NavBarProps> = () => {
   const [url, setUrl] = useState(undefined);
   const currentUser = useAuth();
-  const { logout } = useAuth();
+  const { logout, checkProviderUser } = useAuth();
 
   const router = useRouter();
-
+  checkProviderUser();
   return (
     <Navbar
       collapseOnSelect

@@ -5,7 +5,8 @@ import axios from "axios";
 import { URL, api_rutesM } from "../../../config/rute_api";
 //components-p
 import CollectionSelector from "../Selector/SelectorMovie";
-
+//components
+import { Row } from "react-bootstrap";
 export interface FindCollectionMovieProps {
   id: string;
   getMovies: any;
@@ -36,13 +37,13 @@ const FindCollectionMovie: FC<FindCollectionMovieProps> = ({
   }, [id]);
 
   return (
-    <div className="justify-content-center">
+    <Row className="justify-content-center" lg={3} sm={2}>
       {movies?.map((movie) => (
         <div key={movie.id}>
           <CollectionSelector m={movie} collection={getMovies} mm={m} />
         </div>
       ))}
-    </div>
+    </Row>
   );
 };
 

@@ -64,8 +64,10 @@ import {
   saveLikesCollections,
   deleteLikesColletions,
   getCollections,
+  getCollectionByID,
 } from "./Collection";
 import { uploadImgProfile, getImageUrlProfile } from "./Images";
+import { checkProviderUser } from "./provider";
 const AuthContext = React.createContext(null);
 
 export function useAuth() {
@@ -444,6 +446,8 @@ export function AuthProvider({ children }) {
     deleteLikesColletions,
     getCollections,
     getMinCritic,
+    getCollectionByID,
+    checkProviderUser,
   };
 
   return (
