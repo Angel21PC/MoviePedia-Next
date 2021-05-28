@@ -50,6 +50,9 @@ const schema = yup.object().shape({
   file: yup.mixed(),
 });
 const FormEdit: React.SFC<FormEditProps> = () => {
+  //firebase
+  const { changeData, uploadImgProfile, getImageUrlProfile } = useAuth();
+
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [url, setUrl] = useState(undefined);
@@ -96,9 +99,6 @@ const FormEdit: React.SFC<FormEditProps> = () => {
     }
     setLoading(false);
   };
-
-  //firebase
-  const { changeData, uploadImgProfile, getImageUrlProfile } = useAuth();
 
   return (
     <div className="registration-form">
@@ -203,7 +203,6 @@ const FormEdit: React.SFC<FormEditProps> = () => {
         <div>
           <input
             type="file"
-            className="form-control item"
             key="file"
             id="file"
             name="file"

@@ -3,12 +3,14 @@ import { useAuth } from "../../../firebase/AuthContext";
 
 import Modal from "./Modal";
 import Critic from "./Critic";
+import MinCritic from "./MinCritic";
+
 export interface CriticListProps {
   id: string;
 }
 
 const CriticList: FC<CriticListProps> = ({ id }) => {
-  const { getCritics } = useAuth();
+  const { getCritics, getMinCritic } = useAuth();
   const currentUser = useAuth();
 
   const [critics, setCritics] = useState([]);
@@ -16,12 +18,8 @@ const CriticList: FC<CriticListProps> = ({ id }) => {
   useEffect(() => {
     //get comments
     async function criticsData() {
-      const response = await getCritics(id);
-      console.log("aqui");
-      console.log(response);
-      let orderDate = response?.critics?.sort(
-        (a, b) => a.newComent.data.date - b.newComent.data.date
-      );
+      const response = await getMinCritic(id);
+      let orderDate = response?.sort((a, b) => a.date - b.date);
       setCritics(orderDate);
     }
     criticsData();
@@ -29,8 +27,10 @@ const CriticList: FC<CriticListProps> = ({ id }) => {
   return (
     <div className="border-1 rounded">
       <div className="p-2 border-1">
-        {critics?.map((com) => (
-          <div dangerouslySetInnerHTML={{ __html: com.html }}></div>
+        {critics?.map((cri) => (
+          <div key={cri.title}>
+            <MinCritic {...cri} />
+          </div>
         ))}
       </div>
       <div className="mt-2 d-flex">

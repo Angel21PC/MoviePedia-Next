@@ -19,25 +19,32 @@ const CollectionCreator: React.SFC<CollectionCreatorProps> = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const deleteM = (movie: any) => {
-    let index = movies.indexOf(movie);
-    if (index > -1) {
-      movies.splice(index, 1);
-    }
-    console.log(movies);
+    setMovies(movies.filter((item) => item.id !== movie.id));
   };
-  useEffect(() => {}, [deleteM, movies]);
+  useEffect(() => {
+    console.log({ movie: movies, shows: shows });
+  }, [deleteM, movies]);
 
   return (
     <Container>
       <button onClick={() => setIsOpen(true)}>Listo</button>
       <Modal show={isOpen} onClose={() => setIsOpen(false)}>
-        <CreatorForm movies={movies} shows={shows} />
+        <CreatorForm
+          movies={movies}
+          shows={shows}
+          close={() => setIsOpen(false)}
+        />
       </Modal>
       <Col lg="6">
         <SelectedMovies movie={movies} show={shows} deleteMovies={deleteM} />
       </Col>
       <Col lg="4">
-        <CollectionFinder getMovies={setMovies} getShow={setShow} />
+        <CollectionFinder
+          getMovies={setMovies}
+          getShow={setShow}
+          m={movies}
+          s={shows}
+        />
       </Col>
     </Container>
   );

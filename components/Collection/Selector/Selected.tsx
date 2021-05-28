@@ -17,18 +17,20 @@ const SelectedMovies: FC<SelectedMoviesProps> = ({
   deleteMovies,
 }) => {
   const [movies, setMovies] = useState([]);
-  useLayoutEffect(() => {
+  useEffect(() => {
     setMovies([]);
     setMovies(movie);
+
+    console.log({ movie: movie, movies: movies });
   }, [movie]);
 
-  console.log({ movie: movie });
   return (
     <>
       <div className="actors_container">
         {movie.map((m) => (
-          <div className="actor" key={m.id} onClick={() => deleteMovies(m)}>
+          <div className="actor" key={m.id}>
             <img
+              onClick={() => deleteMovies(m)}
               key={m.id}
               className="actor_poster"
               src={`${base_Url}${m?.poster_path}`}

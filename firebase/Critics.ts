@@ -30,6 +30,37 @@ export async function getCritics(id) {
   return response;
 }
 
+export async function getMinCritic(id_film: string | number) {
+  let response = undefined;
+  let minArray = [];
+
+  if (auth.currentUser !== null) {
+    try {
+      const docRef = db.collection("critica_M").doc(id_film.toString());
+      await docRef.get().then((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          data.critics.map((e) => {
+            let objCritic = {
+              title: e.newCritic.data.title,
+              creator: e.newCritic.data.user,
+              date: e.newCritic.data.date,
+              id_critic: e.newCritic.data.id_critic,
+            };
+            minArray.push(objCritic);
+          });
+          response = minArray;
+        } else {
+          console.log("No such document!");
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  return response;
+}
+
 export async function pushNewCriticM(
   id: number | string,
   title: string,

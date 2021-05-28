@@ -94,15 +94,6 @@ export async function uploadImgCollection(imageAsFile: any, title: string) {
     },
     (err) => {
       console.log(err);
-    },
-    () => {
-      storage
-        .ref("imagesCollections")
-        .child(currentUser + imageAsFile.name)
-        .getDownloadURL()
-        .then((fireBaseUrl) => {
-          return fireBaseUrl;
-        });
     }
   );
 }

@@ -4,14 +4,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { URL, api_rutesTv } from "../../../config/rute_api";
 //components-p
-import CollectionSelector from "../Selector/SelectorMovie";
+import CollectionSelectorS from "../Selector/SelectorShow";
 
 export interface FindCollectionTvProps {
   id: string;
   getShow: any;
+  s;
 }
 
-const FindCollectionTv: FC<FindCollectionTvProps> = ({ id, getShow }) => {
+const FindCollectionTv: FC<FindCollectionTvProps> = ({ id, getShow, s }) => {
   const [fetchUrl, setFetchUrl] = useState(URL + api_rutesTv.Find);
   const [movies, setMovies] = useState([]);
 
@@ -36,7 +37,7 @@ const FindCollectionTv: FC<FindCollectionTvProps> = ({ id, getShow }) => {
     <div className="justify-content-center">
       {movies?.map((movie) => (
         <div key={movie.id}>
-          <CollectionSelector m={movie} collection={getShow} />
+          <CollectionSelectorS s={movie} collection={getShow} ss={s} />
         </div>
       ))}
     </div>

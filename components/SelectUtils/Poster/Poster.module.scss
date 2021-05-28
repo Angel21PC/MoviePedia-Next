@@ -1,0 +1,20 @@
+.image_container {
+  width: 100%;
+
+  > div {
+    position: unset !important;
+  }
+
+  .image {
+    object-fit: contain !important;
+    max-height: 300px !important;
+
+    transition: transform 450ms !important;
+    border-radius: 10px !important;
+    -webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.3) !important;
+
+    /*position*/
+    margin-left: 12% !important;
+  }
+}

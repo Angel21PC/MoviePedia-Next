@@ -46,8 +46,25 @@ import {
   pushNewCommentsTV,
   commentLikeTV,
 } from "./Comments";
-import { getCritics, pushNewCriticM, criticLike } from "./Critics";
-import { pushNewCollection } from "./Collection";
+import {
+  getCritics,
+  pushNewCriticM,
+  criticLike,
+  getMinCritic,
+} from "./Critics";
+import {
+  pushNewCollection,
+  deleteCollection,
+  collectionLike,
+  changeVisibility,
+  checkBookMarkCollection,
+  deleteBookMarkCollection,
+  saveBookMarkCollection,
+  checkLikesCollections,
+  saveLikesCollections,
+  deleteLikesColletions,
+  getCollections,
+} from "./Collection";
 import { uploadImgProfile, getImageUrlProfile } from "./Images";
 const AuthContext = React.createContext(null);
 
@@ -90,6 +107,12 @@ export function AuthProvider({ children }) {
     //Bookmark
     db.collection("eye_TV").doc(id).set({
       list: [],
+    });
+
+    //Collections
+    db.collection("Collections_Saved").doc(id).set({
+      Bookmark: [],
+      Like: [],
     });
 
     setTimeout(() => {
@@ -410,6 +433,17 @@ export function AuthProvider({ children }) {
     pushNewCollection,
     uploadImgProfile,
     getImageUrlProfile,
+    deleteCollection,
+    collectionLike,
+    changeVisibility,
+    checkBookMarkCollection,
+    deleteBookMarkCollection,
+    saveBookMarkCollection,
+    checkLikesCollections,
+    saveLikesCollections,
+    deleteLikesColletions,
+    getCollections,
+    getMinCritic,
   };
 
   return (

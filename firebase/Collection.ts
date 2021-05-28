@@ -1,5 +1,6 @@
 import { auth, db, a } from "./index";
 import { v1 as uuidv1 } from "uuid";
+import { uploadImgCollection } from "./Images";
 /* 
     id : {
         public: bool
@@ -20,8 +21,17 @@ export async function pushNewCollection(
   description: string,
   user_email: string,
   objArray: any,
-  publicC: boolean
+  publicC: boolean,
+  file: any
 ) {
+  const currentUser = auth.currentUser.email;
+
+  try {
+    await uploadImgCollection(file, title);
+  } catch (e) {
+    console.log(e);
+  }
+
   let response = undefined;
   const today = new Date();
 
@@ -33,6 +43,7 @@ export async function pushNewCollection(
     objArray: objArray,
     user: user_email,
     date: today,
+    imageName: currentUser + title,
   };
   const newCollection = {
     public: publicC,
@@ -65,7 +76,7 @@ export async function collectionLike(
   let response = undefined;
   if (auth.currentUser !== null) {
     try {
-      const docRef = db.collection("critica_M").doc(id_collection.toString());
+      const docRef = db.collection("Collections").doc(id_collection.toString());
       await docRef
         .get()
         .then((doc) => {
@@ -120,12 +131,169 @@ export async function changeVisibility(
   let response = undefined;
   if (auth.currentUser !== null) {
     try {
-      const docRef = db.collection("critica_M").doc(id_collection.toString());
+      const docRef = db.collection("Collections").doc(id_collection.toString());
       await docRef.get().then((doc) => {
         if (doc.exists) {
+          let result = doc.data();
+          if (result.public) {
+            result.public = false;
+          } else {
+            result.public = true;
+          }
+          docRef.update(a.firestore.FieldValue.arrayRemove(result));
+
+          docRef.update(a.firestore.FieldValue.arrayUnion(result));
+          response = true;
+        } else {
+          console.log("No such document!");
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+export async function getCollectionByID(id_Collection: number | string) {
+  let response = undefined;
+  if (auth.currentUser !== null) {
+    try {
+      const docRef = db.collection("Collections").doc(id_Collection.toString());
+      await docRef.get().then((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          response = data;
         } else {
         }
       });
     } catch (error) {}
   }
+  return response;
+}
+export async function getCollections() {
+  let response = undefined;
+  if (auth.currentUser !== null) {
+    try {
+      const docRef = db
+        .collection("Collections")
+        .where("public", "==", true)
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            console.log(doc.id, " => ", doc.data());
+          });
+        });
+      response = docRef;
+    } catch (error) {}
+  }
+  return response;
+}
+
+//
+async function ConsultaID() {
+  let result = undefined;
+  const docRef = db.collection("profile").doc(auth.currentUser.uid);
+  await docRef
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        const data = doc.data();
+        result = data.collections_id.id;
+        // console.log(result)
+      } else {
+        console.log("No such document!");
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+  console.log(result);
+  return result;
+}
+
+//options collection bookmark and like
+export async function checkBookMarkCollection(id: number | string) {
+  const id_user_collection = await ConsultaID();
+  let result = undefined;
+  const docRef = db.collection("Collections_Saved").doc(id_user_collection);
+
+  await docRef
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        const data = doc.data();
+        console.log(data);
+
+        result = data.Bookmark.find((e) => e.id === id);
+      } else {
+        console.log("No such document!");
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+  return result;
+}
+
+export async function deleteBookMarkCollection(id: number | string) {
+  const id_user_collection = await ConsultaID();
+  return db
+    .collection("Collections_Saved")
+    .doc(id_user_collection)
+    .update({
+      Bookmark: a.firestore.FieldValue.arrayRemove({ id }),
+    });
+}
+
+export async function saveBookMarkCollection(id: number | string) {
+  const id_user_collection = await ConsultaID();
+  return db
+    .collection("Collections_Saved")
+    .doc(id_user_collection)
+    .update({
+      Bookmark: a.firestore.FieldValue.arrayUnion({ id }),
+    });
+}
+
+//like
+export async function checkLikesCollections(id: number | string) {
+  const id_user_collection = await ConsultaID();
+  let result = undefined;
+  const docRef = db.collection("Collections_Saved").doc(id_user_collection);
+
+  await docRef
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        const data = doc.data();
+        result = data.Like.find((e) => e.id === id);
+      } else {
+        console.log("No such document!");
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+  return result;
+}
+
+export async function saveLikesCollections(id: number | string) {
+  const id_user_collection = await ConsultaID();
+
+  return db
+    .collection("Collections_Saved")
+    .doc(id_user_collection)
+    .update({
+      Like: a.firestore.FieldValue.arrayUnion({ id }),
+    });
+}
+
+export async function deleteLikesColletions(id: number | string) {
+  const id_user_collection = await ConsultaID();
+  return db
+    .collection("Collections_Saved")
+    .doc(id_user_collection)
+    .update({
+      Like: a.firestore.FieldValue.arrayRemove({ id }),
+    });
 }

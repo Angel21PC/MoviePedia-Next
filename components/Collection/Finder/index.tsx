@@ -18,11 +18,15 @@ import {
 export interface CollectionFinderProps {
   getMovies: any;
   getShow: any;
+  m: any;
+  s: any;
 }
 
 const CollectionFinder: React.SFC<CollectionFinderProps> = ({
   getMovies,
   getShow,
+  m,
+  s,
 }) => {
   const [find, setFind] = useState("");
 
@@ -52,10 +56,10 @@ const CollectionFinder: React.SFC<CollectionFinderProps> = ({
           id="uncontrolled-tab-example"
         >
           <Tab eventKey="Movies" title="Movies">
-            <FindCollectionMovie id={find} getMovies={getMovies} />
+            <FindCollectionMovie id={find} getMovies={getMovies} m={m} />
           </Tab>
           <Tab eventKey="Shows" title="TV Shows">
-            <FindCollectionTv id={find} getShow={getShow} />
+            <FindCollectionTv id={find} getShow={getShow} s={s} />
           </Tab>
         </Tabs>
       </Container>

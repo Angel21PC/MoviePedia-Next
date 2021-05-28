@@ -85,24 +85,28 @@ const Comments: FC<CommentsProps> = ({ id }) => {
     //get comments
     async function comments() {
       const response = await getCommentsM(id);
-      let orderDate = response?.comments.sort((a,b)=>a.newComent.data.date - b.newComent.data.date);
+      let orderDate = response?.comments.sort(
+        (a, b) => a.newComent.data.date - b.newComent.data.date
+      );
       setComments(orderDate);
     }
     comments();
   }, [send]);
 
-  const alert= <h3> You need to be login </h3>
-  
+  const alert = <h3> You need to be login </h3>;
+
   return (
     <div className="border-1 rounded">
       <div className="p-2 border-1">
         <div className={style.com}>
-          {currentUser.currentUser === null ? alert :comments?.map((com) => (
-          <CommentItem id_film={id} com={com} />
-        ))}
-       
+          {currentUser.currentUser === null
+            ? alert
+            : comments?.map((com) => (
+                <div key={com.text}>
+                  <CommentItem id_film={id} com={com} />
+                </div>
+              ))}
         </div>
-      
       </div>
       <div className="mt-2 d-flex">
         <div className={style.from}>

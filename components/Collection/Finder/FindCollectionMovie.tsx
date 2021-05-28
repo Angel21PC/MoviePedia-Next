@@ -9,11 +9,13 @@ import CollectionSelector from "../Selector/SelectorMovie";
 export interface FindCollectionMovieProps {
   id: string;
   getMovies: any;
+  m: any;
 }
 
 const FindCollectionMovie: FC<FindCollectionMovieProps> = ({
   id,
   getMovies,
+  m,
 }) => {
   const [fetchUrl, setFetchUrl] = useState(URL + api_rutesM.Find);
   const [movies, setMovies] = useState([]);
@@ -37,7 +39,7 @@ const FindCollectionMovie: FC<FindCollectionMovieProps> = ({
     <div className="justify-content-center">
       {movies?.map((movie) => (
         <div key={movie.id}>
-          <CollectionSelector m={movie} collection={getMovies} />
+          <CollectionSelector m={movie} collection={getMovies} mm={m} />
         </div>
       ))}
     </div>
