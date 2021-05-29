@@ -66,7 +66,11 @@ import {
   getCollections,
   getCollectionByID,
 } from "./Collection";
-import { uploadImgProfile, getImageUrlProfile } from "./Images";
+import {
+  uploadImgProfile,
+  getImageUrlProfile,
+  getImageCollection,
+} from "./Images";
 import { checkProviderUser } from "./provider";
 const AuthContext = React.createContext(null);
 
@@ -448,6 +452,7 @@ export function AuthProvider({ children }) {
     getMinCritic,
     getCollectionByID,
     checkProviderUser,
+    getImageCollection,
   };
 
   return (

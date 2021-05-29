@@ -21,6 +21,24 @@
   margin-left: 12%;
 }
 
+.poster2 {
+  object-fit: contain;
+  max-height: 300px;
+
+  transition: transform 450ms;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+.collection {
+  object-fit: contain;
+  height: 300px;
+
+  transition: transform 450ms;
+  border-radius: 10px;
+}
+
 @media (max-width: 1200px) {
   .poster {
     margin-left: 8%;

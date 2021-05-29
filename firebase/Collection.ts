@@ -176,21 +176,26 @@ export async function getCollectionByID(id_Collection: number | string) {
   urlImageCollection = await t();
   return { response: response, url: urlImageCollection };
 }
+
 export async function getCollections() {
   let response = undefined;
+  let arr = [];
   if (auth.currentUser !== null) {
     try {
-      const docRef = db
+      const docRef = await db
         .collection("Collections")
         .where("public", "==", true)
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-            console.log(doc.id, " => ", doc.data());
+            arr.push({ id: doc.id, data: doc.data() });
           });
+          response = arr;
+          console.log(arr);
         });
-      response = docRef;
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }
   return response;
 }

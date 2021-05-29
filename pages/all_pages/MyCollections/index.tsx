@@ -25,12 +25,6 @@ const MyCol: NextPage<MyColProps> = () => {
     <>
       <NavBar />
       <CollectionCreator></CollectionCreator>
-      {/* <button onClick={() => setShow(true)}>Open Modal</button>
-      <Modal show={show} onClose={() => setShow(false)}>
-        <div className="p-3 mt-3">
-          <Critic />
-        </div>
-      </Modal> */}
     </>
   );
 };

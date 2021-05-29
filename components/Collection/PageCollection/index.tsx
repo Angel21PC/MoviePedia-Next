@@ -28,6 +28,7 @@ const OneCollection: FC<OneCollectionProps> = ({ id }) => {
     fetchData();
   }, [id]);
 
+  console.log(movies);
   return (
     <div>
       <div>
@@ -47,14 +48,14 @@ const OneCollection: FC<OneCollectionProps> = ({ id }) => {
         <Col lg="5" className="justify-content-center">
           {movies?.map((m) => (
             <div key={m.id}>
-              <LstM {...m} />
+              <LstM {...{ id: m }} />
             </div>
           ))}
         </Col>
         <Col lg="5" className="justify-content-center">
           {shows?.map((s) => (
             <div key={s.id}>
-              <LstTv {...s} />
+              <LstTv {...{ id: s }} />
             </div>
           ))}
         </Col>
