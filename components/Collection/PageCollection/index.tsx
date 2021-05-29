@@ -30,35 +30,34 @@ const OneCollection: FC<OneCollectionProps> = ({ id }) => {
 
   console.log(movies);
   return (
-    <div>
+    <div className="mt-3">
       <div>
         <div className="d-flex justify-content-center">
-          <h3>{result?.response.data.title}</h3>
+          <div className="justify-content-center">
+            <h3>{result?.response.data.title}</h3>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: result?.response?.data?.description,
+              }}
+            ></div>
+          </div>
           <Image src={result?.url} alt="s" className="poster rounded" />
-        </div>
-        <div className="justify-content-center">
-          <div
-            dangerouslySetInnerHTML={{
-              __html: result?.response?.data?.description,
-            }}
-          ></div>
         </div>
       </div>
       <Container fluid>
-        <Col lg="5" className="justify-content-center">
+        <Row className="justify-content-between" lg={4} sm={2} xs={1}>
           {movies?.map((m) => (
             <div key={m.id}>
               <LstM {...{ id: m }} />
             </div>
           ))}
-        </Col>
-        <Col lg="5" className="justify-content-center">
+
           {shows?.map((s) => (
             <div key={s.id}>
               <LstTv {...{ id: s }} />
             </div>
           ))}
-        </Col>
+        </Row>
       </Container>
     </div>
   );
