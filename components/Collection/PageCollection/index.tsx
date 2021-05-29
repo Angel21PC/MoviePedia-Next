@@ -15,7 +15,10 @@ const OneCollection: FC<OneCollectionProps> = ({ id }) => {
   const [movies, setMovies] = useState([]);
   const [shows, setShows] = useState([]);
 
-  const [result, setResult] = useState();
+  const [result, setResult] = useState({
+    response: { data: { title: "s", description: "" } },
+    url: "a",
+  });
   const { getCollectionByID } = useAuth();
 
   useEffect(() => {
