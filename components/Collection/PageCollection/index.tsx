@@ -31,7 +31,6 @@ const OneCollection: FC<OneCollectionProps> = ({ id }) => {
     fetchData();
   }, [id]);
 
-  console.log(movies);
   return (
     <div className="mt-3">
       <div>
