@@ -26,23 +26,36 @@ const CollectionCreator: FC<CollectionCreatorProps> = () => {
   }, [deleteM, movies]);
 
   return (
-    <Container>
-      <div>
-        <Button onClick={() => setIsOpen(true)}>Listo</Button>
-        <Modal show={isOpen} onClose={() => setIsOpen(false)}>
-          <CreatorForm
-            movies={movies}
-            shows={shows}
-            close={() => setIsOpen(false)}
-          />
-        </Modal>
-      </div>
+    <Container fluid>
       <Row>
-        <Col xs lg="6">
-          <SelectedMovies movie={movies} show={shows} deleteMovies={deleteM} />
+        <Col xs lg="5">
+          <div className="mt-4">
+            <div className="d-flex justify-content-center">
+              <button
+                disabled={movies.length > 0 || shows.length > 0 ? false : true}
+                className="btn btn-block create-account"
+                onClick={() => setIsOpen(true)}
+              >
+                Listo
+              </button>
+              <Modal show={isOpen} onClose={() => setIsOpen(false)}>
+                <CreatorForm
+                  movies={movies}
+                  shows={shows}
+                  close={() => setIsOpen(false)}
+                />
+              </Modal>
+            </div>
+
+            <SelectedMovies
+              movie={movies}
+              show={shows}
+              deleteMovies={deleteM}
+            />
+          </div>
         </Col>
 
-        <Col lg="4">
+        <Col lg="7">
           <CollectionFinder
             getMovies={setMovies}
             getShow={setShow}
@@ -51,6 +64,18 @@ const CollectionCreator: FC<CollectionCreatorProps> = () => {
           />
         </Col>
       </Row>
+      <style jsx>{`
+        .create-account {
+          border-radius: 30px;
+          padding: 10px 20px;
+          font-size: 18px;
+          font-weight: bold;
+          background-color: #5791ff;
+          border: none;
+          color: white;
+          margin-top: 20px;
+        }
+      `}</style>
     </Container>
   );
 };

@@ -1,4 +1,3 @@
-import { mainModule } from "node:process";
 import React, { FC } from "react";
 
 //component-p
@@ -10,7 +9,7 @@ export interface CollectionSelectorProps {
   mm: any;
 }
 
-const CollectionSelector: React.SFC<CollectionSelectorProps> = ({
+const CollectionSelector: FC<CollectionSelectorProps> = ({
   m,
   collection,
   mm,

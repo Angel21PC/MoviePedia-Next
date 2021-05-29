@@ -40,7 +40,7 @@ const CollectionFinder: React.SFC<CollectionFinderProps> = ({
   return (
     <>
       <Container>
-        <InputGroup className="mb-3">
+        <InputGroup className="mb-3 mt-4">
           <FormControl
             placeholder="Seach"
             aria-label="Seach"

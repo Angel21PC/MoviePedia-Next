@@ -5,6 +5,8 @@ import { URL, api_rutesM } from "../../../config/rute_api";
 import NavBar from "../../NavBar/index";
 import FindMovie from "../../Find/FindMovie/index";
 import FindShow from "../../Find/FindShow/index";
+//components
+import { Container, Row, Col, Button } from "react-bootstrap";
 export interface SelectedMoviesProps {
   movie: any;
   show: any;
@@ -28,9 +30,9 @@ const SelectedMovies: FC<SelectedMoviesProps> = ({
   }, [movie, show]);
 
   return (
-    <>
-      <div className="actors_container">
-        {movie.map((m) => (
+    <Row xs={2} md={4}>
+      {movie.map((m) => (
+        <Col>
           <div className="actor" key={m.id}>
             <img
               onClick={() => deleteMovies(m)}
@@ -40,10 +42,11 @@ const SelectedMovies: FC<SelectedMoviesProps> = ({
               alt={m?.name}
             ></img>
           </div>
-        ))}
-      </div>
-      <div className="actors_container">
-        {shows.map((s) => (
+        </Col>
+      ))}
+
+      {shows.map((s) => (
+        <Col>
           <div className="actor" key={s.id}>
             <img
               onClick={() => deleteMovies(s)}
@@ -53,14 +56,10 @@ const SelectedMovies: FC<SelectedMoviesProps> = ({
               alt={s?.name}
             ></img>
           </div>
-        ))}
-      </div>
+        </Col>
+      ))}
+
       <style jsx>{`
-        .actors_container {
-          display: flex;
-          overflow-y: hidden;
-          overflow-x: scroll;
-        }
         .actor_poster {
           object-fit: cover;
           max-height: 200px;
@@ -73,7 +72,7 @@ const SelectedMovies: FC<SelectedMoviesProps> = ({
           margin-left: 1vw;
         }
       `}</style>
-    </>
+    </Row>
   );
 };
 
