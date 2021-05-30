@@ -9,7 +9,7 @@ const OneCritic: React.SFC<OneCriticProps> = ({ id_critic, id_movie }) => {
   const { getCritics } = useAuth();
   const currentUser = useAuth();
 
-  const [data, setData] = useState({ data: { title: "", html: "" } });
+  const [data, setData] = useState({ title: "", html: "" });
   useEffect(() => {
     async function fetchDataCritic() {
       const response = await getCritics(id_movie, id_critic);
@@ -17,7 +17,7 @@ const OneCritic: React.SFC<OneCriticProps> = ({ id_critic, id_movie }) => {
     }
     fetchDataCritic();
   }, []);
-  console.log(data);
+
   return (
     <div>
       <div>
