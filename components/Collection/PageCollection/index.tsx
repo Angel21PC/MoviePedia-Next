@@ -7,6 +7,8 @@ import { useAuth } from "../../../firebase/AuthContext";
 import { Container, Row, Col, Image } from "react-bootstrap";
 import LstM from "../../List/ListMovie/index";
 import LstTv from "../../List/ListTv/index";
+
+import M_B_F from "./M_button_F";
 export interface OneCollectionProps {
   id: any;
 }
@@ -36,7 +38,9 @@ const OneCollection: FC<OneCollectionProps> = ({ id }) => {
       <div>
         <div className="d-flex justify-content-center">
           <div className="justify-content-center">
-            <h3>{result?.response.data.title}</h3>
+            {/* <h3>{result?.response.data.title}</h3> */}
+            <M_B_F id={id} title={result?.response.data.title} />
+            <hr />
             <div
               dangerouslySetInnerHTML={{
                 __html: result?.response?.data?.description,
@@ -46,7 +50,9 @@ const OneCollection: FC<OneCollectionProps> = ({ id }) => {
           <Image src={result?.url} alt="s" className="poster rounded" />
         </div>
       </div>
+
       <Container fluid>
+        <hr />
         <Row className="justify-content-between" lg={4} sm={2} xs={1}>
           {movies?.map((m) => (
             <div key={m.id}>

@@ -1,21 +1,23 @@
 import { auth, db, a } from "./index";
 import { v1 as uuidv1 } from "uuid";
 
-export async function getCritics(id) {
+export async function getCritics(id_movie, id_critic) {
   let response = undefined;
+  console.log(id_critic, id_movie);
   try {
-    const docRef = db.collection("critica_M").doc(id.toString());
+    const docRef = db.collection("critica_M").doc(id_movie.toString());
     await docRef
       .get()
       .then((doc) => {
         if (doc.exists) {
           const data = doc.data();
-          response = data;
+          data.critics.map((c) =>
+            c.newCritic.data.id_critic == id_critic.toString()
+              ? (response = c)
+              : c
+          );
         } else {
           console.log("No such document!");
-          db.collection("critica_M").doc(id.toString()).set({
-            critics: [],
-          });
         }
       })
       .catch((error) => {
@@ -93,7 +95,9 @@ export async function pushNewCriticM(
               critics: a.firestore.FieldValue.arrayUnion({ newCritic }),
             });
           } else {
-            console.log("No such document!");
+            docRef.set({
+              critics: a.firestore.FieldValue.arrayUnion({ newCritic }),
+            });
           }
         })
         .catch((error) => {

@@ -157,18 +157,18 @@ export async function changeVisibility(
 export async function getCollectionByID(id_Collection: number | string) {
   let response = undefined;
   let urlImageCollection = undefined;
-  if (auth.currentUser !== null) {
-    try {
-      const docRef = db.collection("Collections").doc(id_Collection.toString());
-      await docRef.get().then((doc) => {
-        if (doc.exists) {
-          const data = doc.data();
-          response = data;
-        } else {
-        }
-      });
-    } catch (error) {}
-  }
+
+  try {
+    const docRef = db.collection("Collections").doc(id_Collection.toString());
+    await docRef.get().then((doc) => {
+      if (doc.exists) {
+        const data = doc.data();
+        response = data;
+      } else {
+      }
+    });
+  } catch (error) {}
+
   const t = async () => {
     console.log({ response: response });
     return await getImageCollection(response.data.imageName);
@@ -180,23 +180,23 @@ export async function getCollectionByID(id_Collection: number | string) {
 export async function getCollections() {
   let response = undefined;
   let arr = [];
-  if (auth.currentUser !== null) {
-    try {
-      const docRef = await db
-        .collection("Collections")
-        .where("public", "==", true)
-        .get()
-        .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            arr.push({ id: doc.id, data: doc.data() });
-          });
-          response = arr;
-          console.log(arr);
+
+  try {
+    const docRef = await db
+      .collection("Collections")
+      .where("public", "==", true)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          arr.push({ id: doc.id, data: doc.data() });
         });
-    } catch (error) {
-      console.log(error);
-    }
+        response = arr;
+        console.log(arr);
+      });
+  } catch (error) {
+    console.log(error);
   }
+
   return response;
 }
 

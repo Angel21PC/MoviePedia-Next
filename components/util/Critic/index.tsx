@@ -10,7 +10,7 @@ export interface CriticListProps {
 }
 
 const CriticList: FC<CriticListProps> = ({ id }) => {
-  const { getCritics, getMinCritic } = useAuth();
+  const { getMinCritic } = useAuth();
   const currentUser = useAuth();
 
   const [critics, setCritics] = useState([]);
@@ -23,13 +23,13 @@ const CriticList: FC<CriticListProps> = ({ id }) => {
       setCritics(orderDate);
     }
     criticsData();
-  }, []);
+  }, [show]);
   return (
     <div className="border-1 rounded">
       <div className="p-2 border-1">
         {critics?.map((cri) => (
-          <div key={cri.title}>
-            <MinCritic {...cri} />
+          <div key={cri.title} className="mt-2">
+            <MinCritic {...{ id_movie: id, ...cri }} />
           </div>
         ))}
       </div>

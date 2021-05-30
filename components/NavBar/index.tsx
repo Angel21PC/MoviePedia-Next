@@ -63,7 +63,7 @@ const NavBar: React.SFC<NavBarProps> = () => {
               </NavDropdown.Item>
               <NavDropdown.Item href="/all_pages/List">List</NavDropdown.Item>
               <NavDropdown.Item href="/all_pages/MyCollections">
-                My collections
+                New collection +
               </NavDropdown.Item>
               <NavDropdown.Item href="/all_pages/Stads">Stads</NavDropdown.Item>
               <NavDropdown.Divider />
