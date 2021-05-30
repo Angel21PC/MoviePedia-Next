@@ -10,13 +10,15 @@ import LstTv from "../../List/ListTv/index";
 import { Tabs, Tab, Container } from "react-bootstrap";
 import ListNav from "./ListNav";
 import { LIST_TABS } from "./const";
+import IntComGetData from "../../Collection/CollsById/index";
 
 export interface ListMProps {
   dataM: IListM;
   dataTV: any;
+  dataC: any;
 }
 
-const ListM: React.SFC<ListMProps> = ({ dataM, dataTV }) => {
+const ListM: React.SFC<ListMProps> = ({ dataM, dataTV, dataC }) => {
   const [isPending, setIsPending] = useState(true); // variable para la pantalla de carga
   const [currentTab, setCurrentTab] = useState<string>(LIST_TABS.MOVIE);
 
@@ -121,6 +123,15 @@ const ListM: React.SFC<ListMProps> = ({ dataM, dataTV }) => {
                 )}
               </Tab>
             </Tabs>
+          ) : (
+            <></>
+          )}
+          {currentTab === LIST_TABS.COLLECTION ? (
+            <div>
+              {dataC.Bookmark.map((c) => (
+                <IntComGetData Coll={c.id} />
+              ))}
+            </div>
           ) : (
             <></>
           )}

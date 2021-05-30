@@ -308,3 +308,28 @@ export async function deleteLikesColletions(id: number | string) {
       Like: a.firestore.FieldValue.arrayRemove({ id }),
     });
 }
+
+export async function getCollectionSaved() {
+  const id_user_collection = await ConsultaID();
+
+  let response = undefined;
+  const docRef = db
+    .collection("Collections_Saved")
+    .doc(id_user_collection.toString());
+  await docRef
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        const data = doc.data();
+        response = data;
+        // console.log(result)
+      } else {
+        console.log("No such document!");
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+
+  return response;
+}

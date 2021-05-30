@@ -60,6 +60,19 @@ const ListNav: React.SFC<ListNavProps> = ({ children, onChange }) => {
           </div>
         </NavLink>
       </NavItem>
+
+      <NavItem>
+        <NavLink
+          href="#/action-3"
+          onClick={() => {
+            toggle(LIST_TABS.COLLECTION);
+          }}
+        >
+          <div className="w-100 p-0">
+            <h4 className="m-0">Collection</h4>
+          </div>
+        </NavLink>
+      </NavItem>
     </Nav>
   );
 };

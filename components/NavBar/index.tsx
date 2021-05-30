@@ -26,7 +26,7 @@ const NavBar: React.SFC<NavBarProps> = () => {
   const { logout, checkProviderUser } = useAuth();
 
   const router = useRouter();
-  checkProviderUser();
+  // checkProviderUser();
   return (
     <Navbar
       collapseOnSelect

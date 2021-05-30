@@ -20,11 +20,11 @@ export interface ListProps {
 const List: NextPage<ListProps> = () => {
   //firebase
   const currentUser = useAuth();
-  const { getListMovies, getListTv } = useAuth();
+  const { getListMovies, getListTv, getCollectionSaved } = useAuth();
 
   const [dataM, setDataM] = useState();
   const [dataTV, setDataTV] = useState();
-
+  const [collection, setDataCollection] = useState();
   useEffect(() => {
     async function getDataListM() {
       if (currentUser.currentUser !== null) {
@@ -42,12 +42,20 @@ const List: NextPage<ListProps> = () => {
       }
     }
     getDataListTV();
+    async function getDataCollection() {
+      if (currentUser.currentUser !== null) {
+        let r = await getCollectionSaved();
+        console.log(r);
+        setDataCollection(r);
+      }
+    }
+    getDataCollection();
   }, []);
 
   return (
     <>
       <NavBar />
-      <ListM dataM={dataM} dataTV={dataTV} />
+      <ListM dataM={dataM} dataTV={dataTV} dataC={collection} />
     </>
   );
 };
