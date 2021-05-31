@@ -19,23 +19,34 @@ const Modal: FC<ModalProps> = ({ show, onClose, children }) => {
     <React.Fragment>
       <div ref={modalRef} className={`${styles.modal__wrap}`}>
         <div className={styles.modal}>
-          <Button
+          <button
             onClick={onClose}
+            className="btn btn-block create-account"
             style={{
               width: 60,
               height: 40,
               position: "absolute",
               top: 0,
               right: 0,
-              margin: "1rem",
             }}
-            className={styles.close__btn}
           >
             Close
-          </Button>
+          </button>
           {children}
         </div>
       </div>
+      <style jsx>{`
+        .create-account {
+          border-radius: 20px;
+          padding: 10px 20px;
+          font-size: 18px;
+          font-weight: bold;
+          background-color: #5791ff;
+          border: none;
+          color: white;
+          margin: 1rem;
+        }
+      `}</style>
     </React.Fragment>
   );
 };

@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";
-import Flippy, { FrontSide, BackSide } from "react-flippy";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import ItemFlip from "./item";
 export interface AllColProps {}

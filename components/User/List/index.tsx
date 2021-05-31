@@ -127,11 +127,24 @@ const ListM: React.SFC<ListMProps> = ({ dataM, dataTV, dataC }) => {
             <></>
           )}
           {currentTab === LIST_TABS.COLLECTION ? (
-            <div>
-              {dataC.Bookmark.map((c) => (
-                <IntComGetData Coll={c.id} />
-              ))}
-            </div>
+            <Tabs
+              className="justify-content-center"
+              defaultActiveKey="Pending"
+              id="uncontrolled-tab-example"
+            >
+              <Tab eventKey="Liked" title="Liked">
+                <h1>Total: {dataC.Like?.length}</h1>
+                {dataC.Like?.map((c) => (
+                  <IntComGetData Coll={c.id} />
+                ))}
+              </Tab>
+              <Tab eventKey="Pending" title="Pending">
+                <h1>Total: {dataC.Bookmark?.length}</h1>
+                {dataC.Like?.map((c) => (
+                  <IntComGetData Coll={c.id} />
+                ))}
+              </Tab>
+            </Tabs>
           ) : (
             <></>
           )}

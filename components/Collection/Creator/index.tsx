@@ -9,6 +9,9 @@ import CreatorForm from "./CreatorForm";
 //components
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Modal from "./Modal/index";
+//Notification
+import { store } from "react-notifications-component";
+
 export interface CollectionCreatorProps {}
 
 const CollectionCreator: FC<CollectionCreatorProps> = () => {
@@ -21,6 +24,25 @@ const CollectionCreator: FC<CollectionCreatorProps> = () => {
   const deleteM = (movie: any) => {
     setMovies(movies.filter((item) => item.id !== movie.id));
   };
+
+  const reset = () => {
+    setMovies([]);
+    setShow([]);
+    store.addNotification({
+      title: "Wonderful!",
+      message: "Collection add correctly",
+      type: "info",
+      insert: "top",
+      container: "top-center",
+      animationIn: ["animate__animated", "animate__fadeIn"],
+      animationOut: ["animate__animated", "animate__fadeOutUp"],
+      dismiss: {
+        duration: 2000,
+        touch: true,
+      },
+    });
+  };
+
   useEffect(() => {
     console.log({ movie: movies, shows: shows });
   }, [deleteM, movies]);
@@ -43,6 +65,7 @@ const CollectionCreator: FC<CollectionCreatorProps> = () => {
                   movies={movies}
                   shows={shows}
                   close={() => setIsOpen(false)}
+                  reset={reset}
                 />
               </Modal>
             </div>

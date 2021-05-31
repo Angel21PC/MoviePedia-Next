@@ -46,6 +46,7 @@ export interface CreatorFormProps {
   movies: any;
   shows: any;
   close: () => void;
+  reset: () => void;
 }
 
 const schema = yup.object().shape({
@@ -53,7 +54,12 @@ const schema = yup.object().shape({
   file: yup.mixed().required(),
 });
 
-const CreatorForm: React.SFC<CreatorFormProps> = ({ movies, shows, close }) => {
+const CreatorForm: React.SFC<CreatorFormProps> = ({
+  movies,
+  shows,
+  close,
+  reset,
+}) => {
   const { pushNewCollection, getCollections } = useAuth();
   const currentUser = useAuth();
 
@@ -102,6 +108,7 @@ const CreatorForm: React.SFC<CreatorFormProps> = ({ movies, shows, close }) => {
       if (response === true) {
         setIsSend(true);
       }
+      reset();
       close();
     } catch (error) {
       console.log(error);
