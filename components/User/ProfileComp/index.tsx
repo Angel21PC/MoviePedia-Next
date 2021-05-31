@@ -36,13 +36,16 @@ const ProfileComp: React.SFC<ProfileCompProps> = () => {
         </Col>
         <Col className="justify-content-center p-0" xs lg="8">
           {currentTab === USER_TABS.COLLECTION ? (
-            <div className="">
+            <div className="w-100">
               <h1>Collection</h1>
-              <div className="ml-5">
+
+              <Row className="justify-content-between">
                 {collection.map((c) => (
-                  <IntComGetData Coll={c.id}></IntComGetData>
+                  <div style={{ minWidth: "100%" }}>
+                    <IntComGetData Coll={c.id}></IntComGetData>
+                  </div>
                 ))}
-              </div>
+              </Row>
             </div>
           ) : (
             <></>

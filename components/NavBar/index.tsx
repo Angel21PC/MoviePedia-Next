@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 //Next
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Image from "next/image";
+
 //Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt, faUser } from "@fortawesome/free-solid-svg-icons";
@@ -11,7 +11,7 @@ import { faSignInAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 
 //COMPONENTS
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
-
+import { Image } from "react-bootstrap";
 //firebase
 import { useAuth } from "../../firebase/AuthContext";
 
@@ -23,9 +23,16 @@ export interface NavBarProps {}
 const NavBar: React.SFC<NavBarProps> = () => {
   const [url, setUrl] = useState(undefined);
   const currentUser = useAuth();
-  const { logout, checkProviderUser } = useAuth();
+  const { logout, checkProviderUser, getImageUrlProfile } = useAuth();
 
   const router = useRouter();
+  useEffect(() => {
+    async function fetchData() {
+      const response = await getImageUrlProfile();
+      setUrl(response);
+    }
+    fetchData();
+  }, []);
   // checkProviderUser();
   return (
     <Navbar
@@ -54,28 +61,42 @@ const NavBar: React.SFC<NavBarProps> = () => {
         </Nav>
         <Nav>
           {currentUser.currentUser ? (
-            <NavDropdown
-              title={currentUser.currentUser.email}
-              id="collasible-nav-dropdown"
-            >
-              <NavDropdown.Item href="/all_pages/Profile">
-                <FontAwesomeIcon icon={faUser} /> Profile{" "}
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/all_pages/List">List</NavDropdown.Item>
-              <NavDropdown.Item href="/all_pages/MyCollections">
-                New collection +
-              </NavDropdown.Item>
-              <NavDropdown.Item href="/all_pages/Stads">Stads</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item
-                onClick={() => {
-                  logout();
-                  router.push("/");
-                }}
+            <>
+              <div className={style.profile}>
+                <Image
+                  src={`${url}`}
+                  alt="Profile"
+                  height="40px"
+                  width="40px"
+                  roundedCircle
+                />
+              </div>
+
+              <NavDropdown
+                title={currentUser.currentUser.email}
+                id="collasible-nav-dropdown"
               >
-                Log out <FontAwesomeIcon icon={faSignInAlt} />
-              </NavDropdown.Item>
-            </NavDropdown>
+                <NavDropdown.Item href="/all_pages/Profile">
+                  <FontAwesomeIcon icon={faUser} /> Profile{" "}
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/all_pages/List">List</NavDropdown.Item>
+                <NavDropdown.Item href="/all_pages/MyCollections">
+                  New collection +
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/all_pages/Stads">
+                  Stads
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item
+                  onClick={() => {
+                    logout();
+                    router.push("/");
+                  }}
+                >
+                  Log out <FontAwesomeIcon icon={faSignInAlt} />
+                </NavDropdown.Item>
+              </NavDropdown>
+            </>
           ) : (
             <>
               <Link href="/all_pages/SingUp">
