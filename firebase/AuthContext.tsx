@@ -66,6 +66,7 @@ import {
   getCollections,
   getCollectionByID,
   getCollectionSaved,
+  getCollectionsEmail,
 } from "./Collection";
 import {
   uploadImgProfile,
@@ -455,6 +456,7 @@ export function AuthProvider({ children }) {
     checkProviderUser,
     getImageCollection,
     getCollectionSaved,
+    getCollectionsEmail,
   };
 
   return (

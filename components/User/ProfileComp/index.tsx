@@ -9,12 +9,25 @@ import { Row, Container, Col } from "react-bootstrap";
 //componentes-p
 import FormEdit from "../../util/Form/Form_editData";
 import ProfileNav from "./ProfileNav";
-
+import IntComGetData from "../../Collection/CollsById/index";
+//firebase
+import { useAuth } from "../../../firebase/AuthContext";
 export interface ProfileCompProps {}
 
 const ProfileComp: React.SFC<ProfileCompProps> = () => {
   const [currentTab, setCurrentTab] = useState<string>(USER_TABS.COLLECTION);
+  const currentUser = useAuth();
+  const { getCollectionsEmail } = useAuth();
 
+  const [collection, setCollection] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await getCollectionsEmail(currentUser.currentUser.email);
+      console.log(response);
+      setCollection(response);
+    }
+    fetchData();
+  }, []);
   return (
     <Container className="containerr" fluid>
       <Row className="ml-3" xs={1} md={2}>
@@ -25,6 +38,11 @@ const ProfileComp: React.SFC<ProfileCompProps> = () => {
           {currentTab === USER_TABS.COLLECTION ? (
             <div className="">
               <h1>Collection</h1>
+              <div className="ml-5">
+                {collection.map((c) => (
+                  <IntComGetData Coll={c.id}></IntComGetData>
+                ))}
+              </div>
             </div>
           ) : (
             <></>

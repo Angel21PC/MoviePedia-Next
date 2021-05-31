@@ -199,6 +199,28 @@ export async function getCollections() {
 
   return response;
 }
+export async function getCollectionsEmail(email: string) {
+  let response = undefined;
+  let arr = [];
+  console.log(email);
+  try {
+    const docRef = await db
+      .collection("Collections")
+      .where("data.user", "==", email)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          arr.push({ id: doc.id, data: doc.data() });
+        });
+        response = arr;
+        console.log(arr);
+      });
+  } catch (error) {
+    console.log(error);
+  }
+
+  return response;
+}
 
 //
 async function ConsultaID() {
