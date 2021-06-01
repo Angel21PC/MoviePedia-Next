@@ -1,6 +1,7 @@
 import { auth, db, a } from "./index";
 import { v1 as uuidv1 } from "uuid";
 import { uploadImgCollection, getImageCollection } from "./Images";
+import { resourceLimits } from "node:worker_threads";
 /* 
     id : {
         public: bool
@@ -106,33 +107,42 @@ export async function collectionLike(
         .then((doc) => {
           if (doc.exists) {
             let result = doc.data();
-
-            result.map((c) => {
-              if (c.id === id_collection) {
-                let nuestro_user_fue_encontrado = false;
-                c.userLikes.map((u) => {
-                  if (u === user_giveLike) {
-                    nuestro_user_fue_encontrado = true;
-                  }
-                  response = nuestro_user_fue_encontrado;
-                });
-                if (nuestro_user_fue_encontrado === false) {
-                  //añadir Like
-                  docRef.update(a.firestore.FieldValue.arrayRemove(c));
-                  c.userLikes.push(user_giveLike);
-                  docRef.update(a.firestore.FieldValue.arrayUnion(c));
-                  response = true;
-                } else {
-                  //elminar like
-                  docRef.update(a.firestore.FieldValue.arrayRemove(c));
-                  const index = c.userLikes.indexOf(user_giveLike);
-                  if (index > -1) {
-                    c.userLikes.splice(index, 1);
-                  }
-                  docRef.update(a.firestore.FieldValue.arrayUnion(c));
-                  response = false;
-                }
+            console.log(result);
+            let nuestro_user_fue_encontrado = false;
+            result.userLikes.map((u) => {
+              if (u === user_giveLike) {
+                nuestro_user_fue_encontrado = true;
               }
+              response = nuestro_user_fue_encontrado;
+            });
+            if (nuestro_user_fue_encontrado === false) {
+              //añadir Like
+
+              result.userLikes.push(user_giveLike);
+
+              response = true;
+            } else {
+              //elminar like
+
+              const index = result.userLikes.indexOf(user_giveLike);
+              if (index > -1) {
+                result.userLikes.splice(index, 1);
+              }
+
+              response = false;
+            }
+            console.log({ userLike: result.userLikes });
+            docRef.update({
+              data: {
+                date: result.data.date,
+                objArray: result.data.objArray,
+                description: result.data.description,
+                title: result.data.title,
+                imageName: result.data.imageName,
+                user: result.data.user,
+              },
+              public: result.public,
+              userLikes: result.userLikes,
             });
           } else {
             console.log("No such document!");

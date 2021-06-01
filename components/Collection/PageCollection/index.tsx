@@ -20,6 +20,7 @@ const OneCollection: FC<OneCollectionProps> = ({ id }) => {
   const [result, setResult] = useState({
     response: { data: { title: "s", description: "" } },
     url: "a",
+    userLikes: [],
   });
   const { getCollectionByID } = useAuth();
 
@@ -39,7 +40,11 @@ const OneCollection: FC<OneCollectionProps> = ({ id }) => {
         <div className="d-flex justify-content-center">
           <div className="justify-content-center">
             {/* <h3>{result?.response.data.title}</h3> */}
-            <M_B_F id={id} title={result?.response.data.title} />
+            <M_B_F
+              id={id}
+              title={result?.response.data.title}
+              userLikes={result?.userLikes}
+            />
             <hr />
             <div
               dangerouslySetInnerHTML={{
