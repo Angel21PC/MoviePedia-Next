@@ -369,16 +369,6 @@ export async function editCollection(
   const currentUser = auth.currentUser.email;
 
   let response = undefined;
-  // const dataCollection = {
-  //   title: title,
-  //   description: description,
-  //   objArray: objArray,
-  // };
-  // const newCollection = {
-  //   public: publicC,
-  //   data: dataCollection,
-  //   userLikes: [],
-  // };
   let collectionData;
   const col = await db
     .collection("Collections")
@@ -400,6 +390,7 @@ export async function editCollection(
         .doc(id)
         .update({
           data: {
+            date: collectionData.data.date,
             objArray: objArray,
             description: description,
             title: title,
@@ -415,6 +406,7 @@ export async function editCollection(
         .doc(id)
         .update({
           data: {
+            date: collectionData.data.date,
             objArray: objArray,
             description: description,
             title: title,
@@ -425,6 +417,34 @@ export async function editCollection(
           userLikes: collectionData.userLikes,
         });
     }
+  } catch (error) {
+    console.log(error);
+  }
+
+  return response;
+}
+
+export async function removeCollection(id: string) {
+  const docRef = await db.collection("Collections").doc(id).delete();
+}
+
+export async function getCollectionsByDate() {
+  let response = undefined;
+  let arr = [];
+
+  try {
+    const docRef = await db
+      .collection("Collections")
+      .where("public", "==", true)
+      .orderBy("data.date")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          arr.push({ id: doc.id, data: doc.data() });
+        });
+        response = arr;
+        console.log(arr);
+      });
   } catch (error) {
     console.log(error);
   }

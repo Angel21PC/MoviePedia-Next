@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import { USER_TABS } from "./const";
 
 //components
-import { Row, Container, Col } from "react-bootstrap";
+import { Row, Container, Col, Button } from "react-bootstrap";
 
 //componentes-p
 import FormEdit from "../../util/Form/Form_editData";
 import ProfileNav from "./ProfileNav";
 import IntComGetData from "../../Collection/CollsById/index";
 import CollectionEdit from "../../Collection/Edit/index";
+import ModalDeleteCollection from "./ModalDeleteCollection";
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";
 export interface ProfileCompProps {}
@@ -22,6 +23,10 @@ const ProfileComp: React.SFC<ProfileCompProps> = () => {
 
   const [collection, setCollection] = useState([]);
   const [c, setC] = useState([]);
+  const [reload, setReload] = useState("");
+  const p = () => {
+    setReload("tus");
+  };
   useEffect(() => {
     async function fetchData() {
       if (currentUser.currentUser.email != undefined) {
@@ -37,11 +42,12 @@ const ProfileComp: React.SFC<ProfileCompProps> = () => {
       }
     }
     fetchData();
-  }, []);
+  }, [reload]);
   const edit = (data: any) => {
     setCurrentTab(USER_TABS.COM_CRIT);
     setC(data);
   };
+
   return (
     <Container className="containerr" fluid>
       <Row className="ml-3" xs={1} md={2}>
@@ -57,7 +63,11 @@ const ProfileComp: React.SFC<ProfileCompProps> = () => {
                 {collection.map((c) => (
                   <div style={{ minWidth: "100%" }}>
                     <IntComGetData Coll={c.id}></IntComGetData>
-                    <button onClick={() => edit(c)}>Edit</button>
+                    <Button onClick={() => edit(c)}>Edit</Button>
+                    <ModalDeleteCollection
+                      id={c.id}
+                      pilo={p}
+                    ></ModalDeleteCollection>
                   </div>
                 ))}
               </Row>

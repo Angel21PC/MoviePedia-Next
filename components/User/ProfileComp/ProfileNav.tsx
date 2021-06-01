@@ -60,14 +60,6 @@ const ProfileNav: React.SFC<ProfileNavProps> = ({ children, onChange }) => {
           </div>
         </NavLink>
       </NavItem>
-      <NavItem>
-        <NavLink
-          href="#/action-3"
-          onClick={() => {
-            toggle(USER_TABS.COM_CRIT);
-          }}
-        ></NavLink>
-      </NavItem>
     </Nav>
   );
 };

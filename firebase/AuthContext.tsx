@@ -69,6 +69,8 @@ import {
   getCollectionSaved,
   getCollectionsEmail,
   editCollection,
+  removeCollection,
+  getCollectionsByDate,
 } from "./Collection";
 import {
   uploadImgProfile,
@@ -465,6 +467,8 @@ export function AuthProvider({ children }) {
     ConsultaID,
     getEmailIDColl,
     editCollection,
+    removeCollection,
+    getCollectionsByDate,
   };
 
   return (
