@@ -71,6 +71,7 @@ import {
   editCollection,
   removeCollection,
   getCollectionsByDate,
+  getCollectionsByLike,
 } from "./Collection";
 import {
   uploadImgProfile,
@@ -469,6 +470,7 @@ export function AuthProvider({ children }) {
     editCollection,
     removeCollection,
     getCollectionsByDate,
+    getCollectionsByLike,
   };
 
   return (

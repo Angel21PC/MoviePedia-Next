@@ -6,7 +6,8 @@ import ItemFlip from "./item";
 export interface AllColProps {}
 
 const AllCol: FC<AllColProps> = () => {
-  const { getCollections, getCollectionsByDate } = useAuth();
+  const { getCollections, getCollectionsByDate, getCollectionsByLike } =
+    useAuth();
   const [collections, setCollections] = useState([]);
   const [filter, setFilter] = useState("New");
   useEffect(() => {
@@ -20,12 +21,20 @@ const AllCol: FC<AllColProps> = () => {
       const response = await getCollectionsByDate();
       setCollections(response);
     }
+
+    async function fetchDataLikes() {
+      const response = await getCollectionsByLike();
+      setCollections(response);
+    }
     switch (filter) {
       case "New":
         fetchDataNew();
         break;
       case "Date":
         fetchDataDate();
+        break;
+      case "Liked":
+        fetchDataLikes();
         break;
       default:
         break;
@@ -40,7 +49,8 @@ const AllCol: FC<AllColProps> = () => {
       case "Date":
         setFilter("Date");
         break;
-      case "Top":
+      case "Liked":
+        setFilter("Liked");
         break;
 
       default:
@@ -61,8 +71,8 @@ const AllCol: FC<AllColProps> = () => {
               <option value="Date" key="Date">
                 Date
               </option>
-              <option value="Top" key="Top">
-                Top
+              <option value="Liked" key="Liked">
+                Liked
               </option>
             </Form.Control>
           </Form.Group>

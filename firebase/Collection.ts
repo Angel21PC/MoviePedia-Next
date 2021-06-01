@@ -461,3 +461,27 @@ export async function getCollectionsByDate() {
 
   return response;
 }
+
+export async function getCollectionsByLike() {
+  let response = undefined;
+  let arr = [];
+
+  try {
+    const docRef = await db
+      .collection("Collections")
+      .where("public", "==", true)
+      .orderBy("userLikes", "asc")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          arr.push({ id: doc.id, data: doc.data() });
+        });
+        response = arr;
+        console.log(arr);
+      });
+  } catch (error) {
+    console.log(error);
+  }
+
+  return response;
+}

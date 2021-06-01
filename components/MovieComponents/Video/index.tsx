@@ -8,12 +8,12 @@ const Video: React.SFC<VideoProps> = ({ data }) => {
 
   const [video, setVideo] = useState(data);
 
-  console.log(data);
+  console.log({ VIDEO: data });
 
   return (
     <>
       <iframe
-        src={`${base_Url}${video?.results[0]?.key}`}
+        src={`${base_Url}${data?.results[0]?.key}`}
         className="video"
       ></iframe>
       <style jsx>{`
