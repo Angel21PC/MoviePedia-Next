@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 //components
 import { Nav, NavItem, NavLink, Row, Col } from "react-bootstrap";
@@ -9,7 +9,7 @@ export interface ListNavProps {
   onChange: (activeTab: string) => void;
 }
 
-const ListNav: React.SFC<ListNavProps> = ({ children, onChange }) => {
+const ListNav: FC<ListNavProps> = ({ children, onChange }) => {
   const [activeTab, setActiveTab] = useState<string>(LIST_TABS.MOVIE);
 
   const toggle = (tab: string) => {

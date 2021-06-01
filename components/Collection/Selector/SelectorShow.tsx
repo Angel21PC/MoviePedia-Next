@@ -10,7 +10,7 @@ export interface CollectionSelectorSProps {
   ss: any;
 }
 
-const CollectionSelectorS: React.SFC<CollectionSelectorSProps> = ({
+const CollectionSelectorS: FC<CollectionSelectorSProps> = ({
   s,
   collection,
   ss,

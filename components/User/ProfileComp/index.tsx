@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 //const
 import { USER_TABS } from "./const";
@@ -16,7 +16,7 @@ import ModalDeleteCollection from "./ModalDeleteCollection";
 import { useAuth } from "../../../firebase/AuthContext";
 export interface ProfileCompProps {}
 
-const ProfileComp: React.SFC<ProfileCompProps> = () => {
+const ProfileComp: FC<ProfileCompProps> = () => {
   const [currentTab, setCurrentTab] = useState<string>(USER_TABS.COLLECTION);
   const currentUser = useAuth();
   const { getCollectionsEmail, ConsultaID } = useAuth();

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 //request
 import axios from "axios";
@@ -23,7 +23,7 @@ export interface MovieProps {
   data: any;
 }
 
-const Movie: React.SFC<MovieProps> = ({ data }) => {
+const Movie: FC<MovieProps> = ({ data }) => {
   const [isPending, setIsPending] = useState(true); // variable para la pantalla de carga
   const movie = data; //recoge todos los datos de la consulta
   const [cast, setCast] = useState();

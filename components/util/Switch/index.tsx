@@ -1,3 +1,4 @@
+import React, { FC } from "react";
 import styles from "./Switch.module.scss";
 
 export interface SwitchProps {
@@ -5,7 +6,7 @@ export interface SwitchProps {
   handleToggle: any;
 }
 
-const Switch: React.SFC<SwitchProps> = ({ isOn, handleToggle }) => {
+const Switch: FC<SwitchProps> = ({ isOn, handleToggle }) => {
   return (
     <>
       <input

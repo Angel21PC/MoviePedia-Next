@@ -1,9 +1,10 @@
+import React, { FC } from "react";
 export interface OverviewProps {
   movie: any;
   cast: any;
 }
 
-const Overview: React.SFC<OverviewProps> = ({ movie, cast }) => {
+const Overview: FC<OverviewProps> = ({ movie, cast }) => {
   return (
     <>
       <p>{movie.overview}</p>

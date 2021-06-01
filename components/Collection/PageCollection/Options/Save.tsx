@@ -2,7 +2,7 @@ import React, { FC } from "react";
 
 export interface SaveButtonsProps {}
 
-const SaveButtons: React.SFC<SaveButtonsProps> = () => {
+const SaveButtons: FC<SaveButtonsProps> = () => {
   return (
     <>
       <div></div>

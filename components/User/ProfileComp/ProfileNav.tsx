@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 //components
 import { Nav, NavItem, NavLink, Row, Col } from "react-bootstrap";
@@ -9,7 +9,7 @@ export interface ProfileNavProps {
   onChange: (activeTab: string) => void;
 }
 
-const ProfileNav: React.SFC<ProfileNavProps> = ({ children, onChange }) => {
+const ProfileNav: FC<ProfileNavProps> = ({ children, onChange }) => {
   const [activeTab, setActiveTab] = useState<string>(USER_TABS.COLLECTION);
 
   const toggle = (tab: string) => {

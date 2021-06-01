@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import axios from "axios";
 
 //Next
@@ -13,7 +13,7 @@ export interface SimilarProps {
   m_s: string;
 }
 
-const Similar: React.SFC<SimilarProps> = ({ id, m_s }) => {
+const Similar: FC<SimilarProps> = ({ id, m_s }) => {
   console.log(id);
   const fetch: string =
     m_s == "/all_pages/Movie_select" ? api_rutesM.Similar : api_rutesTv.Similar;
@@ -34,23 +34,25 @@ const Similar: React.SFC<SimilarProps> = ({ id, m_s }) => {
   }, []);
   return (
     <div className="similar">
-      {movies.map((
-        movie //saca las peliculas
-      ) => (
-        <div key={movie?.id} className="mt-2 mr-3">
-          <Link
-            href={{
-              pathname: m_s,
-              query: { id: movie.id },
-            }}
-            key={movie?.id}
-          >
-            <a>
-              <Poster c="poster" movie={movie} />
-            </a>
-          </Link>
-        </div>
-      ))}
+      {movies.map(
+        (
+          movie //saca las peliculas
+        ) => (
+          <div key={movie?.id} className="mt-2 mr-3">
+            <Link
+              href={{
+                pathname: m_s,
+                query: { id: movie.id },
+              }}
+              key={movie?.id}
+            >
+              <a>
+                <Poster c="poster" movie={movie} />
+              </a>
+            </Link>
+          </div>
+        )
+      )}
 
       <style jsx>{`
         .similar {

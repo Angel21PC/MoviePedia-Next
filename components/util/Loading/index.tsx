@@ -1,6 +1,7 @@
+import React, { FC } from "react";
 export interface LoaderProps {}
 
-const Loader: React.SFC<LoaderProps> = () => {
+const Loader: FC<LoaderProps> = () => {
   return (
     <>
       <span className="loader"></span>

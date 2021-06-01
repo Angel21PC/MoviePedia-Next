@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 //Form
 import { useForm } from "react-hook-form";
@@ -37,7 +37,7 @@ const schema = yup.object().shape({
   birth_date: yup.date().max(today),
 });
 
-const FormS: React.SFC<FormSProps> = () => {
+const FormS: FC<FormSProps> = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 

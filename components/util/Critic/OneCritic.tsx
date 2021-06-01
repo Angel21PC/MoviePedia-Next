@@ -5,7 +5,7 @@ export interface OneCriticProps {
   id_movie: string | number;
 }
 
-const OneCritic: React.SFC<OneCriticProps> = ({ id_critic, id_movie }) => {
+const OneCritic: FC<OneCriticProps> = ({ id_critic, id_movie }) => {
   const { getCritics } = useAuth();
   const currentUser = useAuth();
 

@@ -1,6 +1,6 @@
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";
-import { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { IListM } from "../../../types";
 
 //components-p
@@ -18,7 +18,7 @@ export interface ListMProps {
   dataC: any;
 }
 
-const ListM: React.SFC<ListMProps> = ({ dataM, dataTV, dataC }) => {
+const ListM: FC<ListMProps> = ({ dataM, dataTV, dataC }) => {
   const [isPending, setIsPending] = useState(true); // variable para la pantalla de carga
   const [currentTab, setCurrentTab] = useState<string>(LIST_TABS.MOVIE);
 

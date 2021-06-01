@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 //Form
 import { useForm } from "react-hook-form";
@@ -49,7 +49,7 @@ const schema = yup.object().shape({
   currentPassword: yup.string().required(),
   file: yup.mixed(),
 });
-const FormEdit: React.SFC<FormEditProps> = () => {
+const FormEdit: FC<FormEditProps> = () => {
   //firebase
   const { changeData, uploadImgProfile, getImageUrlProfile } = useAuth();
 

@@ -1,3 +1,4 @@
+import React, { FC } from "react";
 //Next
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -14,7 +15,7 @@ import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { useAuth } from "../../../firebase/AuthContext";
 export interface NavBarProps {}
 
-const NavBar: React.SFC<NavBarProps> = () => {
+const NavBar: FC<NavBarProps> = () => {
   const currentUser = useAuth();
   const { logout } = useAuth();
 

@@ -1,12 +1,10 @@
-import { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 export interface VideoProps {
   data: any;
 }
 
-const Video: React.SFC<VideoProps> = ({ data }) => {
+const Video: FC<VideoProps> = ({ data }) => {
   const base_Url: string = "http://www.youtube.com/embed/";
-
-  const [video, setVideo] = useState(data);
 
   console.log({ VIDEO: data });
 

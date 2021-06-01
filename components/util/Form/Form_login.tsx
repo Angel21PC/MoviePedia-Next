@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { FC, useState } from "react";
 
 //next
 import { useRouter } from "next/router";
@@ -29,7 +29,7 @@ const schema = yup.object().shape({
   password: yup.string().required(),
 });
 
-const FormL: React.SFC<FormLProps> = () => {
+const FormL: FC<FormLProps> = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -66,12 +66,8 @@ const FormL: React.SFC<FormLProps> = () => {
   };
 
   //firebase
-  const {
-    login,
-    signInWithGoogle,
-    signInWithFacebook,
-    signInWithTwitter,
-  } = useAuth();
+  const { login, signInWithGoogle, signInWithFacebook, signInWithTwitter } =
+    useAuth();
 
   return (
     <div className="registration-form">

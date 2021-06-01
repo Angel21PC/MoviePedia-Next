@@ -1,8 +1,9 @@
+import React, { FC } from "react";
 export interface CastProps {
   cast: any;
 }
 
-const Cast: React.SFC<CastProps> = ({ cast }) => {
+const Cast: FC<CastProps> = ({ cast }) => {
   //url base para las imagenes
   const base_Url = "https://image.tmdb.org/t/p/original/";
 

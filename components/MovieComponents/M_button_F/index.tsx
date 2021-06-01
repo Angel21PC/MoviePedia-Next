@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 //Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,7 +14,7 @@ export interface M_B_FProps {
   movie: any;
 }
 
-const M_B_F: React.SFC<M_B_FProps> = ({ movie }) => {
+const M_B_F: FC<M_B_FProps> = ({ movie }) => {
   //firebase
   const currentUser = useAuth();
   const {
