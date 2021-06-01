@@ -45,6 +45,7 @@ import {
   getCommentsTV,
   pushNewCommentsTV,
   commentLikeTV,
+  getEmailIDColl,
 } from "./Comments";
 import {
   getCritics,
@@ -67,6 +68,7 @@ import {
   getCollectionByID,
   getCollectionSaved,
   getCollectionsEmail,
+  editCollection,
 } from "./Collection";
 import {
   uploadImgProfile,
@@ -160,22 +162,25 @@ export function AuthProvider({ children }) {
 
   async function ConsultaID() {
     let result = undefined;
-    const docRef = db.collection("profile").doc(auth.currentUser.uid);
-    await docRef
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          const data = doc.data();
-          result = data.collections_id.id;
-          // console.log(result)
-        } else {
-          console.log("No such document!");
-        }
-      })
-      .catch((error) => {
-        console.log("Error getting document:", error);
-      });
-    console.log(result);
+    try {
+      const docRef = db.collection("profile").doc(auth.currentUser.uid);
+      await docRef
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            const data = doc.data();
+            result = data.collections_id.id;
+            // console.log(result)
+          } else {
+            console.log("No such document!");
+          }
+        })
+        .catch((error) => {
+          console.log("Error getting document:", error);
+        });
+      console.log(result);
+    } catch (e) {}
+
     return result;
   }
 
@@ -457,6 +462,9 @@ export function AuthProvider({ children }) {
     getImageCollection,
     getCollectionSaved,
     getCollectionsEmail,
+    ConsultaID,
+    getEmailIDColl,
+    editCollection,
   };
 
   return (

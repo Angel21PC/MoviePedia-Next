@@ -16,6 +16,30 @@ import { uploadImgCollection, getImageCollection } from "./Images";
     }
 */
 
+async function ConsultaID() {
+  let result = undefined;
+  try {
+    const docRef = db.collection("profile").doc(auth.currentUser.uid);
+    await docRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          result = data.collections_id.id;
+          // console.log(result)
+        } else {
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+    console.log(result);
+  } catch (e) {}
+
+  return result;
+}
+
 export async function pushNewCollection(
   title: string,
   description: string,
@@ -25,7 +49,7 @@ export async function pushNewCollection(
   file: any
 ) {
   const currentUser = auth.currentUser.email;
-
+  const userId = await ConsultaID();
   try {
     await uploadImgCollection(file, title);
   } catch (e) {
@@ -41,7 +65,7 @@ export async function pushNewCollection(
     title: title,
     description: description,
     objArray: objArray,
-    user: user_email,
+    user: userId,
     date: today,
     imageName: currentUser + title,
   };
@@ -222,28 +246,6 @@ export async function getCollectionsEmail(email: string) {
   return response;
 }
 
-//
-async function ConsultaID() {
-  let result = undefined;
-  const docRef = db.collection("profile").doc(auth.currentUser.uid);
-  await docRef
-    .get()
-    .then((doc) => {
-      if (doc.exists) {
-        const data = doc.data();
-        result = data.collections_id.id;
-        // console.log(result)
-      } else {
-        console.log("No such document!");
-      }
-    })
-    .catch((error) => {
-      console.log("Error getting document:", error);
-    });
-  console.log(result);
-  return result;
-}
-
 //options collection bookmark and like
 export async function checkBookMarkCollection(id: number | string) {
   const id_user_collection = await ConsultaID();
@@ -352,6 +354,80 @@ export async function getCollectionSaved() {
     .catch((error) => {
       console.log("Error getting document:", error);
     });
+
+  return response;
+}
+
+export async function editCollection(
+  id: string,
+  objArray: any,
+  title: string,
+  description: string,
+  publicC: boolean,
+  file: any
+) {
+  const currentUser = auth.currentUser.email;
+
+  let response = undefined;
+  // const dataCollection = {
+  //   title: title,
+  //   description: description,
+  //   objArray: objArray,
+  // };
+  // const newCollection = {
+  //   public: publicC,
+  //   data: dataCollection,
+  //   userLikes: [],
+  // };
+  let collectionData;
+  const col = await db
+    .collection("Collections")
+    .doc(id)
+    .get()
+    .then((doc) => {
+      collectionData = doc.data();
+    });
+  console.log(collectionData);
+  try {
+    if (file != undefined) {
+      try {
+        await uploadImgCollection(file, title);
+      } catch (e) {
+        console.log(e);
+      }
+      const docRef = db
+        .collection("Collections")
+        .doc(id)
+        .update({
+          data: {
+            objArray: objArray,
+            description: description,
+            title: title,
+            imageName: currentUser + title,
+            user: collectionData.data.user,
+          },
+          public: publicC,
+          userLikes: collectionData.userLikes,
+        });
+    } else {
+      const docRef = db
+        .collection("Collections")
+        .doc(id)
+        .update({
+          data: {
+            objArray: objArray,
+            description: description,
+            title: title,
+            imageName: collectionData.data.imageName,
+            user: collectionData.data.user,
+          },
+          public: publicC,
+          userLikes: collectionData.userLikes,
+        });
+    }
+  } catch (error) {
+    console.log(error);
+  }
 
   return response;
 }

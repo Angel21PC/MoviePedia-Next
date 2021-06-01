@@ -14,32 +14,39 @@ export interface CommentItemProps {
 
 const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
   const [h, setH] = useState("heart");
-
-  const { commentLike } = useAuth();
+  const [email, setEmail] = useState("");
+  const { commentLike, ConsultaID, getEmailIDColl } = useAuth();
   const currentUser = useAuth();
 
   let bool = false;
   useEffect(() => {
-    const c = () => {
+    const c = async () => {
       if (currentUser.currentUser !== null) {
+        const id = await ConsultaID();
         com.newComent.userLikes?.map((user) =>
-          user === currentUser.currentUser.email ? (bool = true) : bool
+          user === id ? (bool = true) : bool
         );
+
         if (bool === true) {
           setH("heartcheck");
         }
       }
     };
+    async function fetchEmail() {
+      const eml = await getEmailIDColl(com.newComent.data.user);
+      setEmail(eml);
+    }
+    fetchEmail();
     c();
   }, []);
 
   const like = async () => {
-    console.log('gg');
+    console.log("gg");
     console.log(com.newComent.data);
     if (currentUser.currentUser !== null) {
       let response = await commentLike(
         id_film,
-        currentUser.currentUser.email,
+
         com.newComent.data.id_coment
       );
 
@@ -71,17 +78,15 @@ const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
 
   return (
     <Toast key={com.text} className={style.text}>
-      <ToastHeader closeButton={false}> {com.newComent.data.user}</ToastHeader>
-    
+      <ToastHeader closeButton={false}> {email}</ToastHeader>
+
       <div className="d-flex">
-      <div className="w-100">
-        <ToastBody >{com.newComent.data.text}</ToastBody>
-      </div>
-      <div className="mr-4 d-inline-flex">
-        <div className="mt-1">
-        {com.newComent?.userLikes.length}
+        <div className="w-100">
+          <ToastBody>{com.newComent.data.text}</ToastBody>
         </div>
-     
+        <div className="mr-4 d-inline-flex">
+          <div className="mt-1">{com.newComent?.userLikes.length}</div>
+
           <FontAwesomeIcon
             id={h}
             className="icon fa-2x w-100"
@@ -89,10 +94,8 @@ const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
             icon={faHeart}
             onClick={() => like()}
           />
-          
         </div>
       </div>
-     
     </Toast>
   );
 };

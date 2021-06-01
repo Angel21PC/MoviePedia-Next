@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 
 //Next
 import { useRouter } from "next/router";
@@ -18,22 +18,30 @@ import { useAuth } from "../../firebase/AuthContext";
 //style
 import style from "./NavBar.module.scss";
 // // import image from "../../public/image.png";
-export interface NavBarProps {}
+export interface NavBarProps {
+  im?: string;
+}
 
-const NavBar: React.SFC<NavBarProps> = () => {
+const NavBar: FC<NavBarProps> = ({ im }) => {
   const [url, setUrl] = useState(undefined);
   const currentUser = useAuth();
   const { logout, checkProviderUser, getImageUrlProfile } = useAuth();
 
   const router = useRouter();
-  useEffect(() => {
-    async function fetchData() {
-      const response = await getImageUrlProfile();
-      setUrl(response);
+
+  async function fetchData() {
+    if (currentUser.currentUser?.email != undefined) {
+      try {
+        const response = await getImageUrlProfile();
+        console.log(response);
+        setUrl(response);
+      } catch (e) {}
     }
-    fetchData();
-  }, []);
+  }
+  fetchData();
+
   // checkProviderUser();
+  console.log(currentUser.currentUser);
   return (
     <Navbar
       collapseOnSelect

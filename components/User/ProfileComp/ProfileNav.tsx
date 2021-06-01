@@ -66,11 +66,7 @@ const ProfileNav: React.SFC<ProfileNavProps> = ({ children, onChange }) => {
           onClick={() => {
             toggle(USER_TABS.COM_CRIT);
           }}
-        >
-          <div className="w-100 p-0">
-            <h4 className="m-0">COM_CRIT</h4>
-          </div>
-        </NavLink>
+        ></NavLink>
       </NavItem>
     </Nav>
   );

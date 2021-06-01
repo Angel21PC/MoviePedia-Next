@@ -10,6 +10,7 @@ import { Row, Container, Col } from "react-bootstrap";
 import FormEdit from "../../util/Form/Form_editData";
 import ProfileNav from "./ProfileNav";
 import IntComGetData from "../../Collection/CollsById/index";
+import CollectionEdit from "../../Collection/Edit/index";
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";
 export interface ProfileCompProps {}
@@ -17,17 +18,30 @@ export interface ProfileCompProps {}
 const ProfileComp: React.SFC<ProfileCompProps> = () => {
   const [currentTab, setCurrentTab] = useState<string>(USER_TABS.COLLECTION);
   const currentUser = useAuth();
-  const { getCollectionsEmail } = useAuth();
+  const { getCollectionsEmail, ConsultaID } = useAuth();
 
   const [collection, setCollection] = useState([]);
+  const [c, setC] = useState([]);
   useEffect(() => {
     async function fetchData() {
-      const response = await getCollectionsEmail(currentUser.currentUser.email);
-      console.log(response);
-      setCollection(response);
+      if (currentUser.currentUser.email != undefined) {
+        console.log("e");
+        try {
+          const user = await ConsultaID();
+          const response = await getCollectionsEmail(user);
+          console.log(response);
+          setCollection(response);
+        } catch (e) {
+          console.log(e);
+        }
+      }
     }
     fetchData();
   }, []);
+  const edit = (data: any) => {
+    setCurrentTab(USER_TABS.COM_CRIT);
+    setC(data);
+  };
   return (
     <Container className="containerr" fluid>
       <Row className="ml-3" xs={1} md={2}>
@@ -43,6 +57,7 @@ const ProfileComp: React.SFC<ProfileCompProps> = () => {
                 {collection.map((c) => (
                   <div style={{ minWidth: "100%" }}>
                     <IntComGetData Coll={c.id}></IntComGetData>
+                    <button onClick={() => edit(c)}>Edit</button>
                   </div>
                 ))}
               </Row>
@@ -52,7 +67,7 @@ const ProfileComp: React.SFC<ProfileCompProps> = () => {
           )}
           {currentTab === USER_TABS.COM_CRIT ? (
             <div>
-              <h1>com crit</h1>
+              <CollectionEdit data={c}></CollectionEdit>
             </div>
           ) : (
             <></>

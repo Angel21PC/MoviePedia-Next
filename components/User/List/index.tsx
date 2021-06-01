@@ -48,7 +48,7 @@ const ListM: React.SFC<ListMProps> = ({ dataM, dataTV, dataC }) => {
             >
               <Tab eventKey="Liked" title="Liked">
                 <h1>
-                  Total:{" "}
+                  Total:
                   {dataM?.Like?.map((movie) => {
                     return movie?.id_movie?.length;
                   })}

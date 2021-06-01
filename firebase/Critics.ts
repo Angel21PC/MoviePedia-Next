@@ -1,6 +1,29 @@
 import { auth, db, a } from "./index";
 import { v1 as uuidv1 } from "uuid";
 
+async function ConsultaID() {
+  let result = undefined;
+  try {
+    const docRef = db.collection("profile").doc(auth.currentUser.uid);
+    await docRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          result = data.collections_id.id;
+          // console.log(result)
+        } else {
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+    console.log(result);
+  } catch (e) {}
+
+  return result;
+}
 export async function getCritics(id_movie, id_critic) {
   let response = undefined;
   console.log(id_critic, id_movie);
@@ -70,14 +93,14 @@ export async function pushNewCriticM(
   user_email: string
 ) {
   const today = new Date();
-
+  const user = await ConsultaID();
   const id_critic = uuidv1();
 
   const dataCritic = {
     title: title,
     html: html,
     id_critic: id_critic,
-    user: auth.currentUser.email,
+    user: user,
     date: today,
   };
   const newCritic = {
@@ -109,13 +132,10 @@ export async function pushNewCriticM(
   }
 }
 
-export async function criticLike(
-  id_film: number | string,
-  user_giveLike: string,
-  criticLike: string
-) {
+export async function criticLike(id_film: number | string, criticLike: string) {
   let response = undefined;
   try {
+    const user_giveLike = await ConsultaID();
     const docRef = db.collection("critica_M").doc(id_film.toString());
 
     await docRef

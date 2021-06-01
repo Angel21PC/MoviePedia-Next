@@ -1,6 +1,31 @@
 import { auth, db, a } from "./index";
 import { v1 as uuidv1 } from "uuid";
 
+async function ConsultaID() {
+  let result = undefined;
+  try {
+    const docRef = db.collection("profile").doc(auth.currentUser.uid);
+    await docRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          console.log({ aaaaaaaaaaaaaaaaa: data });
+          result = data.collections_id.id;
+          // console.log(result)
+        } else {
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+    console.log(result);
+  } catch (e) {}
+
+  return result;
+}
+
 export async function getCommentsM(id) {
   let response = undefined;
 
@@ -37,6 +62,7 @@ export async function pushNewCommentsM(
   user_email: string
 ) {
   const today = new Date();
+  const user = await ConsultaID();
   const comb = [id, text, user_email, today];
   // const id_coment = uuidv5(comb,uuidv5.URL);
 
@@ -45,7 +71,7 @@ export async function pushNewCommentsM(
   const dataComent = {
     text: text,
     id_coment: id_coment,
-    user: auth.currentUser.email,
+    user: user,
     date: today,
   };
   const newComent = {
@@ -77,13 +103,12 @@ export async function pushNewCommentsM(
 
 export async function commentLike(
   id_film: number | string,
-  user_giveLike: string,
   commentLike: string
 ) {
   let response = undefined;
   try {
     const docRef = db.collection("comments_M").doc(id_film.toString());
-
+    const user_giveLike = await ConsultaID();
     await docRef
       .get()
       .then((doc) => {
@@ -186,6 +211,7 @@ export async function pushNewCommentsTV(
   user_email: string
 ) {
   const today = new Date();
+  const user = await ConsultaID();
   const comb = [id, text, user_email, today];
   // const id_coment = uuidv5(comb,uuidv5.URL);
 
@@ -194,7 +220,7 @@ export async function pushNewCommentsTV(
   const dataComent = {
     text: text,
     id_coment: id_coment,
-    user: auth.currentUser.email,
+    user: user,
     date: today,
   };
   const newComent = {
@@ -225,11 +251,11 @@ export async function pushNewCommentsTV(
 }
 export async function commentLikeTV(
   id_film: number | string,
-  user_giveLike: string,
   commentLike: string
 ) {
   let response = undefined;
   try {
+    const user_giveLike = await ConsultaID();
     const docRef = db.collection("comments_TV").doc(id_film.toString());
 
     await docRef
@@ -295,5 +321,29 @@ export async function commentLikeTV(
   } catch (e) {
     console.log(e);
   }
+  return response;
+}
+
+export async function getEmailIDColl(id: string) {
+  let response = undefined;
+  let arr = "";
+  console.log("DDD");
+  console.log(`${"id."}${id}`);
+  try {
+    const docRef = await db
+      .collection("profile")
+      .where("collections_id.id", "==", id.toString())
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          arr = doc.data().email.email;
+        });
+        response = arr;
+        console.log(arr);
+      });
+  } catch (error) {
+    console.log(error);
+  }
+
   return response;
 }

@@ -10,7 +10,8 @@ import { GetStaticProps } from "next";
 import NavBar from "../../../components/NavBar/index";
 import Banner from "../../../components/HomeComponents/Banner/index";
 import Explorer from "../../../components/HomeComponents/Explorer/index";
-
+//firebase
+import { useAuth } from "../../../firebase/AuthContext";
 export interface TVProps {
   popularTv: any;
   genreTv: any;

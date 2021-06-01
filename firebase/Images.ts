@@ -1,7 +1,31 @@
 import { auth, db, a } from "./index";
 
+async function ConsultaID() {
+  let result = undefined;
+  try {
+    const docRef = db.collection("profile").doc(auth.currentUser.uid);
+    await docRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          result = data.collections_id.id;
+          // console.log(result)
+        } else {
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+    console.log(result);
+  } catch (e) {}
+
+  return result;
+}
+
 export async function uploadImgProfile(imageAsFile: any) {
-  const currentUser = auth.currentUser.email;
+  const currentUser = await ConsultaID();
   let storage = a.storage();
   console.log("start of upload");
 
@@ -33,9 +57,10 @@ export async function uploadImgProfile(imageAsFile: any) {
 }
 
 export async function getImageUrlProfile() {
-  const currentUser = auth.currentUser.email;
+  const currentUser = await ConsultaID();
   let storage = a.storage();
-  let url;
+  let url = "";
+
   await storage
     .ref("imagesProfile")
     .child(currentUser)

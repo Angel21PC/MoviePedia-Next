@@ -42,61 +42,59 @@ import { useForm } from "react-hook-form";
 //validation
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-export interface CreatorFormProps {
+export interface EditFormProps {
   movies: any;
   shows: any;
   close: () => void;
   reset: () => void;
+  data: any;
 }
 
-const schema = yup.object().shape({
-  title: yup.string().required(),
-  file: yup.mixed().required(),
-});
-
-const CreatorForm: FC<CreatorFormProps> = ({ movies, shows, close, reset }) => {
-  const { pushNewCollection, getCollections } = useAuth();
+const EditForm: FC<EditFormProps> = ({ movies, shows, close, reset, data }) => {
+  const id = data.id;
+  const seudonimo = data.data.data.title;
+  const text = data.data.data.description;
+  const isPublic = data.data.public;
+  const { pushNewCollection, getCollections, editCollection } = useAuth();
   const currentUser = useAuth();
+  const schema = yup.object().shape({
+    title: yup.string().required().default(seudonimo),
+    file: yup.mixed().required(),
+  });
 
   let quill;
   if (document) {
     quill = require("react-quill");
   }
   const ReactQuill = quill;
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState(text);
 
-  const [title, setTitle] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(isPublic);
   const [isSend, setIsSend] = useState(false);
 
   let arrayIdMovie = [];
   let arrayIdShow = [];
 
-  // const f = async () => {
-  //   console.log(await getCollections());
-  // };
-  // f();
-
   const onSubmit = async (data: any) => {
     movies.map((e) => {
-      arrayIdMovie.push(e.id);
+      e.id != undefined ? arrayIdMovie.push(e.id) : arrayIdMovie.push(e);
     });
 
     shows.map((e) => {
-      arrayIdShow.push(e.id);
+      e.id != undefined ? arrayIdShow.push(e.id) : arrayIdShow.push(e);
     });
 
     let objArray = {
       movies: arrayIdMovie,
       tv: arrayIdShow,
     };
-    console.log(data);
+    console.log({ objArray: objArray });
     try {
-      const response = await pushNewCollection(
+      const response = await editCollection(
+        id,
+        objArray,
         data.title,
         value,
-        currentUser.currentUser.email,
-        objArray,
         isOpen,
         data.file[0]
       );
@@ -135,6 +133,7 @@ const CreatorForm: FC<CreatorFormProps> = ({ movies, shows, close, reset }) => {
                 key="title"
                 id="title"
                 name="title"
+                value={seudonimo}
                 placeholder="Critic title"
                 {...register("title")}
               />
@@ -198,4 +197,4 @@ const CreatorForm: FC<CreatorFormProps> = ({ movies, shows, close, reset }) => {
   );
 };
 
-export default CreatorForm;
+export default EditForm;

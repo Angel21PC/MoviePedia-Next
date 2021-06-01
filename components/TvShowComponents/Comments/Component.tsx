@@ -14,16 +14,17 @@ export interface CommentItemProps {
 
 const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
   const [h, setH] = useState("heart");
-
-  const { commentLikeTV } = useAuth();
+  const [email, setEmail] = useState("");
+  const { commentLikeTV, ConsultaID, getEmailIDColl } = useAuth();
   const currentUser = useAuth();
 
   let bool = false;
   useEffect(() => {
-    const c = () => {
+    const c = async () => {
       if (currentUser.currentUser !== null) {
+        const id = await ConsultaID();
         com.newComent.userLikes?.map((user) =>
-          user === currentUser.currentUser.email ? (bool = true) : bool
+          user === id ? (bool = true) : bool
         );
         if (bool === true) {
           setH("heartcheck");
@@ -31,16 +32,17 @@ const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
       }
     };
     c();
+    async function fetchEmail() {
+      const eml = await getEmailIDColl(com.newComent.data.user);
+      setEmail(eml);
+    }
+    fetchEmail();
   }, []);
 
   const like = async () => {
     console.log(com.newComent.data.id_coment);
     if (currentUser.currentUser !== null) {
-      let response = await commentLikeTV(
-        id_film,
-        currentUser.currentUser.email,
-        com.newComent.data.id_coment
-      );
+      let response = await commentLikeTV(id_film, com.newComent.data.id_coment);
 
       if (response === true) {
         setH("heartcheck");
@@ -70,7 +72,7 @@ const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
 
   return (
     <Toast key={com.text} className={style.text}>
-      <ToastHeader closeButton={false}> {com.newComent.data.user}</ToastHeader>
+      <ToastHeader closeButton={false}> {email}</ToastHeader>
       <div className="d-flex w-100">
         <ToastBody className="w-100 d-flex">
           <div className="w-50 mr-5">{com.newComent.data.text}</div>
