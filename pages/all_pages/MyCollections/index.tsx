@@ -12,9 +12,6 @@ import NavBar from "../../../components/NavBar/index";
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";
 
-import Modal from "../../../components/util/Critic/Modal";
-import Critic from "../../../components/util/Critic/Critic";
-
 import CollectionCreator from "../../../components/Collection/Creator";
 
 export interface MyColProps {}

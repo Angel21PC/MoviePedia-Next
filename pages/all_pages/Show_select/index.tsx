@@ -3,7 +3,7 @@ import axios from "axios";
 //next
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-
+import { GetServerSideProps } from "next";
 //component
 import Tv from "../../../components/TvShowComponents";
 import NavBar from "../../../components/NavBar/index";
@@ -30,7 +30,7 @@ const TvS: NextPage<TvSProps> = (props) => {
   );
 };
 
-export const getServerSideProps = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { id } = query;
   const data = await axios
     .get(URL + api_rutesTv.OneShow, {

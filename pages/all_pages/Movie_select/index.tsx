@@ -2,6 +2,8 @@ import axios from "axios";
 
 //next
 import { NextPage } from "next";
+import { GetServerSideProps } from "next";
+
 import { useRouter } from "next/router";
 
 //component
@@ -31,7 +33,7 @@ const MovieS: NextPage<MovieSProps> = (props) => {
   );
 };
 
-export const getServerSideProps = async ({ query }) => {
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { id } = query;
 
   const data = await axios
