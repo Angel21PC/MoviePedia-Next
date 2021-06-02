@@ -11,7 +11,7 @@ import { Tabs, Tab, Container } from "react-bootstrap";
 import ListNav from "./ListNav";
 import { LIST_TABS } from "./const";
 import IntComGetData from "../../Collection/CollsById/index";
-
+import Loading from "../../util/Loading";
 export interface ListMProps {
   dataM: IListM;
   dataTV: any;
@@ -32,10 +32,7 @@ const ListM: FC<ListMProps> = ({ dataM, dataTV, dataC }) => {
     <Container>
       {isPending ? (
         <div className="load">
-          <img
-            src="https://rubico.com.mx/cultivandoelentendimiento_no_PHP/assets/img/demo/loader.gif"
-            alt=""
-          />
+          <Loading></Loading>
         </div>
       ) : (
         <>

@@ -47,7 +47,7 @@ export async function uploadImgProfile(imageAsFile: any) {
     () => {
       storage
         .ref("imagesProfile")
-        .child(currentUser + imageAsFile.name)
+        .child(currentUser)
         .getDownloadURL()
         .then((fireBaseUrl) => {
           return fireBaseUrl;

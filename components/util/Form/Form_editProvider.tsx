@@ -22,34 +22,16 @@ import { useAuth } from "../../../firebase/AuthContext";
 import { useRouter } from "next/router";
 
 import { INewUser } from "../../../types";
-
-//component-p
-// import dynamic from "next/dynamic";
-// const Editor = dynamic(() => import("../TextEditor"), { ssr: false });
-
-/* Editar los datos del fromulario basico */
-
-/* poner biografia  */
-
-/*foto */
-
-export interface FormEditProps {}
+export interface FormEditProviderProps {}
 
 const today = new Date();
 const schema = yup.object().shape({
   username: yup.string().required(),
-  password: yup.string().required(),
-  password2: yup
-    .string()
-    .oneOf([yup.ref("password"), null], "Passwords must match")
-    .required(),
-  email: yup.string().email().required(),
   phone_number: yup.string(),
   birth_date: yup.date().max(today),
-  currentPassword: yup.string().required(),
   file: yup.mixed(),
 });
-const FormEdit: FC<FormEditProps> = () => {
+const FormEditProvider: FC<FormEditProviderProps> = () => {
   //firebase
   const { changeData, uploadImgProfile, getImageUrlProfile } = useAuth();
 
@@ -69,14 +51,7 @@ const FormEdit: FC<FormEditProps> = () => {
     try {
       console.log(data);
       setLoading(true);
-      await changeData(
-        data.username,
-        data.birth_date,
-        data.phone_number,
-        data.email,
-        data.password,
-        data.currentPassword
-      );
+      await changeData(data.username, data.birth_date, data.phone_number);
       // console.log(data.file);
       if (data.file != undefined) {
         let c = await uploadImgProfile(data.file[0]);
@@ -124,57 +99,7 @@ const FormEdit: FC<FormEditProps> = () => {
           />
           {errors?.username?.message && <p>{errors?.username?.message}</p>}
         </div>
-        <div className="form-group">
-          <input
-            type="currentPassword"
-            className="form-control item"
-            key="currentPassword"
-            id="currentPassword"
-            placeholder="Current Password"
-            name="currentPassword"
-            {...register("currentPassword")}
-            pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            className="form-control item"
-            key="password"
-            id="password"
-            placeholder="Password"
-            name="password"
-            {...register("password")}
-            pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
-          />
-          {errors.password?.message && <p>{errors.password?.message}</p>}
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            className="form-control item"
-            key="password2"
-            id="password2"
-            placeholder="Password again pls"
-            name="password2"
-            {...register("password2")}
-            pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
-          />
-          {errors.password2?.message && <p>{errors.password2?.message}</p>}
-        </div>
-        <div className="form-group">
-          <input
-            type="text"
-            className="form-control item"
-            key="email"
-            id="email"
-            placeholder="Email"
-            name="email"
-            {...register("email")}
-            pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+"
-          />
-          {errors.email?.message && <p>{errors.email?.message}</p>}
-        </div>
+
         <div className="form-group">
           <input
             type="text"
@@ -210,20 +135,6 @@ const FormEdit: FC<FormEditProps> = () => {
             {...register("file")}
           ></input>
         </div>
-        {/* Biografia */}
-        {/* <div className="form-group">
-          <h4>Bio</h4>
-          <input
-            type="textarea"
-            className="form-control item"
-            key="bio"
-            id="bio"
-            name="bio"
-            {...register("bio")}
-            placeholder="bio"
-          /> 
-          <Editor key="bio" name="bio" {...register("bio")}></Editor>
-        </div> */}
 
         <div className="form-group">
           <button
@@ -333,4 +244,4 @@ const FormEdit: FC<FormEditProps> = () => {
   );
 };
 
-export default FormEdit;
+export default FormEditProvider;

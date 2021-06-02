@@ -8,6 +8,7 @@ import { Row, Container, Col, Button } from "react-bootstrap";
 
 //componentes-p
 import FormEdit from "../../util/Form/Form_editData";
+import FormEditProvider from "../../util/Form/Form_editProvider";
 import ProfileNav from "./ProfileNav";
 import IntComGetData from "../../Collection/CollsById/index";
 import CollectionEdit from "../../Collection/Edit/index";
@@ -19,14 +20,17 @@ export interface ProfileCompProps {}
 const ProfileComp: FC<ProfileCompProps> = () => {
   const [currentTab, setCurrentTab] = useState<string>(USER_TABS.COLLECTION);
   const currentUser = useAuth();
-  const { getCollectionsEmail, ConsultaID } = useAuth();
+  const { getCollectionsEmail, ConsultaID, checkProviderUser } = useAuth();
 
   const [collection, setCollection] = useState([]);
   const [c, setC] = useState([]);
   const [reload, setReload] = useState("");
+  const [provider, setProvider] = useState("");
+
   const p = () => {
     setReload("tus");
   };
+
   useEffect(() => {
     async function fetchData() {
       if (currentUser.currentUser.email != undefined) {
@@ -34,8 +38,10 @@ const ProfileComp: FC<ProfileCompProps> = () => {
         try {
           const user = await ConsultaID();
           const response = await getCollectionsEmail(user);
+          const providerData = await checkProviderUser();
           console.log(response);
           setCollection(response);
+          setProvider(providerData);
         } catch (e) {
           console.log(e);
         }
@@ -83,9 +89,15 @@ const ProfileComp: FC<ProfileCompProps> = () => {
             <></>
           )}
           {currentTab === USER_TABS.EDIT ? (
-            <div>
-              <FormEdit />
-            </div>
+            provider == "password" ? (
+              <div>
+                <FormEdit />
+              </div>
+            ) : (
+              <div>
+                <FormEditProvider />
+              </div>
+            )
           ) : (
             <></>
           )}

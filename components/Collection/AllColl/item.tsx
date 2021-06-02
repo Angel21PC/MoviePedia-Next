@@ -31,7 +31,7 @@ const ItemFlip: FC<ItemFlipProps> = ({ data }) => {
   return (
     <>
       <Flippy
-        className="w-100 h-100"
+        className="w-100 h-100 cardFlip "
         flipOnHover={false} // default false
         flipOnClick={true} // default false
         flipDirection="horizontal" // horizontal or vertical

@@ -28,7 +28,7 @@ const NavBar: FC<NavBarProps> = ({ im }) => {
   const { logout, checkProviderUser, getImageUrlProfile } = useAuth();
 
   const router = useRouter();
-
+  // checkProviderUser();
   async function fetchData() {
     if (currentUser.currentUser?.email != undefined) {
       try {

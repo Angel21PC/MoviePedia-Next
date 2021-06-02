@@ -149,18 +149,27 @@ export function AuthProvider({ children }) {
     password,
     currentPassword
   ) {
-    await db.collection("profile").doc(auth.currentUser.uid).update({
-      email: { email },
-      username: { username },
-      birth_date: { birth_date },
-      phone: { phone },
-    });
-    return await auth
-      .signInWithEmailAndPassword(auth.currentUser.email, currentPassword)
-      .then((userCredential) => {
-        userCredential.user.updateEmail(email);
-        userCredential.user.updatePassword(password);
+    let provider = await checkProviderUser();
+    if (provider == "password") {
+      await db.collection("profile").doc(auth.currentUser.uid).update({
+        email: { email },
+        username: { username },
+        birth_date: { birth_date },
+        phone: { phone },
       });
+      return await auth
+        .signInWithEmailAndPassword(auth.currentUser.email, currentPassword)
+        .then((userCredential) => {
+          userCredential.user.updateEmail(email);
+          userCredential.user.updatePassword(password);
+        });
+    } else {
+      await db.collection("profile").doc(auth.currentUser.uid).update({
+        username: { username },
+        birth_date: { birth_date },
+        phone: { phone },
+      });
+    }
   }
 
   async function ConsultaID() {
