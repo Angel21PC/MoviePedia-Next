@@ -3,6 +3,7 @@ import Flippy, { FrontSide, BackSide } from "react-flippy";
 import { useRouter } from "next/router";
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";
+import DOMPurify from "dompurify";
 export interface ItemFlipProps {
   data: any;
 }
@@ -35,8 +36,6 @@ const ItemFlip: FC<ItemFlipProps> = ({ data }) => {
         flipOnHover={false} // default false
         flipOnClick={true} // default false
         flipDirection="horizontal" // horizontal or vertical
-        // if you pass isFlipped prop component will be controlled component.
-        // and other props, which will go to div
       >
         <FrontSide
           className="poster2"
@@ -56,11 +55,14 @@ const ItemFlip: FC<ItemFlipProps> = ({ data }) => {
             backgroundColor: "#175852",
           }}
         >
-          <div
-            dangerouslySetInnerHTML={{
-              __html: data.data.data.description,
-            }}
-          ></div>
+          <div className="w-100">
+            <div
+              className="flipDescription"
+              dangerouslySetInnerHTML={{
+                __html: DOMPurify.sanitize(data.data.data.description),
+              }}
+            ></div>
+          </div>
           <div className="d-flex justify-content-center fixed-bottom mb-2">
             <button
               className="btn btn-block create-account"

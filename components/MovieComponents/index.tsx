@@ -14,7 +14,7 @@ import Video from "./Video/index";
 import Loading from "../util/Loading/index";
 import Similar from "../SelectUtils/SimilarM/index";
 import Comments from "./Comments/index";
-import CriticList from "../util/Critic/index";
+import CriticList from "../util/Critic/Movie/index";
 
 //components
 import { Container, Row, Col, Tabs, Tab } from "react-bootstrap";

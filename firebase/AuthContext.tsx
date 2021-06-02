@@ -52,6 +52,10 @@ import {
   pushNewCriticM,
   criticLike,
   getMinCritic,
+  getCriticsTV,
+  getMinCriticTV,
+  pushNewCriticTV,
+  criticLikeTV,
 } from "./Critics";
 import {
   pushNewCollection,
@@ -480,6 +484,10 @@ export function AuthProvider({ children }) {
     removeCollection,
     getCollectionsByDate,
     getCollectionsByLike,
+    getCriticsTV,
+    getMinCriticTV,
+    pushNewCriticTV,
+    criticLikeTV,
   };
 
   return (

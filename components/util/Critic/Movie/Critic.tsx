@@ -1,8 +1,10 @@
 import React, { FC, useState } from "react";
 import "react-quill/dist/quill.bubble.css";
 import style from "./Critic.module.scss";
-import { useAuth } from "../../../firebase/AuthContext";
+import { useAuth } from "../../../../firebase/AuthContext";
 import { Button } from "react-bootstrap";
+import DOMPurify from "dompurify";
+
 export interface CriticProps {
   id: number | string;
 }
@@ -76,7 +78,9 @@ const Critic: FC<CriticProps> = ({ id }) => {
         </Button>
       </div>
       <hr />
-      <div dangerouslySetInnerHTML={{ __html: value }}></div>
+      <div
+        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(value) }}
+      ></div>
     </>
   );
 };

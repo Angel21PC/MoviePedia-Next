@@ -123,3 +123,7 @@
 .cardFlip {
   min-width: 500px;
 }
+.flipDescription > * {
+  word-wrap: break-word;
+  color: white;
+}

@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from "react";
-import { useAuth } from "../../../firebase/AuthContext";
+import { useAuth } from "../../../../firebase/AuthContext";
 
 import Modal from "./Modal";
 import Critic from "./Critic";

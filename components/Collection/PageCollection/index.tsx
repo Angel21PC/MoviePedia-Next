@@ -1,4 +1,5 @@
 import React, { FC, useState, useEffect } from "react";
+import DOMPurify from "dompurify";
 
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";

@@ -15,9 +15,10 @@ import Video from "../MovieComponents/Video/index";
 import Loading from "../util/Loading/index";
 import Similar from "../SelectUtils/SimilarM/index";
 import Comments from "./Comments/index";
+import CriticList from "../util/Critic/TvShow/index";
 
 //components
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Tabs, Tab } from "react-bootstrap";
 export interface TvProps {
   data: any;
 }
@@ -97,9 +98,23 @@ const Tv: FC<TvProps> = ({ data }) => {
                   <Avaliable provider={provider} />
                 </div>
               </div>
-              <div className="comentarios_container mt-4  ">
-                <h4>Comments</h4>
-                <Comments id={movie.id} />
+              <div>
+                <Tabs
+                  className="justify-content-center mt-4"
+                  defaultActiveKey="Comments"
+                  id="uncontrolled-tab-example"
+                >
+                  <Tab eventKey="Comments" title="Comments">
+                    <div className="comentarios_container mt-4  ">
+                      <Comments id={movie.id} />
+                    </div>
+                  </Tab>
+                  <Tab eventKey="Critics" title="Critics">
+                    <div className="comentarios_container mt-4  ">
+                      <CriticList id={movie.id} />
+                    </div>
+                  </Tab>
+                </Tabs>
               </div>
             </Col>
             <Col className="text" xs lg="6">
