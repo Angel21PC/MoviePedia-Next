@@ -1,11 +1,53 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
+
+import { useAuth } from "../../../firebase/AuthContext";
+
+import { Idatapublic } from "../../../types";
+
 //components
-import { Container, Row, Col, Image } from "react-bootstrap";
+import { Container, Row, Col, Image, Tabs, Tab } from "react-bootstrap";
+import ListEyeMTV from "./eye/index";
+export interface PublicProfileProps {
+  id: string;
+}
 
-export interface PublicProfileProps {}
+const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
+  console.log({ PROPS: id });
 
-const PublicProfile: FC<PublicProfileProps> = (props: any) => {
-  console.log({ PROPS: props });
+  const [bookmark, setBookmark] = useState<Idatapublic>([]);
+  const [likes, setLikes] = useState<Idatapublic>([]);
+  const [eye, setEye] = useState<Idatapublic>();
+
+  const {
+    getDataUser,
+    editPublicData,
+    updateNameandDescription,
+    getBookmark_TVMovie,
+    getLike_TVMovie,
+    getEye_TVMovie,
+  } = useAuth();
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await getDataUser(id);
+      if (response != undefined) {
+        if (response.Eye === true) {
+          const listEye = await getEye_TVMovie(id);
+          setEye(listEye);
+        }
+        if (response.Like === true) {
+          const listLike = await getLike_TVMovie(id);
+          setLikes(listLike);
+        }
+        if (response.Bookmark === true) {
+          const listBookmark = await getBookmark_TVMovie(id);
+          setBookmark(listBookmark);
+        }
+      }
+    }
+    fetchData();
+  }, []);
+
   return (
     <div className="mt-3">
       <div>
@@ -31,9 +73,7 @@ const PublicProfile: FC<PublicProfileProps> = (props: any) => {
 
       <Container fluid>
         <hr />
-        <Row className="justify-content-between" lg={4} sm={2} xs={1}>
-          {/* Colecciones ?, Lista de Guardados? */}
-        </Row>
+        {/* <ListEyeMTV Movie={eye.Movie} TV={eye.TV}></ListEyeMTV> */}
       </Container>
     </div>
   );

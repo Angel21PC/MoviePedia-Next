@@ -4,7 +4,8 @@ import style from "./Critic.module.scss";
 import { useAuth } from "../../../../firebase/AuthContext";
 import { Button } from "react-bootstrap";
 import DOMPurify from "dompurify";
-
+//Notification
+import { store } from "react-notifications-component";
 export interface CriticProps {
   id: number | string;
 }
@@ -31,14 +32,44 @@ const Critic: FC<CriticProps> = ({ id }) => {
       title: title,
       html: value,
     };
-    console.log(newObj);
-    const response = await pushNewCriticM(
-      id,
-      title,
-      value,
-      currentUser.currentUser.email
-    );
-    console.log(response);
+    if (value.length > 20) {
+      console.log(newObj);
+      const response = await pushNewCriticM(
+        id,
+        title,
+        value,
+        currentUser.currentUser.email
+      ).then(
+        store.addNotification({
+          title: "Wonderful!",
+          message: "Critic add correctly",
+          type: "info",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animate__animated", "animate__fadeIn"],
+          animationOut: ["animate__animated", "animate__fadeOutUp"],
+          dismiss: {
+            duration: 2000,
+            touch: true,
+          },
+        })
+      );
+      console.log(response);
+    } else {
+      store.addNotification({
+        title: "Sorry",
+        message: "Your critic has to be more long",
+        type: "info",
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOutUp"],
+        dismiss: {
+          duration: 2000,
+          touch: true,
+        },
+      });
+    }
   };
   return (
     <>

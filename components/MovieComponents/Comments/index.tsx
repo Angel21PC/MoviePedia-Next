@@ -55,11 +55,39 @@ const Comments: FC<CommentsProps> = ({ id }) => {
               touch: true,
             },
           });
+        } else if (nextComent.length === 0) {
+          store.addNotification({
+            title: "Sorry",
+            message: "Error is too short ",
+            type: "danger",
+            insert: "top",
+            container: "top-center",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOutUp"],
+            dismiss: {
+              duration: 2000,
+              touch: true,
+            },
+          });
+        } else if (nextComent.length < 40) {
+          store.addNotification({
+            title: "Sorry",
+            message: "Error is too long ",
+            type: "danger",
+            insert: "top",
+            container: "top-center",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOutUp"],
+            dismiss: {
+              duration: 2000,
+              touch: true,
+            },
+          });
         }
       } catch {
         store.addNotification({
           title: "Sorry",
-          message: "Error",
+          message: "Error ",
           type: "danger",
           insert: "top",
           container: "top-center",

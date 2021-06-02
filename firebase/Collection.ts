@@ -233,6 +233,7 @@ export async function getCollections() {
 
   return response;
 }
+
 export async function getCollectionsEmail(email: string) {
   let response = undefined;
   let arr = [];

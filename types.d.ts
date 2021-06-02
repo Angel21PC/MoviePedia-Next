@@ -78,3 +78,8 @@ type IListM = {
   Bookmark: any;
   Watch: any;
 };
+
+type Idatapublic = {
+  Movie: [];
+  TV: [];
+};

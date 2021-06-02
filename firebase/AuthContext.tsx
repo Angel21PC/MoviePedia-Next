@@ -82,6 +82,13 @@ import {
   getImageUrlProfile,
   getImageCollection,
 } from "./Images";
+import {
+  editPublicData,
+  getBookmark_TVMovie,
+  getDataUser,
+  getEye_TVMovie,
+  getLike_TVMovie,
+} from "./PublicUser";
 import { checkProviderUser } from "./provider";
 const AuthContext = React.createContext(null);
 
@@ -132,11 +139,23 @@ export function AuthProvider({ children }) {
       Like: [],
     });
 
+    //public_Profile
+    db.collection("Profile_Public").doc(id).set({
+      userName: username,
+      description: "",
+      collections_created: true,
+      collections_saved: true,
+      Bookmark: true,
+      Like: true,
+      Eye: true,
+    });
+
     setTimeout(() => {
       //ejecutamos
       //datos de perfil
       return db.collection("profile").doc(auth.currentUser.uid).set({
         email: { email },
+        description: "",
         username: { username },
         birth_date: { birth_date },
         phone: { phone },
@@ -155,6 +174,7 @@ export function AuthProvider({ children }) {
   ) {
     let provider = await checkProviderUser();
     if (provider == "password") {
+      // await editPublicData({name: username, description:});
       await db.collection("profile").doc(auth.currentUser.uid).update({
         email: { email },
         username: { username },
@@ -168,6 +188,7 @@ export function AuthProvider({ children }) {
           userCredential.user.updatePassword(password);
         });
     } else {
+      // await editPublicData({name: username, description:});
       await db.collection("profile").doc(auth.currentUser.uid).update({
         username: { username },
         birth_date: { birth_date },
