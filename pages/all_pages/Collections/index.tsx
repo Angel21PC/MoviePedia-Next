@@ -3,7 +3,7 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 
 //component
-import NavBar from "../../../components/NavBar/index";
+
 import AllColl from "../../../components/Collection/AllColl";
 
 export interface CollectionsProps {
@@ -13,7 +13,6 @@ export interface CollectionsProps {
 const Collections: NextPage<CollectionsProps> = () => {
   return (
     <>
-      <NavBar />
       <AllColl />
     </>
   );

@@ -1,9 +1,6 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 
-//components
-import NavBar from "../../../components/NavBar/index";
-
 //componentes-p
 import ProfileComp from "../../../components/User/ProfileComp";
 
@@ -18,7 +15,6 @@ const Profile: NextPage<ProfileProps> = () => {
   if (currentUser.currentUser !== null) {
     return (
       <>
-        <NavBar />
         <ProfileComp />
       </>
     );

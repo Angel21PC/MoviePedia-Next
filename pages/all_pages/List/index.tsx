@@ -10,7 +10,6 @@ import { URL, api_rutesM } from "../../../config/rute_api";
 import { useAuth } from "../../../firebase/AuthContext";
 
 //components
-import NavBar from "../../../components/NavBar/index";
 import ListM from "../../../components/User/List/index";
 
 export interface ListProps {
@@ -54,7 +53,6 @@ const List: NextPage<ListProps> = () => {
 
   return (
     <>
-      <NavBar />
       <ListM dataM={dataM} dataTV={dataTV} dataC={collection} />
     </>
   );

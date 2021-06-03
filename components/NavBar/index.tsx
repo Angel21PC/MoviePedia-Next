@@ -21,25 +21,25 @@ import style from "./NavBar.module.scss";
 export interface NavBarProps {}
 
 const NavBar: FC<NavBarProps> = () => {
-  const [url, setUrl] = useState(undefined);
+  // const [url, setUrl] = useState(undefined);
   const currentUser = useAuth();
-  const { logout, checkProviderUser, getImageUrlProfile } = useAuth();
+  const { logout } = useAuth();
 
   const router = useRouter();
   // checkProviderUser();
-  async function fetchData() {
-    if (currentUser.currentUser?.email != undefined) {
-      try {
-        const response = await getImageUrlProfile();
-        console.log(response);
-        setUrl(response);
-      } catch (e) {}
-    }
-  }
-  fetchData();
+  // async function fetchData() {
+  //   if (currentUser.currentUser?.email != undefined) {
+  //     try {
+  //       const response = await getImageUrlProfile();
+  //       console.log(response);
+  //       setUrl(response);
+  //     } catch (e) {}
+  //   }
+  // }
+  // fetchData();
 
   // checkProviderUser();
-  console.log(currentUser.currentUser);
+  console.log({ RENDER: currentUser.currentUser });
   return (
     <Navbar
       collapseOnSelect

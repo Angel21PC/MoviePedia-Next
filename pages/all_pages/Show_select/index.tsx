@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 //component
 import Tv from "../../../components/TvShowComponents";
-import NavBar from "../../../components/NavBar/index";
 
 //initialprops
 import { URL, api_rutesTv } from "../../../config/rute_api";
@@ -24,7 +23,6 @@ const TvS: NextPage<TvSProps> = (props) => {
   console.log(data);
   return (
     <>
-      <NavBar />
       <Tv data={data} />
     </>
   );

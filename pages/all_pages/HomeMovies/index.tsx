@@ -7,7 +7,6 @@ import { URL, api_rutesM } from "../../../config/rute_api";
 import { GetStaticProps } from "next";
 
 //components
-import NavBar from "../../../components/NavBar/index";
 import Banner from "../../../components/HomeComponents/Banner/index";
 import Explorer from "../../../components/HomeComponents/Explorer/index";
 
@@ -21,7 +20,6 @@ const HomeMovies: NextPage<HomeMoviesProps> = (props) => {
   // console.log(popularMovies);
   return (
     <>
-      <NavBar />
       <Banner data={popularMovies.data} />
       <Explorer
         genreMovies={genreMovies?.data.genres}

@@ -7,7 +7,6 @@ import { GetServerSideProps } from "next";
 import { useAuth } from "../../../firebase/AuthContext";
 
 //componentes-p
-import NavBar from "../../../components/NavBar";
 import PublicPofile from "../../../components/User/PublicProfile";
 export interface ProfileProps {
   query: any;
@@ -20,7 +19,6 @@ const PublicProfile: NextPage<ProfileProps> = ({ query }) => {
 
   return (
     <>
-      <NavBar />
       <PublicPofile id={id.toString()} />
     </>
   );

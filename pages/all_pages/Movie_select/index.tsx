@@ -8,7 +8,6 @@ import { useRouter } from "next/router";
 
 //component
 import Movie from "../../../components/MovieComponents";
-import NavBar from "../../../components/NavBar/index";
 
 //initialprops
 import { URL, api_rutesM } from "../../../config/rute_api";
@@ -27,7 +26,6 @@ const MovieS: NextPage<MovieSProps> = (props) => {
 
   return (
     <>
-      <NavBar />
       <Movie data={data} />
     </>
   );
