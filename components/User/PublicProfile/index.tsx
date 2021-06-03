@@ -6,7 +6,7 @@ import { Idatapublic } from "../../../types";
 
 //components
 import { Container, Row, Col, Image, Tabs, Tab } from "react-bootstrap";
-import ListEyeMTV from "./eye/index";
+import ListMTV from "./Row/index";
 export interface PublicProfileProps {
   id: string;
 }
@@ -14,9 +14,12 @@ export interface PublicProfileProps {
 const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
   console.log({ PROPS: id });
 
-  const [bookmark, setBookmark] = useState<Idatapublic>([]);
-  const [likes, setLikes] = useState<Idatapublic>([]);
+  const [bookmark, setBookmark] = useState<Idatapublic>();
+  const [likes, setLikes] = useState<Idatapublic>();
   const [eye, setEye] = useState<Idatapublic>();
+
+  const [urlImage, setUrlImage] = useState(undefined);
+  const [description, setDescription] = useState(undefined);
 
   const {
     getDataUser,
@@ -25,11 +28,13 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
     getBookmark_TVMovie,
     getLike_TVMovie,
     getEye_TVMovie,
+    getImageUser,
   } = useAuth();
 
   useEffect(() => {
     async function fetchData() {
       const response = await getDataUser(id);
+      setDescription(response.description);
       if (response != undefined) {
         if (response.Eye === true) {
           const listEye = await getEye_TVMovie(id);
@@ -46,34 +51,41 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
       }
     }
     fetchData();
+
+    async function fetchImage() {
+      const response = await getImageUser(id);
+      setUrlImage(response);
+    }
+    fetchImage();
   }, []);
 
   return (
     <div className="mt-3">
       <div>
-        <div className="d-flex justify-content-center">
-          <div className="justify-content-center">
-            {/* <h3>{result?.response.data.title}</h3> */}
-            {/* <M_B_F
-              id={id}
-              title={result?.response.data.title}
-              userLikes={result?.userLikes}
-            /> */}
-            <hr />
-            {/* <div
-              dangerouslySetInnerHTML={{
-                __html: result?.response?.data?.description,
-              }}
-            ></div> */}
-          </div>
-          {/* Image profile */}
-          {/* <Image src={result?.url} alt="s" className="poster rounded" /> */}
+        <div className="w-100 d-flex">
+          <Image
+            src={`${urlImage}`}
+            alt="Profile"
+            height="100px"
+            width="100px"
+            roundedCircle
+          />
+        </div>
+        <hr />
+        <div className="d-flex p-5">
+          <div
+            dangerouslySetInnerHTML={{
+              __html: description,
+            }}
+          ></div>
         </div>
       </div>
 
       <Container fluid>
         <hr />
-        {/* <ListEyeMTV Movie={eye.Movie} TV={eye.TV}></ListEyeMTV> */}
+        <ListMTV Movie={eye.Movie} TV={eye.TV} />
+        <ListMTV Movie={bookmark.Movie} TV={bookmark.TV} />
+        <ListMTV Movie={likes.Movie} TV={likes.TV} />
       </Container>
     </div>
   );

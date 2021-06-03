@@ -15,7 +15,7 @@ export interface CommentItemProps {
 const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
   const [h, setH] = useState("heart");
   const [email, setEmail] = useState("");
-  const { commentLike, ConsultaID, getEmailIDColl } = useAuth();
+  const { commentLike, ConsultaID, getUserNameIDColl } = useAuth();
   const currentUser = useAuth();
 
   let bool = false;
@@ -33,7 +33,7 @@ const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
       }
     };
     async function fetchEmail() {
-      const eml = await getEmailIDColl(com.newComent.data.user);
+      const eml = await getUserNameIDColl(com.newComent.data.user);
       setEmail(eml);
     }
     fetchEmail();

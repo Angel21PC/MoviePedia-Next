@@ -17,7 +17,7 @@ export interface MinCriticProps {
 
 const MinCritic: FC<MinCriticProps> = (props) => {
   const { creator, date, title, id_critic, id_movie, userLikes } = props;
-  const { getEmailIDColl, criticLikeTV, ConsultaID } = useAuth();
+  const { getUserNameIDColl, criticLikeTV, ConsultaID } = useAuth();
 
   const currentUser = useAuth();
 
@@ -27,7 +27,7 @@ const MinCritic: FC<MinCriticProps> = (props) => {
   let bool = false;
   useEffect(() => {
     async function fetch() {
-      const eml = await getEmailIDColl(creator);
+      const eml = await getUserNameIDColl(creator);
       setEmail(eml);
     }
     fetch();

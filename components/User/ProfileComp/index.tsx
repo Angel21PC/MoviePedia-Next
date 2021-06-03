@@ -13,11 +13,14 @@ import ProfileNav from "./ProfileNav";
 import IntComGetData from "../../Collection/CollsById/index";
 import CollectionEdit from "../../Collection/Edit/index";
 import ModalDeleteCollection from "./ModalDeleteCollection";
+import ModalDeleteAccount from "./ModalDeleteAccount";
+import { useRouter } from "next/router";
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";
 export interface ProfileCompProps {}
 
 const ProfileComp: FC<ProfileCompProps> = () => {
+  const router = useRouter();
   const [currentTab, setCurrentTab] = useState<string>(USER_TABS.COLLECTION);
   const currentUser = useAuth();
   const { getCollectionsEmail, ConsultaID, checkProviderUser } = useAuth();
@@ -54,6 +57,11 @@ const ProfileComp: FC<ProfileCompProps> = () => {
     setC(data);
   };
 
+  const deleteAccount = () => {
+    router.push({
+      pathname: "/",
+    });
+  };
   return (
     <Container className="containerr" fluid>
       <Row className="ml-3" xs={1} md={2}>
@@ -92,10 +100,12 @@ const ProfileComp: FC<ProfileCompProps> = () => {
             provider == "password" ? (
               <div>
                 <FormEdit />
+                <ModalDeleteAccount pilo={deleteAccount}></ModalDeleteAccount>
               </div>
             ) : (
               <div>
                 <FormEditProvider />
+                <ModalDeleteAccount pilo={deleteAccount}></ModalDeleteAccount>
               </div>
             )
           ) : (

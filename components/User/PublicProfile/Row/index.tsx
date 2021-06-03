@@ -6,24 +6,22 @@ import { Tabs, Tab, Container, Row } from "react-bootstrap";
 import LstM from "../../../List/ListMovie/index";
 import LstTv from "../../../List/ListTv/index";
 
-export interface ListEyeMTVProps {
+export interface ListMTVProps {
   Movie: any;
   TV: any;
 }
 
-const ListEyeMTV: FC<ListEyeMTVProps> = ({ Movie, TV }) => {
-  useEffect(() => {}, []);
-
+const ListMTV: FC<ListMTVProps> = ({ Movie, TV }) => {
   return (
     <Row>
       {Movie.map((e) => (
         <LstM {...e} />
       ))}
       {TV.map((e) => (
-        <LstM {...e} />
+        <LstTv {...e} />
       ))}
     </Row>
   );
 };
 
-export default ListEyeMTV;
+export default ListMTV;

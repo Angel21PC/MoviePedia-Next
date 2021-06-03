@@ -324,7 +324,7 @@ export async function commentLikeTV(
   return response;
 }
 
-export async function getEmailIDColl(id: string) {
+export async function getUserNameIDColl(id: string) {
   let response = undefined;
   let arr = "";
   console.log("DDD");
@@ -336,7 +336,7 @@ export async function getEmailIDColl(id: string) {
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          arr = doc.data().email.email;
+          arr = doc.data().username.username;
         });
         response = arr;
         console.log(arr);

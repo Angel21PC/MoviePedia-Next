@@ -45,7 +45,7 @@ import {
   getCommentsTV,
   pushNewCommentsTV,
   commentLikeTV,
-  getEmailIDColl,
+  getUserNameIDColl,
 } from "./Comments";
 import {
   getCritics,
@@ -88,8 +88,10 @@ import {
   getDataUser,
   getEye_TVMovie,
   getLike_TVMovie,
+  getUsersByUserName,
 } from "./PublicUser";
 import { checkProviderUser } from "./provider";
+import { deleteAccount } from "./delete";
 const AuthContext = React.createContext(null);
 
 export function useAuth() {
@@ -500,7 +502,7 @@ export function AuthProvider({ children }) {
     getCollectionSaved,
     getCollectionsEmail,
     ConsultaID,
-    getEmailIDColl,
+    getUserNameIDColl,
     editCollection,
     removeCollection,
     getCollectionsByDate,
@@ -509,6 +511,13 @@ export function AuthProvider({ children }) {
     getMinCriticTV,
     pushNewCriticTV,
     criticLikeTV,
+    editPublicData,
+    getBookmark_TVMovie,
+    getDataUser,
+    getEye_TVMovie,
+    getLike_TVMovie,
+    getUsersByUserName,
+    deleteAccount,
   };
 
   return (

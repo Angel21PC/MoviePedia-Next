@@ -246,3 +246,19 @@ export async function getEye_TVMovie(id_user_collection) {
     console.log(error);
   }
 }
+
+export async function getUsersByUserName(name: string) {
+  let response = undefined;
+  try {
+    const docRef = await db
+      .collection("Profile_Public")
+      .where("userName", "==", name)
+      .get();
+
+    response = docRef;
+    console.log(docRef);
+  } catch (error) {
+    console.log(error);
+  }
+  return response;
+}

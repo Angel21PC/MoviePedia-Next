@@ -10,19 +10,17 @@ import { faSignInAlt, faUser } from "@fortawesome/free-solid-svg-icons";
 // import logo from "../../../public/image.png";
 
 //COMPONENTS
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
-import { Image } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Image } from "react-bootstrap";
+import ImgProfile from "./imageProfile/index";
 //firebase
 import { useAuth } from "../../firebase/AuthContext";
 
 //style
 import style from "./NavBar.module.scss";
 // // import image from "../../public/image.png";
-export interface NavBarProps {
-  im?: string;
-}
+export interface NavBarProps {}
 
-const NavBar: FC<NavBarProps> = ({ im }) => {
+const NavBar: FC<NavBarProps> = () => {
   const [url, setUrl] = useState(undefined);
   const currentUser = useAuth();
   const { logout, checkProviderUser, getImageUrlProfile } = useAuth();
@@ -71,13 +69,14 @@ const NavBar: FC<NavBarProps> = ({ im }) => {
           {currentUser.currentUser ? (
             <>
               <div className={style.profile}>
-                <Image
+                {/* <Image
                   src={`${url}`}
                   alt="Profile"
                   height="40px"
                   width="40px"
                   roundedCircle
-                />
+                /> */}
+                <ImgProfile />
               </div>
 
               <NavDropdown
