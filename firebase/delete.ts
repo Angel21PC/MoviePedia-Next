@@ -143,7 +143,7 @@ export async function deleteAccount() {
         await db.collection("profile").doc(uid).delete();
       })
       .then(async () => {
-        await db.collection("profile").doc(uid).delete();
+        await db.collection("Profile_Public").doc(uid).delete();
       })
       .then(async () => {
         await auth.currentUser.delete();

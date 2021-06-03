@@ -14,6 +14,8 @@ import IntComGetData from "../../Collection/CollsById/index";
 import CollectionEdit from "../../Collection/Edit/index";
 import ModalDeleteCollection from "./ModalDeleteCollection";
 import ModalDeleteAccount from "./ModalDeleteAccount";
+import CheckPublic from "../../util/PublicData/index";
+
 import { useRouter } from "next/router";
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";
@@ -101,11 +103,13 @@ const ProfileComp: FC<ProfileCompProps> = () => {
               <div>
                 <FormEdit />
                 <ModalDeleteAccount pilo={deleteAccount}></ModalDeleteAccount>
+                <CheckPublic />
               </div>
             ) : (
               <div>
                 <FormEditProvider />
                 <ModalDeleteAccount pilo={deleteAccount}></ModalDeleteAccount>
+                <CheckPublic />
               </div>
             )
           ) : (

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 
 //Form
 import { useForm } from "react-hook-form";
@@ -13,7 +13,6 @@ import { store } from "react-notifications-component";
 //Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { Google, Facebook, Twitter } from "react-bootstrap-icons";
 
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";

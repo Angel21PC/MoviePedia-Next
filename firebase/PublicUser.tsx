@@ -59,25 +59,27 @@ export async function getDataUser(id) {
 //edit public
 export async function editPublicData(obj: any) {
   let response = undefined;
-
+  console.log(obj);
   try {
     let user = await ConsultaID();
     let data;
     const col = await db
-      .collection("Collections")
+      .collection("Profile_Public")
       .doc(user)
       .get()
       .then((doc) => {
         data = doc.data();
+        console.log(doc.data());
       });
-    const docRef = await db
-      .collection("Profile_Public")
-      .doc(user)
-      .update({
-        userName: data.name,
-        description: data.description,
-        ...obj,
-      });
+    const docRef = await db.collection("Profile_Public").doc(user).update({
+      userName: data.userName,
+      description: data.description,
+      collections_created: data.collections_created,
+      collections_saved: data.collections_saved,
+      Bookmark: obj.Bookmark,
+      Like: obj.Like,
+      Eye: obj.Eye,
+    });
     response = true;
   } catch (error) {
     console.log(error);
@@ -96,7 +98,7 @@ export async function updateNameandDescription(
     let user = await ConsultaID();
     let data;
     const col = await db
-      .collection("Collections")
+      .collection("Profile_Public")
       .doc(user)
       .get()
       .then((doc) => {
@@ -182,7 +184,7 @@ export async function getLike_TVMovie(id_user_collection) {
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-    const LikesMovie = db.collection("Likes_M").doc(id_user_collection);
+    const LikesMovie = db.collection("likes_M").doc(id_user_collection);
     await LikesMovie.get()
       .then((doc) => {
         if (doc.exists) {
@@ -201,6 +203,7 @@ export async function getLike_TVMovie(id_user_collection) {
   } catch (error) {
     console.log(error);
   }
+  return response;
 }
 
 export async function getEye_TVMovie(id_user_collection) {
@@ -242,21 +245,6 @@ export async function getEye_TVMovie(id_user_collection) {
       });
 
     response = result;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export async function getUsersByUserName(name: string) {
-  let response = undefined;
-  try {
-    const docRef = await db
-      .collection("Profile_Public")
-      .where("userName", "==", name)
-      .get();
-
-    response = docRef;
-    console.log(docRef);
   } catch (error) {
     console.log(error);
   }

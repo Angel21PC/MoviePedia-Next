@@ -81,5 +81,5 @@ type IListM = {
 
 type Idatapublic = {
   Movie: [];
-  TV: [];
+  Tv: [];
 };

@@ -81,6 +81,7 @@ import {
   uploadImgProfile,
   getImageUrlProfile,
   getImageCollection,
+  getImageUser,
 } from "./Images";
 import {
   editPublicData,
@@ -88,7 +89,6 @@ import {
   getDataUser,
   getEye_TVMovie,
   getLike_TVMovie,
-  getUsersByUserName,
 } from "./PublicUser";
 import { checkProviderUser } from "./provider";
 import { deleteAccount } from "./delete";
@@ -106,43 +106,43 @@ export function AuthProvider({ children }) {
     const id = uuidv5(email, uuidv5.URL);
 
     //Likes
-    db.collection("likes_M").doc(id).set({
+    await db.collection("likes_M").doc(id).set({
       id_movie: {},
     });
 
     //Bookmark
-    db.collection("bookmark_M").doc(id).set({
+    await db.collection("bookmark_M").doc(id).set({
       id_movie: {},
     });
 
     //Bookmark
-    db.collection("eye_M").doc(id).set({
+    await db.collection("eye_M").doc(id).set({
       list: [],
     });
 
     //Likes
-    db.collection("likes_TV").doc(id).set({
+    await db.collection("likes_TV").doc(id).set({
       id_movie: {},
     });
 
     //Bookmark
-    db.collection("bookmark_TV").doc(id).set({
+    await db.collection("bookmark_TV").doc(id).set({
       id_movie: {},
     });
 
     //Bookmark
-    db.collection("eye_TV").doc(id).set({
+    await db.collection("eye_TV").doc(id).set({
       list: [],
     });
 
     //Collections
-    db.collection("Collections_Saved").doc(id).set({
+    await db.collection("Collections_Saved").doc(id).set({
       Bookmark: [],
       Like: [],
     });
 
     //public_Profile
-    db.collection("Profile_Public").doc(id).set({
+    await db.collection("Profile_Public").doc(id).set({
       userName: username,
       description: "",
       collections_created: true,
@@ -516,8 +516,8 @@ export function AuthProvider({ children }) {
     getDataUser,
     getEye_TVMovie,
     getLike_TVMovie,
-    getUsersByUserName,
     deleteAccount,
+    getImageUser,
   };
 
   return (

@@ -7,36 +7,36 @@ import Link from "next/link";
 //Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt, faUser } from "@fortawesome/free-solid-svg-icons";
-// import logo from "../../../public/image.png";
 
 //COMPONENTS
 import { Navbar, Nav, NavDropdown, Image } from "react-bootstrap";
-import ImgProfile from "./imageProfile/index";
+
 //firebase
 import { useAuth } from "../../firebase/AuthContext";
 
 //style
 import style from "./NavBar.module.scss";
-// // import image from "../../public/image.png";
+
 export interface NavBarProps {}
 
 const NavBar: FC<NavBarProps> = () => {
-  // const [url, setUrl] = useState(undefined);
+  const [url, setUrl] = useState(undefined);
   const currentUser = useAuth();
-  const { logout } = useAuth();
+  const { logout, getImageUrlProfile } = useAuth();
 
   const router = useRouter();
-  // checkProviderUser();
-  // async function fetchData() {
-  //   if (currentUser.currentUser?.email != undefined) {
-  //     try {
-  //       const response = await getImageUrlProfile();
-  //       console.log(response);
-  //       setUrl(response);
-  //     } catch (e) {}
-  //   }
-  // }
-  // fetchData();
+  useEffect(() => {
+    async function fetchData() {
+      if (currentUser.currentUser?.email != undefined) {
+        try {
+          const response = await getImageUrlProfile();
+          console.log(response);
+          setUrl(response);
+        } catch (e) {}
+      }
+    }
+    fetchData();
+  }, [currentUser]);
 
   // checkProviderUser();
   console.log({ RENDER: currentUser.currentUser });
@@ -69,14 +69,20 @@ const NavBar: FC<NavBarProps> = () => {
           {currentUser.currentUser ? (
             <>
               <div className={style.profile}>
-                {/* <Image
-                  src={`${url}`}
-                  alt="Profile"
-                  height="40px"
-                  width="40px"
-                  roundedCircle
-                /> */}
-                <ImgProfile />
+                {url !== undefined ? (
+                  <>
+                    <Image
+                      src={`${url}`}
+                      alt="Profile"
+                      height="40px"
+                      width="40px"
+                      roundedCircle
+                    />
+                  </>
+                ) : (
+                  <></>
+                )}
+                {/* <ImgProfile /> */}
               </div>
 
               <NavDropdown

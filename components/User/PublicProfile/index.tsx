@@ -23,8 +23,6 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
 
   const {
     getDataUser,
-    editPublicData,
-    updateNameandDescription,
     getBookmark_TVMovie,
     getLike_TVMovie,
     getEye_TVMovie,
@@ -34,6 +32,7 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
   useEffect(() => {
     async function fetchData() {
       const response = await getDataUser(id);
+      console.log(response);
       setDescription(response.description);
       if (response != undefined) {
         if (response.Eye === true) {
@@ -58,11 +57,11 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
     }
     fetchImage();
   }, []);
-
+  console.log({ bookmark: bookmark, likes: likes, eye: eye });
   return (
     <div className="mt-3">
       <div>
-        <div className="w-100 d-flex">
+        <div className="w-100 d-flex justify-content-center">
           <Image
             src={`${urlImage}`}
             alt="Profile"
@@ -83,9 +82,21 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
 
       <Container fluid>
         <hr />
-        <ListMTV Movie={eye.Movie} TV={eye.TV} />
-        <ListMTV Movie={bookmark.Movie} TV={bookmark.TV} />
-        <ListMTV Movie={likes.Movie} TV={likes.TV} />
+        {eye != undefined ? (
+          <ListMTV Movie={eye?.Movie} TV={eye?.Tv} list={true} title="View" />
+        ) : (
+          <></>
+        )}
+        {bookmark != undefined ? (
+          <ListMTV Movie={bookmark?.Movie} TV={bookmark?.Tv} title="Pending" />
+        ) : (
+          <></>
+        )}
+        {likes != undefined ? (
+          <ListMTV Movie={likes?.Movie} TV={likes?.Tv} title="Liked" />
+        ) : (
+          <></>
+        )}
       </Container>
     </div>
   );

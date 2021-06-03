@@ -1,10 +1,5 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { GetServerSideProps } from "next";
-
-//components
-//firebase
-import { useAuth } from "../../../firebase/AuthContext";
 
 //componentes-p
 import PublicPofile from "../../../components/User/PublicProfile";
@@ -16,7 +11,7 @@ const PublicProfile: NextPage<ProfileProps> = ({ query }) => {
   const router = useRouter();
 
   const id = router.query.id;
-
+  console.log(id);
   return (
     <>
       <PublicPofile id={id.toString()} />
