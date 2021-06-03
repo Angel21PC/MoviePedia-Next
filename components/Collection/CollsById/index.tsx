@@ -22,7 +22,7 @@ const IntComGetData: FC<IntComGetDataProps> = ({ Coll }) => {
 
   console.log({ aaaaaaaaaaaaaaaaaaaaaaaa: collection });
   return (
-    <Row lg={2}>
+    <>
       {collection !== "" ? (
         <div className="collection mt-4 p-1">
           <ItemFlip data={{ data: collection }}></ItemFlip>
@@ -30,7 +30,7 @@ const IntComGetData: FC<IntComGetDataProps> = ({ Coll }) => {
       ) : (
         <></>
       )}
-    </Row>
+    </>
   );
 };
 

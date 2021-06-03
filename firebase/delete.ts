@@ -37,8 +37,8 @@ async function deleteData(collections_id) {
 
   await db.collection("Collections_Saved").doc(collections_id).delete();
   //   //bookmark
-  await db.collection("boookmark_M").doc(collections_id).delete();
-  await db.collection("boookmark_TV").doc(collections_id).delete();
+  await db.collection("bookmark_M").doc(collections_id).delete();
+  await db.collection("bookmark_TV").doc(collections_id).delete();
   //comments
   const docRef = await db.collection("comments_M");
   await docRef.get().then((doc) => {

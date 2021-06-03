@@ -76,6 +76,8 @@ import {
   removeCollection,
   getCollectionsByDate,
   getCollectionsByLike,
+  getCollectionSavedById,
+  getCollectionsEmailPublic,
 } from "./Collection";
 import {
   uploadImgProfile,
@@ -107,12 +109,12 @@ export function AuthProvider({ children }) {
 
     //Likes
     await db.collection("likes_M").doc(id).set({
-      id_movie: {},
+      id_movie: [],
     });
 
     //Bookmark
     await db.collection("bookmark_M").doc(id).set({
-      id_movie: {},
+      id_movie: [],
     });
 
     //Bookmark
@@ -122,12 +124,12 @@ export function AuthProvider({ children }) {
 
     //Likes
     await db.collection("likes_TV").doc(id).set({
-      id_movie: {},
+      id_movie: [],
     });
 
     //Bookmark
     await db.collection("bookmark_TV").doc(id).set({
-      id_movie: {},
+      id_movie: [],
     });
 
     //Bookmark
@@ -518,6 +520,8 @@ export function AuthProvider({ children }) {
     getLike_TVMovie,
     deleteAccount,
     getImageUser,
+    getCollectionSavedById,
+    getCollectionsEmailPublic,
   };
 
   return (

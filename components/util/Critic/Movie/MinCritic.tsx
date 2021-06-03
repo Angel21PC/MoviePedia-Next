@@ -6,6 +6,8 @@ import { useAuth } from "../../../../firebase/AuthContext";
 import { store } from "react-notifications-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router";
+
 export interface MinCriticProps {
   creator: string;
   date: any;
@@ -18,7 +20,7 @@ export interface MinCriticProps {
 const MinCritic: FC<MinCriticProps> = (props) => {
   const { creator, date, title, id_critic, id_movie, userLikes } = props;
   const { getUserNameIDColl, criticLike, ConsultaID } = useAuth();
-
+  const router = useRouter();
   const currentUser = useAuth();
 
   const [email, setEmail] = useState("");
@@ -79,7 +81,17 @@ const MinCritic: FC<MinCriticProps> = (props) => {
 
   return (
     <Toast key={title}>
-      <ToastHeader closeButton={false}>{email}</ToastHeader>
+      <ToastHeader
+        closeButton={false}
+        onClick={() =>
+          router.push({
+            pathname: "/all_pages/PublicProfile",
+            query: { id: creator },
+          })
+        }
+      >
+        {email}
+      </ToastHeader>
       <div className="d-flex w-100">
         <ToastBody className="w-100 d-flex">
           <div className="w-50 mr-5">{title}</div>

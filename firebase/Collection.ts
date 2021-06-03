@@ -256,6 +256,29 @@ export async function getCollectionsEmail(email: string) {
 
   return response;
 }
+export async function getCollectionsEmailPublic(email: string) {
+  let response = undefined;
+  let arr = [];
+  console.log(email);
+  try {
+    const docRef = await db
+      .collection("Collections")
+      .where("data.user", "==", email)
+      .where("public", "==", true)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          arr.push({ id: doc.id, data: doc.data() });
+        });
+        response = arr;
+        console.log(arr);
+      });
+  } catch (error) {
+    console.log(error);
+  }
+
+  return response;
+}
 
 //options collection bookmark and like
 export async function checkBookMarkCollection(id: number | string) {
@@ -368,7 +391,28 @@ export async function getCollectionSaved() {
 
   return response;
 }
+export async function getCollectionSavedById(id_user_collection) {
+  let response = undefined;
+  const docRef = db
+    .collection("Collections_Saved")
+    .doc(id_user_collection.toString());
+  await docRef
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        const data = doc.data();
+        response = data;
+        // console.log(result)
+      } else {
+        console.log("No such document!");
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
 
+  return response;
+}
 export async function editCollection(
   id: string,
   objArray: any,

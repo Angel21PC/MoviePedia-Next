@@ -7,6 +7,7 @@ import { Idatapublic } from "../../../types";
 //components
 import { Container, Row, Col, Image, Tabs, Tab } from "react-bootstrap";
 import ListMTV from "./Row/index";
+import IntComGetData from "../../Collection/CollsById/index";
 export interface PublicProfileProps {
   id: string;
 }
@@ -21,12 +22,16 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
   const [urlImage, setUrlImage] = useState(undefined);
   const [description, setDescription] = useState(undefined);
 
+  const [collections, setCollections] = useState(undefined);
+  const [collectionSaved, setCollectionSaved] = useState(undefined);
   const {
     getDataUser,
     getBookmark_TVMovie,
     getLike_TVMovie,
     getEye_TVMovie,
     getImageUser,
+    getCollectionsEmailPublic,
+    getCollectionSavedById,
   } = useAuth();
 
   useEffect(() => {
@@ -47,6 +52,14 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
           const listBookmark = await getBookmark_TVMovie(id);
           setBookmark(listBookmark);
         }
+        if (response.collections_created === true) {
+          const collec = await getCollectionsEmailPublic(id);
+          setCollections(collec);
+        }
+        if (response.collections_saved === true) {
+          const collSaved = await getCollectionSavedById(id);
+          setCollectionSaved(collSaved);
+        }
       }
     }
     fetchData();
@@ -62,13 +75,17 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
     <div className="mt-3">
       <div>
         <div className="w-100 d-flex justify-content-center">
-          <Image
-            src={`${urlImage}`}
-            alt="Profile"
-            height="100px"
-            width="100px"
-            roundedCircle
-          />
+          {urlImage != undefined ? (
+            <Image
+              src={`${urlImage}`}
+              alt="Profile"
+              height="100px"
+              width="100px"
+              roundedCircle
+            />
+          ) : (
+            <></>
+          )}
         </div>
         <hr />
         <div className="d-flex p-5">
@@ -81,6 +98,29 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
       </div>
 
       <Container fluid>
+        {collections != undefined ? (
+          collections?.map((c) => (
+            <div>
+              <IntComGetData Coll={c.id} />
+            </div>
+          ))
+        ) : (
+          <></>
+        )}
+        {collectionSaved != undefined ? (
+          (collectionSaved.Bookmark?.map((c) => (
+            <div>
+              <IntComGetData Coll={c.id} />
+            </div>
+          )),
+          collectionSaved.Like?.map((c) => (
+            <div>
+              <IntComGetData Coll={c.id} />
+            </div>
+          )))
+        ) : (
+          <></>
+        )}
         <hr />
         {eye != undefined ? (
           <ListMTV Movie={eye?.Movie} TV={eye?.Tv} list={true} title="View" />

@@ -24,6 +24,7 @@ const ItemFlip: FC<ItemFlipProps> = ({ data }) => {
   }, []);
 
   const redirect = () => {
+    console.log({ ihateyoubro: data.id });
     router.push({
       pathname: "/all_pages/Collection_select",
       query: { id: data.id },
