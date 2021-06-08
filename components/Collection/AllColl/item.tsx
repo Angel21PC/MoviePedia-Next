@@ -66,12 +66,14 @@ const ItemFlip: FC<ItemFlipProps> = ({ data, id }) => {
           }}
         >
           <div className="w-100">
-            <div
-              className="flipDescription"
-              dangerouslySetInnerHTML={{
-                __html: DOMPurify.sanitize(data.data.data.description),
-              }}
-            ></div>
+            <div className="flipOv">
+              <div
+                className="flipDescription"
+                dangerouslySetInnerHTML={{
+                  __html: DOMPurify.sanitize(data.data.data.description),
+                }}
+              ></div>
+            </div>
           </div>
           <div className="d-flex justify-content-center fixed-bottom mb-2">
             <button

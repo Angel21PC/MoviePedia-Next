@@ -35,11 +35,10 @@ const OneCollection: FC<OneCollectionProps> = ({ id }) => {
   }, [id]);
 
   return (
-    <div className="mt-3">
-      <div>
+    <Container className="mt-3">
+      <Container>
         <div className="d-flex justify-content-center">
           <div className="justify-content-center">
-            {/* <h3>{result?.response.data.title}</h3> */}
             <M_B_F
               id={id}
               title={result?.response.data.title}
@@ -54,7 +53,7 @@ const OneCollection: FC<OneCollectionProps> = ({ id }) => {
           </div>
           <Image src={result?.url} alt="s" className="poster rounded" />
         </div>
-      </div>
+      </Container>
 
       <Container fluid>
         <hr />
@@ -72,7 +71,7 @@ const OneCollection: FC<OneCollectionProps> = ({ id }) => {
           ))}
         </Row>
       </Container>
-    </div>
+    </Container>
   );
 };
 

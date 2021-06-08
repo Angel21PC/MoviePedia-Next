@@ -135,8 +135,35 @@
   min-width: 300px;
   max-width: 500px;
 }
+.flipOv {
+  display: flex;
+  overflow-y: scroll;
+}
+.flipDescription {
+  max-height: 200px;
+}
 .flipDescription > * {
-  word-break: break-all;
-  word-wrap: break-word;
+  word-break: break-word;
   color: white;
+}
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  border-radius: 30px !important;
+  padding: 10px 20px !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  background-color: #5791ff !important;
+  border: none !important;
+  color: white !important;
+  margin-top: 20px !important;
+}
+.nav-pills .nav-link {
+  border-radius: 30px !important;
+  padding: 10px 20px !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  background-color: #5792ffa2 !important;
+  border: none !important;
+  color: white !important;
+  margin-top: 20px !important;
 }

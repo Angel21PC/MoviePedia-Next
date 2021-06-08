@@ -1,5 +1,3 @@
-//firebase
-import { useAuth } from "../../../firebase/AuthContext";
 import React, { FC, useEffect, useState } from "react";
 import { IListM } from "../../../types";
 
@@ -31,7 +29,7 @@ const ListM: FC<ListMProps> = ({ dataM, dataTV, dataC }) => {
   return (
     <Container>
       {isPending ? (
-        <div className="load">
+        <div className="vertical-center justify-content-center">
           <Loading></Loading>
         </div>
       ) : (

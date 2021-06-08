@@ -97,7 +97,7 @@ const Movie: FC<MovieProps> = ({ data }) => {
     <Container className="containerr" fluid>
       <Row className="justify-content-md-around" xs={1} md={2}>
         {isPending ? (
-          <div className="vertical-center justify-content-md-center">
+          <div className="vertical-center justify-content-center">
             <Loading />
           </div>
         ) : (

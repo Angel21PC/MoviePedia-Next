@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";
-import { Row } from "react-bootstrap";
 import ItemFlip from "../AllColl/item";
 export interface IntComGetDataProps {
   Coll: any;

@@ -14,8 +14,8 @@ import {
   FormControl,
   Button,
 } from "react-bootstrap";
+
 import styles from "./Finder.module.scss";
-import { redirect } from "next/dist/next-server/server/api-utils";
 
 export interface CollectionFinderProps {
   getMovies: any;
@@ -56,7 +56,6 @@ const CollectionFinder: FC<CollectionFinderProps> = ({
           className="justify-content-md-center"
           defaultActiveKey="Movies"
           id="uncontrolled-tab-example"
-          bsPrefix="f"
         >
           <Tab eventKey="Movies" title="Movies">
             <FindCollectionMovie id={find} getMovies={getMovies} m={m} />
@@ -66,10 +65,7 @@ const CollectionFinder: FC<CollectionFinderProps> = ({
           </Tab>
         </Tabs>
       </Container>
-      <style jsx>{`
-        .f-pills > a {
-        }
-      `}</style>
+      <style jsx>{``}</style>
     </>
   );
 };

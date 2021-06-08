@@ -85,7 +85,7 @@ const Tv: FC<TvProps> = ({ data }) => {
     <Container className="containerr" fluid>
       <Row className="justify-content-md-center" xs={1} md={2}>
         {isPending ? (
-          <div className="vertical-center justify-content-md-center">
+          <div className="vertical-center justify-content-center">
             <Loading />
           </div>
         ) : (
