@@ -9,6 +9,7 @@ import style from "./Comments.module.scss";
 import CommentItem from "./Component";
 
 //butons
+// @ts-ignore
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 export interface CommentsProps {

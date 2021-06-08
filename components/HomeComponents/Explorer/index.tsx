@@ -17,9 +17,9 @@ import Loading from "../../util/Loading/index";
 import style from "./Explorer.module.scss";
 
 //butons
+// @ts-ignore
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
-
 export interface ExplorerProps {
   URL: string;
   api_rutes: any;

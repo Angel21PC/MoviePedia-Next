@@ -16,9 +16,9 @@ import style from "./Comments.module.scss";
 import CommentItem from "./Component";
 
 //butons
+// @ts-ignore
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
-
 export interface CommentsProps {
   id: string;
 }
@@ -151,7 +151,7 @@ const Comments: FC<CommentsProps> = ({ id }) => {
               onChange={change}
               className="m-1"
             />
-            <InputGroup.Append>
+            <InputGroup.Append className="ml-2">
               <AwesomeButton type="primary" size="small" onPress={send}>
                 Send
               </AwesomeButton>
