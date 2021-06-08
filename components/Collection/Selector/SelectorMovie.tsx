@@ -28,7 +28,7 @@ const CollectionSelector: FC<CollectionSelectorProps> = ({
 
   return (
     <div onClick={send} key={m.id}>
-      <Poster c="movie_poster" movie={m} />
+      <Poster c="movie_posterCOL" movie={m} />
     </div>
   );
 };

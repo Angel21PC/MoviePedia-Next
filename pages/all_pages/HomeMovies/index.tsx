@@ -9,7 +9,7 @@ import { GetStaticProps } from "next";
 //components
 import Banner from "../../../components/HomeComponents/Banner/index";
 import Explorer from "../../../components/HomeComponents/Explorer/index";
-
+import Footer from "../../../components/util/Footer";
 export interface HomeMoviesProps {
   popularMovies: any;
   genreMovies: any;
@@ -28,6 +28,7 @@ const HomeMovies: NextPage<HomeMoviesProps> = (props) => {
         api_rutes={api_rutesM}
         m_s={"/all_pages/Movie_select"}
       />
+      <Footer></Footer>
     </>
   );
 };

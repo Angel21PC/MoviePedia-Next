@@ -11,7 +11,7 @@ import { useAuth } from "../../../firebase/AuthContext";
 
 //components
 import ListM from "../../../components/User/List/index";
-
+import Footer from "../../../components/util/Footer";
 export interface ListProps {
   data: any;
 }
@@ -54,6 +54,7 @@ const List: NextPage<ListProps> = () => {
   return (
     <>
       <ListM dataM={dataM} dataTV={dataTV} dataC={collection} />
+      <Footer></Footer>
     </>
   );
 };

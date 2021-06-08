@@ -51,7 +51,7 @@ const CollectionCreator: FC<CollectionCreatorProps> = () => {
   return (
     <Container fluid>
       <Row>
-        <Col xs lg="5">
+        <Col>
           <div className="mt-4">
             <div className="d-flex justify-content-center">
               <button
@@ -79,7 +79,7 @@ const CollectionCreator: FC<CollectionCreatorProps> = () => {
           </div>
         </Col>
 
-        <Col lg="7">
+        <Col>
           <CollectionFinder
             getMovies={setMovies}
             getShow={setShow}

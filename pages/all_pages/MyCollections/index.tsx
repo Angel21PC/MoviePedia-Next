@@ -11,6 +11,7 @@ import { useAuth } from "../../../firebase/AuthContext";
 
 //components
 import CollectionCreator from "../../../components/Collection/Creator";
+import Footer from "../../../components/util/Footer";
 
 export interface MyColProps {}
 
@@ -19,6 +20,7 @@ const MyCol: NextPage<MyColProps> = () => {
   return (
     <>
       <CollectionCreator />
+      <Footer></Footer>
     </>
   );
 };

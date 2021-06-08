@@ -9,6 +9,8 @@ import { GetStaticProps } from "next";
 //components
 import Banner from "../../../components/HomeComponents/Banner/index";
 import Explorer from "../../../components/HomeComponents/Explorer/index";
+import Footer from "../../../components/util/Footer";
+
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";
 export interface TVProps {
@@ -29,6 +31,7 @@ const TV: NextPage<TVProps> = (props) => {
         api_rutes={api_rutesTv}
         m_s={"/all_pages/Show_select"}
       />
+      <Footer></Footer>
     </>
   );
 };

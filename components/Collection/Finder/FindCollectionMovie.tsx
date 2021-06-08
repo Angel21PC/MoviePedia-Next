@@ -37,7 +37,7 @@ const FindCollectionMovie: FC<FindCollectionMovieProps> = ({
   }, [id]);
 
   return (
-    <Row className="justify-content-center" lg={3} sm={2}>
+    <Row className="justify-content-center" lg={2} md={1} sm={1}>
       {movies?.map((movie) => (
         <div key={movie.id}>
           <CollectionSelector m={movie} collection={getMovies} mm={m} />

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 
 //componentes-p
 import ProfileComp from "../../../components/User/ProfileComp";
-
+import Footer from "../../../components/util/Footer";
 export interface ProfileProps {}
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";
@@ -15,7 +15,11 @@ const Profile: NextPage<ProfileProps> = () => {
   if (currentUser.currentUser !== null) {
     return (
       <>
-        <ProfileComp />
+        <div style={{ minHeight: "900px" }}>
+          <ProfileComp />
+        </div>
+
+        <Footer></Footer>
       </>
     );
   } else {

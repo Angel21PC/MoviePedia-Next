@@ -29,7 +29,7 @@ const CollectionSelectorS: FC<CollectionSelectorSProps> = ({
 
   return (
     <div onClick={send} key={s.id}>
-      <Poster c="movie_poster" movie={s} />
+      <Poster c="movie_posterCOL" movie={s} />
     </div>
   );
 };

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 //component
 import Tv from "../../../components/TvShowComponents";
-
+import Footer from "../../../components/util/Footer";
 //initialprops
 import { URL, api_rutesTv } from "../../../config/rute_api";
 
@@ -24,6 +24,7 @@ const TvS: NextPage<TvSProps> = (props) => {
   return (
     <>
       <Tv data={data} />
+      <Footer></Footer>
     </>
   );
 };

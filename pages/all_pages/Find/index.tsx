@@ -2,9 +2,9 @@ import { NextPage } from "next";
 import { useRouter } from "next/router";
 
 //components
-
 import FindMovie from "../../../components/Find/FindMovie/index";
 import FindShow from "../../../components/Find/FindShow/index";
+import Footer from "../../../components/util/Footer";
 //COMPONENTS
 import { Tabs, Tab, Container } from "react-bootstrap";
 export interface FindProps {
@@ -33,6 +33,7 @@ const Find: NextPage<FindProps> = () => {
           </Tab>
         </Tabs>
       </Container>
+      <Footer></Footer>
     </>
   );
 };

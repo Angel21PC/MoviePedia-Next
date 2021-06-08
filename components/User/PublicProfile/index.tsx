@@ -72,8 +72,8 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
   }, []);
   console.log({ bookmark: bookmark, likes: likes, eye: eye });
   return (
-    <div className="mt-3">
-      <div>
+    <Container className="mt-3">
+      <Container>
         <div className="w-100 d-flex justify-content-center">
           {urlImage != undefined ? (
             <Image
@@ -95,10 +95,11 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
             }}
           ></div>
         </div>
-      </div>
+        <hr />
+      </Container>
 
       <Container fluid>
-        <h1>Collections created by user</h1>
+        <h2>Collections created by user</h2>
         {collections != undefined ? (
           collections?.map((c) => (
             <div>
@@ -110,7 +111,7 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
         )}
 
         <hr />
-        <h1>Collections saved by user</h1>
+        <h2>Collections saved by user</h2>
         {collectionSaved != undefined ? (
           collectionSaved.Bookmark?.map((c) => (
             <div>
@@ -122,7 +123,7 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
         )}
 
         <hr />
-        <h1>Collections liked by user</h1>
+        <h2>Collections liked by user</h2>
         {collectionSaved != undefined ? (
           collectionSaved.Like?.map((c) => (
             <div>
@@ -150,7 +151,7 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
           <></>
         )}
       </Container>
-    </div>
+    </Container>
   );
 };
 
