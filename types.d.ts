@@ -29,6 +29,8 @@ type IRequest = {
   fetchCast_TV: string;
   fetchSimilar_TV: string;
   fetchFindTV: string;
+  fetchSeason_TV: string;
+
   //de todo
   fetchTrending: string;
   fetchUpcoming: string;
@@ -60,6 +62,7 @@ type IApi_rutesTV = {
   Provider: string;
   Video: string;
   Similar: string;
+  Season: string;
 };
 
 type INewUser = {

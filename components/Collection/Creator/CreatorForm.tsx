@@ -2,39 +2,7 @@ import React, { FC, useState } from "react";
 import "react-quill/dist/quill.bubble.css";
 import { useAuth } from "../../../firebase/AuthContext";
 import Switch from "../../util/Switch";
-import { Alert, Container, Row, Col, Button } from "react-bootstrap";
-
-/*
-t
-guardar -> Collections id random, GUARDA IMG EMAIL+TITLE
-collections_Saved:
-  ID_USER: {
-
-    B[id]
-    L[id]
-  } 
-
-  SE PUEDE EDITAR ¿?
-
-
-
-  fALTA
-  Criticas _> como verla(min ready, falta un modal o page)
-  Collections _> como verla{
-    si es dueño {
-      cambiar estado publico, 
-      eliminar, 
-      ¿editar?
-    }
-    sino {
-      bookmark:
-      Like:
-      Valorar:
-    }
-  Perfil publico:
-
-
-*/
+import { Alert } from "react-bootstrap";
 
 //Form
 import { useForm } from "react-hook-form";

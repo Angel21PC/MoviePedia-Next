@@ -34,6 +34,7 @@ export const request: IRequest = {
   fetchVideo_TV: `/tv/{tv_id}/videos?api_key=${API_KEY}`,
   fetchCast_TV: `/tv/{tv_id}/credits?api_key=${API_KEY}`,
   fetchSimilar_TV: `/tv/{tv_id}/similar?api_key=${API_KEY}`,
+  fetchSeason_TV: `/tv/{tv_id}/season/{season_number}?api_key=${API_KEY}`,
 
   //de todo
   fetchTrending: `/trending/all/day?api_key=${API_KEY}`,

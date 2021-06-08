@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 //request
 import axios from "axios";
-import { URL, api_rutesM, api_rutesTv } from "../../config/rute_api";
+import { URL, api_rutesTv } from "../../config/rute_api";
 
 //components-p
 import Poster from "../SelectUtils/Poster/index";
@@ -16,7 +16,7 @@ import Loading from "../util/Loading/index";
 import Similar from "../SelectUtils/SimilarM/index";
 import Comments from "./Comments/index";
 import CriticList from "../util/Critic/TvShow/index";
-
+import Season from "./Season";
 //components
 import { Container, Row, Col, Tabs, Tab } from "react-bootstrap";
 export interface TvProps {
@@ -115,6 +115,9 @@ const Tv: FC<TvProps> = ({ data }) => {
                     </div>
                   </Tab>
                 </Tabs>
+              </div>
+              <div>
+                <Season {...movie} />
               </div>
             </Col>
             <Col className="text" xs lg="6">

@@ -31,4 +31,5 @@ export const api_rutesTv: IApi_rutesTV = {
   Provider: "/api/tv/GetProvider",
   Video: "/api/tv/GetVideo",
   Similar: "/api/tv/SimilarTV",
+  Season: "/api/tv/Season",
 };
