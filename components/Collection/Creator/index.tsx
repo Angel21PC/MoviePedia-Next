@@ -18,7 +18,6 @@ const CollectionCreator: FC<CollectionCreatorProps> = () => {
   const [movies, setMovies] = useState([]);
   const [shows, setShow] = useState([]);
 
-  const collectionM = (id: number | string) => {};
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const deleteM = (movie: any) => {

@@ -258,3 +258,26 @@ export async function getEye_TVMovie(id_user_collection) {
   }
   return response;
 }
+
+export async function findUserbyName(name) {
+  let response = undefined;
+  const docRef = db
+    .collection("Profile_Public")
+    .where("username", "==", name.toSting());
+  await docRef
+    .get()
+    .then((doc) => {
+      if (doc.exists) {
+        const data = doc.data();
+        response = data;
+        console.log(result);
+      } else {
+        console.log("No such document!");
+      }
+    })
+    .catch((error) => {
+      console.log("Error getting document:", error);
+    });
+
+  return response;
+}

@@ -6,9 +6,10 @@ import { useAuth } from "../../../firebase/AuthContext";
 import DOMPurify from "dompurify";
 export interface ItemFlipProps {
   data: any;
+  id?: string;
 }
 
-const ItemFlip: FC<ItemFlipProps> = ({ data }) => {
+const ItemFlip: FC<ItemFlipProps> = ({ data, id }) => {
   console.log(data);
   const router = useRouter();
   const [image, setImage] = useState();
@@ -24,11 +25,19 @@ const ItemFlip: FC<ItemFlipProps> = ({ data }) => {
   }, []);
 
   const redirect = () => {
-    console.log({ ihateyoubro: data.id });
-    router.push({
-      pathname: "/all_pages/Collection_select",
-      query: { id: data.id },
-    });
+    if (id) {
+      console.log({ ihateyoubro: data.id });
+      router.push({
+        pathname: "/all_pages/Collection_select",
+        query: { id: id },
+      });
+    } else {
+      console.log({ ihateyoubro: data.id });
+      router.push({
+        pathname: "/all_pages/Collection_select",
+        query: { id: data.id },
+      });
+    }
   };
   return (
     <>

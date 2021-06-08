@@ -1,11 +1,10 @@
 import React, { FC, useState, useEffect } from "react";
-import DOMPurify from "dompurify";
 
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";
 
 //components
-import { Container, Row, Col, Image } from "react-bootstrap";
+import { Container, Row, Image } from "react-bootstrap";
 import LstM from "../../List/ListMovie/index";
 import LstTv from "../../List/ListTv/index";
 

@@ -1,9 +1,11 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useState } from "react";
 //firebase
 import { useAuth } from "../../../../firebase/AuthContext";
 
-//components
-import { Button } from "react-bootstrap";
+//butons
+// @ts-ignore
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
 import Switch from "../../../util/Switch";
 export interface ButtonsEditProps {
   id: string | number;
@@ -14,14 +16,15 @@ const ButtonsEdit: FC<ButtonsEditProps> = ({ id }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
-      <Button
-        onClick={() => {
+      <AwesomeButton
+        type="primary"
+        onPress={() => {
           deleteCollection(id);
         }}
       >
         Delete
-      </Button>
-      <Button>Edit</Button>
+      </AwesomeButton>
+      <AwesomeButton>Edit</AwesomeButton>
       <Switch isOn={isOpen} handleToggle={() => setIsOpen(!isOpen)} />
     </div>
   );

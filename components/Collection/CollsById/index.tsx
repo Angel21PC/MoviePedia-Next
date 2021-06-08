@@ -20,12 +20,11 @@ const IntComGetData: FC<IntComGetDataProps> = ({ Coll }) => {
     fetchData();
   }, []);
 
-  console.log({ aaaaaaaaaaaaaaaaaaaaaaaa: collection });
   return (
     <>
       {collection !== "" ? (
         <div className="collection mt-4 p-1">
-          <ItemFlip data={{ data: collection }}></ItemFlip>
+          <ItemFlip data={{ data: collection }} id={Coll}></ItemFlip>
         </div>
       ) : (
         <></>

@@ -15,8 +15,9 @@ import SelcTv from "./ListSelectsTv";
 import { store } from "react-notifications-component";
 import axios from "axios";
 
-//fetch
-import { URL, api_rutesM } from "../../../config/rute_api";
+// @ts-ignore
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
 export interface CollectionEditProps {
   data: any;
 }
@@ -72,13 +73,14 @@ const CollectionEdit: FC<CollectionEditProps> = ({ data }) => {
         <Col xs lg="5">
           <div className="mt-4">
             <div className="d-flex justify-content-center">
-              <button
+              <AwesomeButton
+                type="primary"
                 disabled={movies.length > 0 || shows.length > 0 ? false : true}
                 className="btn btn-block create-account"
-                onClick={() => setIsOpen(true)}
+                onPress={() => setIsOpen(true)}
               >
                 Edit
-              </button>
+              </AwesomeButton>
               <Modal show={isOpen} onClose={() => setIsOpen(false)}>
                 <EditForm
                   movies={movies}
