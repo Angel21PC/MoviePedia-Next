@@ -71,6 +71,7 @@ type INewUser = {
   username: string;
   currentPassword?: string;
   file: any;
+  size: any;
 };
 
 type IListM = {
