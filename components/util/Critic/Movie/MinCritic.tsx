@@ -78,7 +78,7 @@ const MinCritic: FC<MinCriticProps> = (props) => {
       });
     }
   };
-
+  console.log({ userLikes: props });
   return (
     <Toast key={title}>
       <ToastHeader
@@ -100,13 +100,17 @@ const MinCritic: FC<MinCriticProps> = (props) => {
           <Button onClick={() => setShow(true)}>Open</Button>
           <Modal show={show} onClose={() => setShow(false)}>
             <div className="p-3 mt-3">
-              <FontAwesomeIcon
-                id={h}
-                className="icon fa-2x w-100"
-                name="heart"
-                icon={faHeart}
-                onClick={() => like()}
-              />
+              <div className="d-flex w-50">
+                <div className="mt-1">{userLikes?.length}</div>
+                <FontAwesomeIcon
+                  id={h}
+                  className="icon fa-2x w-100"
+                  name="heart"
+                  icon={faHeart}
+                  onClick={() => like()}
+                />
+              </div>
+
               <OneCritic id_critic={id_critic} id_movie={id_movie}></OneCritic>
             </div>
           </Modal>

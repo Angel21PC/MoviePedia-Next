@@ -24,6 +24,7 @@ const CriticList: FC<CriticListProps> = ({ id }) => {
     }
     criticsData();
   }, [show]);
+  console.log(critics);
   return (
     <div className="border-1 rounded">
       <div className="p-2 border-1">

@@ -91,6 +91,7 @@ import {
   getDataUser,
   getEye_TVMovie,
   getLike_TVMovie,
+  updateNameandDescription,
 } from "./PublicUser";
 import { checkProviderUser } from "./provider";
 import { deleteAccount } from "./delete";
@@ -174,17 +175,18 @@ export function AuthProvider({ children }) {
     phone,
     email,
     password,
-    currentPassword
+    currentPassword,
+    description
   ) {
     let provider = await checkProviderUser();
     if (provider == "password") {
-      // await editPublicData({name: username, description:});
       await db.collection("profile").doc(auth.currentUser.uid).update({
         email: { email },
         username: { username },
         birth_date: { birth_date },
         phone: { phone },
       });
+      await updateNameandDescription(auth.currentUser.uid);
       return await auth
         .signInWithEmailAndPassword(auth.currentUser.email, currentPassword)
         .then((userCredential) => {
@@ -192,12 +194,13 @@ export function AuthProvider({ children }) {
           userCredential.user.updatePassword(password);
         });
     } else {
-      // await editPublicData({name: username, description:});
       await db.collection("profile").doc(auth.currentUser.uid).update({
         username: { username },
         birth_date: { birth_date },
         phone: { phone },
+        description: { description },
       });
+      await updateNameandDescription(auth.currentUser.uid);
     }
   }
 

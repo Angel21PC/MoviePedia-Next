@@ -88,30 +88,38 @@ export async function editPublicData(obj: any) {
 }
 
 //edit user
-export async function updateNameandDescription(
-  name: string,
-  description: string
-) {
+export async function updateNameandDescription(uid) {
   let response = undefined;
 
   try {
     let user = await ConsultaID();
     let data;
     const col = await db
-      .collection("Profile_Public")
-      .doc(user)
+      .collection("profile")
+      .doc(uid)
       .get()
       .then((doc) => {
         data = doc.data();
       });
-    const docRef = await db
+
+    let data2;
+    const col2 = await db
       .collection("Profile_Public")
       .doc(user)
-      .update({
-        userName: name,
-        description: description,
-        ...data,
+      .get()
+      .then((doc) => {
+        data2 = doc.data();
       });
+    console.log({ data: data, data2: data2 });
+    const docRef = await db.collection("Profile_Public").doc(user).update({
+      username: data.username.username,
+      description: data.description.description,
+      collections_created: data2.collections_created,
+      collections_saved: data2.collections_saved,
+      Bookmark: data2.Bookmark,
+      Like: data2.Like,
+      Eye: data2.Eye,
+    });
   } catch (error) {
     console.log(error);
   }

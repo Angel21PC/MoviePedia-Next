@@ -141,43 +141,54 @@ const Explorer: FC<ExplorerProps> = ({
               </div>
             )}
 
-            {movies.map((
-              movie //saca las peliculas
-            ) => (
-              <div key={movie?.id} className="mt-2">
-                <Link
-                  href={{
-                    pathname: m_s,
-                    query: { id: movie.id },
-                  }}
-                  key={movie?.id}
-                >
-                  <a>
-                    <Poster c="poster mt-2" movie={movie} />
-                  </a>
-                </Link>
-              </div>
-            ))}
+            {movies.map(
+              (
+                movie //saca las peliculas
+              ) => (
+                <div key={movie?.id} className="mt-2">
+                  <Link
+                    href={{
+                      pathname: m_s,
+                      query: { id: movie.id },
+                    }}
+                    key={movie?.id}
+                  >
+                    <a>
+                      <Poster c="poster mt-2" movie={movie} />
+                    </a>
+                  </Link>
+                </div>
+              )
+            )}
           </Row>
 
           <div className={style.explorer_button}>
             <Button
               onClick={() => {
                 if (page > 0) {
-                  setPage(page - 1);
-                  console.log(page);
+                  if (fetchUrl == "") {
+                    setFetchUrl(URL + api_rutes.Popular);
+                    setPage(page - 1);
+                  } else {
+                    setPage(page - 1);
+                  }
                 }
               }}
             >
-              Dame menos bb
+              Dame menos
             </Button>
             <Button
               onClick={() => {
-                setPage(page + 1);
+                if (fetchUrl == "") {
+                  setFetchUrl(URL + api_rutes.Popular);
+                  setPage(page + 1);
+                } else {
+                  setPage(page + 1);
+                }
                 console.log(page);
               }}
             >
-              Dame mas bb
+              Dame mas
             </Button>
           </div>
         </Container>

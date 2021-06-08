@@ -60,6 +60,18 @@ const ProfileNav: FC<ProfileNavProps> = ({ children, onChange }) => {
           </div>
         </NavLink>
       </NavItem>
+      <NavItem>
+        <NavLink
+          href="#/action-3"
+          onClick={() => {
+            toggle(USER_TABS.MORE);
+          }}
+        >
+          <div className="w-100 p-0">
+            <h4 className="m-0">More</h4>
+          </div>
+        </NavLink>
+      </NavItem>
     </Nav>
   );
 };

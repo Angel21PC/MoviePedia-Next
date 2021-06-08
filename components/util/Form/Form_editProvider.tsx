@@ -21,6 +21,9 @@ import { useAuth } from "../../../firebase/AuthContext";
 //next
 import { useRouter } from "next/router";
 
+import "react-quill/dist/quill.bubble.css";
+import DOMPurify from "dompurify";
+
 import { INewUser } from "../../../types";
 export interface FormEditProviderProps {}
 
@@ -32,9 +35,17 @@ const schema = yup.object().shape({
   file: yup.mixed(),
 });
 const FormEditProvider: FC<FormEditProviderProps> = () => {
+  //editor
+  let quill;
+  if (document) {
+    quill = require("react-quill");
+  }
+  const ReactQuill = quill;
+  const [value, setValue] = useState("");
+
   //firebase
   const { changeData, uploadImgProfile, getImageUrlProfile } = useAuth();
-
+  const currentUser = useAuth();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [url, setUrl] = useState(undefined);
@@ -51,12 +62,20 @@ const FormEditProvider: FC<FormEditProviderProps> = () => {
     try {
       console.log(data);
       setLoading(true);
-      await changeData(data.username, data.birth_date, data.phone_number);
-      // console.log(data.file);
-      if (data.file != undefined) {
+      await changeData(
+        data.username,
+        data.birth_date,
+        data.phone_number,
+        currentUser.currentUser.email,
+        "",
+        "",
+        value
+      );
+      console.log(data.file);
+      if (data.size) {
         let c = await uploadImgProfile(data.file[0]);
       }
-      router.push("/");
+      // router.push("/");
     } catch (e) {
       console.log(e);
       store.addNotification({
@@ -125,6 +144,18 @@ const FormEditProvider: FC<FormEditProviderProps> = () => {
             placeholder="Birth Date"
           />
           {errors.birth_date?.message && <p>{errors.birth_date?.message}</p>}
+        </div>
+        <div className="form-group">
+          <h4>Bio</h4>
+          <ReactQuill
+            className="text"
+            theme="bubble"
+            value={value}
+            onChange={(e) => {
+              console.log(e);
+              setValue(e);
+            }}
+          />
         </div>
         <div>
           <input

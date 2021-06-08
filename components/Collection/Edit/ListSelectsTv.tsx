@@ -43,13 +43,23 @@ const Selc: FC<listSelcProps> = ({ id, deleteMovies }) => {
       <>
         <Col>
           <div className="actor" key={movie.id}>
-            <img
-              onClick={() => deleteMovies(id)}
-              key={movie.id}
-              className="actor_poster"
-              src={`${base_Url}${movie?.poster_path}`}
-              alt={movie?.name}
-            ></img>
+            {movie?.poster_path != null ? (
+              <img
+                onClick={() => deleteMovies(id)}
+                key={movie.id}
+                className="actor_poster"
+                src={`${base_Url}${movie?.poster_path}`}
+                alt={movie?.name}
+              ></img>
+            ) : (
+              <img
+                onClick={() => deleteMovies(id)}
+                key={movie.id}
+                className="actor_poster"
+                src="/file-not-found.png"
+                alt={movie?.name}
+              ></img>
+            )}
           </div>
         </Col>
         <style jsx>{`

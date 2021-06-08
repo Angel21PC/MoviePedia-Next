@@ -98,6 +98,7 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
       </div>
 
       <Container fluid>
+        <h1>Collections created by user</h1>
         {collections != undefined ? (
           collections?.map((c) => (
             <div>
@@ -107,20 +108,31 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
         ) : (
           <></>
         )}
+
+        <hr />
+        <h1>Collections saved by user</h1>
         {collectionSaved != undefined ? (
-          (collectionSaved.Bookmark?.map((c) => (
+          collectionSaved.Bookmark?.map((c) => (
             <div>
               <IntComGetData Coll={c.id} />
             </div>
-          )),
+          ))
+        ) : (
+          <></>
+        )}
+
+        <hr />
+        <h1>Collections liked by user</h1>
+        {collectionSaved != undefined ? (
           collectionSaved.Like?.map((c) => (
             <div>
               <IntComGetData Coll={c.id} />
             </div>
-          )))
+          ))
         ) : (
           <></>
         )}
+
         <hr />
         {eye != undefined ? (
           <ListMTV Movie={eye?.Movie} TV={eye?.Tv} list={true} title="View" />

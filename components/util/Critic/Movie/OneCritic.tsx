@@ -24,11 +24,19 @@ const OneCritic: FC<OneCriticProps> = ({ id_critic, id_movie }) => {
       <div>
         <h3>{data?.title}</h3>
         <div
+          className="description"
           dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(data?.html),
           }}
         ></div>
       </div>
+      <style jsx>{`
+        .description {
+          height: 100px;
+          word-break: break-all;
+          word-wrap: break-word;
+        }
+      `}</style>
     </div>
   );
 };

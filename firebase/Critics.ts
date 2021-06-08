@@ -71,6 +71,7 @@ export async function getMinCritic(id_film: string | number) {
               creator: e.newCritic.data.user,
               date: e.newCritic.data.date,
               id_critic: e.newCritic.data.id_critic,
+              userLikes: e.newCritic.userLikes,
             };
             minArray.push(objCritic);
           });
@@ -284,6 +285,7 @@ export async function getMinCriticTV(id_film: string | number) {
               creator: e.newCritic.data.user,
               date: e.newCritic.data.date,
               id_critic: e.newCritic.data.id_critic,
+              userLikes: e.newCritic.userLikes,
             };
             minArray.push(objCritic);
           });

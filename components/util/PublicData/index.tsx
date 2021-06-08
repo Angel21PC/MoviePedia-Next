@@ -48,8 +48,8 @@ const CheckPublic: FC<CheckPublicProps> = () => {
     }
   };
   return (
-    <div>
-      <div>
+    <div className="d-flex">
+      <div className="mr-3">
         <p>Bookmark</p>
         <input
           type="checkbox"
@@ -58,7 +58,7 @@ const CheckPublic: FC<CheckPublicProps> = () => {
           onClick={() => setIsOpenB(!isOpenB)}
         />
       </div>
-      <div>
+      <div className="mr-3">
         <p>Liked</p>
         <input
           type="checkbox"
@@ -67,7 +67,7 @@ const CheckPublic: FC<CheckPublicProps> = () => {
           onClick={() => setIsOpenL(!isOpenL)}
         />
       </div>
-      <div>
+      <div className="mr-3">
         <p>View</p>
         <input
           type="checkbox"
@@ -82,7 +82,7 @@ const CheckPublic: FC<CheckPublicProps> = () => {
           className="btn btn-block create-account"
           onClick={() => updateInfo()}
         >
-          Update Public Profile
+          Update Public Profile Data
         </button>
       </div>
       <style jsx>{`

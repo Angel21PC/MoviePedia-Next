@@ -102,16 +102,25 @@ const ProfileComp: FC<ProfileCompProps> = () => {
             provider == "password" ? (
               <div>
                 <FormEdit />
-                <ModalDeleteAccount pilo={deleteAccount}></ModalDeleteAccount>
-                <CheckPublic />
               </div>
             ) : (
               <div>
                 <FormEditProvider />
-                <ModalDeleteAccount pilo={deleteAccount}></ModalDeleteAccount>
-                <CheckPublic />
               </div>
             )
+          ) : (
+            <></>
+          )}
+          {currentTab === USER_TABS.MORE ? (
+            <Container>
+              <div className="mt-5">
+                <div className="border-1">
+                  <CheckPublic />
+                </div>
+                <hr />
+                <ModalDeleteAccount pilo={deleteAccount}></ModalDeleteAccount>
+              </div>
+            </Container>
           ) : (
             <></>
           )}

@@ -22,6 +22,8 @@ import { useRouter } from "next/router";
 
 import { INewUser } from "../../../types";
 
+import "react-quill/dist/quill.bubble.css";
+import DOMPurify from "dompurify";
 //component-p
 // import dynamic from "next/dynamic";
 // const Editor = dynamic(() => import("../TextEditor"), { ssr: false });
@@ -49,6 +51,14 @@ const schema = yup.object().shape({
   file: yup.mixed(),
 });
 const FormEdit: FC<FormEditProps> = () => {
+  //editor
+  let quill;
+  if (document) {
+    quill = require("react-quill");
+  }
+  const ReactQuill = quill;
+  const [value, setValue] = useState("");
+
   //firebase
   const { changeData, uploadImgProfile, getImageUrlProfile } = useAuth();
 
@@ -74,10 +84,11 @@ const FormEdit: FC<FormEditProps> = () => {
         data.phone_number,
         data.email,
         data.password,
-        data.currentPassword
+        data.currentPassword,
+        value
       );
       // console.log(data.file);
-      if (data.file != undefined) {
+      if (data.size) {
         let c = await uploadImgProfile(data.file[0]);
       }
       router.push("/");
@@ -102,7 +113,6 @@ const FormEdit: FC<FormEditProps> = () => {
 
   return (
     <div className="registration-form">
-      {/* <img src={url} style={{ height: 200, width: 200 }} alt="s" /> */}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="form-icon">
           <span>
@@ -210,19 +220,18 @@ const FormEdit: FC<FormEditProps> = () => {
           ></input>
         </div>
         {/* Biografia */}
-        {/* <div className="form-group">
+        <div className="form-group">
           <h4>Bio</h4>
-          <input
-            type="textarea"
-            className="form-control item"
-            key="bio"
-            id="bio"
-            name="bio"
-            {...register("bio")}
-            placeholder="bio"
-          /> 
-          <Editor key="bio" name="bio" {...register("bio")}></Editor>
-        </div> */}
+          <ReactQuill
+            className="text"
+            theme="bubble"
+            value={value}
+            onChange={(e) => {
+              console.log(e);
+              setValue(e);
+            }}
+          />
+        </div>
 
         <div className="form-group">
           <button
@@ -296,6 +305,10 @@ const FormEdit: FC<FormEditProps> = () => {
           margin-bottom: 16px;
         }
 
+        .text {
+          min-height: 300px;
+          border: 1px solid rgba(0, 0, 0, 0.205);
+        }
         .registration-form .social-icons a {
           font-size: 23px;
           margin: 0 15px;

@@ -124,6 +124,7 @@
   min-width: 500px;
 }
 .flipDescription > * {
+  word-break: break-all;
   word-wrap: break-word;
   color: white;
 }
