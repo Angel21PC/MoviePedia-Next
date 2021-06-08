@@ -12,6 +12,9 @@ import CommentItem from "./Component";
 // @ts-ignore
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
+//Icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComment } from "@fortawesome/free-solid-svg-icons";
 export interface CommentsProps {
   id: string;
 }
@@ -142,7 +145,7 @@ const Comments: FC<CommentsProps> = ({ id }) => {
             />
             <InputGroup.Append className="ml-2">
               <AwesomeButton type="primary" size="small" onPress={send}>
-                Send
+                <FontAwesomeIcon icon={faComment} /> Send
               </AwesomeButton>
             </InputGroup.Append>
           </InputGroup>

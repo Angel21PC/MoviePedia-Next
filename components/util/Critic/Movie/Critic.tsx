@@ -2,8 +2,11 @@ import React, { FC, useState } from "react";
 import "react-quill/dist/quill.bubble.css";
 import style from "./Critic.module.scss";
 import { useAuth } from "../../../../firebase/AuthContext";
-import { Button } from "react-bootstrap";
 import DOMPurify from "dompurify";
+//butons
+// @ts-ignore
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
 //Notification
 import { store } from "react-notifications-component";
 export interface CriticProps {
@@ -100,13 +103,9 @@ const Critic: FC<CriticProps> = ({ id }) => {
       </div>
 
       <div className="form-group">
-        <Button
-          type="submit"
-          className="btn btn-block create-account"
-          onClick={send}
-        >
+        <AwesomeButton type="primary" onPress={send}>
           GO
-        </Button>
+        </AwesomeButton>
       </div>
       <hr />
       <div

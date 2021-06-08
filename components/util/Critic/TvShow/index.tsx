@@ -4,7 +4,11 @@ import { useAuth } from "../../../../firebase/AuthContext";
 import Modal from "./Modal";
 import Critic from "./Critic";
 import MinCritic from "./MinCritic";
-import { Button } from "react-bootstrap";
+
+//butons
+// @ts-ignore
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
 export interface CriticListProps {
   id: string;
 }
@@ -35,7 +39,9 @@ const CriticList: FC<CriticListProps> = ({ id }) => {
       </div>
       <div className="mt-2 d-flex">
         <div>
-          <Button onClick={() => setShow(true)}>Open Editor</Button>
+          <AwesomeButton type="primary" onPress={() => setShow(true)}>
+            Open Editor
+          </AwesomeButton>
           <Modal show={show} onClose={() => setShow(false)}>
             <div className="p-3 mt-3">
               <Critic id={id} />

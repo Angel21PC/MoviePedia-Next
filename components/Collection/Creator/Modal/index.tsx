@@ -1,6 +1,9 @@
 import React, { FC, useEffect, useRef } from "react";
 import styles from "./ModalCollection.module.scss";
-import { Button } from "react-bootstrap";
+//butons
+// @ts-ignore
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
 export interface ModalProps {
   show: boolean;
   onClose: () => void;
@@ -19,8 +22,9 @@ const Modal: FC<ModalProps> = ({ show, onClose, children }) => {
     <React.Fragment>
       <div ref={modalRef} className={`${styles.modal__wrap}`}>
         <div className={styles.modal}>
-          <button
-            onClick={onClose}
+          <AwesomeButton
+            type="primary"
+            onPress={onClose}
             className="btn btn-block create-account"
             style={{
               width: 60,
@@ -31,22 +35,10 @@ const Modal: FC<ModalProps> = ({ show, onClose, children }) => {
             }}
           >
             Close
-          </button>
+          </AwesomeButton>
           {children}
         </div>
       </div>
-      <style jsx>{`
-        .create-account {
-          border-radius: 20px;
-          padding: 10px 20px;
-          font-size: 18px;
-          font-weight: bold;
-          background-color: #5791ff;
-          border: none;
-          color: white;
-          margin: 1rem;
-        }
-      `}</style>
     </React.Fragment>
   );
 };

@@ -19,6 +19,9 @@ import CommentItem from "./Component";
 // @ts-ignore
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
+//Icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComment } from "@fortawesome/free-solid-svg-icons";
 export interface CommentsProps {
   id: string;
 }
@@ -126,19 +129,15 @@ const Comments: FC<CommentsProps> = ({ id }) => {
     comments();
   }, [send]);
 
-  const alert = <h3> You need to be login </h3>;
-
   return (
     <div className="border-1 rounded">
       <div className="p-2 border-1">
         <div className={style.com}>
-          {currentUser.currentUser === null
-            ? alert
-            : comments?.map((com) => (
-                <div key={com.text}>
-                  <CommentItem id_film={id} com={com} />
-                </div>
-              ))}
+          {comments?.map((com) => (
+            <div key={com.text}>
+              <CommentItem id_film={id} com={com} />
+            </div>
+          ))}
         </div>
       </div>
       <div className="mt-2 d-flex">
@@ -153,7 +152,7 @@ const Comments: FC<CommentsProps> = ({ id }) => {
             />
             <InputGroup.Append className="ml-2">
               <AwesomeButton type="primary" size="small" onPress={send}>
-                Send
+                <FontAwesomeIcon icon={faComment} /> Send
               </AwesomeButton>
             </InputGroup.Append>
           </InputGroup>

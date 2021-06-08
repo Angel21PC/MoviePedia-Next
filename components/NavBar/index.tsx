@@ -6,7 +6,13 @@ import Link from "next/link";
 
 //Icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignInAlt, faUser } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSignInAlt,
+  faUser,
+  faThList,
+  faPlus,
+  faCalculator,
+} from "@fortawesome/free-solid-svg-icons";
 
 //COMPONENTS
 import { Navbar, Nav, NavDropdown, Image } from "react-bootstrap";
@@ -82,7 +88,6 @@ const NavBar: FC<NavBarProps> = () => {
                 ) : (
                   <></>
                 )}
-                {/* <ImgProfile /> */}
               </div>
 
               <NavDropdown
@@ -90,14 +95,16 @@ const NavBar: FC<NavBarProps> = () => {
                 id="collasible-nav-dropdown"
               >
                 <NavDropdown.Item href="/all_pages/Profile">
-                  <FontAwesomeIcon icon={faUser} /> Profile{" "}
+                  Profile <FontAwesomeIcon icon={faUser} />
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/all_pages/List">List</NavDropdown.Item>
+                <NavDropdown.Item href="/all_pages/List">
+                  List <FontAwesomeIcon icon={faThList} />
+                </NavDropdown.Item>
                 <NavDropdown.Item href="/all_pages/MyCollections">
-                  New collection +
+                  New collection <FontAwesomeIcon icon={faPlus} />
                 </NavDropdown.Item>
                 <NavDropdown.Item href="/all_pages/Stads">
-                  Stads
+                  Stads <FontAwesomeIcon icon={faCalculator} />
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item

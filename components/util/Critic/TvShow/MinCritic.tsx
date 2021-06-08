@@ -1,11 +1,16 @@
 import React, { FC, useEffect, useState } from "react";
-import { Toast, ToastBody, ToastHeader, Button } from "react-bootstrap";
+import { Toast, ToastBody, ToastHeader } from "react-bootstrap";
 import Modal from "./Modal";
 import OneCritic from "./OneCritic";
 import { useAuth } from "../../../../firebase/AuthContext";
 import { store } from "react-notifications-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router";
+//butons
+// @ts-ignore
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
 export interface MinCriticProps {
   creator: string;
   date: any;
@@ -20,7 +25,7 @@ const MinCritic: FC<MinCriticProps> = (props) => {
   const { getUserNameIDColl, criticLikeTV, ConsultaID } = useAuth();
 
   const currentUser = useAuth();
-
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [show, setShow] = useState<boolean>(false);
   const [h, setH] = useState("heart");
@@ -76,29 +81,43 @@ const MinCritic: FC<MinCriticProps> = (props) => {
       });
     }
   };
+  let dateReal = date.toDate().toDateString();
 
   return (
     <Toast key={title}>
-      <ToastHeader closeButton={false}>{email}</ToastHeader>
+      <ToastHeader
+        closeButton={false}
+        onClick={() =>
+          router.push({
+            pathname: "/all_pages/PublicProfile",
+            query: { id: creator },
+          })
+        }
+      >
+        {email}
+        <div className="ml-3">{dateReal}</div>
+      </ToastHeader>
       <div className="d-flex w-100">
         <ToastBody className="w-100 d-flex">
           <div className="w-50 mr-5">{title}</div>
         </ToastBody>
         <div>
-          <Button onClick={() => setShow(true)}>Open</Button>
+          <AwesomeButton type="primary" onPress={() => setShow(true)}>
+            Open
+          </AwesomeButton>
           <Modal show={show} onClose={() => setShow(false)}>
             <div className="p-3 mt-3">
-              <div className="d-flex w-50">
-                <div className="mt-1">{userLikes?.length}</div>
+              <div className="d-flex w-100">
+                <div className="ml-2 mt-1">{userLikes?.length}</div>
                 <FontAwesomeIcon
                   id={h}
-                  className="icon fa-2x w-100"
+                  className="icon fa-2x"
                   name="heart"
                   icon={faHeart}
                   onClick={() => like()}
                 />
               </div>
-
+              <br />
               <OneCritic id_critic={id_critic} id_movie={id_movie}></OneCritic>
             </div>
           </Modal>

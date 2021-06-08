@@ -75,10 +75,13 @@ const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
       });
     }
   };
-
+  let dateReal = com.newComent.data.date.toDate().toDateString();
   return (
     <Toast key={com.text} className={style.text}>
-      <ToastHeader closeButton={false}> {email}</ToastHeader>
+      <ToastHeader closeButton={false}>
+        {email}
+        <div className="ml-3">{dateReal}</div>
+      </ToastHeader>
 
       <div className="d-flex">
         <div className="w-100">
@@ -86,10 +89,9 @@ const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
         </div>
         <div className="mr-4 d-inline-flex">
           <div className="mt-1">{com.newComent?.userLikes.length}</div>
-
           <FontAwesomeIcon
             id={h}
-            className="icon fa-2x w-100"
+            className="icon fa-2x"
             name="heart"
             icon={faHeart}
             onClick={() => like()}
