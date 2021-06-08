@@ -16,6 +16,10 @@ import Loading from "../../util/Loading/index";
 //style
 import style from "./Explorer.module.scss";
 
+//butons
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
+
 export interface ExplorerProps {
   URL: string;
   api_rutes: any;
@@ -163,8 +167,9 @@ const Explorer: FC<ExplorerProps> = ({
           </Row>
 
           <div className={style.explorer_button}>
-            <Button
-              onClick={() => {
+            <AwesomeButton
+              type="primary"
+              onPress={() => {
                 if (page > 0) {
                   if (fetchUrl == "") {
                     setFetchUrl(URL + api_rutes.Popular);
@@ -176,9 +181,10 @@ const Explorer: FC<ExplorerProps> = ({
               }}
             >
               Dame menos
-            </Button>
-            <Button
-              onClick={() => {
+            </AwesomeButton>
+            <AwesomeButton
+              type="primary"
+              onPress={() => {
                 if (fetchUrl == "") {
                   setFetchUrl(URL + api_rutes.Popular);
                   setPage(page + 1);
@@ -189,7 +195,7 @@ const Explorer: FC<ExplorerProps> = ({
               }}
             >
               Dame mas
-            </Button>
+            </AwesomeButton>
           </div>
         </Container>
       </div>

@@ -14,6 +14,11 @@ import {
 
 import style from "./Comments.module.scss";
 import CommentItem from "./Component";
+
+//butons
+import { AwesomeButton } from "react-awesome-button";
+import "react-awesome-button/dist/styles.css";
+
 export interface CommentsProps {
   id: string;
 }
@@ -140,15 +145,16 @@ const Comments: FC<CommentsProps> = ({ id }) => {
         <div className={style.from}>
           <InputGroup className="mb-3">
             <FormControl
-              placeholder="ei"
-              aria-label="ei"
+              placeholder="Comment"
+              aria-label="Comment"
               aria-describedby="basic-addon2"
               onChange={change}
+              className="m-1"
             />
             <InputGroup.Append>
-              <Button variant="dark" onClick={send}>
+              <AwesomeButton type="primary" size="small" onPress={send}>
                 Send
-              </Button>
+              </AwesomeButton>
             </InputGroup.Append>
           </InputGroup>
         </div>
