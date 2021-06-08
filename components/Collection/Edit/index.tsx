@@ -21,14 +21,13 @@ import "react-awesome-button/dist/styles.css";
 export interface CollectionEditProps {
   data: any;
 }
-const base_Url: string = "https://image.tmdb.org/t/p/original/";
+
 const CollectionEdit: FC<CollectionEditProps> = ({ data }) => {
   const d = data;
   console.log(d.data.data.objArray.movies);
   const [movies, setMovies] = useState(d.data.data.objArray.movies);
   const [shows, setShow] = useState(d.data.data.objArray.tv);
 
-  const collectionM = (id: number | string) => {};
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const deleteM = (movie: any) => {

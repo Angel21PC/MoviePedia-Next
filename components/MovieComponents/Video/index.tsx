@@ -17,7 +17,7 @@ const Video: FC<VideoProps> = ({ data }) => {
       <style jsx>{`
         .video {
           width: 100%;
-          height: 250px;
+          height: 350px;
         }
       `}</style>
     </>

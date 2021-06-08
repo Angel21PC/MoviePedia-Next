@@ -14,7 +14,6 @@ export interface CriticListProps {
 
 const CriticList: FC<CriticListProps> = ({ id }) => {
   const { getMinCritic } = useAuth();
-  const currentUser = useAuth();
 
   const [critics, setCritics] = useState([]);
   const [show, setShow] = useState<boolean>(false);

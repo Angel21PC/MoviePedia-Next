@@ -49,7 +49,7 @@ const CollectionCreator: FC<CollectionCreatorProps> = () => {
 
   return (
     <Container fluid>
-      <Row>
+      <Row style={{ minHeight: "800px" }}>
         <Col>
           <div className="mt-4">
             <div className="d-flex justify-content-center">

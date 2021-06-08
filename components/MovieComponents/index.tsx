@@ -180,7 +180,6 @@ const Movie: FC<MovieProps> = ({ data }) => {
           display: flex;
         }
         .video_container {
-          margin-top: 10%;
           width: 100%;
         }
       `}</style>

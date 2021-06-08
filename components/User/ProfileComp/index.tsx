@@ -70,14 +70,14 @@ const ProfileComp: FC<ProfileCompProps> = () => {
         <Col className="mt-5 pt-5 justify-content-center" xs lg="2">
           <ProfileNav onChange={setCurrentTab} />
         </Col>
-        <Col className="justify-content-center p-0" xs lg="8">
+        <Col className="p-0" xs lg="8">
           {currentTab === USER_TABS.COLLECTION ? (
             <div className="w-100">
               <h1>Collection</h1>
 
-              <Row className="justify-content-between">
+              <Row className="d-flex justify-content-center w-100">
                 {collection.map((c) => (
-                  <div style={{ minWidth: "100%" }}>
+                  <div>
                     <IntComGetData Coll={c.id}></IntComGetData>
                     <Button onClick={() => edit(c)}>Edit</Button>
                     <ModalDeleteCollection
