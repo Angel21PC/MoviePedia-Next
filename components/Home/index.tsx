@@ -34,8 +34,8 @@ const Casa: FC<CasaProps> = () => {
         <div className={style.from}>
           <InputGroup className="mb-3">
             <FormControl
-              placeholder="Seach"
-              aria-label="Seach"
+              placeholder="Search"
+              aria-label="Search"
               aria-describedby="basic-addon2"
               onChange={change}
             />

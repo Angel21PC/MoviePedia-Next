@@ -4,9 +4,9 @@ import { NextPage } from "next";
 import Footer from "../../../components/util/Footer";
 import FormS from "../../../components/util/Form/Form_singup";
 
-export interface SingUpProps {}
+export interface SignUpProps {}
 
-const SingUp: NextPage<SingUpProps> = () => {
+const SignUp: NextPage<SignUpProps> = () => {
   return (
     <>
       <FormS />
@@ -15,4 +15,4 @@ const SingUp: NextPage<SingUpProps> = () => {
   );
 };
 
-export default SingUp;
+export default SignUp;

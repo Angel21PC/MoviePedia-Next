@@ -73,8 +73,8 @@ const NavBar: React.SFC<NavBarProps> = () => {
               </NavDropdown>
             ) : (
               <>
-                <Link href="/all_pages/SingUp">
-                  <a>Sing in</a>
+                <Link href="/all_pages/SignUp">
+                  <a>Sign in</a>
                 </Link>
                 <Link href="/all_pages/LogIn">
                   <a>Login</a>
