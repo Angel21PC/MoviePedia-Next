@@ -109,43 +109,43 @@ export function AuthProvider({ children }) {
     const id = uuidv5(email, uuidv5.URL);
 
     //Likes
-    await db.collection("likes_M").doc(id).set({
+    db.collection("likes_M").doc(id).set({
       id_movie: [],
     });
 
     //Bookmark
-    await db.collection("bookmark_M").doc(id).set({
+    db.collection("bookmark_M").doc(id).set({
       id_movie: [],
     });
 
     //Bookmark
-    await db.collection("eye_M").doc(id).set({
+    db.collection("eye_M").doc(id).set({
       list: [],
     });
 
     //Likes
-    await db.collection("likes_TV").doc(id).set({
+    db.collection("likes_TV").doc(id).set({
       id_movie: [],
     });
 
     //Bookmark
-    await db.collection("bookmark_TV").doc(id).set({
+    db.collection("bookmark_TV").doc(id).set({
       id_movie: [],
     });
 
     //Bookmark
-    await db.collection("eye_TV").doc(id).set({
+    db.collection("eye_TV").doc(id).set({
       list: [],
     });
 
     //Collections
-    await db.collection("Collections_Saved").doc(id).set({
+    db.collection("Collections_Saved").doc(id).set({
       Bookmark: [],
       Like: [],
     });
 
     //public_Profile
-    await db.collection("Profile_Public").doc(id).set({
+    db.collection("Profile_Public").doc(id).set({
       userName: username,
       description: "",
       collections_created: true,
