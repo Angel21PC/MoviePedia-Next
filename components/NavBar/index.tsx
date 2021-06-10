@@ -27,8 +27,9 @@ export interface NavBarProps {}
 
 const NavBar: FC<NavBarProps> = () => {
   const [url, setUrl] = useState(undefined);
+  const [uid, setUid] = useState(undefined);
   const currentUser = useAuth();
-  const { logout, getImageUrlProfile } = useAuth();
+  const { logout, getImageUrlProfile, ConsultaID } = useAuth();
 
   const router = useRouter();
   useEffect(() => {
@@ -38,6 +39,8 @@ const NavBar: FC<NavBarProps> = () => {
           const response = await getImageUrlProfile();
           console.log(response);
           setUrl(response);
+          const ui = await ConsultaID();
+          setUid(ui);
         } catch (e) {}
       }
     }
@@ -105,6 +108,16 @@ const NavBar: FC<NavBarProps> = () => {
                 </NavDropdown.Item>
                 <NavDropdown.Item href="/all_pages/Stads">
                   Stads <FontAwesomeIcon icon={faCalculator} />
+                </NavDropdown.Item>
+                <NavDropdown.Item
+                  onClick={() =>
+                    router.push({
+                      pathname: "/all_pages/PublicProfile",
+                      query: { id: uid },
+                    })
+                  }
+                >
+                  Public Profile <FontAwesomeIcon icon={faCalculator} />
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item

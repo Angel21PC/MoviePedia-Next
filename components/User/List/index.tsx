@@ -127,7 +127,7 @@ const ListM: FC<ListMProps> = ({ dataM, dataTV, dataC }) => {
               defaultActiveKey="Pending"
               id="uncontrolled-tab-example"
             >
-              <Tab eventKey="Liked" title="Liked">
+              <Tab eventKey="Liked" title="View">
                 <h1>Total: {dataC.Like?.length}</h1>
                 {dataC.Like?.map((c) => (
                   <IntComGetData Coll={c.id} />
