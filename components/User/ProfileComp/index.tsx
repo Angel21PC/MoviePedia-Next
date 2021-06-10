@@ -74,7 +74,6 @@ const ProfileComp: FC<ProfileCompProps> = () => {
           {currentTab === USER_TABS.COLLECTION ? (
             <div className="w-100">
               <h1>Collection</h1>
-
               <Row className="ml-4 justify-content-center w-100">
                 {collection.map((c) => (
                   <div>

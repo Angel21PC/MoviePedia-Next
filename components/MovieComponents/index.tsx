@@ -51,7 +51,7 @@ const Movie: FC<MovieProps> = ({ data }) => {
         },
       });
       setProvider(request.data);
-      // console.log(request)
+      console.log({ AQUI: request });
       return request;
     }
 
@@ -107,7 +107,6 @@ const Movie: FC<MovieProps> = ({ data }) => {
                 <Poster c="movie_poster" movie={movie} />
               </div>
               <div className="mt-4">
-                <h4>Avaliable on:</h4>
                 <Avaliable provider={provider} />
               </div>
               <div>

@@ -94,7 +94,6 @@ const Tv: FC<TvProps> = ({ data }) => {
               <div className="justify-content-center">
                 <Poster c="movie_poster" movie={movie} />
                 <div className="mt-4">
-                  <h4>Avaliable on:</h4>
                   <Avaliable provider={provider} />
                 </div>
               </div>
