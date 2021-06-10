@@ -42,7 +42,7 @@ const ProfileNav: FC<ProfileNavProps> = ({ children, onChange }) => {
             toggle(USER_TABS.COLLECTION);
           }}
         >
-          <div className="w-100 p-0">
+          <div className="w-100 p-0 text-center">
             <h4 className="m-0">COLLECTION</h4>
           </div>
         </NavLink>
@@ -55,7 +55,7 @@ const ProfileNav: FC<ProfileNavProps> = ({ children, onChange }) => {
             toggle(USER_TABS.EDIT);
           }}
         >
-          <div className="w-100 p-0">
+          <div className="w-100 p-0 text-center">
             <h4 className="m-0">EDIT</h4>
           </div>
         </NavLink>
@@ -67,7 +67,7 @@ const ProfileNav: FC<ProfileNavProps> = ({ children, onChange }) => {
             toggle(USER_TABS.MORE);
           }}
         >
-          <div className="w-100 p-0">
+          <div className="w-100 p-0 text-center">
             <h4 className="m-0">More</h4>
           </div>
         </NavLink>

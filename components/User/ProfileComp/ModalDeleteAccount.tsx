@@ -24,7 +24,11 @@ const ModalDeleteAccount: FC<ModalDeleteAccountProps> = ({ pilo }) => {
   const handleShow = () => setShow(true);
   return (
     <>
-      <Button variant="primary" className="w-100 mt-4" onClick={handleShow}>
+      <Button
+        variant="primary"
+        className="w-100 mt-4 ml-5"
+        onClick={handleShow}
+      >
         Delete Account
       </Button>
       <Modal show={show} onHide={handleClose}>

@@ -25,7 +25,7 @@ const OneCollection: FC<OneCollectionProps> = ({ id }) => {
     url: "a",
   });
   const { getCollectionByID, getUserNameIDColl } = useAuth();
-
+  const [like, setLike] = useState([]);
   useEffect(() => {
     async function fetchData() {
       const response = await getCollectionByID(id);
@@ -33,12 +33,13 @@ const OneCollection: FC<OneCollectionProps> = ({ id }) => {
       setMovies(response.response.data.objArray.movies);
       setShows(response.response.data.objArray.tv);
       setCreator(response.response.data.user);
+      setLike(response.response.userLikes);
       const eml = await getUserNameIDColl(response.response.data.user);
       setEmail(eml);
     }
     fetchData();
   }, [id]);
-
+  console.log({ uuuu: like });
   return (
     <Container className="mt-3">
       <Col>
@@ -64,7 +65,7 @@ const OneCollection: FC<OneCollectionProps> = ({ id }) => {
             <M_B_F
               id={id}
               title={result?.response.data.title}
-              userLikes={result?.response.userLikes}
+              userLikes={like}
             />
             <hr />
             <div

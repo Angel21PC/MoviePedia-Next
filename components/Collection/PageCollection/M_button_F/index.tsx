@@ -33,12 +33,10 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
   const [b, setB] = useState("bookmark");
   const [e, setE] = useState("heart");
 
-  const [cont, setCont] = useState(
-    userLikes[0] != undefined ? userLikes.length + 1 : userLikes.length
-  );
+  const [cont, setCont] = useState(userLikes.length);
 
   let bool = false;
-  let bool2 = false;
+
   useEffect(() => {
     //checks
     async function c_heart() {
@@ -66,9 +64,6 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
         userLikes?.map((user) => (user === id ? (bool = true) : bool));
 
         if (bool === true) {
-          if (cont === 0) {
-            setCont(cont + 1);
-          }
           console.log(true);
           setE("heartcheck");
         }
@@ -87,7 +82,6 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
     currentUser.currentUser,
     checkBookMarkCollection,
     userLikes,
-    cont,
   ]);
 
   const like = async () => {
@@ -95,15 +89,10 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
 
     if (currentUser.currentUser !== null) {
       let response = await collectionLike(id, id_user);
-
-      if (response === true) {
+      if (response != false) {
         setE("heartcheck");
-        setCont(cont + 1);
       } else {
         setE("heart");
-        if (cont > 0) {
-          setCont(cont - 1);
-        }
       }
       console.log("mira aqui");
       console.log(response);

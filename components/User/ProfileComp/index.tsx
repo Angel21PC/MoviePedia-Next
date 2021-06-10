@@ -75,15 +75,19 @@ const ProfileComp: FC<ProfileCompProps> = () => {
             <div className="w-100">
               <h1>Collection</h1>
 
-              <Row className="d-flex justify-content-center w-100">
+              <Row className="ml-4 justify-content-center w-100">
                 {collection.map((c) => (
                   <div>
                     <IntComGetData Coll={c.id}></IntComGetData>
-                    <Button onClick={() => edit(c)}>Edit</Button>
-                    <ModalDeleteCollection
-                      id={c.id}
-                      pilo={p}
-                    ></ModalDeleteCollection>
+                    <div className="d-flex justify-content-center">
+                      <Button className="mr-5" onClick={() => edit(c)}>
+                        Edit
+                      </Button>
+                      <ModalDeleteCollection
+                        id={c.id}
+                        pilo={p}
+                      ></ModalDeleteCollection>
+                    </div>
                   </div>
                 ))}
               </Row>
