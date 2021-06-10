@@ -30,7 +30,9 @@ const Casa: FC<CasaProps> = () => {
   return (
     <>
       <div className={style.text}>
-        <h1 className="mt-5 p-5">Welcome to MoviePedia</h1>
+        <h1 className="mt-5 p-5 animate__animated animate__backInLeft">
+          Welcome to MoviePedia
+        </h1>
         <div className={style.from}>
           <InputGroup className="mb-3">
             <FormControl

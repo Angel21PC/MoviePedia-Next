@@ -149,7 +149,10 @@ const Explorer: FC<ExplorerProps> = ({
               (
                 movie //saca las peliculas
               ) => (
-                <div key={movie?.id} className="mt-2">
+                <div
+                  key={movie?.id}
+                  className="mt-2 animate__animated animate__backInUp"
+                >
                   <Link
                     href={{
                       pathname: m_s,

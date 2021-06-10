@@ -29,10 +29,16 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
     ConsultaID,
     collectionLike,
   } = useAuth();
-  const [h, setH] = useState("heart");
+  const [h, setH] = useState("eye");
   const [b, setB] = useState("bookmark");
+  const [e, setE] = useState("heart");
+
+  const [cont, setCont] = useState(
+    userLikes[0] != undefined ? userLikes.length + 1 : userLikes.length
+  );
 
   let bool = false;
+  let bool2 = false;
   useEffect(() => {
     //checks
     async function c_heart() {
@@ -60,7 +66,11 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
         userLikes?.map((user) => (user === id ? (bool = true) : bool));
 
         if (bool === true) {
-          console.log("LIKED");
+          if (cont === 0) {
+            setCont(cont + 1);
+          }
+          console.log(true);
+          setE("heartcheck");
         }
       }
     };
@@ -72,7 +82,13 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
     };
 
     check();
-  }, [checkLikesCollections, currentUser.currentUser, checkBookMarkCollection]);
+  }, [
+    checkLikesCollections,
+    currentUser.currentUser,
+    checkBookMarkCollection,
+    userLikes,
+    cont,
+  ]);
 
   const like = async () => {
     const id_user = await ConsultaID();
@@ -81,9 +97,13 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
       let response = await collectionLike(id, id_user);
 
       if (response === true) {
-        console.log("mira qui");
-        console.log(response);
+        setE("heartcheck");
+        setCont(cont + 1);
       } else {
+        setE("heart");
+        if (cont > 0) {
+          setCont(cont - 1);
+        }
       }
       console.log("mira aqui");
       console.log(response);
@@ -122,11 +142,12 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
       let r = await checkLikesCollections(id);
       let bool = r === undefined ? (r = false) : (r = true);
       if (bool === true) {
-        setH("heart");
+        setH("eye");
+
         deleteLikesColletions(id);
         store.addNotification({
           title: "Wonderful!",
-          message: "Removed from the like list",
+          message: "Removed from to watch list",
           type: "warning",
           insert: "top",
           container: "top-center",
@@ -138,11 +159,11 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
           },
         });
       } else {
-        setH("heartcheck");
+        setH("eyecheck");
         saveLikesCollections(id);
         store.addNotification({
           title: "Wonderful!",
-          message: "Added to like list",
+          message: "Added to watch list",
           type: "success",
           insert: "top",
           container: "top-center",
@@ -180,7 +201,7 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
         deleteBookMarkCollection(id);
         store.addNotification({
           title: "Wonderful!",
-          message: "Removed from the likes list",
+          message: "Removed from the bookmark list",
           type: "warning",
           insert: "top",
           container: "top-center",
@@ -224,19 +245,23 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
       });
     }
   }
+  console.log({ fifififi: userLikes });
   return (
     <div className="d-flex">
       <h3>{title}</h3>
+      <p className="pl-3 mt-1 ml-3">{cont}</p>
       <FontAwesomeIcon
         className="icon fa-2x"
-        icon={faBookmark}
+        icon={faHeart}
+        id={e}
+        name="heart"
         onClick={() => like()}
       />
       <FontAwesomeIcon
         className="icon fa-2x"
         id={h}
-        name="heart"
-        icon={faHeart}
+        name="eye"
+        icon={faEye}
         onClick={() => handleSelect("heart")}
       />
       <FontAwesomeIcon

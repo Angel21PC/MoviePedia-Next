@@ -80,7 +80,7 @@ const AllCol: FC<AllColProps> = () => {
       </div>
       <Row className="justify-content-between" lg={3} sm={2} xs={1}>
         {collections.map((c) => (
-          <div className="collection mt-4 p-1">
+          <div className="collection mt-4 p-1 animate__animated animate__backInUp">
             <ItemFlip data={c}></ItemFlip>
           </div>
         ))}
