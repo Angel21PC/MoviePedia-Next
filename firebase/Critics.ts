@@ -19,14 +19,14 @@ async function ConsultaID() {
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-    console.log(result);
+    //console.log(result);
   } catch (e) {}
 
   return result;
 }
 export async function getCritics(id_movie, id_critic) {
   let response = undefined;
-  console.log(id_critic, id_movie);
+  //console.log(id_critic, id_movie);
   try {
     const docRef = db.collection("critica_M").doc(id_movie.toString());
     await docRef
@@ -196,7 +196,7 @@ export async function criticLike(id_film: number | string, criticLike: string) {
         }
       })
       .catch((error) => {
-        console.log("F:", error);
+        console.log(error);
       });
   } catch (e) {
     console.log(e);
@@ -228,7 +228,7 @@ export async function getListCritics(id_film: number | string) {
         }
       })
       .catch((error) => {
-        console.log("F:", error);
+        console.log(error);
       });
   } catch (e) {
     console.log(e);
@@ -239,7 +239,7 @@ export async function getListCritics(id_film: number | string) {
 //TV
 export async function getCriticsTV(id_movie, id_critic) {
   let response = undefined;
-  console.log(id_critic, id_movie);
+  //console.log(id_critic, id_movie);
   try {
     const docRef = db.collection("critica_TV").doc(id_movie.toString());
     await docRef
@@ -412,7 +412,7 @@ export async function criticLikeTV(
         }
       })
       .catch((error) => {
-        console.log("F:", error);
+        console.log(error);
       });
   } catch (e) {
     console.log(e);
@@ -444,7 +444,7 @@ export async function getListCriticsTV(id_film: number | string) {
         }
       })
       .catch((error) => {
-        console.log("F:", error);
+        console.log(error);
       });
   } catch (e) {
     console.log(e);

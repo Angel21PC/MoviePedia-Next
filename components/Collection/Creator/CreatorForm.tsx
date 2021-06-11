@@ -61,7 +61,7 @@ const CreatorForm: FC<CreatorFormProps> = ({ movies, shows, close, reset }) => {
       movies: arrayIdMovie,
       tv: arrayIdShow,
     };
-    console.log(data);
+    //console.log(data);
     try {
       if (data.file[0] != null) {
         const response = await pushNewCollection(
@@ -93,7 +93,7 @@ const CreatorForm: FC<CreatorFormProps> = ({ movies, shows, close, reset }) => {
         });
       }
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 
@@ -133,7 +133,7 @@ const CreatorForm: FC<CreatorFormProps> = ({ movies, shows, close, reset }) => {
                 theme="bubble"
                 value={value}
                 onChange={(e) => {
-                  console.log(e);
+                  //console.log(e);
                   setValue(e);
                 }}
               />

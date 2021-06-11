@@ -51,7 +51,7 @@ const FormS: FC<FormSProps> = () => {
 
   const onSubmit = async (data: INewUser) => {
     try {
-      console.log(data);
+      //console.log(data);
       setLoading(true);
       await signup(data.email, data.password).then(
         saveData(data.username, data.birth_date, data.phone_number, data.email)
@@ -59,7 +59,7 @@ const FormS: FC<FormSProps> = () => {
 
       router.push("/");
     } catch (e) {
-      console.log(e);
+      //console.log(e);
       store.addNotification({
         title: "Fail!",
         message: "Fail to create account",

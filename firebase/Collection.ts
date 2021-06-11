@@ -1,7 +1,6 @@
 import { auth, db, a } from "./index";
 import { v1 as uuidv1 } from "uuid";
 import { uploadImgCollection, getImageCollection } from "./Images";
-import { resourceLimits } from "node:worker_threads";
 /* 
     id : {
         public: bool
@@ -35,7 +34,7 @@ async function ConsultaID() {
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-    console.log(result);
+    //console.log(result);
   } catch (e) {}
 
   return result;
@@ -107,7 +106,7 @@ export async function collectionLike(
         .then((doc) => {
           if (doc.exists) {
             let result = doc.data();
-            console.log(result);
+            //console.log(result);
             let nuestro_user_fue_encontrado = false;
             result.userLikes.map((u) => {
               if (u === user_giveLike) {
@@ -131,7 +130,7 @@ export async function collectionLike(
 
               response = false;
             }
-            console.log({ userLike: result.userLikes });
+            //console.log({ userLike: result.userLikes });
             docRef.update({
               data: {
                 date: result.data.date,
@@ -203,13 +202,13 @@ export async function getCollectionByID(id_Collection: number | string) {
     });
 
     const t = async () => {
-      console.log({ response: response });
+      // console.log({ response: response });
       return await getImageCollection(response.data.imageName);
     };
     urlImageCollection = await t();
     return { response: response, url: urlImageCollection };
   } catch (error) {
-    console.log("ups");
+    console.log(error);
   }
 }
 
@@ -226,8 +225,8 @@ export async function getCollections() {
         querySnapshot.forEach((doc) => {
           arr.push({ id: doc.id, data: doc.data() });
         });
-        response = arr;
-        console.log(arr);
+        response = arr.reverse();
+        //console.log(arr);
       });
   } catch (error) {
     console.log(error);
@@ -239,7 +238,7 @@ export async function getCollections() {
 export async function getCollectionsEmail(email: string) {
   let response = undefined;
   let arr = [];
-  console.log(email);
+  //console.log(email);
   try {
     const docRef = await db
       .collection("Collections")
@@ -250,7 +249,7 @@ export async function getCollectionsEmail(email: string) {
           arr.push({ id: doc.id, data: doc.data() });
         });
         response = arr;
-        console.log(arr);
+        // console.log(arr);
       });
   } catch (error) {
     console.log(error);
@@ -261,7 +260,7 @@ export async function getCollectionsEmail(email: string) {
 export async function getCollectionsEmailPublic(email: string) {
   let response = undefined;
   let arr = [];
-  console.log(email);
+  //console.log(email);
   try {
     const docRef = await db
       .collection("Collections")
@@ -273,7 +272,7 @@ export async function getCollectionsEmailPublic(email: string) {
           arr.push({ id: doc.id, data: doc.data() });
         });
         response = arr;
-        console.log(arr);
+        //console.log(arr);
       });
   } catch (error) {
     console.log(error);
@@ -293,7 +292,7 @@ export async function checkBookMarkCollection(id: number | string) {
     .then((doc) => {
       if (doc.exists) {
         const data = doc.data();
-        console.log(data);
+        //console.log(data);
 
         result = data.Bookmark.find((e) => e.id === id);
       } else {
@@ -434,7 +433,7 @@ export async function editCollection(
     .then((doc) => {
       collectionData = doc.data();
     });
-  console.log(collectionData);
+  //console.log(collectionData);
   try {
     if (file != undefined) {
       try {
@@ -523,7 +522,7 @@ export async function getCollectionsByLike() {
         querySnapshot.forEach((doc) => {
           arr.push({ id: doc.id, data: doc.data() });
         });
-        response = arr;
+        response = arr.reverse();
         console.log(arr);
       });
   } catch (error) {
@@ -544,7 +543,7 @@ export async function collectionNumLike(id_collection: number | string) {
       .then((doc) => {
         if (doc.exists) {
           const data = doc.data();
-          console.log({ EEEEEEEE: data.userLikes });
+          //console.log({ EEEEEEEE: data.userLikes });
           response = data.userLikes;
         }
       })

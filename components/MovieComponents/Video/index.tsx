@@ -6,7 +6,7 @@ export interface VideoProps {
 const Video: FC<VideoProps> = ({ data }) => {
   const base_Url: string = "https://www.youtube.com/embed/";
 
-  console.log({ VIDEO: data });
+  //console.log({ VIDEO: data });
 
   return (
     <>

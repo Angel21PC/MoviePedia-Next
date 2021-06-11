@@ -220,7 +220,7 @@ const M_B_F: FC<M_B_FProps> = ({ movie }) => {
       } else {
         setE("eyecheck");
         const today = new Date();
-        console.log(movie.title);
+        //console.log(movie.title);
         saveEye_M(
           movie.id,
           today,

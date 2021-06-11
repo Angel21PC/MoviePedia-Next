@@ -24,7 +24,7 @@ export interface CollectionEditProps {
 
 const CollectionEdit: FC<CollectionEditProps> = ({ data }) => {
   const d = data;
-  console.log(d.data.data.objArray.movies);
+  //console.log(d.data.data.objArray.movies);
   const [movies, setMovies] = useState(d.data.data.objArray.movies);
   const [shows, setShow] = useState(d.data.data.objArray.tv);
 
@@ -34,11 +34,11 @@ const CollectionEdit: FC<CollectionEditProps> = ({ data }) => {
     if (movie.id != undefined) {
       setMovies(movies.filter((item) => item.id !== movie.id));
       setShow(shows.filter((item) => item.id !== movie.id));
-      console.log(movies);
+      //console.log(movies);
     } else {
       setMovies(movies.filter((item) => item !== movie));
       setShow(shows.filter((item) => item !== movie));
-      console.log(movies);
+      //console.log(movies);
     }
   };
 
@@ -64,7 +64,7 @@ const CollectionEdit: FC<CollectionEditProps> = ({ data }) => {
     console.log({ movie: movies, shows: shows });
   }, [deleteM, movies]);
 
-  console.log("render");
+  //console.log("render");
 
   return (
     <Container fluid>

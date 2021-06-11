@@ -223,7 +223,7 @@ export function AuthProvider({ children }) {
         .catch((error) => {
           console.log("Error getting document:", error);
         });
-      console.log(result);
+      //console.log(result);
     } catch (e) {}
 
     return result;
@@ -265,8 +265,7 @@ export function AuthProvider({ children }) {
     auth
       .signInWithPopup(facebookProvider)
       .then((res) => {
-        console.log(res.user);
-
+        //console.log(res.user);
         //falta el save
       })
       .catch((error) => {
@@ -280,7 +279,7 @@ export function AuthProvider({ children }) {
     auth
       .signInWithPopup(twitterProvider)
       .then((res) => {
-        console.log(res.user);
+        //console.log(res.user);
         //falta el save
       })
       .catch((error) => {

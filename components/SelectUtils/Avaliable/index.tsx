@@ -10,7 +10,7 @@ import style from "./Available.module.scss";
 const Avaliable: FC<AvaliableProps> = ({ provider }) => {
   //url base para las imagenes
   const base_Url = "https://image.tmdb.org/t/p/original/";
-  console.log(provider);
+  //console.log(provider);
 
   if (provider?.data.results?.US?.flatrate === undefined) {
     return <></>;

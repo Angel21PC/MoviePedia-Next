@@ -18,7 +18,7 @@ async function ConsultaID() {
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-    console.log(result);
+    //console.log(result);
   } catch (e) {}
 
   return result;

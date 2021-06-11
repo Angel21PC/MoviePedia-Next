@@ -43,7 +43,7 @@ const FormL: FC<FormLProps> = () => {
 
   const onSubmit = async (data: INewUser) => {
     try {
-      console.log(data);
+      //console.log(data);
       setLoading(true);
       await login(data.email, data.password);
       router.push("/");

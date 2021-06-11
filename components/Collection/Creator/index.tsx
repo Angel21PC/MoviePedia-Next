@@ -44,7 +44,7 @@ const CollectionCreator: FC<CollectionCreatorProps> = () => {
   };
 
   useEffect(() => {
-    console.log({ movie: movies, shows: shows });
+    //console.log({ movie: movies, shows: shows });
   }, [deleteM, movies]);
 
   return (

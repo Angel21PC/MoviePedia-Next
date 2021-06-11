@@ -19,7 +19,7 @@ export interface ListMProps {
 const ListM: FC<ListMProps> = ({ dataM, dataTV, dataC }) => {
   const [isPending, setIsPending] = useState(true); // variable para la pantalla de carga
   const [currentTab, setCurrentTab] = useState<string>(LIST_TABS.MOVIE);
-  console.log(dataM);
+  //console.log(dataM);
   useEffect(() => {
     setIsPending(true);
     if (dataM != undefined) {

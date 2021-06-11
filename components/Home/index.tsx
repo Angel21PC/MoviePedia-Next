@@ -35,7 +35,7 @@ const Casa: FC<CasaProps> = () => {
   }, []);
 
   const change = (data: any) => {
-    console.log(data.target.value);
+    //console.log(data.target.value);
     setFind(data.target.value);
   };
 

@@ -7,7 +7,7 @@ export interface IntComGetDataProps {
 }
 
 const IntComGetData: FC<IntComGetDataProps> = ({ Coll }) => {
-  console.log(Coll);
+  //console.log(Coll);
   const { getCollectionByID } = useAuth();
   const [collection, setCollection] = useState("");
 

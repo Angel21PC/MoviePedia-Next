@@ -20,7 +20,7 @@ export interface TVProps {
 
 const TV: NextPage<TVProps> = (props) => {
   const { popularTv, genreTv } = props;
-  console.log(popularTv);
+  //console.log(popularTv);
   return (
     <>
       <Banner data={popularTv?.data} />

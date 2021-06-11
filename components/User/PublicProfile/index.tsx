@@ -13,7 +13,7 @@ export interface PublicProfileProps {
 }
 
 const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
-  console.log({ PROPS: id });
+  //console.log({ PROPS: id });
 
   const [bookmark, setBookmark] = useState<Idatapublic>();
   const [likes, setLikes] = useState<Idatapublic>();
@@ -37,7 +37,7 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
   useEffect(() => {
     async function fetchData() {
       const response = await getDataUser(id);
-      console.log(response);
+      //console.log(response);
       setDescription(response.description);
       if (response != undefined) {
         if (response.Eye === true) {
@@ -70,7 +70,7 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
     }
     fetchImage();
   }, []);
-  console.log({ bookmark: bookmark, likes: likes, eye: eye });
+  //console.log({ bookmark: bookmark, likes: likes, eye: eye });
   return (
     <Container className="mt-3">
       <Container>

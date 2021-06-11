@@ -88,7 +88,7 @@ const EditForm: FC<EditFormProps> = ({ movies, shows, close, reset, data }) => {
       movies: arrayIdMovie,
       tv: arrayIdShow,
     };
-    console.log({ objArray: objArray });
+    //console.log({ objArray: objArray });
     try {
       const response = await editCollection(
         id,
@@ -104,7 +104,7 @@ const EditForm: FC<EditFormProps> = ({ movies, shows, close, reset, data }) => {
       reset();
       close();
     } catch (error) {
-      console.log(error);
+      //console.log(error);
     }
   };
 
@@ -146,7 +146,7 @@ const EditForm: FC<EditFormProps> = ({ movies, shows, close, reset, data }) => {
                   theme="bubble"
                   value={value}
                   onChange={(e) => {
-                    console.log(e);
+                    //console.log(e);
                     setValue(e);
                   }}
                 />

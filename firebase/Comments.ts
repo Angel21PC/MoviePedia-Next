@@ -10,7 +10,7 @@ async function ConsultaID() {
       .then((doc) => {
         if (doc.exists) {
           const data = doc.data();
-          console.log({ aaaaaaaaaaaaaaaaa: data });
+          //console.log({ aaaaaaaaaaaaaaaaa: data });
           result = data.collections_id.id;
           // console.log(result)
         } else {
@@ -20,7 +20,7 @@ async function ConsultaID() {
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-    console.log(result);
+    //console.log(result);
   } catch (e) {}
 
   return result;
@@ -167,7 +167,7 @@ export async function commentLike(
         }
       })
       .catch((error) => {
-        console.log("F:", error);
+        console.log(error);
       });
   } catch (e) {
     console.log(e);
@@ -316,7 +316,7 @@ export async function commentLikeTV(
         }
       })
       .catch((error) => {
-        console.log("F:", error);
+        console.log(error);
       });
   } catch (e) {
     console.log(e);
@@ -339,7 +339,7 @@ export async function getUserNameIDColl(id: string) {
           arr = doc.data().username.username;
         });
         response = arr;
-        console.log(arr);
+        //console.log(arr);
       });
   } catch (error) {
     console.log(error);

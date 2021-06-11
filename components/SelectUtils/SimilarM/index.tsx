@@ -14,7 +14,7 @@ export interface SimilarProps {
 }
 
 const Similar: FC<SimilarProps> = ({ id, m_s }) => {
-  console.log(id);
+  //console.log(id);
   const fetch: string =
     m_s == "/all_pages/Movie_select" ? api_rutesM.Similar : api_rutesTv.Similar;
   const [movies, setMovies] = useState([]); //recoge todos los datos de la consulta

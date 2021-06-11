@@ -12,7 +12,7 @@ const PublicProfile: NextPage<ProfileProps> = ({ query }) => {
   const router = useRouter();
 
   const id = router.query.id;
-  console.log(id);
+  //console.log(id);
   return (
     <>
       <PublicPofile id={id.toString()} />

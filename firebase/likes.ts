@@ -17,7 +17,7 @@ async function ConsultaID() {
     .catch((error) => {
       console.log("Error getting document:", error);
     });
-  console.log(result);
+  //console.log(result);
   return result;
 }
 
@@ -45,7 +45,7 @@ export async function checkLikes_M(id) {
 
 export async function saveLike_M(id) {
   const id_user_collection = await ConsultaID();
-  console.log("mira aqui");
+  //console.log("mira aqui");
   return db
     .collection("likes_M")
     .doc(id_user_collection)
@@ -87,7 +87,7 @@ export async function checkLikes_TV(id) {
 
 export async function saveLike_TV(id) {
   const id_user_collection = await ConsultaID();
-  console.log("mira aqui");
+  //console.log("mira aqui");
   return db
     .collection("likes_TV")
     .doc(id_user_collection)

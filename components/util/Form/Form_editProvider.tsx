@@ -60,7 +60,7 @@ const FormEditProvider: FC<FormEditProviderProps> = () => {
 
   const onSubmit = async (data: INewUser) => {
     try {
-      console.log(data);
+      //console.log(data);
       setLoading(true);
       await changeData(
         data.username,
@@ -71,13 +71,13 @@ const FormEditProvider: FC<FormEditProviderProps> = () => {
         "",
         value
       );
-      console.log(data.file[0].name);
+      //console.log(data.file[0].name);
       if (data?.file[0]?.name) {
         let c = await uploadImgProfile(data.file[0]);
       }
       router.push("/");
     } catch (e) {
-      console.log(e);
+      //console.log(e);
       store.addNotification({
         title: "Fail!",
         message: "Fail to change data account",
@@ -152,7 +152,7 @@ const FormEditProvider: FC<FormEditProviderProps> = () => {
             theme="bubble"
             value={value}
             onChange={(e) => {
-              console.log(e);
+              //console.log(e);
               setValue(e);
             }}
           />

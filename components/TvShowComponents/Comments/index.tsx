@@ -34,7 +34,7 @@ const Comments: FC<CommentsProps> = ({ id }) => {
   const [nextComent, setnextComent] = useState(null);
 
   const change = (data: any) => {
-    console.log(data.target.value);
+    //console.log(data.target.value);
     setnextComent(data.target.value);
   };
 

@@ -51,7 +51,7 @@ const Movie: FC<MovieProps> = ({ data }) => {
         },
       });
       setProvider(request.data);
-      console.log({ AQUI: request });
+      //console.log({ AQUI: request });
       return request;
     }
 
@@ -73,7 +73,7 @@ const Movie: FC<MovieProps> = ({ data }) => {
       });
 
       setSimilar(request.data.data.results);
-      console.log(similar);
+      //console.log(similar);
       return request;
     }
     //request para extraer las peliculas
@@ -87,7 +87,7 @@ const Movie: FC<MovieProps> = ({ data }) => {
         fetchDataViedo();
 
         setIsPending(false);
-        console.log(cast);
+        //console.log(cast);
       }, 2500);
     }
     go();

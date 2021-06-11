@@ -44,7 +44,7 @@ const MinCritic: FC<MinCriticProps> = (props) => {
 
         if (bool === true) {
           setH("heartcheck");
-          console.log({ RESULT: true });
+          //console.log({ RESULT: true });
         }
       }
     };
@@ -52,19 +52,19 @@ const MinCritic: FC<MinCriticProps> = (props) => {
   }, []);
 
   const like = async () => {
-    console.log("gg");
+    //console.log("gg");
     if (currentUser.currentUser !== null) {
       let response = await criticLikeTV(id_movie, id_critic);
 
       if (response === true) {
         setH("heartcheck");
-        console.log("mira qui");
-        console.log(response);
+        // console.log("mira qui");
+        // console.log(response);
       } else {
         setH("heart");
       }
-      console.log("mira aqui");
-      console.log(response);
+      // console.log("mira aqui");
+      // console.log(response);
     } else {
       store.addNotification({
         title: "Sorry",

@@ -47,11 +47,11 @@ export async function checkEye_M(id) {
       if (doc.exists) {
         let result = doc.data();
 
-        console.log(id);
+        //console.log(id);
         result.list?.map((m) => {
-          console.log(m);
+          //console.log(m);
           if (m.id === id) {
-            console.log("mmmmmmmmmmmmm");
+            //console.log("mmmmmmmmmmmmm");
             check = m;
           }
         });
@@ -91,7 +91,7 @@ export async function deleteEye_M(id) {
           }
         });
 
-        console.log(check);
+        //console.log(check);
         if (check !== undefined) {
           db.collection("eye_M")
             .doc(id_user_collection)
@@ -138,7 +138,7 @@ export async function saveEye_M(id, date, genres, release_date, title) {
         });
 
         if (check == false) {
-          console.log("entro ");
+          //console.log("entro ");
           db.collection("eye_M")
             .doc(id_user_collection)
             .update({
@@ -180,11 +180,11 @@ export async function checkEye_TV(id) {
       if (doc.exists) {
         let result = doc.data();
 
-        console.log(id);
+        //console.log(id);
         result.list?.map((m) => {
-          console.log(m);
+          //console.log(m);
           if (m.id === id) {
-            console.log("mmmmmmmmmmmmm");
+            //console.log("mmmmmmmmmmmmm");
             check = m;
           }
         });
@@ -224,7 +224,7 @@ export async function deleteEye_TV(id) {
           }
         });
 
-        console.log(check);
+        //console.log(check);
         if (check !== undefined) {
           db.collection("eye_TV")
             .doc(id_user_collection)
@@ -271,7 +271,7 @@ export async function saveEye_TV(id, date, genres, release_date, title) {
         });
 
         if (check == false) {
-          console.log("entro ");
+          //console.log("entro ");
           db.collection("eye_TV")
             .doc(id_user_collection)
             .update({

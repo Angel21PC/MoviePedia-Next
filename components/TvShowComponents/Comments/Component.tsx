@@ -41,19 +41,19 @@ const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
   }, []);
 
   const like = async () => {
-    console.log(com.newComent.data.id_coment);
+    //console.log(com.newComent.data.id_coment);
     if (currentUser.currentUser !== null) {
       let response = await commentLikeTV(id_film, com.newComent.data.id_coment);
 
       if (response === true) {
         setH("heartcheck");
-        console.log("mira qui");
-        console.log(response);
+        //console.log("mira qui");
+        //console.log(response);
       } else {
         setH("heart");
       }
-      console.log("mira aqui");
-      console.log(response);
+      //console.log("mira aqui");
+      //console.log(response);
     } else {
       store.addNotification({
         title: "Sorry",

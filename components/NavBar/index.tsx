@@ -38,7 +38,7 @@ const NavBar: FC<NavBarProps> = () => {
       if (currentUser.currentUser?.email != undefined) {
         try {
           const response = await getImageUrlProfile();
-          console.log(response);
+          //console.log(response);
           setUrl(response);
           const ui = await ConsultaID();
           setUid(ui);
@@ -49,7 +49,7 @@ const NavBar: FC<NavBarProps> = () => {
   }, [currentUser]);
 
   // checkProviderUser();
-  console.log({ RENDER: currentUser.currentUser });
+  //console.log({ RENDER: currentUser.currentUser });
   return (
     <Navbar
       collapseOnSelect

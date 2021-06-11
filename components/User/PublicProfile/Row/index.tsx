@@ -14,7 +14,7 @@ export interface ListMTVProps {
 }
 
 const ListMTV: FC<ListMTVProps> = ({ Movie, TV, list, title }) => {
-  console.log({ Movies: Movie, Shows: TV });
+  //console.log({ Movies: Movie, Shows: TV });
   if (list === true) {
     return (
       <div className="mt-3">

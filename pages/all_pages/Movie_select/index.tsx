@@ -18,7 +18,7 @@ export interface MovieSProps {
 
 const MovieS: NextPage<MovieSProps> = (props) => {
   const { data } = props;
-  console.log(data);
+  //console.log(data);
   const router = useRouter();
   const {
     query: { id },

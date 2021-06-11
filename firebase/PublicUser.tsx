@@ -29,7 +29,7 @@ async function ConsultaID() {
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-    console.log(result);
+    //console.log(result);
   } catch (e) {}
 
   return result;
@@ -59,7 +59,7 @@ export async function getDataUser(id) {
 //edit public
 export async function editPublicData(obj: any) {
   let response = undefined;
-  console.log(obj);
+  //console.log(obj);
   try {
     let user = await ConsultaID();
     let data;
@@ -110,7 +110,7 @@ export async function updateNameandDescription(uid) {
       .then((doc) => {
         data2 = doc.data();
       });
-    console.log({ data: data, data2: data2 });
+    //console.log({ data: data, data2: data2 });
     const docRef = await db.collection("Profile_Public").doc(user).update({
       username: data.username.username,
       description: data.description.description,

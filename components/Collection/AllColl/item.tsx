@@ -10,29 +10,29 @@ export interface ItemFlipProps {
 }
 
 const ItemFlip: FC<ItemFlipProps> = ({ data, id }) => {
-  console.log(data);
+  //console.log(data);
   const router = useRouter();
   const [image, setImage] = useState();
   const { getImageCollection } = useAuth();
   useEffect(() => {
     async function fetchImage() {
-      console.log(data.data.nameImage);
+      //console.log(data.data.nameImage);
       const response = await getImageCollection(data.data.data.imageName);
       setImage(response);
-      console.log(response);
+      //console.log(response);
     }
     fetchImage();
   }, []);
 
   const redirect = () => {
     if (id) {
-      console.log({ ihateyoubro: data.id });
+      //console.log({ ihateyoubro: data.id });
       router.push({
         pathname: "/all_pages/Collection_select",
         query: { id: id },
       });
     } else {
-      console.log({ ihateyoubro: data.id });
+      //console.log({ ihateyoubro: data.id });
       router.push({
         pathname: "/all_pages/Collection_select",
         query: { id: data.id },

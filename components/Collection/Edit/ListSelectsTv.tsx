@@ -21,7 +21,7 @@ export interface listSelcProps {
 const base_Url: string = "https://image.tmdb.org/t/p/original/";
 
 const Selc: FC<listSelcProps> = ({ id, deleteMovies }) => {
-  console.log(id);
+  //console.log(id);
   const [movie, setMovie] = useState(undefined);
   useEffect(() => {
     //data
@@ -31,12 +31,12 @@ const Selc: FC<listSelcProps> = ({ id, deleteMovies }) => {
           id: { id },
         },
       });
-      console.log({ eo: result });
+      //console.log({ eo: result });
       setMovie(result.data.data);
     }
     getDataMovie();
   }, [id]);
-  console.log(movie);
+  //console.log(movie);
 
   if (movie != undefined) {
     return (

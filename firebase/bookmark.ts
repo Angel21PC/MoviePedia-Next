@@ -18,7 +18,7 @@ async function ConsultaID() {
       .catch((error) => {
         console.log("Error getting document:", error);
       });
-    console.log(result);
+    //console.log(result);
   } catch (e) {}
 
   return result;
@@ -34,8 +34,8 @@ export async function checkBookMark_M(id) {
     .then((doc) => {
       if (doc.exists) {
         const data = doc.data();
-        console.log(data);
-        console.log(id);
+        // console.log(data);
+        // console.log(id);
         result = data.id_movie.find((e) => e.id === id);
       } else {
         console.log("No such document!");
@@ -44,7 +44,7 @@ export async function checkBookMark_M(id) {
     .catch((error) => {
       console.log("Error getting document:", error);
     });
-  console.log("e" + result);
+  //console.log("e" + result);
   return result;
 }
 
@@ -79,8 +79,8 @@ export async function checkBookMark_TV(id) {
     .then((doc) => {
       if (doc.exists) {
         const data = doc.data();
-        console.log(data);
-        console.log(id);
+        // console.log(data);
+        // console.log(id);
         result = data.id_movie.find((e) => e.id === id);
       } else {
         console.log("No such document!");
@@ -89,7 +89,7 @@ export async function checkBookMark_TV(id) {
     .catch((error) => {
       console.log("Error getting document:", error);
     });
-  console.log("e" + result);
+  //console.log("e" + result);
   return result;
 }
 

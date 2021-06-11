@@ -43,8 +43,8 @@ const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
   }, []);
 
   const like = async () => {
-    console.log("gg");
-    console.log(com.newComent.data);
+    //console.log("gg");
+    //console.log(com.newComent.data);
     if (currentUser.currentUser !== null) {
       let response = await commentLike(
         id_film,
@@ -54,13 +54,13 @@ const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
 
       if (response === true) {
         setH("heartcheck");
-        console.log("mira qui");
-        console.log(response);
+        //console.log("mira qui");
+        //console.log(response);
       } else {
         setH("heart");
       }
-      console.log("mira aqui");
-      console.log(response);
+      //console.log("mira aqui");
+      //console.log(response);
     } else {
       store.addNotification({
         title: "Sorry",

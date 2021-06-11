@@ -39,16 +39,16 @@ const ProfileComp: FC<ProfileCompProps> = () => {
   useEffect(() => {
     async function fetchData() {
       if (currentUser.currentUser.email != undefined) {
-        console.log("e");
+        //console.log("e");
         try {
           const user = await ConsultaID();
           const response = await getCollectionsEmail(user);
           const providerData = await checkProviderUser();
-          console.log(response);
+          //console.log(response);
           setCollection(response);
           setProvider(providerData);
         } catch (e) {
-          console.log(e);
+          //console.log(e);
         }
       }
     }

@@ -13,7 +13,7 @@ export interface SeasonProps {
 }
 
 const Season: FC<SeasonProps> = (props) => {
-  console.log({ SEASONCOMPONENT: props });
+  //console.log({ SEASONCOMPONENT: props });
   const [open, setOpen] = useState(false);
 
   return (

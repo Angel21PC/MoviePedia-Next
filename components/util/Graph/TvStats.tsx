@@ -31,7 +31,7 @@ const GraphTv: FC<GraphTvProps> = () => {
     async function getData() {
       if (currentUser.currentUser !== null) {
         let response = await getDateReleaseTv();
-        console.log(response);
+        //console.log(response);
         setDataMovieYear(response);
       }
     }
@@ -40,7 +40,7 @@ const GraphTv: FC<GraphTvProps> = () => {
     async function getDataGenre() {
       if (currentUser.currentUser !== null) {
         let response = await getGenreStadsTv();
-        console.log(response);
+        //console.log(response);
         setData(response);
       }
     }
@@ -49,7 +49,7 @@ const GraphTv: FC<GraphTvProps> = () => {
     async function getTime() {
       if (currentUser.currentUser !== null) {
         let response = await getTimeStatsYearTv();
-        console.log(response);
+        //console.log(response);
         setDataY(response);
       }
     }
@@ -58,7 +58,7 @@ const GraphTv: FC<GraphTvProps> = () => {
     async function getTimeWeek() {
       if (currentUser.currentUser !== null) {
         let response = await getTimeStatsWeekTv();
-        console.log(response);
+        //console.log(response);
         setDataW(response);
       }
     }

@@ -11,7 +11,7 @@ export interface FindMovieProps {
 }
 
 const FindMovie: FC<FindMovieProps> = ({ id }) => {
-  console.log(id);
+  //console.log(id);
   const [fetchUrl, setFetchUrl] = useState(URL + api_rutesM.Find);
   const [movies, setMovies] = useState([]);
   const [isPending, setIsPending] = useState(true);
@@ -27,7 +27,7 @@ const FindMovie: FC<FindMovieProps> = ({ id }) => {
           text: id,
         },
       });
-      console.log(request);
+      //console.log(request);
       setTimeout(() => {
         //ejecutamos
         setIsPending(false);

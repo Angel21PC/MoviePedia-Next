@@ -27,7 +27,7 @@ const Graph: FC<GraphProps> = () => {
     async function getData() {
       if (currentUser.currentUser !== null) {
         let response = await getDateRelease();
-        console.log(response);
+        //console.log(response);
         setDataMovieYear(response);
       }
     }
@@ -36,7 +36,7 @@ const Graph: FC<GraphProps> = () => {
     async function getDataGenre() {
       if (currentUser.currentUser !== null) {
         let response = await getGenreStads();
-        console.log(response);
+        //console.log(response);
         setData(response);
       }
     }
@@ -45,7 +45,7 @@ const Graph: FC<GraphProps> = () => {
     async function getTime() {
       if (currentUser.currentUser !== null) {
         let response = await getTimeStatsYear();
-        console.log(response);
+        //console.log(response);
         setDataY(response);
       }
     }
@@ -54,7 +54,7 @@ const Graph: FC<GraphProps> = () => {
     async function getTimeWeek() {
       if (currentUser.currentUser !== null) {
         let response = await getTimeStatsWeek();
-        console.log(response);
+        //console.log(response);
         setDataW(response);
       }
     }
@@ -83,7 +83,7 @@ const Graph: FC<GraphProps> = () => {
           </Row>
         </div>
       </div>
-      
+
       <div className="mt-4">
         <h1>Time Stats</h1>
         <hr />
@@ -96,7 +96,7 @@ const Graph: FC<GraphProps> = () => {
           </Row>
         </div>
       </div>
-      
+
       <div className="mt-4">
         <h1>Release Movies Stat</h1>
         <hr />

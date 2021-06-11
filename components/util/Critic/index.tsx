@@ -11,8 +11,8 @@ const CriticList: FC<CriticListProps> = ({ id }) => {
     //get comments
     async function criticsData() {
       const response = await getCritics(id);
-      console.log("aqui");
-      console.log(response);
+      //console.log("aqui");
+      //console.log(response);
       let orderDate = response?.critics?.sort(
         (a, b) => a.newComent.data.date - b.newComent.data.date
       );

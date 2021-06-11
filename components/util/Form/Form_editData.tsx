@@ -76,7 +76,7 @@ const FormEdit: FC<FormEditProps> = () => {
 
   const onSubmit = async (data: INewUser) => {
     try {
-      console.log(data);
+      //console.log(data);
       setLoading(true);
       await changeData(
         data.username,
@@ -93,7 +93,7 @@ const FormEdit: FC<FormEditProps> = () => {
       }
       router.push("/");
     } catch (e) {
-      console.log(e);
+      //console.log(e);
       store.addNotification({
         title: "Fail!",
         message: "Fail to change data account",
@@ -227,7 +227,7 @@ const FormEdit: FC<FormEditProps> = () => {
             theme="bubble"
             value={value}
             onChange={(e) => {
-              console.log(e);
+              //console.log(e);
               setValue(e);
             }}
           />

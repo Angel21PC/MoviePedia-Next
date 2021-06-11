@@ -194,7 +194,7 @@ const Explorer: FC<ExplorerProps> = ({
                 } else {
                   setPage(page + 1);
                 }
-                console.log(page);
+                //console.log(page);
               }}
             >
               Dame mas

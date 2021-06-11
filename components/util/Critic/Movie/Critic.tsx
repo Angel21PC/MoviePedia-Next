@@ -26,7 +26,7 @@ const Critic: FC<CriticProps> = ({ id }) => {
   const [title, setTitle] = useState(null);
 
   const change = (data: any) => {
-    console.log(data.target.value);
+    //console.log(data.target.value);
     setTitle(data.target.value);
   };
 
@@ -36,7 +36,7 @@ const Critic: FC<CriticProps> = ({ id }) => {
       html: value,
     };
     if (value.length > 20) {
-      console.log(newObj);
+      //console.log(newObj);
       const response = await pushNewCriticM(
         id,
         title,
@@ -57,7 +57,7 @@ const Critic: FC<CriticProps> = ({ id }) => {
           },
         })
       );
-      console.log(response);
+      //console.log(response);
     } else {
       store.addNotification({
         title: "Sorry",
@@ -96,7 +96,7 @@ const Critic: FC<CriticProps> = ({ id }) => {
           theme="bubble"
           value={value}
           onChange={(e) => {
-            console.log(e);
+            //console.log(e);
             setValue(e);
           }}
         />

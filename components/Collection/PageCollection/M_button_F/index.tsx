@@ -65,7 +65,7 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
         userLikes?.map((user) => (user === id ? (bool = true) : bool));
 
         if (bool === true) {
-          console.log(true);
+          //console.log(true);
           setE("heartcheck");
         }
       }
@@ -73,7 +73,7 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
 
     async function getNumLikes() {
       const num = await collectionNumLike(id);
-      console.log({ NUM: num, id: id });
+      //console.log({ NUM: num, id: id });
       setCont(num?.length);
     }
     getNumLikes();
@@ -106,8 +106,8 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
           setCont(cont - 1);
         }
       }
-      console.log("mira aqui");
-      console.log(response);
+      //console.log("mira aqui");
+      //console.log(response);
     } else {
       store.addNotification({
         title: "Sorry",

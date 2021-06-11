@@ -60,8 +60,8 @@ const Tv: FC<TvProps> = ({ data }) => {
           id: movie.id,
         },
       });
-      console.log("mira el video ");
-      console.log(request.data.data);
+      //console.log("mira el video ");
+      //console.log(request.data.data);
       setVideo(request.data.data);
       return request;
     }
@@ -75,7 +75,7 @@ const Tv: FC<TvProps> = ({ data }) => {
         fetchDataProvider();
         fetchDataViedo();
         setIsPending(false);
-        console.log(cast);
+        //console.log(cast);
       }, 2500);
     }
     go();

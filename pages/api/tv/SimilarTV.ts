@@ -1,18 +1,13 @@
-import axios, {request as r} from '../../../tmdb/index';
+import axios, { request as r } from "../../../tmdb/index";
 
-export default async (
-  req, 
-  res
-) => {
-  
-  const id:string = req.query.id
-  const idObj= JSON.parse(id)
-    console.log(id)
+export default async (req, res) => {
+  const id: string = req.query.id;
+  const idObj = JSON.parse(id);
+  //console.log(id)
   try {
-    const request = await axios.get(r.fetchSimilar_TV.replace('{tv_id}', id));
-    res.status(200).json({data: request.data})
+    const request = await axios.get(r.fetchSimilar_TV.replace("{tv_id}", id));
+    res.status(200).json({ data: request.data });
   } catch (error) {
-    res.status(200).json(error)
+    res.status(200).json(error);
   }
- 
-}
+};

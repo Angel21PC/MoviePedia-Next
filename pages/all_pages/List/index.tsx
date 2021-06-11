@@ -28,7 +28,7 @@ const List: NextPage<ListProps> = () => {
     async function getDataListM() {
       if (currentUser.currentUser !== null) {
         let r = await getListMovies();
-        console.log(r);
+        //console.log(r);
         setDataM(r);
       }
     }
@@ -36,7 +36,7 @@ const List: NextPage<ListProps> = () => {
     async function getDataListTV() {
       if (currentUser.currentUser !== null) {
         let r = await getListTv();
-        console.log(r);
+        //console.log(r);
         setDataTV(r);
       }
     }
@@ -44,7 +44,7 @@ const List: NextPage<ListProps> = () => {
     async function getDataCollection() {
       if (currentUser.currentUser !== null) {
         let r = await getCollectionSaved();
-        console.log(r);
+        //console.log(r);
         setDataCollection(r);
       }
     }

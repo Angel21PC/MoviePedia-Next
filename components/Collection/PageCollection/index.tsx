@@ -40,7 +40,7 @@ const OneCollection: FC<OneCollectionProps> = ({ id }) => {
     }
     fetchData();
   }, [id]);
-  console.log({ uuuu: like });
+  //console.log({ uuuu: like });
   return (
     <Container className="mt-3">
       <Col>

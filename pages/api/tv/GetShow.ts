@@ -1,19 +1,15 @@
-import axios, {request as r} from '../../../tmdb/index';
+import axios, { request as r } from "../../../tmdb/index";
 
-export default async (
-  req, 
-  res
-) => {
-  
-  const id:string = req.query.id
-  const idObj= JSON.parse(id)
+export default async (req, res) => {
+  const id: string = req.query.id;
+  const idObj = JSON.parse(id);
 
   try {
-    const request = await axios.get(r.fetchOne_Tv.replace('{tv_id}', idObj.id));
-   
-    res.status(200).json({data: request.data})
+    const request = await axios.get(r.fetchOne_Tv.replace("{tv_id}", idObj.id));
+
+    res.status(200).json({ data: request.data });
   } catch (error) {
-    res.status(200).json(error)
+    res.status(200).json(error);
   }
-  console.log(idObj)
-}
+  //console.log(idObj)
+};
