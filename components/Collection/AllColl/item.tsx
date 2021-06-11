@@ -57,12 +57,15 @@ const ItemFlip: FC<ItemFlipProps> = ({ data, id }) => {
             )`,
           }}
         >
-          <div className="text-light">{data.data.data.title}</div>
+          <div className="text-light">
+            <h1>{data.data.data.title}</h1>
+          </div>
         </FrontSide>
         <BackSide
           style={{
             borderRadius: "10px",
-            backgroundColor: "#175852",
+            backgroundImage:
+              "linear-gradient(to bottom, #1e88e5, #80a2eb, #b4bef1, #ddddf8, #ffffff)",
           }}
         >
           <div className="w-100">

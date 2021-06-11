@@ -75,7 +75,7 @@ const FormEditProvider: FC<FormEditProviderProps> = () => {
       if (data?.file[0]?.name) {
         let c = await uploadImgProfile(data.file[0]);
       }
-      // router.push("/");
+      router.push("/");
     } catch (e) {
       console.log(e);
       store.addNotification({
