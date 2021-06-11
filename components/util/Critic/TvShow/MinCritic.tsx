@@ -85,16 +85,19 @@ const MinCritic: FC<MinCriticProps> = (props) => {
 
   return (
     <Toast key={title}>
-      <ToastHeader
-        closeButton={false}
-        onClick={() =>
-          router.push({
-            pathname: "/all_pages/PublicProfile",
-            query: { id: creator },
-          })
-        }
-      >
-        {email}
+      <ToastHeader closeButton={false}>
+        <a
+          className="text-link"
+          onClick={() =>
+            router.push({
+              pathname: "/all_pages/PublicProfile",
+              query: { id: creator },
+            })
+          }
+        >
+          {email}
+        </a>
+
         <div className="ml-3">{dateReal}</div>
       </ToastHeader>
       <div className="d-flex w-100">

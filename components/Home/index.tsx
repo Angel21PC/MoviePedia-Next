@@ -1,9 +1,16 @@
 import React, { FC } from "react";
 
 import { useRouter } from "next/router";
-import { InputGroup, FormControl, Button } from "react-bootstrap";
-import { useState } from "react";
-
+import {
+  InputGroup,
+  FormControl,
+  Button,
+  Container,
+  Col,
+} from "react-bootstrap";
+import { useState, useEffect } from "react";
+//firebase
+import { useAuth } from "../../firebase/AuthContext";
 //style
 import style from "./Home.module.scss";
 
@@ -11,7 +18,21 @@ export interface CasaProps {}
 
 const Casa: FC<CasaProps> = () => {
   const router = useRouter();
+  const currentUser = useAuth();
   const [find, setFind] = useState(null);
+  const [name, setName] = useState("");
+  const { ConsultaID, getUserNameIDColl } = useAuth();
+
+  useEffect(() => {
+    async function getName() {
+      const response = await ConsultaID();
+      const name = await getUserNameIDColl(response);
+      setName(name);
+    }
+    if (currentUser.currentUser.email) {
+      getName();
+    }
+  }, []);
 
   const change = (data: any) => {
     console.log(data.target.value);
@@ -28,14 +49,15 @@ const Casa: FC<CasaProps> = () => {
   };
 
   return (
-    <>
-      <div className={style.text}>
+    <Container fluid>
+      <Col className={style.text}>
         <h1 className="mt-5 p-5 animate__animated animate__backInLeft">
-          Welcome to MoviePedia
+          Welcome to MoviePedia {name}
         </h1>
         <div className={style.from}>
-          <InputGroup className="mb-3">
+          <InputGroup className="mb-3 ml-5">
             <FormControl
+              className="w-90"
               placeholder="Search"
               aria-label="Search"
               aria-describedby="basic-addon2"
@@ -43,12 +65,12 @@ const Casa: FC<CasaProps> = () => {
             />
             <InputGroup.Append>
               <Button variant="dark" onClick={send}>
-                Button
+                Find
               </Button>
             </InputGroup.Append>
           </InputGroup>
         </div>
-      </div>
+      </Col>
 
       <video className={style.myVideo} autoPlay loop muted id="myVideo">
         <source
@@ -56,7 +78,7 @@ const Casa: FC<CasaProps> = () => {
           type="video/mp4"
         />
       </video>
-    </>
+    </Container>
   );
 };
 

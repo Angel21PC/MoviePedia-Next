@@ -327,8 +327,8 @@ export async function commentLikeTV(
 export async function getUserNameIDColl(id: string) {
   let response = undefined;
   let arr = "";
-  console.log("DDD");
-  console.log(`${"id."}${id}`);
+  // console.log("DDD");
+  // console.log(`${"id."}${id}`);
   try {
     const docRef = await db
       .collection("profile")

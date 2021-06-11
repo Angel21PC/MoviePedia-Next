@@ -21,19 +21,20 @@ const OneCollection: FC<OneCollectionProps> = ({ id }) => {
   const [email, setEmail] = useState("");
   const [creator, setCreator] = useState("");
   const [result, setResult] = useState({
-    response: { data: { title: "s", description: "" }, userLikes: [] },
-    url: "a",
+    response: { data: { title: "", description: "" }, userLikes: [] },
+    url: "",
   });
   const { getCollectionByID, getUserNameIDColl } = useAuth();
   const [like, setLike] = useState([]);
+
   useEffect(() => {
     async function fetchData() {
       const response = await getCollectionByID(id);
       setResult(response);
-      setMovies(response.response.data.objArray.movies);
-      setShows(response.response.data.objArray.tv);
-      setCreator(response.response.data.user);
-      setLike(response.response.userLikes);
+      setMovies(response?.response.data.objArray.movies);
+      setShows(response?.response.data.objArray.tv);
+      setCreator(response?.response.data.user);
+      setLike(response?.response.userLikes);
       const eml = await getUserNameIDColl(response.response.data.user);
       setEmail(eml);
     }

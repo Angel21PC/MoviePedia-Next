@@ -94,7 +94,18 @@ const MinCritic: FC<MinCriticProps> = (props) => {
           })
         }
       >
-        {email}
+        <a
+          className="text-link"
+          onClick={() =>
+            router.push({
+              pathname: "/all_pages/PublicProfile",
+              query: { id: creator },
+            })
+          }
+        >
+          {email}
+        </a>
+
         <div className="ml-3">{dateReal}</div>
       </ToastHeader>
       <div className="d-flex w-100">

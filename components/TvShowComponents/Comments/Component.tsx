@@ -7,6 +7,7 @@ import style from "./Comments.module.scss";
 import { useAuth } from "../../../firebase/AuthContext";
 //Notification
 import { store } from "react-notifications-component";
+import { useRouter } from "next/router";
 export interface CommentItemProps {
   com: any;
   id_film: string;
@@ -17,7 +18,7 @@ const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
   const [email, setEmail] = useState("");
   const { commentLikeTV, ConsultaID, getUserNameIDColl } = useAuth();
   const currentUser = useAuth();
-
+  const router = useRouter();
   let bool = false;
   useEffect(() => {
     const c = async () => {
@@ -73,7 +74,18 @@ const CommentItem: FC<CommentItemProps> = ({ id_film, com }) => {
   return (
     <Toast key={com.text} className={style.text}>
       <ToastHeader closeButton={false}>
-        {email}
+        <a
+          className="text-link"
+          onClick={() =>
+            router.push({
+              pathname: "/all_pages/PublicProfile",
+              query: { id: com.newComent.data.user },
+            })
+          }
+        >
+          {email}
+        </a>
+
         <div className="ml-3">{dateReal}</div>
       </ToastHeader>
       <div className="d-flex w-100">

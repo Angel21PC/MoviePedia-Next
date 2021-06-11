@@ -201,14 +201,16 @@ export async function getCollectionByID(id_Collection: number | string) {
       } else {
       }
     });
-  } catch (error) {}
 
-  const t = async () => {
-    console.log({ response: response });
-    return await getImageCollection(response.data.imageName);
-  };
-  urlImageCollection = await t();
-  return { response: response, url: urlImageCollection };
+    const t = async () => {
+      console.log({ response: response });
+      return await getImageCollection(response.data.imageName);
+    };
+    urlImageCollection = await t();
+    return { response: response, url: urlImageCollection };
+  } catch (error) {
+    console.log("ups");
+  }
 }
 
 export async function getCollections() {
@@ -526,6 +528,31 @@ export async function getCollectionsByLike() {
       });
   } catch (error) {
     console.log(error);
+  }
+
+  return response;
+}
+
+export async function collectionNumLike(id_collection: number | string) {
+  let response = undefined;
+
+  try {
+    const docRef = await db
+      .collection("Collections")
+      .doc(id_collection.toString())
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          console.log({ EEEEEEEE: data.userLikes });
+          response = data.userLikes;
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+  } catch (e) {
+    console.log(e);
   }
 
   return response;

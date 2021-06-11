@@ -12,6 +12,7 @@ import {
   faThList,
   faPlus,
   faCalculator,
+  faHome,
 } from "@fortawesome/free-solid-svg-icons";
 
 //COMPONENTS
@@ -117,7 +118,7 @@ const NavBar: FC<NavBarProps> = () => {
                     })
                   }
                 >
-                  Public Profile <FontAwesomeIcon icon={faCalculator} />
+                  Public Profile <FontAwesomeIcon icon={faHome} />
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item

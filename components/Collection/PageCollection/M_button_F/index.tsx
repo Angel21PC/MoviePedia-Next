@@ -28,12 +28,13 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
     deleteLikesColletions,
     ConsultaID,
     collectionLike,
+    collectionNumLike,
   } = useAuth();
   const [h, setH] = useState("eye");
   const [b, setB] = useState("bookmark");
   const [e, setE] = useState("heart");
 
-  const [cont, setCont] = useState(userLikes.length);
+  const [cont, setCont] = useState(null);
 
   let bool = false;
 
@@ -70,6 +71,13 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
       }
     };
 
+    async function getNumLikes() {
+      const num = await collectionNumLike(id);
+      console.log({ NUM: num, id: id });
+      setCont(num?.length);
+    }
+    getNumLikes();
+
     const check = async () => {
       c_heart();
       c_bookmark();
@@ -91,8 +99,12 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
       let response = await collectionLike(id, id_user);
       if (response != false) {
         setE("heartcheck");
+        setCont(cont + 1);
       } else {
         setE("heart");
+        if (cont > 0) {
+          setCont(cont - 1);
+        }
       }
       console.log("mira aqui");
       console.log(response);
