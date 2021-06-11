@@ -13,6 +13,9 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../../firebase/AuthContext";
 //style
 import style from "./Home.module.scss";
+//Icons
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export interface CasaProps {}
 
@@ -58,14 +61,14 @@ const Casa: FC<CasaProps> = () => {
           <InputGroup className="mb-3 ml-5">
             <FormControl
               className="w-90"
-              placeholder="Search"
+              placeholder={"Search..."}
               aria-label="Search"
               aria-describedby="basic-addon2"
               onChange={change}
             />
             <InputGroup.Append>
               <Button variant="dark" onClick={send}>
-                Find
+                <FontAwesomeIcon icon={faSearch} /> Find
               </Button>
             </InputGroup.Append>
           </InputGroup>
