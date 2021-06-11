@@ -1,5 +1,4 @@
-export default function Custom404() {
-//https://media.giphy.com/media/yPRo73ILrGjny/giphy.mp4
+export default function Custom404() { 
     return (
     <>
         <div className='w-100 d-flex justify-content-center miss vertical-center'>
@@ -9,6 +8,7 @@ export default function Custom404() {
         <video className='myVideo' autoPlay loop muted id="myVideo">
             <source src='https://media.giphy.com/media/yPRo73ILrGjny/giphy.mp4' type="video/mp4" />
         </video>
+       
         <style jsx>{`
         .myVideo {
             position: absolute;

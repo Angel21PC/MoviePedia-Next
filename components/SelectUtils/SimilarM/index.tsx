@@ -47,7 +47,7 @@ const Similar: FC<SimilarProps> = ({ id, m_s }) => {
               key={movie?.id}
             >
               <a>
-                <Poster c="poster" movie={movie} />
+                <Poster c="poster mt-4 mb-4" movie={movie} />
               </a>
             </Link>
           </div>

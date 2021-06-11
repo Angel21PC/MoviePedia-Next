@@ -20,7 +20,7 @@ const HomeMovies: NextPage<HomeMoviesProps> = (props) => {
   // console.log(popularMovies);
   return (
     <>
-      <Banner data={popularMovies.data} />
+      <Banner data={popularMovies.data} m_s={"/all_pages/Movie_select"} />
       <Explorer
         genreMovies={genreMovies?.data.genres}
         URL={URL}

@@ -23,7 +23,7 @@ const TV: NextPage<TVProps> = (props) => {
   //console.log(popularTv);
   return (
     <>
-      <Banner data={popularTv?.data} />
+      <Banner data={popularTv?.data} m_s={"/all_pages/Show_select"} />
       <Explorer
         genreMovies={genreTv?.data.genres}
         URL={URL}
