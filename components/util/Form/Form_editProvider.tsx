@@ -116,7 +116,9 @@ const FormEditProvider: FC<FormEditProviderProps> = () => {
             name="username"
             {...register("username")}
           />
-          {errors?.username?.message && <p>{errors?.username?.message}</p>}
+          {errors?.username?.message && (
+            <p className="text-danger">{errors?.username?.message}</p>
+          )}
         </div>
 
         <div className="form-group">
@@ -130,7 +132,7 @@ const FormEditProvider: FC<FormEditProviderProps> = () => {
             placeholder="Phone Number (if you want)"
           />
           {errors.phone_number?.message && (
-            <p>{errors.phone_number?.message}</p>
+            <p className="text-danger">{errors.phone_number?.message}</p>
           )}
         </div>
         <div className="form-group">
@@ -143,7 +145,9 @@ const FormEditProvider: FC<FormEditProviderProps> = () => {
             {...register("birth_date")}
             placeholder="Birth Date"
           />
-          {errors.birth_date?.message && <p>{errors.birth_date?.message}</p>}
+          {errors.birth_date?.message && (
+            <p className="text-danger">{errors.birth_date?.message}</p>
+          )}
         </div>
         <div className="form-group">
           <h4>Bio</h4>

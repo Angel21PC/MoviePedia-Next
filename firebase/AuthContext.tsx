@@ -159,7 +159,7 @@ export function AuthProvider({ children }) {
     setTimeout(() => {
       //ejecutamos
       //datos de perfil
-      return db.collection("profile").doc(auth.currentUser.uid).set({
+      return db.collection("profile").doc(auth?.currentUser?.uid).set({
         email: { email },
         description: "",
         username: { username },

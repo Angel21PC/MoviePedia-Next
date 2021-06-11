@@ -131,7 +131,9 @@ const FormEdit: FC<FormEditProps> = () => {
             name="username"
             {...register("username")}
           />
-          {errors?.username?.message && <p>{errors?.username?.message}</p>}
+          {errors?.username?.message && (
+            <p className="text-danger">{errors?.username?.message}</p>
+          )}
         </div>
         <div className="form-group">
           <input
@@ -156,7 +158,9 @@ const FormEdit: FC<FormEditProps> = () => {
             {...register("password")}
             pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
           />
-          {errors.password?.message && <p>{errors.password?.message}</p>}
+          {errors.password?.message && (
+            <p className="text-danger">{errors.password?.message}</p>
+          )}
         </div>
         <div className="form-group">
           <input
@@ -169,7 +173,9 @@ const FormEdit: FC<FormEditProps> = () => {
             {...register("password2")}
             pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
           />
-          {errors.password2?.message && <p>{errors.password2?.message}</p>}
+          {errors.password2?.message && (
+            <p className="text-danger">{errors.password2?.message}</p>
+          )}
         </div>
         <div className="form-group">
           <input
@@ -182,7 +188,9 @@ const FormEdit: FC<FormEditProps> = () => {
             {...register("email")}
             pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+"
           />
-          {errors.email?.message && <p>{errors.email?.message}</p>}
+          {errors.email?.message && (
+            <p className="text-danger">{errors.email?.message}</p>
+          )}
         </div>
         <div className="form-group">
           <input
@@ -195,7 +203,7 @@ const FormEdit: FC<FormEditProps> = () => {
             placeholder="Phone Number (if you want)"
           />
           {errors.phone_number?.message && (
-            <p>{errors.phone_number?.message}</p>
+            <p className="text-danger">{errors.phone_number?.message}</p>
           )}
         </div>
         <div className="form-group">
@@ -208,7 +216,9 @@ const FormEdit: FC<FormEditProps> = () => {
             {...register("birth_date")}
             placeholder="Birth Date"
           />
-          {errors.birth_date?.message && <p>{errors.birth_date?.message}</p>}
+          {errors.birth_date?.message && (
+            <p className="text-danger">{errors.birth_date?.message}</p>
+          )}
         </div>
         <div>
           <input

@@ -35,6 +35,10 @@ const schema = yup.object().shape({
   email: yup.string().email().required(),
   phone_number: yup.string(),
   birth_date: yup.date().max(today),
+  terms: yup
+    .boolean()
+    .required()
+    .oneOf([true], "You must accept the terms and conditions"),
 });
 
 const FormS: FC<FormSProps> = () => {
@@ -107,7 +111,9 @@ const FormS: FC<FormSProps> = () => {
             name="username"
             {...register("username")}
           />
-          {errors?.username?.message && <p>{errors?.username?.message}</p>}
+          {errors?.username?.message && (
+            <p className="text-danger">{errors?.username?.message}</p>
+          )}
         </div>
         <div className="form-group">
           <input
@@ -120,7 +126,9 @@ const FormS: FC<FormSProps> = () => {
             {...register("password")}
             pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
           />
-          {errors.password?.message && <p>{errors.password?.message}</p>}
+          {errors.password?.message && (
+            <p className="text-danger">{errors.password?.message}</p>
+          )}
         </div>
         <div className="form-group">
           <input
@@ -133,7 +141,9 @@ const FormS: FC<FormSProps> = () => {
             {...register("password2")}
             pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
           />
-          {errors.password2?.message && <p>{errors.password2?.message}</p>}
+          {errors.password2?.message && (
+            <p className="text-danger">{errors.password2?.message}</p>
+          )}
         </div>
         <div className="form-group">
           <input
@@ -146,7 +156,9 @@ const FormS: FC<FormSProps> = () => {
             {...register("email")}
             pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+"
           />
-          {errors.email?.message && <p>{errors.email?.message}</p>}
+          {errors.email?.message && (
+            <p className="text-danger">{errors.email?.message}</p>
+          )}
         </div>
         <div className="form-group">
           <input
@@ -159,7 +171,7 @@ const FormS: FC<FormSProps> = () => {
             placeholder="Phone Number (if you want)"
           />
           {errors.phone_number?.message && (
-            <p>{errors.phone_number?.message}</p>
+            <p className="text-danger">{errors.phone_number?.message}</p>
           )}
         </div>
         <div className="form-group">
@@ -172,8 +184,25 @@ const FormS: FC<FormSProps> = () => {
             {...register("birth_date")}
             placeholder="Birth Date"
           />
-          {errors.birth_date?.message && <p>{errors.birth_date?.message}</p>}
+          {errors.birth_date?.message && (
+            <p className="text-danger">{errors.birth_date?.message}</p>
+          )}
         </div>
+        <div className="form-group d-flex">
+          <input
+            className="mt-1"
+            type="checkbox"
+            key="terms"
+            id="terms"
+            name="terms"
+            {...register("terms")}
+            placeholder="terms"
+          />
+          <p className="ml-2 mb-2">Terms</p>
+        </div>
+        {errors.terms?.message && (
+          <p className="text-danger">{errors.terms?.message}</p>
+        )}
         <div className="form-group">
           <button
             disabled={loading}

@@ -18,7 +18,7 @@ const ListMTV: FC<ListMTVProps> = ({ Movie, TV, list, title }) => {
   if (list === true) {
     return (
       <div className="mt-3">
-        <h2>{title}</h2>
+        <h4>{title}</h4>
         <Row>
           {Movie[0].list.map((e) => (
             <LstM {...{ id: e.id }} />

@@ -142,7 +142,7 @@ const Movie: FC<MovieProps> = ({ data }) => {
                 <h1>Trailer</h1>
                 <Video data={video}></Video>
               </div>
-              <div className="similar_container mt-3">
+              <div className="similar_container mt-3 mb-5">
                 <h1>Similar Movies</h1>
                 <Similar m_s={"/all_pages/Movie_select"} id={movie.id} />
               </div>

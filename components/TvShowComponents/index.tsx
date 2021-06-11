@@ -132,7 +132,7 @@ const Tv: FC<TvProps> = ({ data }) => {
               <div className="video_container">
                 <Video data={video}></Video>
               </div>
-              <div className="similar_container mt-3">
+              <div className="similar_container mt-3 mb-5">
                 <Similar m_s={"/all_pages/Show_select"} id={movie.id} />
               </div>
             </Col>

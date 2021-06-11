@@ -15,13 +15,16 @@ const ItemSeason: FC<ItemSeasonProps> = (props) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div onClick={() => setOpen(!open)} className={styles.seasonBox}>
+    <div
+      onClick={() => setOpen(!open)}
+      className={(styles.seasonBox, "shadow p-3 mb-5 bg-white rounded")}
+    >
       <div className="d-flex justify-content-center mt-2">
         <h5 className="mr-3 pr-3">{name}</h5>
-        <h5 className="ml-3 pl-3">Episode Count:{episode_count}</h5>
+        <h5 className="ml-3 pl-3 text-muted">Episode Count: {episode_count}</h5>
       </div>
       <Collapse in={open} className={styles.seasonContent}>
-        <div className="text-center">
+        <div className="text-center mt-1">
           {overview == "" ? "Sorry, the overview is not defined" : overview}
         </div>
       </Collapse>

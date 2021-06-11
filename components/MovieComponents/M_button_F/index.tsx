@@ -261,7 +261,11 @@ const M_B_F: FC<M_B_FProps> = ({ movie }) => {
 
   return (
     <>
-      <h3>{movie.title}</h3>
+      <div className="d-flex">
+        <h3>{movie?.title}</h3>
+        <h5 className="ml-3 mt-1">({movie?.release_date.slice(0, 4)})</h5>
+      </div>
+
       <FontAwesomeIcon
         className="icon fa-2x"
         id={h}

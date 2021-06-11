@@ -90,7 +90,9 @@ const FormL: FC<FormLProps> = () => {
             {...register("email")}
             pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+"
           />
-          {errors.email?.message && <p>{errors.email?.message}</p>}
+          {errors.email?.message && (
+            <p className="text-danger">{errors.email?.message}</p>
+          )}
         </div>
         <div className="form-group">
           <input
@@ -103,7 +105,9 @@ const FormL: FC<FormLProps> = () => {
             {...register("password")}
             pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$"
           />
-          {errors.password?.message && <p>{errors.password?.message}</p>}
+          {errors.password?.message && (
+            <p className="text-danger">{errors.password?.message}</p>
+          )}
         </div>
         <div className="form-group">
           <button

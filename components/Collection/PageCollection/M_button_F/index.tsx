@@ -45,7 +45,7 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
         let r = await checkLikesCollections(id);
         let bool = r === undefined ? (r = false) : (r = true);
         if (bool === true) {
-          setH("heartcheck");
+          setH("eyecheck");
         }
       }
     }
@@ -246,7 +246,7 @@ const M_B_F: FC<M_B_FProps> = ({ id, title, userLikes }) => {
       });
     }
   }
-  console.log({ fifififi: userLikes });
+  //console.log({ fifififi: userLikes });
   return (
     <div className="d-flex">
       <h3>{title}</h3>

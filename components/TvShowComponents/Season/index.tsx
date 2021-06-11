@@ -22,8 +22,8 @@ const Season: FC<SeasonProps> = (props) => {
         View Season{" "}
         <FontAwesomeIcon className={styles.seasonIcon} icon={faThList} />
       </h2>
-      <Collapse in={open}>
-        <div>
+      <Collapse in={open} className="border">
+        <div className={styles.sea}>
           {props.seasons?.map((s) => (
             <ItemSeason {...s} />
           ))}
