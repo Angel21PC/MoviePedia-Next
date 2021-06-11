@@ -66,7 +66,11 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
 
     async function fetchImage() {
       const response = await getImageUser(id);
-      setUrlImage(response);
+      if (response === undefined) {
+        setUrlImage("/monkey_confused.jpg");
+      } else {
+        setUrlImage(response);
+      }
     }
     fetchImage();
   }, []);
@@ -89,11 +93,15 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
         </div>
         <hr />
         <div className="d-flex p-5">
-          <div
-            dangerouslySetInnerHTML={{
-              __html: description,
-            }}
-          ></div>
+          {description === "" ? (
+            <p>This user dont have a description</p>
+          ) : (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: description,
+              }}
+            ></div>
+          )}
         </div>
         <hr />
       </Container>

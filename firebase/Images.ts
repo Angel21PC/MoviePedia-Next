@@ -73,15 +73,18 @@ export async function getImageUrlProfile() {
 }
 
 export async function getImageUser(email: string) {
-  let storage = a.storage();
-  let url;
-  await storage
-    .ref("imagesProfile")
-    .child(email)
-    .getDownloadURL()
-    .then((fireBaseUrl) => {
-      url = fireBaseUrl;
-    });
+  let url = undefined;
+
+  try {
+    let storage = a.storage();
+    await storage
+      .ref("imagesProfile")
+      .child(email)
+      .getDownloadURL()
+      .then((fireBaseUrl) => {
+        url = fireBaseUrl;
+      });
+  } catch (error) {}
 
   return url;
 }

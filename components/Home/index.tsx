@@ -32,7 +32,7 @@ const Casa: FC<CasaProps> = () => {
       const name = await getUserNameIDColl(response);
       setName(name);
     }
-    if (currentUser.currentUser.email) {
+    if (currentUser?.currentUser?.email) {
       getName();
     }
   }, []);
