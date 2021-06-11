@@ -24,6 +24,8 @@ const arrayUrls = [
   "https://agoodmovietowatch.com/wp-content/uploads/firstreformed-1.mp4",
   "https://media.giphy.com/media/ylyUQlf4VUVF9odXKU/giphy.mp4",
   "https://media.giphy.com/media/GsJO3Yy0DCvEk/giphy.mp4",
+  "https://media.giphy.com/media/3oKIPz8lnDgrjGUkCY/giphy.mp4",
+  "https://media.giphy.com/media/IpOLcy6Cy82qc/giphy.mp4",
 ];
 const randIndex = Math.floor(Math.random() * arrayUrls.length);
 const Casa: FC<CasaProps> = () => {
