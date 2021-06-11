@@ -19,6 +19,13 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export interface CasaProps {}
 
+const arrayUrls = [
+  "https://media.giphy.com/media/ZaSv2GblXPri0/giphy.mp4",
+  "https://agoodmovietowatch.com/wp-content/uploads/firstreformed-1.mp4",
+  "https://media.giphy.com/media/ylyUQlf4VUVF9odXKU/giphy.mp4",
+  "https://media.giphy.com/media/GsJO3Yy0DCvEk/giphy.mp4",
+];
+const randIndex = Math.floor(Math.random() * arrayUrls.length);
 const Casa: FC<CasaProps> = () => {
   const router = useRouter();
   const currentUser = useAuth();
@@ -76,10 +83,7 @@ const Casa: FC<CasaProps> = () => {
       </Col>
 
       <video className={style.myVideo} autoPlay loop muted id="myVideo">
-        <source
-          src="https://agoodmovietowatch.com/wp-content/uploads/firstreformed-1.mp4"
-          type="video/mp4"
-        />
+        <source src={arrayUrls[randIndex]} type="video/mp4" />
       </video>
     </Container>
   );
