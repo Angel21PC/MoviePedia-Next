@@ -46,7 +46,7 @@ const Critic: FC<CriticProps> = ({ id }) => {
         store.addNotification({
           title: "Wonderful!",
           message: "Critic add correctly",
-          type: "info",
+          type: "success",
           insert: "top",
           container: "top-center",
           animationIn: ["animate__animated", "animate__fadeIn"],

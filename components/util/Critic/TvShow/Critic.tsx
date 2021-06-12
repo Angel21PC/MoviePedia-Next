@@ -31,21 +31,37 @@ const Critic: FC<CriticProps> = ({ id }) => {
   };
 
   const send = async () => {
-    let newObj = {
-      title: title,
-      html: value,
-    };
-    if (value.length > 20) {
-      //console.log(newObj);
-      const response = await pushNewCriticTV(
-        id,
-        title,
-        value,
-        currentUser.currentUser.email
-      ).then(
+    if (currentUser.currentUser !== null) {
+      let newObj = {
+        title: title,
+        html: value,
+      };
+      if (value.length > 20) {
+        //console.log(newObj);
+        const response = await pushNewCriticTV(
+          id,
+          title,
+          value,
+          currentUser.currentUser.email
+        ).then(
+          store.addNotification({
+            title: "Wonderful!",
+            message: "Critic add correctly",
+            type: "success",
+            insert: "top",
+            container: "top-center",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOutUp"],
+            dismiss: {
+              duration: 2000,
+              touch: true,
+            },
+          })
+        );
+      } else {
         store.addNotification({
-          title: "Wonderful!",
-          message: "Critic add correctly",
+          title: "Sorry",
+          message: "Your critic has to be more long",
           type: "info",
           insert: "top",
           container: "top-center",
@@ -55,12 +71,12 @@ const Critic: FC<CriticProps> = ({ id }) => {
             duration: 2000,
             touch: true,
           },
-        })
-      );
+        });
+      }
     } else {
       store.addNotification({
         title: "Sorry",
-        message: "Your critic has to be more long",
+        message: "You need to be login",
         type: "info",
         insert: "top",
         container: "top-center",
