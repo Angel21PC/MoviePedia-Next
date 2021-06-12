@@ -183,7 +183,7 @@ const Explorer: FC<ExplorerProps> = ({
                 }
               }}
             >
-              Dame menos
+              Less
             </AwesomeButton>
             <AwesomeButton
               type="primary"
@@ -197,7 +197,7 @@ const Explorer: FC<ExplorerProps> = ({
                 //console.log(page);
               }}
             >
-              Dame mas
+              More
             </AwesomeButton>
           </div>
         </Container>
