@@ -130,6 +130,7 @@ const Tv: FC<TvProps> = ({ data }) => {
                 <Cast cast={cast} />
               </div>
               <div className="video_container">
+                <h1>Trailer</h1>
                 <Video data={video}></Video>
               </div>
               <div className="similar_container mt-3 mb-5">
@@ -168,7 +169,6 @@ const Tv: FC<TvProps> = ({ data }) => {
           display: flex;
         }
         .video_container {
-          margin-top: 10%;
           width: 100%;
         }
       `}</style>
