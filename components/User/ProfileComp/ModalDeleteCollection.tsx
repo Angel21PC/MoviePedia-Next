@@ -33,7 +33,7 @@ const ModalDeleteCollection: FC<ModalDeleteCollectionProps> = ({
       </Button>
       <Modal show={show} onHide={handleClose}>
         <ModalTitle></ModalTitle>
-        <ModalBody>seguro?</ModalBody>
+        <ModalBody>Are you sure ?</ModalBody>
         <ModalFooter>
           <Button variant="secondary" onClick={handleClose}>
             Close
