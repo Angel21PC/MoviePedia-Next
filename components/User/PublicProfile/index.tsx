@@ -21,7 +21,7 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
 
   const [urlImage, setUrlImage] = useState(undefined);
   const [description, setDescription] = useState(undefined);
-
+  const [name, setName] = useState(undefined);
   const [collections, setCollections] = useState(undefined);
   const [collectionSaved, setCollectionSaved] = useState(undefined);
   const {
@@ -39,6 +39,7 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
       const response = await getDataUser(id);
       //console.log(response);
       setDescription(response.description);
+      setName(response.userName);
       if (response != undefined) {
         if (response.Eye === true) {
           const listEye = await getEye_TVMovie(id);
@@ -91,6 +92,9 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
             <></>
           )}
         </div>
+        <div className="w-100 d-flex justify-content-center animate__animated animate__pulse">
+          <h1>{name}</h1>
+        </div>
         <hr />
         <div className="p-5">
           {description === "" ? (
@@ -134,33 +138,39 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
         )}
 
         <hr />
-        <h4>Collections liked by user</h4>
-        {collectionSaved != undefined ? (
-          collectionSaved.Like?.map((c) => (
-            <div>
-              <IntComGetData Coll={c.id} />
-            </div>
-          ))
-        ) : (
-          <></>
-        )}
+        <div className="mb-5">
+          <h4>Collections liked by user</h4>
+          {collectionSaved != undefined ? (
+            collectionSaved.Like?.map((c) => (
+              <div>
+                <IntComGetData Coll={c.id} />
+              </div>
+            ))
+          ) : (
+            <></>
+          )}
 
-        <hr />
-        {eye != undefined ? (
-          <ListMTV Movie={eye?.Movie} TV={eye?.Tv} list={true} title="View" />
-        ) : (
-          <></>
-        )}
-        {bookmark != undefined ? (
-          <ListMTV Movie={bookmark?.Movie} TV={bookmark?.Tv} title="Pending" />
-        ) : (
-          <></>
-        )}
-        {likes != undefined ? (
-          <ListMTV Movie={likes?.Movie} TV={likes?.Tv} title="Liked" />
-        ) : (
-          <></>
-        )}
+          <hr />
+          {eye != undefined ? (
+            <ListMTV Movie={eye?.Movie} TV={eye?.Tv} list={true} title="View" />
+          ) : (
+            <></>
+          )}
+          {bookmark != undefined ? (
+            <ListMTV
+              Movie={bookmark?.Movie}
+              TV={bookmark?.Tv}
+              title="Pending"
+            />
+          ) : (
+            <></>
+          )}
+          {likes != undefined ? (
+            <ListMTV Movie={likes?.Movie} TV={likes?.Tv} title="Liked" />
+          ) : (
+            <></>
+          )}
+        </div>
       </Container>
     </Container>
   );
