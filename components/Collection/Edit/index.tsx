@@ -110,12 +110,14 @@ const CollectionEdit: FC<CollectionEditProps> = ({ data }) => {
         </Col>
 
         <Col lg="7">
-          <CollectionFinder
-            getMovies={setMovies}
-            getShow={setShow}
-            m={movies}
-            s={shows}
-          />
+          <div className="ml-5">
+            <CollectionFinder
+              getMovies={setMovies}
+              getShow={setShow}
+              m={movies}
+              s={shows}
+            />
+          </div>
         </Col>
       </Row>
       <style jsx>{`
