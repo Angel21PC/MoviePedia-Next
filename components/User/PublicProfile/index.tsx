@@ -92,11 +92,12 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
           )}
         </div>
         <hr />
-        <div className="d-flex p-5">
+        <div className="p-5">
           {description === "" ? (
             <p>This user dont have a description</p>
           ) : (
             <div
+              className="text-center"
               dangerouslySetInnerHTML={{
                 __html: description,
               }}
