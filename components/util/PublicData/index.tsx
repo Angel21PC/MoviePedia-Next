@@ -11,7 +11,7 @@ const CheckPublic: FC<CheckPublicProps> = () => {
   const { getDataUser, editPublicData, ConsultaID } = useAuth();
   const [isOpenB, setIsOpenB] = useState(false);
   const [isOpenE, setIsOpenE] = useState(false);
-  const [isOpenL, setIsOpenL] = useState(true);
+  const [isOpenL, setIsOpenL] = useState(false);
 
   useEffect(() => {
     async function fetchDataPublicProfile() {
@@ -42,6 +42,19 @@ const CheckPublic: FC<CheckPublicProps> = () => {
 
     try {
       const response = await editPublicData(obj);
+      store.addNotification({
+        title: "Wonderful!",
+        message: "Change success",
+        type: "success",
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOutUp"],
+        dismiss: {
+          duration: 2000,
+          touch: true,
+        },
+      });
       //console.log(response);
     } catch (error) {
       //console.log(error);
