@@ -64,8 +64,7 @@ const ItemFlip: FC<ItemFlipProps> = ({ data, id }) => {
         <BackSide
           style={{
             borderRadius: "10px",
-            backgroundImage:
-              "linear-gradient(to bottom, #1e88e5, #80a2eb, #b4bef1, #ddddf8, #ffffff)",
+            backgroundImage: "linear-gradient(315deg, #485461 0%, #28313b 74%)",
           }}
         >
           <div className="w-100">
