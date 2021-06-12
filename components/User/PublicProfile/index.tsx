@@ -108,15 +108,17 @@ const PublicProfile: FC<PublicProfileProps> = ({ id }) => {
 
       <Container fluid>
         <h4>Collections created by user</h4>
-        {collections != undefined ? (
-          collections?.map((c) => (
-            <div>
-              <IntComGetData Coll={c.id} />
-            </div>
-          ))
-        ) : (
-          <></>
-        )}
+        <Row md={2}>
+          {collections != undefined ? (
+            collections?.map((c) => (
+              <div>
+                <IntComGetData Coll={c.id} />
+              </div>
+            ))
+          ) : (
+            <></>
+          )}
+        </Row>
 
         <hr />
         <h4>Collections saved by user</h4>
