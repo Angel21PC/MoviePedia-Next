@@ -126,7 +126,7 @@ const FormL: FC<FormLProps> = () => {
             <Google
               onClick={() => {
                 signInWithGoogle();
-                router.push("/");
+                router.push("/all_pages/HomeMovies");
               }}
             ></Google>
           </a>

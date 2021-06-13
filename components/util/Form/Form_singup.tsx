@@ -258,7 +258,7 @@ const FormS: FC<FormSProps> = () => {
             <Google
               onClick={() => {
                 signInWithGoogle();
-                router.push("/");
+                router.push("/all_pages/HomeMovies");
               }}
             ></Google>
           </a>
