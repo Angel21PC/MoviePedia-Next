@@ -61,7 +61,7 @@ const FormS: FC<FormSProps> = () => {
         saveData(data.username, data.birth_date, data.phone_number, data.email)
       );
 
-      router.push("/");
+      router.push("/all_pages/HomeMovies");
     } catch (e) {
       //console.log(e);
       store.addNotification({

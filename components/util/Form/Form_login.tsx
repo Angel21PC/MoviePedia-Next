@@ -46,7 +46,7 @@ const FormL: FC<FormLProps> = () => {
       //console.log(data);
       setLoading(true);
       await login(data.email, data.password);
-      router.push("/");
+      router.push("/all_pages/HomeMovies");
     } catch {
       store.addNotification({
         title: "Fail!",
