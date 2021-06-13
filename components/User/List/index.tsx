@@ -133,7 +133,7 @@ const ListM: FC<ListMProps> = ({ dataM, dataTV, dataC }) => {
                 ))}
               </Tab>
               <Tab eventKey="Pending" title="Pending">
-                {dataC.Like?.map((c) => (
+                {dataC.Bookmark?.map((c) => (
                   <IntComGetData Coll={c.id} />
                 ))}
               </Tab>
