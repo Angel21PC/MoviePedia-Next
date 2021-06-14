@@ -1,30 +1,39 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useState, useLayoutEffect } from "react";
 //firebase
 import { useAuth } from "../../../firebase/AuthContext";
 import { Container, Row, Form } from "react-bootstrap";
 import ItemFlip from "./item";
+import Loading from "../../util/Loading/index";
 export interface AllColProps {}
 
 const AllCol: FC<AllColProps> = () => {
   const { getCollections, getCollectionsByDate, getCollectionsByLike } =
     useAuth();
   const [collections, setCollections] = useState([]);
+  //load
+  const [isPending, setIsPending] = useState(false); // variable para la pantalla de carga
   const [filter, setFilter] = useState("New");
   useEffect(() => {
     async function fetchDataNew() {
+      setIsPending(true);
       const response = await getCollections();
       setCollections(response);
+      setIsPending(false);
     }
 
     async function fetchDataDate() {
+      setIsPending(true);
       //del primero al ultimo
       const response = await getCollectionsByDate();
       setCollections(response);
+      setIsPending(false);
     }
 
     async function fetchDataLikes() {
+      setIsPending(true);
       const response = await getCollectionsByLike();
       setCollections(response);
+      setIsPending(false);
     }
     switch (filter) {
       case "New":
@@ -43,7 +52,7 @@ const AllCol: FC<AllColProps> = () => {
 
   const handleSelect = (e) => {
     switch (e.currentTarget.value) {
-      case "Default":
+      case "New":
         setFilter("New");
         break;
       case "Date":
@@ -78,13 +87,19 @@ const AllCol: FC<AllColProps> = () => {
           </Form.Group>
         </Form>
       </div>
-      <Row className="justify-content-between" lg={3} sm={2} xs={1}>
-        {collections.map((c) => (
-          <div className="collection mt-4 p-1 animate__animated animate__backInUp">
-            <ItemFlip data={c}></ItemFlip>
-          </div>
-        ))}
-      </Row>
+      {isPending === true ? (
+        <div className="d-flex justify-content-center mt-5">
+          <Loading />
+        </div>
+      ) : (
+        <Row className="justify-content-between" lg={3} sm={2} xs={1}>
+          {collections.map((c) => (
+            <div className="collection mt-4 p-1 animate__animated animate__backInUp">
+              <ItemFlip data={c}></ItemFlip>
+            </div>
+          ))}
+        </Row>
+      )}
     </Container>
   );
 };

@@ -220,6 +220,7 @@ export async function getCollections() {
     const docRef = await db
       .collection("Collections")
       .where("public", "==", true)
+      .orderBy("data.date")
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
