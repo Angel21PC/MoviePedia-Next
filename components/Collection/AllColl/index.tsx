@@ -43,7 +43,7 @@ const AllCol: FC<AllColProps> = () => {
 
   const handleSelect = (e) => {
     switch (e.currentTarget.value) {
-      case "New":
+      case "Default":
         setFilter("New");
         break;
       case "Date":
